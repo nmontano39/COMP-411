@@ -1,0 +1,21 @@
+let mapStream := map f,l to
+                   if l = null then null
+                   else cons(f(first(l)),mapStream(f,rest(l)));
+    oddNums := cons(3,mapStream(map i to i+2, oddNums));
+    filter := map p,l to
+                if l = null then null
+                else if p(first(l)) then filter(p,rest(l))
+                else cons(first(l),filter(p,rest(l)));
+     divides := map a,b to ((b/a)*a) = b;
+     initSeg := map l,n to
+                  if n <= 0 then null
+                  else cons(first(l),initSeg(rest(l),n-1));
+     primes := map l to  // l must have form cons(p,l') where p is prime,
+                         // l' contains all primes > p, but no numbers divisible
+                         // by primes < p
+                         //
+                 let p := first(l);
+                 in let l1 := filter(map x to divides(p,x),rest(l));
+                    in cons(p,primes(l1));
+
+in initSeg(cons(2,primes(oddNums)),10)
