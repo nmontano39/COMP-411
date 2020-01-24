@@ -1,0 +1,5 @@
+let x:=3;
+    y:=4;
+    z:=cons?(function?(x * ~y), cons(-arity(x))); 
+in
+    rest(null?(true),list?(false),first(null))
