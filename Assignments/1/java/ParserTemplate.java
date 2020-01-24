@@ -10,8 +10,6 @@ import java.util.*;
 class Parser {
   
   private Lexer in;
-
-  
   
   Parser(Lexer i) {
     in = i;
@@ -25,15 +23,17 @@ class Parser {
   Lexer lexer() { return in; }
   
   private void initParser() {
-    
+    //initialize Parser
   }
+  
   
   /** Parses the program text in the lexer bound to 'in' and returns the corresponding AST. 
     * @throws ParseException if a syntax error is encountered (including lexical errors). 
     */
   public AST parse() throws ParseException {
-    
+    //parse text
   }
+  
   
   /** Parses:
     *     <exp> :: = if <exp> then <exp> else <exp>
@@ -46,10 +46,63 @@ class Parser {
     */
   private AST parseExp() {
     
+    // <binary-exp> ::=  <term> { <biop> <exp> }*
+    if (token instanceof Term) {
+      Token next = in.peek();
+      if (next instanceof Op) {
+        Op op = (Op) next;
+        if (! op.isBinOp()) error(op,"binary operator");
+        return new BinOpApp(op, parseExp());
+      }
+    }
+    
+    // if <exp> then <exp> else <exp>
+    if (token instanceof If) return parseIf();
+
+
+    // let <prop-def-list> in <exp>
+    if (token instanceof Let) return;
+
+    
+    // map <id-list> to <exp>
+    if (token instanceof Map) return parseMap();
+    
   }
   
-  /* Your may find it helpful to define separate parse methods for <binary-exp>, if expressions, and map expressions.
+  
+  /** Parses:
+    *  <term>     ::= <unop> <term> | <constant> | <factor> {( <exp-list> )}
+    *  <constant> ::= <null> | <int> | <bool>
+    * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+    */
+  private AST parseTerm(Token token) {
+
+    if (token instanceof Op) {
+      Op op = (Op) token;
+      if (! op.isUnOp()) error(op,"unary operator");
+      return new UnOpApp(op, parseTerm(in.readToken()));
+    }
+    
+    if (token instanceof Constant) return (Constant) token;
+    AST factor = parseFactor(token);
+    Token next = in.peek();
+    if (next == LeftParen.ONLY) {
+      in.readToken();  // remove next from input stream
+      AST[] exps = parseArgs();  // including closing paren
+      return new App(factor,exps);
+    }
+    return factor;
+  }
+  
+  
+  /* You may find it helpful to define separate parse methods for <binary-exp>, if expressions, and map expressions.
    * This is a stylistic choice. */
   
+  private AST parseIf() {}
+  
+  private AST parseMap() {}
+  
+  private AST parseBin() {}
+
 }
 
