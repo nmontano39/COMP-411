@@ -11,7 +11,7 @@ class Parser {
   
   private Lexer in;
 
-  . . .
+  
   
   Parser(Lexer i) {
     in = i;
@@ -25,14 +25,14 @@ class Parser {
   Lexer lexer() { return in; }
   
   private void initParser() {
-    . . .
+    
   }
   
   /** Parses the program text in the lexer bound to 'in' and returns the corresponding AST. 
     * @throws ParseException if a syntax error is encountered (including lexical errors). 
     */
   public AST parse() throws ParseException {
-    . . .
+    
   }
   
   /** Parses:
@@ -45,11 +45,11 @@ class Parser {
     * @return  the corresponding AST.
     */
   private AST parseExp() {
-    . . .
+    
   }
   
   /* Your may find it helpful to define separate parse methods for <binary-exp>, if expressions, and map expressions.
    * This is a stylistic choice. */
-  . . .
+  
 }
 
