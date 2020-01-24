@@ -1,0 +1,4 @@
+let
+  f:= map x to f((x + y);
+in
+  if x then y else z
