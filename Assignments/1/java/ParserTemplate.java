@@ -44,28 +44,21 @@ class Parser {
     * 
     * @return  the corresponding AST.
     */
-  private AST parseExp() {
+  private AST parseExp(Token token) {
     
     // <binary-exp> ::=  <term> { <biop> <exp> }*
-    if (token instanceof Term) {
-      Token next = in.peek();
-      if (next instanceof Op) {
-        Op op = (Op) next;
-        if (! op.isBinOp()) error(op,"binary operator");
-        return new BinOpApp(op, parseExp());
-      }
+    if (token instanceof Term) return parseBin(token);
+    
+    // let <prop-def-list> in <exp>
+    if (token instanceof Let) {
+      return;
     }
     
     // if <exp> then <exp> else <exp>
-    if (token instanceof If) return parseIf();
-
-
-    // let <prop-def-list> in <exp>
-    if (token instanceof Let) return;
-
+    if (token instanceof If) return parseIf(token);
     
     // map <id-list> to <exp>
-    if (token instanceof Map) return parseMap();
+    if (token instanceof Map) return parseMap(token);
     
   }
   
@@ -98,11 +91,27 @@ class Parser {
   /* You may find it helpful to define separate parse methods for <binary-exp>, if expressions, and map expressions.
    * This is a stylistic choice. */
   
-  private AST parseIf() {}
+  private AST parseIf(Token token) {}
   
-  private AST parseMap() {}
+  private AST parseMap(Token token) {}
   
-  private AST parseBin() {}
-
+  private AST parseBin(Token token) {
+    AST term = parseTerm(token)
+      Token next = in.peek();
+      if (next instanceof Op) {
+        Op op = (Op) next;
+        if (! op.isBinOp()) error(op,"binary operator");
+        return new BinOpApp(op, parseExp());
+      }
+  }
+  
+  private AST parseExpList(Token token) {}
+  
+  private AST parsePropExpList(Token token) {}
+  
+  private AST parseIdList(Token token) {}
+  
+  private AST parsePropIdList(Token token) {}
+  
 }
 
