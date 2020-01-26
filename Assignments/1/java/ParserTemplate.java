@@ -65,8 +65,7 @@ class Parser {
         
         // check next token for 'in'
         if (next instanceof In) {
-          next = in.readToken();
-          return new Let(defs, parseExp(next));
+          return new Let(defs, parseExp(in.readToken()));
         }
       }
     }
@@ -80,9 +79,8 @@ class Parser {
     
     // <binary-exp> ::=  <term> { <biop> <exp> }*
     AST term = parseTerm(token);
-    token = in.readToken();
-    if (token instanceof Op) {
-      return new App(term, parseBin(token));
+    if (in.peek() instanceof Op) {
+      return new App(term, parseBin(in.read()));
     }
     return term;
    
@@ -138,9 +136,6 @@ class Parser {
   private AST parseFactor(Token token) {
     if (token == LeftParen.ONLY) {
       token = in.readToken();
-      if (in.peek() != RightParen.ONLY) {
-        error();
-      }
       return parseExp(token);
     }
     if (token instanceof PrimFun) {
