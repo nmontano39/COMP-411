@@ -46,31 +46,39 @@ class Parser {
     */
   private AST parseExp(Token token) {
     
+    token = in.readToken();
+    
     // <binary-exp> ::=  <term> { <biop> <exp> }*
     if (token instanceof Term){
       AST term = parseTerm(token);
-      Token next = in.readToken();
+      Token next = in.peek();
       if (next instanceof Op) {
-        next = in.readToken();
-        return new App(term, parseBin(next));
-      } else {
-        return term;
+        in.readToken();
+        return new App(term, parseBin(in.readToken()));
       }
+      return term;
     }
     
     // let <prop-def-list> in <exp>
     // check fist token for 'let'
     if (token instanceof Let) {
       // cyle through Defs
-      Token next = in.readToken;
-      while (next instanceOf Def) {
-        Def def = (Def) next;
+      Token next = in.readToken();
+      if (next !instanceof Def) {
+        error();
+      }
+      AST defs = (Def) next;
+      next = in.readToken();
+      
+      while (next instanceof Def){
+        defs = new App(defs, (Def) next);
         next = in.readToken();
       }
+      
       // check next token for 'in'
       if (next instanceof In) {
         next = in.readToken();
-        return new App(def, parseExp(next));
+        return new App(defs, parseExp(next));
       }
     }
     
@@ -155,7 +163,7 @@ class Parser {
   private AST parseBin(Token token) {
     Op op = (Op) token;
     if (! op.isBinOp()) error(op,"binary operator");
-    return new BinOpApp(op, parseExp());
+    return new BinOpApp(op, parseExp(in.readToken()));
   }
   
   
@@ -165,7 +173,7 @@ class Parser {
     if (next == LeftParen.ONLY) {
       next = in.readToken();
       if (in.peek() != RightParen.ONLY) {
-        break;
+        error();
       }
       return parseExp(next);
     }
