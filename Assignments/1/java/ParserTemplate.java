@@ -47,7 +47,15 @@ class Parser {
   private AST parseExp(Token token) {
     
     // <binary-exp> ::=  <term> { <biop> <exp> }*
-    if (token instanceof Term) return parseBin(token);
+    if (token instanceof Term){
+      AST term = parseTerm(token);
+      Token next = in.peek();
+      if (next instanceof Op) {
+        return new App(term, parseBin(in.readToken()));
+      } else {
+        return term;
+      }
+    }
     
     // let <prop-def-list> in <exp>
     // check fist token for 'let'
@@ -69,10 +77,12 @@ class Parser {
     }
     
     // if <exp> then <exp> else <exp>
-    if (token instanceof If) return parseIf(token);
+    if (token instanceof If) return parseIf(in.readToken());
     
     // map <id-list> to <exp>
-    if (token instanceof Map) return parseMap(token);
+    if (token instanceof Map) return parseMap(in.readToken());
+    
+    error();
     
   }
   
@@ -107,65 +117,47 @@ class Parser {
   
   // token instanceof 'if'
   private AST parseIf(Token token) {
-    Token next = in.readToken();
-    // next token instanceof Exp
-    if(next instanceof Exp) {
-      AST exp0 = parseExp(next);
-      next =  in.readToken();
+    if(token instanceof Exp) {
+      AST exp0 = parseExp(token);
+      token =  in.readToken();
       
       // next token instanceof 'then' and next next instance of Exp
-      if(next instanceof Then && in.peek() instanceof Exp) {
-        AST exp1 = parseExp(in.readToken());
-        next =  in.readToken();
-        next = in.readToken();
+      if(token instanceof Then && in.peek() instanceof Exp) {
+        token =  in.readToken();
+        AST exp1 = parseExp(token);
+        token =  in.readToken();
         
         // next token instanceof 'else' and next next instance of Exp
-        if(next instanceof Else && in.peek() instanceof Exp) {
-          AST exp2 = parseExp(in.readToken());
+        if(token instanceof Else && in.peek() instanceof Exp) {
+          token =  in.readToken();
+          AST exp2 = parseExp(token);
           return new App(exp0, new App(exp1, exp2));
-          
-        } else {
-          error();
         }
-      } else {
-        error();
       }
-    } else {
-      error();
     }
+    error();
   }
   
   // token instanceof 'map'
   private AST parseMap(Token token) {
-    Token next = in.readToken();
-    // next token instanceof IdList
-    if(next instanceof IdList) {
-      AST idList = parseIdList(next);
-      next =  in.readToken();
+    if(token instanceof IdList) {
+      AST idList = parseIdList(token);
+      token =  in.readToken();
       
       // next token instanceof 'to' and next next instance of Exp
-      if(next instanceof To && in.peek() instanceof Exp) {
+      if(token instanceof To && in.peek() instanceof Exp) {
         AST exp = parseExp(in.readToken());
         return new App(idList, exp);
-      } else {
-        error();
       }
-      
-    } else {
-      error();
     }
+    error();
   }
   
+  // token instanceof binop
   private AST parseBin(Token token) {
-    AST term = parseTerm(token)
-    Token next = in.peek();
-    if (next instanceof Op) {
-      Op op = (Op) next;
-      if (! op.isBinOp()) error(op,"binary operator");
-      return new App(term, new BinOpApp(op, parseExp()));
-    } else {
-      return term;
-    }
+    Op op = (Op) token;
+    if (! op.isBinOp()) error(op,"binary operator");
+    return new BinOpApp(op, parseExp());
   }
   
   private AST parseFactor(Token token) {
