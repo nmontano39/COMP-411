@@ -50,11 +50,14 @@ class Parser {
     if (token instanceof Term) return parseBin(token);
     
     // let <prop-def-list> in <exp>
+    // check fist token for 'let'
     if (token instanceof Let) {
+      // cyle through Defs
       while(in.peek() instanceOf Def) {
         Token next = in.readToken();
         Def def = (Def) next;
       }
+      // check next token for 'in'
       Token next = in.readToken();
       if(next instanceof In) {
         next = in.readToken();
@@ -62,6 +65,7 @@ class Parser {
       } else {
         return error();
       }
+      // need to throw exceptions
     }
     
     // if <exp> then <exp> else <exp>
@@ -101,9 +105,55 @@ class Parser {
   /* You may find it helpful to define separate parse methods for <binary-exp>, if expressions, and map expressions.
    * This is a stylistic choice. */
   
-  private AST parseIf(Token token) {}
+  // token instanceof 'if'
+  private AST parseIf(Token token) {
+    Token next = in.readToken();
+    // next token instanceof Exp
+    if(next instanceof Exp) {
+      AST exp0 = parseExp(next);
+      next =  in.readToken();
+      
+      // next token instanceof 'then' and next next instance of Exp
+      if(next instanceof Then && in.peek() instanceof Exp) {
+        AST exp1 = parseExp(in.readToken());
+        next =  in.readToken();
+        next = in.readToken();
+        
+        // next token instanceof 'else' and next next instance of Exp
+        if(next instanceof Else && in.peek() instanceof Exp) {
+          AST exp2 = parseExp(in.readToken());
+          return new App(exp0, new App(exp1, exp2));
+          
+        } else {
+          error();
+        }
+      } else {
+        error();
+      }
+    } else {
+      error();
+    }
+  }
   
-  private AST parseMap(Token token) {}
+  // token instanceof 'map'
+  private AST parseMap(Token token) {
+    Token next = in.readToken();
+    // next token instanceof IdList
+    if(next instanceof IdList) {
+      AST exp0 = parseIdList(next);
+      next =  in.readToken();
+      
+      // next token instanceof 'to' and next next instance of Exp
+      if(next instanceof To && in.peek() instanceof Exp) {
+        AST exp1 = parseExp(in.readToken());
+      } else {
+        error();
+      }
+      
+    } else {
+      error();
+    }
+  }
   
   private AST parseBin(Token token) {
     AST term = parseTerm(token)
