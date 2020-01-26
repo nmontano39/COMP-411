@@ -49,18 +49,6 @@ class Parser {
     */
   private AST parseExp(Token token) {
     
-    token = in.readToken();
-    
-    // <binary-exp> ::=  <term> { <biop> <exp> }*
-    if (token instanceof Term){
-      AST term = parseTerm(token);
-      token = in.readToken();
-      if (token instanceof Op) {
-        return new App(term, parseBin(token));
-      }
-      return term;
-    }
-    
     // let <prop-def-list> in <exp>
     if (token instanceof Let) {
       // cyle through Defs
@@ -89,8 +77,15 @@ class Parser {
     // map <id-list> to <exp>
     if (token instanceof Map) return parseMap(in.readToken());
     
-    error();
     
+    // <binary-exp> ::=  <term> { <biop> <exp> }*
+    AST term = parseTerm(token);
+    token = in.readToken();
+    if (token instanceof Op) {
+      return new App(term, parseBin(token));
+    }
+    return term;
+   
   }
   
   
@@ -167,7 +162,7 @@ class Parser {
     
     while (in.readToken() == ",") {
       token = in.readToken();
-      return parseExp(token) + parsePropExpList(token);
+      return parseExp(token) + parsePropExpList(in.readToken());
     }
       
   }
@@ -187,6 +182,7 @@ class Parser {
     }
     
     if (token instanceof Constant) return (Constant) token;
+   
     AST factor = parseFactor(token);
     Token next = in.peek();
     if (next == LeftParen.ONLY) {
