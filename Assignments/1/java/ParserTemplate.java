@@ -34,7 +34,7 @@ class Parser {
     */
   public AST parse() throws ParseException {
     //parse text
-    
+    parseExp(in.readToken());
   }
   
   
@@ -62,12 +62,10 @@ class Parser {
     }
     
     // let <prop-def-list> in <exp>
-    // check fist token for 'let'
     if (token instanceof Let) {
       // cyle through Defs
       Token next = in.readToken();
       if (next instanceof Def) {
-
         Def[] defs = {};
         defs.append((Def) next);
         next = in.readToken();
@@ -83,7 +81,6 @@ class Parser {
           return new Let(defs, parseExp(next));
         }
       }
-      error();
     }
     
     // if <exp> then <exp> else <exp>
@@ -103,27 +100,18 @@ class Parser {
   
   // token instanceof 'if'
   private AST parseIf(Token token) {
-    
-    if (token instanceof Exp) {
-      AST exp0 = parseExp(token);
-      tokenThen =  in.readToken();
-      
-      if (tokenThen instanceof Then) {
-        tokenExp = in.readToken();
+   
+    AST exp0 = parseExp(token);
+    tokenThen =  in.readToken();
+   
+    if (tokenThen instanceof Then) {
+      tokenExp = in.readToken();
+      AST exp1 = parseExp(tokenExp);
+      tokenElse = in.readToken();
         
-        if (tokenExp instanceof Exp) {
-          AST exp1 = parseExp(tokenExp);
-          tokenElse = in.readToken();
-        
-          if (tokenElse instanceof Else) {
-            tokenExp2 = in.readToken();
-            
-            if (tokenExp2 instanceof Exp) {
-              AST exp2 = parseExp(tokenExp2);
-              return new If(exp0, exp1, exp2);
-            }
-          }
-        }
+      if (tokenElse instanceof Else) {
+        AST exp2 = parseExp(in.readToken());
+        return new If(exp0, exp1, exp2);
       }
     }
     error();
