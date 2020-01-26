@@ -140,12 +140,13 @@ class Parser {
     Token next = in.readToken();
     // next token instanceof IdList
     if(next instanceof IdList) {
-      AST exp0 = parseIdList(next);
+      AST idList = parseIdList(next);
       next =  in.readToken();
       
       // next token instanceof 'to' and next next instance of Exp
       if(next instanceof To && in.peek() instanceof Exp) {
-        AST exp1 = parseExp(in.readToken());
+        AST exp = parseExp(in.readToken());
+        return new App(idList, exp);
       } else {
         error();
       }
@@ -161,7 +162,9 @@ class Parser {
     if (next instanceof Op) {
       Op op = (Op) next;
       if (! op.isBinOp()) error(op,"binary operator");
-      return new BinOpApp(op, parseExp());
+      return new App(term, new BinOpApp(op, parseExp()));
+    } else {
+      return term;
     }
   }
   
