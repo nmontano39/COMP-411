@@ -51,7 +51,17 @@ class Parser {
     
     // let <prop-def-list> in <exp>
     if (token instanceof Let) {
-      return;
+      while(in.peek() instanceOf Def) {
+        Token next = in.readToken();
+        Def def = (Def) next;
+      }
+      Token next = in.readToken();
+      if(next instanceof In) {
+        next = in.readToken();
+        return parseExp(next);
+      } else {
+        return error();
+      }
     }
     
     // if <exp> then <exp> else <exp>
@@ -97,21 +107,35 @@ class Parser {
   
   private AST parseBin(Token token) {
     AST term = parseTerm(token)
-      Token next = in.peek();
-      if (next instanceof Op) {
-        Op op = (Op) next;
-        if (! op.isBinOp()) error(op,"binary operator");
-        return new BinOpApp(op, parseExp());
-      }
+    Token next = in.peek();
+    if (next instanceof Op) {
+      Op op = (Op) next;
+      if (! op.isBinOp()) error(op,"binary operator");
+      return new BinOpApp(op, parseExp());
+    }
   }
   
-  private AST parseExpList(Token token) {}
+  private AST parseFactor(Token token) {
+    
+  }
   
-  private AST parsePropExpList(Token token) {}
+  private AST parseExpList(Token token) {
+    
+  }
   
-  private AST parseIdList(Token token) {}
+  private AST parsePropExpList(Token token) {
+    
+  }
   
-  private AST parsePropIdList(Token token) {}
+  private AST parseIDList(Token token) {
+    
+  }
   
+  private AST parsePropIDList(Token token) {
+    
+  }
+  
+  
+
 }
 
