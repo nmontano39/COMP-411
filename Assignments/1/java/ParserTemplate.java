@@ -55,11 +55,10 @@ class Parser {
       Token next = in.readToken();
       if (next instanceof Def) {
         Def[] defs = {};
-        defs.append((Def) next);
         next = in.readToken();
         
         while (next instanceof Def){
-          defs.append((Def) next);
+          
           next = in.readToken();
         }
         
@@ -80,7 +79,7 @@ class Parser {
     // <binary-exp> ::=  <term> { <biop> <exp> }*
     AST term = parseTerm(token);
     if (in.peek() instanceof Op) {
-      return new App(term, parseBin(in.read()));
+      return new App(term, parseBin(in.readToken()));
     }
     return term;
    
@@ -95,12 +94,12 @@ class Parser {
   private AST parseIf(Token token) {
    
     AST exp0 = parseExp(token);
-    tokenThen =  in.readToken();
+    Token tokenThen =  in.readToken();
    
     if (tokenThen instanceof Then) {
-      tokenExp = in.readToken();
+      Token tokenExp = in.readToken();
       AST exp1 = parseExp(tokenExp);
-      tokenElse = in.readToken();
+      Token tokenElse = in.readToken();
         
       if (tokenElse instanceof Else) {
         AST exp2 = parseExp(in.readToken());
@@ -182,7 +181,7 @@ class Parser {
     Token next = in.peek();
     if (next == LeftParen.ONLY) {
       in.readToken();  // remove next from input stream
-      AST[] exps = parseExpList();  // including closing paren
+      AST[] exps = parseExpList(in.readToken());  // including closing paren
       return new App(factor,exps);
     }
     return factor;
