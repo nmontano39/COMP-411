@@ -24,9 +24,8 @@ class Parser {
   
   private void initParser() {
     //initialize Parser
-//    Parser p = new Parser(in);
-    AST theAST = this.parse();
-    System.out.println(theAST.toString());
+    Parser p = new Parser(in);
+    p.parse();
   }
   
   
@@ -35,7 +34,7 @@ class Parser {
     */
   public AST parse() throws ParseException {
     //parse text
-    return parseExp(in.readToken());
+    parseExp(in.readToken());
   }
   
   
@@ -48,46 +47,39 @@ class Parser {
     * 
     * @return  the corresponding AST.
     */
-    private AST parseExp(Token token) {
+  private AST parseExp(Token token) {
     
     // let <prop-def-list> in <exp>
     if (token instanceof Let) {
       // cyle through Defs
       Token next = in.readToken();
       if (next instanceof Def) {
-//        Def[] defs = {};
-        // Changed this to array list because above isn't the way to initialize an array.
-        ArrayList<Def> defs = new ArrayList<Def>();
-        defs.add((Def) next);
+        Def[] defs = {};
         next = in.readToken();
         
         while (next instanceof Def){
-          defs.add((Def) next);
+          
           next = in.readToken();
         }
         
         // check next token for 'in'
-        // There is no 'in' Token
-//        if (next instanceof In) {
-//          return new Let(defs, parseExp(in.readToken()));
-//        }
-        return new Let((Def[]) defs.toArray(), parseExp(in.readToken()));
+        if (next instanceof In) {
+          return new Let(defs, parseExp(in.readToken()));
+        }
       }
     }
     
     // if <exp> then <exp> else <exp>
-//    if (token instanceof If) return parseIf(in.readToken());
+    if (token instanceof If) return parseIf(in.readToken());
     
     // map <id-list> to <exp>
-//    if (token instanceof Map) return parseMap(in.readToken());
+    if (token instanceof Map) return parseMap(in.readToken());
     
     
     // <binary-exp> ::=  <term> { <biop> <exp> }*
     AST term = parseTerm(token);
     if (in.peek() instanceof Op) {
-//      return new App(term, parseBin(in.readToken()));
-      Op binOp = (Op) in.readToken();
-      return new BinOpApp(binOp, term, parseExp(in.readToken()));
+      return new App(term, parseBin(in.readToken()));
     }
     return term;
    
@@ -99,44 +91,44 @@ class Parser {
    * This is a stylistic choice. */
   
   // token instanceof 'if'
-//  private AST parseIf(Token token) {
-//   
-//    AST exp0 = parseExp(token);
-//    Token tokenThen =  in.readToken();
-//   
-//    if (tokenThen instanceof Then) {
-//      Token tokenExp = in.readToken();
-//      AST exp1 = parseExp(tokenExp);
-//      Token tokenElse = in.readToken();
-//        
-//      if (tokenElse instanceof Else) {
-//        AST exp2 = parseExp(in.readToken());
-//        return new If(exp0, exp1, exp2);
-//      }
-//    }
-//    error();
-//  }
-//  
-//  // token instanceof 'map'
-//  private AST parseMap(Token token) {
-//    if (token instanceof IdList) {
-//      AST[] idList = parseIdList(token);
-//      token =  in.readToken();
-//      
-//      // next token instanceof 'to' and next next instance of Exp
-//      if (token instanceof To && in.peek() instanceof Exp) {
-//        return new Map(idList, parseExp(in.readToken()));
-//      }
-//    }
-//    error();
-//  }
+  private AST parseIf(Token token) {
+   
+    AST exp0 = parseExp(token);
+    Token tokenThen =  in.readToken();
+   
+    if (tokenThen instanceof Then) {
+      Token tokenExp = in.readToken();
+      AST exp1 = parseExp(tokenExp);
+      Token tokenElse = in.readToken();
+        
+      if (tokenElse instanceof Else) {
+        AST exp2 = parseExp(in.readToken());
+        return new If(exp0, exp1, exp2);
+      }
+    }
+    error();
+  }
+  
+  // token instanceof 'map'
+  private AST parseMap(Token token) {
+    if (token instanceof IdList) {
+      AST[] idList = parseIdList(token);
+      token =  in.readToken();
+      
+      // next token instanceof 'to' and next next instance of Exp
+      if (token instanceof To && in.peek() instanceof Exp) {
+        return new Map(idList, parseExp(in.readToken()));
+      }
+    }
+    error();
+  }
   
   // token instanceof binop
-//  private AST parseBin(Token token) {
-//    Op op = (Op) token;
-//    if (! op.isBinOp()) error(op,"binary operator");
-//    return new BinOpApp(op, parseExp(in.readToken()));
-//  }
+  private AST parseBin(Token token) {
+    Op op = (Op) token;
+    if (! op.isBinOp()) error(op,"binary operator");
+    return new BinOpApp(op, parseExp(in.readToken()));
+  }
   
   
   // Factor  ::= ( Exp ) | Prim | Id
@@ -148,27 +140,26 @@ class Parser {
     if (token instanceof PrimFun) {
       return (PrimFun) token;
     }
-//    if (token instanceof Id) {
-//      return (Id) token;
-//    }
+    if (token instanceof Id) {
+      return (Id) token;
+    }
     error();
-    return null;
   }
   
-//  private AST[] parseExpList(Token token) {
-//    return parsePropExpList(token);
-//  }
-//  
-//  private AST[] parsePropExpList(Token token) {
-//    
-//    if (in.peek() != ",") return parseExp(token);
-//    
-//    while (in.readToken() == ",") {
-//      token = in.readToken();
-//      return parseExp(token) + parsePropExpList(in.readToken());
-//    }
-//      
-//  }
+  private AST[] parseExpList(Token token) {
+    return parsePropExpList(token);
+  }
+  
+  private AST[] parsePropExpList(Token token) {
+    
+    if (in.peek != ",") return parseExp(token);
+    
+    while (in.readToken() == ",") {
+      token = in.readToken();
+      return parseExp(token) + parsePropExpList(in.readToken());
+    }
+      
+  }
   
   
   /** Parses:
@@ -180,7 +171,7 @@ class Parser {
 
     if (token instanceof Op) {
       Op op = (Op) token;
-//      if (! op.isUnOp()) error(op,"unary operator");
+      if (! op.isUnOp()) error(op,"unary operator");
       return new UnOpApp(op, parseTerm(in.readToken()));
     }
     
@@ -190,15 +181,11 @@ class Parser {
     Token next = in.peek();
     if (next == LeftParen.ONLY) {
       in.readToken();  // remove next from input stream
-//      AST[] exps = parseExpList(in.readToken());  // including closing paren
-      AST[] exps = new AST[0];
+      AST[] exps = parseExpList(in.readToken());  // including closing paren
       return new App(factor,exps);
     }
     return factor;
     
   }
   
-  private void error() throws ParseException {
-    System.out.println("Error in Parsing");
-  }
 }
