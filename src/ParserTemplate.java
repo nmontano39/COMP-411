@@ -1,3 +1,5 @@
+package src; /** Parser for Assignment 2 */
+
 /** Parser for Assignment 2 */
 
 import java.io.*;
@@ -41,34 +43,7 @@ class Parser {
     private AST parseExp(Token token) {
 
         // if current token is 'let'
-        if (token == Lexer.LET) {
-
-            Token next = in.readToken();
-
-            // cycle through Defs
-            if (next instanceof Variable) {
-
-                // create new list of Defs using token next
-                ArrayList<Def> defs = new ArrayList<Def>();
-                defs.add(parseDef(next));
-                next = in.readToken();
-
-                // while next token is also a Def
-                while (next instanceof Def) {
-
-                    // add that token to defs
-                    defs.add(parseDef(next));
-                    next = in.readToken();
-                }
-
-                // check next token for 'in'
-                if (next == Lexer.IN) {
-
-                    // return new Let using defs and exp
-                    return new Let(defs.toArray(new Def[0]), parseExp(in.readToken()));
-                }
-            }
-        }
+        if (token == Lexer.LET) { return parseLet(in.readToken()); }
 
         // if current token is 'if'
         if (token == Lexer.IF) return parseIf(in.readToken());
@@ -93,6 +68,7 @@ class Parser {
      *   <def>  ::= <id> := <exp> ;
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
      * @throws ParseException if a syntax error is encountered (including lexical errors).
+     * @return  the corresponding Def.
      */
     private Def parseDef(Token token) {
 
@@ -121,12 +97,49 @@ class Parser {
         return null;
     }
 
+    /** Parses:
+     *   <exp>  ::= let <prop-def-list> in <exp>
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @throws ParseException if a syntax error is encountered (including lexical errors).
+     * @return  the corresponding AST.
+     */
+    private AST parseLet(Token token) {
+
+        // cycle through Defs
+        if (token instanceof Variable) {
+
+            // create new list of Defs using token next
+            ArrayList<Def> defs = new ArrayList<Def>();
+            defs.add(parseDef(token));
+            token = in.readToken();
+
+            // while next token is also a Def
+            while (token instanceof Def) {
+
+                // add that token to defs
+                defs.add(parseDef(token));
+                token = in.readToken();
+            }
+
+            // check next token for 'in'
+            if (token == Lexer.IN) {
+
+                // return new Let using defs and exp
+                return new Let(defs.toArray(new Def[0]), parseExp(in.readToken()));
+            }
+        }
+
+        // if we reach here, throw error
+        error();
+        return null;
+    }
 
 
     /** Parses:
      *   <exp>  ::= if <exp> then <exp> else <exp>
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
      * @throws ParseException if a syntax error is encountered (including lexical errors).
+     * @return  the corresponding AST.
      */
     private AST parseIf(Token token) {
 
@@ -163,6 +176,7 @@ class Parser {
      *   <exp>  ::= map <id-list> to <exp>
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
      * @throws ParseException if a syntax error is encountered (including lexical errors).
+     * @return  the corresponding AST.
      */
     private AST parseMap(Token token) {
 
@@ -196,6 +210,7 @@ class Parser {
      *  <term>     ::= <unop> <term> | <constant> | <factor> {( <exp-list> )}
      *  <constant> ::= <null> | <int> | <bool>
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @return  the corresponding AST.
      */
     private AST parseTerm(Token token) {
 
@@ -226,6 +241,7 @@ class Parser {
      *   <factor>  ::= ( <exp> ) | <prim> | <id>
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
      * @throws ParseException if a syntax error is encountered (including lexical errors).
+     * @return  the corresponding AST.
      */
     private AST parseFactor(Token token) {
 
@@ -261,6 +277,7 @@ class Parser {
     /** Parses:
      *   <exp-list>  ::= { <prop-exp-list> }
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @return  the corresponding AST[]
      */
     private AST[] parseExpList(Token token) {
         return parsePropExpList(token);
@@ -269,6 +286,7 @@ class Parser {
     /** Parses:
      *   <prop-exp-list>  ::= <exp> { , <exp> }*
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @return  the corresponding AST[]
      */
     private AST[] parsePropExpList(Token token) {
 
@@ -292,6 +310,7 @@ class Parser {
     /** Parses:
      *   <id-list>  ::= { <prop-id-list> }
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @return  the corresponding AST[]
      */
     private Variable[] parseIdList(Token token) {
         return parsePropIdList(token);
@@ -300,6 +319,7 @@ class Parser {
     /** Parses:
      *   <prop-id-list>  ::= <id> { , <id> }*
      * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @return  the corresponding AST[]
      */
     private Variable[] parsePropIdList(Token token) {
 
