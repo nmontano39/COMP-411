@@ -1,4 +1,4 @@
-package src; /** Parser for Assignment 2 */
+ /** Parser for Assignment 2 */
 
 /** Parser for Assignment 2 */
 
@@ -114,7 +114,7 @@ class Parser {
             token = in.readToken();
 
             // while next token is also a Def
-            while (token instanceof Def) {
+            while (token instanceof Variable) {
 
                 // add that token to defs
                 defs.add(parseDef(token));
@@ -329,18 +329,42 @@ class Parser {
         // add id using current token
         if (token instanceof Variable) {
             ids.add((Variable) token);
+        } else {
+          error();
+        }
+
+//      token = in.readToken();
+        if (in.peek() instanceof Comma) {
+          token = in.readToken();
+          System.out.println("This should be a comma " + token.toString());
+          while (token instanceof Comma) {
+            if (in.peek() instanceof Variable) {
+              token = in.readToken();
+              System.out.println("This should be a variable " + token.toString());
+              ids.add((Variable) token);
+
+              if (in.peek() instanceof Comma) {
+                token = in.readToken();
+                System.out.println("This should be a comma " + token.toString());
+              }
+            } else {
+              System.out.println("Error in while" + token.toString());
+              error();
+            }
+
+            // add id using current token
+//            token = in.readToken();
+//            in.readToken();
+//            if (in.peek() instanceof Variable) {
+//            ids.add((Variable) in.readToken());
+//            }
+//            token = in.readToken();
+          }
+
         }
 
         // while next token is a comma
-        while (in.peek() instanceof Comma) {
 
-            // add id using current token
-            token = in.readToken();
-            if (in.peek() instanceof Variable) {
-                ids.add((Variable) token);
-            }
-            token = in.readToken();
-        }
 
         // return Variable list using id list
         return (Variable[]) ids.toArray(new Variable[0]);
@@ -354,6 +378,5 @@ class Parser {
     private void error() throws ParseException {
         throw new ParseException("error");
     }
-
 
 }
