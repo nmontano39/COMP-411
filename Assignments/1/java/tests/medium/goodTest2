@@ -1,4 +1,0 @@
-let
-  x := map x to f(true);
-in
-  1

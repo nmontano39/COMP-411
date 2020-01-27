@@ -1,4 +1,0 @@
-# This input is legal in Jam, only because the embedded map operation is enclosed in
-# in parentheses.  A map enclosed in parentheses is a term.
-
-map x to let x := 3; y := 4; z := x; in 3 + (map x to x)

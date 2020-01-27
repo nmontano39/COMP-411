@@ -1,6 +1,0 @@
-let 
-  x:=3;
-  y:=g();
-  z:=map to 1;
-in
-  (true)(false)

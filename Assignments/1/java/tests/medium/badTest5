@@ -1,4 +1,0 @@
-let 
-  null?:=3;
-in
-  f(null?)
