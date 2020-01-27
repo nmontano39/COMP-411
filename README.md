@@ -3,23 +3,24 @@ sec14
 
 # Program Organization
 
-We chose to write our parser completely in the Parser java class. First, the method parseExp()
-is called which handles 'let', 'if', 'map', and <binary-exp>. If the first token is 'let'
-the helper method parseLet() us called to parse and return exp ::= let <prop-def-list> in <exp>.
-If the first token is 'if' the helper method parseIf() is called to parse and return
-exp :== if <exp> then <exp> else <exp>. If the first token is 'map' the helper method parseMap()
-is called to parse and return exp :== map <id-list> to <exp>. Otherwise, the first token is a
-<binary-exp>. In this case, the method parses and returns <binary-exp> ::= <term> { <biop> <exp> }*
+We chose to write our parser to be executed by parseExp() which handles 'let', 'if', 'map', and <binary-exp>
+cases for a given lexer. If the first token is 'let' the helper method parseLet() is called to parse and return
+exp ::= let <prop-def-list> in <exp>. If the first token is 'if' the helper method parseIf() is called to parse and
+return exp :== if <exp> then <exp> else <exp>. If the first token is 'map' the helper method parseMap() is called
+to parse and return exp :== map <id-list> to <exp>. Otherwise, the first token is a <binary-exp>. In this case, the
+method parses and returns <binary-exp> ::= <term> { <biop> <exp> }*. The first three helper methods are defined below:
 
-parseLet()
-parseIf()
-parseMap()
+    parseLet() -> return an AST
+    parseIf() ->
+    parseMap() ->
 
-parseDef()
-parseTerm()
-parseFactor()
-parseIdList()
-parseExpList()
+
+
+    parseDef() ->
+    parseTerm() ->
+    parseFactor() ->
+
+
 
 However, ExpList and IdList are handled by the parsing methods for Term and Exp respectively in order to
 cleanly handle empty list cases. These private methods are named like
