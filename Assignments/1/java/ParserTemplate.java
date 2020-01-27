@@ -186,5 +186,7 @@ class Parser {
       return new App(factor,exps);
     }
     return factor;
+    
+  }
+  
 }
-
