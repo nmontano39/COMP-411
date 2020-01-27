@@ -11,10 +11,7 @@ class Parser {
 
     private Lexer in;
 
-    Parser(Lexer i) {
-        in = i;
-        initParser();
-    }
+    Parser(Lexer i) { in = i; }
 
     Parser(Reader inputStream) { this(new Lexer(inputStream)); }
 
@@ -22,24 +19,19 @@ class Parser {
 
     Lexer lexer() { return in; }
 
-    private void initParser() {
-        //initialize Parser
-
-    }
-
 
     /** Parses the program text in the lexer bound to 'in' and returns the corresponding AST.
      * @throws ParseException if a syntax error is encountered (including lexical errors).
      */
     public AST parse() throws ParseException {
-        //parse text
+        // parse text
         return parseExp(in.readToken());
     }
 
 
     /** Parses:
-     *     <exp> :: = if <exp> then <exp> else <exp>
-     *              | let <prop-def-list> in <exp>
+     *     <exp> :: = let <prop-def-list> in <exp>
+     *              | if <exp> then <exp> else <exp>
      *              | map <id-list> to <exp>
      *              | <binary-exp>
      *     <binary-exp> ::=  <term> { <biop> <exp> }*
@@ -48,124 +40,196 @@ class Parser {
      */
     private AST parseExp(Token token) {
 
-        // let <prop-def-list> in <exp>
+        // if current token is 'let'
         if (token == Lexer.LET) {
-            // cycle through Defs
+
             Token next = in.readToken();
 
+            // cycle through Defs
             if (next instanceof Variable) {
 
-                // Changed this to array list because above isn't the way to initialize an array.
+                // create new list of Defs using token next
                 ArrayList<Def> defs = new ArrayList<Def>();
                 defs.add(parseDef(next));
                 next = in.readToken();
 
+                // while next token is also a Def
                 while (next instanceof Def) {
+
+                    // add that token to defs
                     defs.add(parseDef(next));
                     next = in.readToken();
                 }
 
                 // check next token for 'in'
                 if (next == Lexer.IN) {
-                    Def[] newDef = defs.toArray(new Def[0]);
-                    return new Let(newDef, parseExp(in.readToken()));
+
+                    // return new Let using defs and exp
+                    return new Let(defs.toArray(new Def[0]), parseExp(in.readToken()));
                 }
             }
         }
 
-        // if <exp> then <exp> else <exp>
+        // if current token is 'if'
         if (token == Lexer.IF) return parseIf(in.readToken());
 
-        // map <id-list> to <exp>
+        // if current token is 'map'
         if (token == Lexer.MAP) return parseMap(in.readToken());
 
 
-        // <binary-exp> ::=  <term> { <biop> <exp> }*
+        // else current token is a term
         AST term = parseTerm(token);
 
+        // if next token is a BinOp
         if (in.peek() instanceof Op) {
             Op binOp = (Op) in.readToken();
             return new BinOpApp(binOp, term, parseExp(in.readToken()));
+        } else {
+            return term;
         }
-        return term;
-
     }
 
-
+    /** Parses:
+     *   <def>  ::= <id> := <exp> ;
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @throws ParseException if a syntax error is encountered (including lexical errors).
+     */
     private Def parseDef(Token token) {
+
+        // create Variable out of current token
         Variable v = (Variable) token;
         Token next = in.readToken();
 
+        // if next token is ':='
         if (next == Lexer.BIND) {
 
+            // create exp using next token
             next = in.readToken();
             AST exp = parseExp(next);
-
             next = in.readToken();
 
+            // if next token is ';'
             if (next instanceof SemiColon) {
+
+                // return new Def using v and exp
                 return new Def(v, exp);
             }
         }
+
+        // if we reach here, throw error
         error();
         return null;
     }
 
 
 
-    /* You may find it helpful to define separate parse methods for <binary-exp>, if expressions, and map expressions.
-     * This is a stylistic choice. */
-
-    // token instanceof 'if'
+    /** Parses:
+     *   <exp>  ::= if <exp> then <exp> else <exp>
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @throws ParseException if a syntax error is encountered (including lexical errors).
+     */
     private AST parseIf(Token token) {
 
+        // create exp0 using current token
         AST exp0 = parseExp(token);
         Token tokenThen =  in.readToken();
 
+        // if token is 'then'
         if (tokenThen == Lexer.THEN) {
-          Token tokenExp = in.readToken();
-          AST exp1 = parseExp(tokenExp);
-          Token tokenElse = in.readToken();
 
-          if (tokenElse == Lexer.ELSE) {
-            AST exp2 = parseExp(in.readToken());
-            return new If(exp0, exp1, exp2);
-          }
+            // create exp1 using next token
+            Token tokenExp = in.readToken();
+            AST exp1 = parseExp(tokenExp);
+            Token tokenElse = in.readToken();
+
+            // if token is 'else'
+            if (tokenElse == Lexer.ELSE) {
+
+                // create exp2 using next token
+                AST exp2 = parseExp(in.readToken());
+
+                // return new If using exp0, exp1, exp2
+                return new If(exp0, exp1, exp2);
+            }
         }
+
+        // if we reach here, throw error
         error();
         return null;
     }
 
 
-    // token instanceof 'map'
+    /** Parses:
+     *   <exp>  ::= map <id-list> to <exp>
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @throws ParseException if a syntax error is encountered (including lexical errors).
+     */
     private AST parseMap(Token token) {
+
+        // if current token is 'to'
         if (token == Lexer.TO) {
+
+            // return map using empty list and exp
             return new Map(new Variable[0], parseExp(in.readToken()));
+
         } else {
+            // parse id list
             Variable[] idList = parseIdList(token);
             token =  in.readToken();
 
-            // next token instanceof 'to' and next next instance of Exp
+            // if next token is 'to'
             if (token == Lexer.TO) {
+
+                // return new Map using idlist and exp
                 token = in.readToken();
                 return new Map(idList, parseExp(token));
             }
         }
+
+        // if we reach here, throw error
         error();
         return null;
     }
 
-    // token instanceof binop
-    private AST parseBin(Token token) {
-    Op op = (Op) token;
-    if (! op.isBinOp()) error();
-    return new BinOpApp(op, parseExp(token), parseExp(in.readToken()));
+
+    /** Parses:
+     *  <term>     ::= <unop> <term> | <constant> | <factor> {( <exp-list> )}
+     *  <constant> ::= <null> | <int> | <bool>
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     */
+    private AST parseTerm(Token token) {
+
+        // if current token is Op
+        if (token instanceof Op) {
+            Op op = (Op) token;
+            if (! op.isUnOp()) error();
+            return new UnOpApp(op, parseTerm(in.readToken()));
+        }
+
+        // if current token is Constant
+        if (token instanceof Constant) return (Constant) token;
+
+        // else current token is Term
+        AST factor = parseFactor(token);
+        Token next = in.peek();
+        if (next == LeftParen.ONLY) {
+            in.readToken();  // remove next from input stream
+            AST[] exps = parseExpList(in.readToken());  // including closing paren
+            return new App(factor,exps);
+        }
+        // return single factor
+        return factor;
     }
 
 
-    // Factor  ::= ( Exp ) | Prim | Id
+    /** Parses:
+     *   <factor>  ::= ( <exp> ) | <prim> | <id>
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     * @throws ParseException if a syntax error is encountered (including lexical errors).
+     */
     private AST parseFactor(Token token) {
-        // reads left paren
+
+        // if current token is left paren
         if (token == LeftParen.ONLY) {
             token = in.readToken();
 
@@ -177,86 +241,99 @@ class Parser {
 
             return exp;
         }
+
+        // if token is a Prim
         if (token instanceof PrimFun) {
             return (PrimFun) token;
         }
+
+        // if token is a Def
         if (token instanceof Variable) {
           return (Variable) token;
         }
+
+        // if we reach here, throw error
         error();
         return null;
     }
 
+
+    /** Parses:
+     *   <exp-list>  ::= { <prop-exp-list> }
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     */
     private AST[] parseExpList(Token token) {
         return parsePropExpList(token);
     }
 
+    /** Parses:
+     *   <prop-exp-list>  ::= <exp> { , <exp> }*
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     */
     private AST[] parsePropExpList(Token token) {
 
+        // create new exp list and add exp using current token
         ArrayList<AST> exps = new ArrayList<AST>();
         exps.add((AST) parseExp(token));
 
+        // while next token is a comma
         while (in.readToken() instanceof Comma) {
-          token = in.readToken();
-          exps.add((AST) parseExp(token));
+
+            // add exp using current token
+            token = in.readToken();
+            exps.add((AST) parseExp(token));
         }
 
+        // return AST list using exp list
         return (AST[]) exps.toArray(new AST[0]);
     }
 
+
+    /** Parses:
+     *   <id-list>  ::= { <prop-id-list> }
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     */
     private Variable[] parseIdList(Token token) {
         return parsePropIdList(token);
     }
 
+    /** Parses:
+     *   <prop-id-list>  ::= <id> { , <id> }*
+     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+     */
     private Variable[] parsePropIdList(Token token) {
 
+        // create new id list
         ArrayList<Variable> ids = new ArrayList<Variable>();
 
+        // add id using current token
         if (token instanceof Variable) {
             ids.add((Variable) token);
         }
 
+        // while next token is a comma
         while (in.peek() instanceof Comma) {
-            token = in.readToken();
 
+            // add id using current token
+            token = in.readToken();
             if (in.peek() instanceof Variable) {
                 ids.add((Variable) token);
             }
-
             token = in.readToken();
         }
 
+        // return Variable list using id list
         return (Variable[]) ids.toArray(new Variable[0]);
 
     }
 
 
-    /** Parses:
-     *  <term>     ::= <unop> <term> | <constant> | <factor> {( <exp-list> )}
-     *  <constant> ::= <null> | <int> | <bool>
-     * @param token   first token in input stream to be parsed; remainder in Lexer named in.
+    /**
+     * @throws ParseException if a syntax error is encountered (including lexical errors).
      */
-    private AST parseTerm(Token token) {
-
-        if (token instanceof Op) {
-            Op op = (Op) token;
-            if (! op.isUnOp()) error();
-            return new UnOpApp(op, parseTerm(in.readToken()));
-        }
-
-        if (token instanceof Constant) return (Constant) token;
-
-        AST factor = parseFactor(token);
-        Token next = in.peek();
-        if (next == LeftParen.ONLY) {
-            in.readToken();  // remove next from input stream
-            AST[] exps = parseExpList(in.readToken());  // including closing paren
-            return new App(factor,exps);
-        }
-        return factor;
-    }
-
     private void error() throws ParseException {
         throw new ParseException("error");
     }
+
+
 }
