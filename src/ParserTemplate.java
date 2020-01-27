@@ -1,5 +1,3 @@
-package src; /** Parser for Assignment 2 */
-
 /** Parser for Assignment 2 */
 
 import java.io.*;
