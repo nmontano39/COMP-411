@@ -1,6 +1,5 @@
- /** Parser for Assignment 2 */
-
 /** Parser for Assignment 2 */
+
 
 import java.io.*;
 import java.util.*;
@@ -265,7 +264,7 @@ class Parser {
 
         // if token is a Def
         if (token instanceof Variable) {
-          return (Variable) token;
+            return (Variable) token;
         }
 
         // if we reach here, throw error
@@ -330,36 +329,36 @@ class Parser {
         if (token instanceof Variable) {
             ids.add((Variable) token);
         } else {
-          error();
+            error();
         }
 
 //      token = in.readToken();
         if (in.peek() instanceof Comma) {
-          token = in.readToken();
-          System.out.println("This should be a comma " + token.toString());
-          while (token instanceof Comma) {
-            if (in.peek() instanceof Variable) {
-              token = in.readToken();
-              System.out.println("This should be a variable " + token.toString());
-              ids.add((Variable) token);
+            token = in.readToken();
+            System.out.println("This should be a comma " + token.toString());
+            while (token instanceof Comma) {
+                if (in.peek() instanceof Variable) {
+                    token = in.readToken();
+                    System.out.println("This should be a variable " + token.toString());
+                    ids.add((Variable) token);
 
-              if (in.peek() instanceof Comma) {
-                token = in.readToken();
-                System.out.println("This should be a comma " + token.toString());
-              }
-            } else {
-              System.out.println("Error in while" + token.toString());
-              error();
-            }
+                    if (in.peek() instanceof Comma) {
+                        token = in.readToken();
+                        System.out.println("This should be a comma " + token.toString());
+                    }
+                } else {
+                    System.out.println("Error in while" + token.toString());
+                    error();
+                }
 
-            // add id using current token
+                // add id using current token
 //            token = in.readToken();
 //            in.readToken();
 //            if (in.peek() instanceof Variable) {
 //            ids.add((Variable) in.readToken());
 //            }
 //            token = in.readToken();
-          }
+            }
 
         }
 
