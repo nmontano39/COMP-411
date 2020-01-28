@@ -1,4 +1,4 @@
-//import junit.framework.*;
+package src;//import junit.framework.*;
 //import org.junit.jupiter.api.Test;
 
 import junit.framework.TestCase;
