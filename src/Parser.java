@@ -59,7 +59,6 @@ class Parser {
             Op binOp = (Op) in.readToken();
             return new BinOpApp(binOp, term, parseExp(in.readToken()));
         } else {
-            System.out.println(term);
             return term;
         }
     }
@@ -336,19 +335,15 @@ class Parser {
 
         if (in.peek() instanceof Comma) {
             token = in.readToken();
-            System.out.println("This should be a comma " + token.toString());
             while (token instanceof Comma) {
                 if (in.peek() instanceof Variable) {
                     token = in.readToken();
-                    System.out.println("This should be a variable " + token.toString());
                     ids.add((Variable) token);
 
                     if (in.peek() instanceof Comma) {
                         token = in.readToken();
-                        System.out.println("This should be a comma " + token.toString());
                     }
                 } else {
-                    System.out.println("Error in while" + token.toString());
                     error();
                 }
             }
