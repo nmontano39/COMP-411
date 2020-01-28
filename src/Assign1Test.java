@@ -1,6 +1,9 @@
 //import junit.framework.*;
 //import org.junit.jupiter.api.Test;
 
+//import junit.framework.*;
+//import org.junit.jupiter.api.Test;
+
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -9,6 +12,7 @@ import java.io.*;
 
 public class Assign1Test extends TestCase {
 
+    // Simple
     String s_00bad = "null + 3 -";
     String s_01good = "function? ()";
     String s_02bad = "if number? then true";
@@ -22,6 +26,10 @@ public class Assign1Test extends TestCase {
     String s_bad04 = "-";
     String s_bad05 = "8*8;";
     String s_bad06 = "f[5]";
+
+
+
+    // Medium
     String m_00good = "f()";
     String m_01good = "f(x)";
     String m_02good = "f(x,y,z)";
@@ -70,10 +78,13 @@ public class Assign1Test extends TestCase {
             "    z:=cons?(function?(x * ~y), cons(-arity(x))); \n" +
             "in\n" +
             "    rest(null?(true),list?(false),first(null))";
-    String h_08good = "# This input is legal in Jam, only because the embedded map operation is enclosed in\n" +
-            "# in parentheses.  A map enclosed in parentheses is a term.\n" +
-            "\n" +
-            "map x to let x := 3; y := 4; z := x; in 3 + (map x to x)";
+
+
+
+
+
+    // Hard
+    String h_08good = "map x to let x := 3; y := 4; z := x; in 3 + (map x to x)";
     String h_09good = "f(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z)";
     String h_12good = "let f := 4 = 6; in g(4,5)";
     String h_16bad = "let f := 4 = 6; g := 12 * h(j); h := 50 in x";
@@ -269,13 +280,12 @@ public class Assign1Test extends TestCase {
 
 
     // Simple
-
     public void testS_00bad() {
         testFile(s_00bad, false);
     } //end of func
 
     public void testS_01good() {
-        testFile(s_01good, true);
+        testFile(s_01good, "function?()");
     } //end of func
 
     public void testS_02bad() {
@@ -321,6 +331,10 @@ public class Assign1Test extends TestCase {
     public void testS_bad06() {
         testFile(s_bad06, false);
     } //end of func
+
+
+
+
 
     // Medium
 
@@ -405,17 +419,22 @@ public class Assign1Test extends TestCase {
     } //end of func
 
     public void testM_goodTest3() {
-        testFile(m_goodTest3, true);
+        testFile(m_goodTest3, "let x := 3; y := g(); z := map  to 1; in (true)(false)");
     } //end of func
 
     public void testM_goodTest4() {
         testFile(m_goodTest4, "let x := 3; y := 4; z := cons?(function?((x * ~ y)), cons(- arity(x))); in rest(null?(true), list?(false), first(null))");
     } //end of func
 
+
+
+
+
+
     // Hard
 
     public void testH_08good() {
-        testFile(h_08good, true);
+        testFile(h_08good, "map x to let x := 3; y := 4; z := x; in (3 + map x to x)");
     } //end of func
 
     public void testH_09good() {
@@ -439,7 +458,7 @@ public class Assign1Test extends TestCase {
     } //end of func
 
     public void testH_goodTest1() {
-        testFile(h_goodTest1, true);
+        testFile(h_goodTest1, "let f := map n to if (n = 0) then 1 else (n * f((n - 1))); in let f := map n,m,k to if ((n <= (0 & (n >= 0))) | (n < (0 & (n > (0 & (n != 0)))))) then number? else (m / f((k + 1))); in let x := 3; y := 4; z := cons?(function?((x * ~ y)), cons(- arity(x))); in let x := 3; y := 4; z := g(); in (g(x, y, z))(null?(true), list?(false), first(null))");
     } //end of func
 
 }
