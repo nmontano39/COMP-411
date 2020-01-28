@@ -1,6 +1,4 @@
-/** Parser for Assignment 2 */
-
-
+import javax.swing.text.StyleContext;
 import java.io.*;
 import java.util.*;
 
@@ -41,6 +39,8 @@ class Parser {
      */
     private AST parseExp(Token token) {
 
+
+
         // if current token is 'let'
         if (token == Lexer.LET) { return parseLet(in.readToken()); }
 
@@ -54,13 +54,20 @@ class Parser {
         // else current token is a term
         AST term = parseTerm(token);
 
+        // if next token is [
+        if (in.peek() instanceof LeftBrack) {
+            error();
+        }
+
         // if next token is a BinOp
         if (in.peek() instanceof Op) {
             Op binOp = (Op) in.readToken();
             return new BinOpApp(binOp, term, parseExp(in.readToken()));
-        } else {
-            return term;
         }
+
+
+        return term;
+
     }
 
     /** Parses:
@@ -213,6 +220,7 @@ class Parser {
      */
     private AST parseTerm(Token token) {
 
+
         // if current token is Op
         if (token instanceof Op) {
             Op op = (Op) token;
@@ -223,11 +231,20 @@ class Parser {
         // if current token is Constant
         if (token instanceof Constant) return (Constant) token;
 
+
+
         // else current token is Term
         AST factor = parseFactor(token);
         Token next = in.peek();
         if (next == LeftParen.ONLY) {
             in.readToken();  // remove next from input stream
+
+            if (in.peek() instanceof RightParen) {
+                AST a = new App(factor, new AST[] {});
+                in.readToken();
+                return a;
+            }
+
             AST[] exps = parseExpList(in.readToken());  // including closing paren
             return new App(factor,exps);
         }
@@ -243,6 +260,7 @@ class Parser {
      * @return  the corresponding AST.
      */
     private AST parseFactor(Token token) {
+
 
         // if current token is left paren
         if (token == LeftParen.ONLY) {
