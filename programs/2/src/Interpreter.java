@@ -21,7 +21,6 @@ class Interpreter {
 
         @Override
         public JamVal forIntConstant(IntConstant i) {
-            System.out.println("Reached int constant");
             return i;
         }
 
@@ -47,7 +46,82 @@ class Interpreter {
 
         @Override
         public JamVal forBinOpApp(BinOpApp b) {
-            return null;
+            AST leftTerm = b.arg1();
+            AST rightTerm = b.arg2();
+            JamVal leftJam = leftTerm.accept(this);
+            JamVal rightJam = rightTerm.accept(this);
+            BinOp operator = b.rator();
+//            if (operator == OpTimes.ONLY) {
+//                if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
+//                    return new IntConstant(((IntConstant) leftJam).value() * ((IntConstant) rightJam).value());
+//                }
+//            }
+            BinOpVisitor<JamVal> bopVis = new BinOpVisitor<JamVal>() {
+                @Override
+                public JamVal forBinOpPlus(BinOpPlus op) {
+                    return new IntConstant(((IntConstant) leftJam).value() +
+                                               ((IntConstant) rightJam).value());
+                }
+
+                @Override
+                public JamVal forBinOpMinus(BinOpMinus op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpTimes(OpTimes op) {
+                    return new IntConstant(((IntConstant) leftJam).value() *
+                                                      ((IntConstant) rightJam).value());
+                }
+
+                @Override
+                public JamVal forOpDivide(OpDivide op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpEquals(OpEquals op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpNotEquals(OpNotEquals op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpLessThan(OpLessThan op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpGreaterThan(OpGreaterThan op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpLessThanEquals(OpLessThanEquals op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpGreaterThanEquals(OpGreaterThanEquals op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpAnd(OpAnd op) {
+                    return null;
+                }
+
+                @Override
+                public JamVal forOpOr(OpOr op) {
+                    return null;
+                }
+            };
+            return operator.accept(bopVis);
+//            error();
+//            return null;
         }
 
         @Override
@@ -96,5 +170,12 @@ class Interpreter {
     public JamVal callByNeed()  {
         return null;
     };
+
+    private AST error() {
+//    for (int i = 0; i < 10; i++) {
+//      System.out.println(in.readToken());
+//    }
+        throw new EvalException("Error!");
+    }
 
 }
