@@ -16,15 +16,15 @@ class Interpreter {
     }
 
     public JamVal callByValue() {
-
+        return null;
     };
 
     public JamVal callByName()  {
-
+        return null;
     };
 
     public JamVal callByNeed()  {
-
+        return null;
     };
-    
+
 }
