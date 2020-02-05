@@ -68,6 +68,48 @@ public class Assign2Test extends TestCase {
         }
     } //end of func
 
+    public void testMathOp2() {
+        try {
+            String output = "9";
+            String input = "2 * 3 + (12 / 4)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testDivideByZero() {
+        try {
+            String output = "mojo";
+            String input = "10 / 0";
+            allCheck("evalException", output, input );
+
+            fail("evalException did not throw EvalException exception");
+        } catch (EvalException e) {
+            //e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("evalException threw " + e);
+        }
+    }
+
+    public void testBoolOp() {
+        try {
+            String output = "true";
+            String input = "(5 = false) & (2 > 0) | true";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+
+
 
     public void testParseException() {
         try {
