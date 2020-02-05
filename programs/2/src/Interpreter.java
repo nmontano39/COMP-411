@@ -65,7 +65,8 @@ class Interpreter {
 
                 @Override
                 public JamVal forBinOpMinus(BinOpMinus op) {
-                    return null;
+                    return new IntConstant(((IntConstant) leftJam).value() -
+                            ((IntConstant) rightJam).value());
                 }
 
                 @Override
@@ -76,7 +77,8 @@ class Interpreter {
 
                 @Override
                 public JamVal forOpDivide(OpDivide op) {
-                    return null;
+                    return new IntConstant(((IntConstant) leftJam).value() /
+                            ((IntConstant) rightJam).value());
                 }
 
                 @Override
