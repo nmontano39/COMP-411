@@ -25,6 +25,8 @@ class Lexer extends StreamTokenizer {
     // <binop> ::= <sign> | "*" | / | = | != | < | > | <= | >= | & | "|" | <-
     // <sign>  ::= "+" | -
 
+    //s
+
     //  Note: there is no class distinction between <unop> and <binop> at
     //  lexical level because of ambiguity; <sign> belongs to both
 

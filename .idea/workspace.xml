@@ -2,82 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/AST.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ASTVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/App.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ArityPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Assign1Test.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/BinOp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/BinOpApp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/BinOpMinus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/BinOpPlus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/BinOpVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Binding.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/BoolConstant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Comma.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Cons.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ConsPPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ConsPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Constant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Def.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Empty.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/EndOfFile.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/FirstPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/FunctionPPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/If.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/IntConstant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamClosure.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamCons.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamEmpty.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamFun.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamFunVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamList.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamVal.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/JamValVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/KeyWord.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/LeftBrack.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/LeftParen.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Let.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Lexer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ListPPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Map.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/NullConstant.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/NullPPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/NumberPPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpAnd.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpDivide.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpEquals.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpGreaterThan.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpGreaterThanEquals.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpLessThan.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpLessThanEquals.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpNotEquals.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpOr.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpTilde.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpTimes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/OpToken.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ParseException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Parser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/PrimFun.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/PrimFunVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/PureList.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/PureListClass.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/PureListVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/RefPPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/RestPrim.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/RightBrack.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/RightParen.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/SemiColon.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Term.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/ToString.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Token.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/UnOp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/UnOpApp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/UnOpMinus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/UnOpPlus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/UnOpVisitor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/2/out/production/2/Variable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test">
+  <component name="RunManager" selected="JUnit.Assign1Test">
     <configuration name="Assign1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -211,8 +136,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign1Test" />
+        <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign1Test.testFile" />
         <item itemvalue="JUnit.Assign1Test.testParseException" />
         <item itemvalue="JUnit.Assign1Test.testLet" />
@@ -230,7 +155,7 @@
       <option name="presentableId" value="Default" />
       <updated>1580090616291</updated>
       <workItem from="1580512570109" duration="37000" />
-      <workItem from="1580512679682" duration="520000" />
+      <workItem from="1580512679682" duration="6632000" />
     </task>
     <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
       <created>1580090718590</created>
@@ -274,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580513080809</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added assign2test and interpreter">
+      <created>1580513238121</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1580513238121</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
