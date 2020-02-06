@@ -171,6 +171,7 @@ abstract class Binding {
     /* package private */ void setValue(JamVal v) { value = v; }
 }
 
+
 /* Other JamVal classes */
 
 /** The class representing a Jam function (closure or primitive function).
@@ -186,6 +187,162 @@ interface JamFunVisitor<ResType> {
     ResType forJamClosure(JamClosure c);
     ResType forPrimFun(PrimFun pf);
 }
+
+
+/////////////////////////
+////////// OH ///////////
+/////////////////////////
+
+
+
+interface EvalVisitor {
+    PureList<Binding> env();
+}
+
+
+interface PrimFunVisitorFactory {
+    PrimFunVisitor newVisitor(EvalVisitor ev, AST[] args);
+}
+
+class StandardPrimFunVisitorFactory implements PrimFunVisitorFactory{
+
+    @Override
+    public PrimFunVisitor newVisitor(EvalVisitor ev, AST[] args) {
+        return new StandardPrimFunVisitor(ev, args);
+    }
+
+    class StandardPrimFunVisitor implements PrimFunVisitor {
+
+        public StandardPrimFunVisitor(EvalVisitor ev, AST[] args) {
+
+        }
+
+        @Override
+        public JamVal forFunctionPPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forNumberPPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forListPPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forConsPPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forNullPPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forArityPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forConsPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forFirstPrim() {
+            return null;
+        }
+
+        @Override
+        public JamVal forRestPrim() {
+            return null;
+        }
+    }
+}
+
+class CallByValFunVisitor<ResType> implements JamFunVisitor{
+    AST[] args;
+    EvalVisitor ev;
+    PrimFunVisitorFactory primFactory;
+
+    CallByValFunVisitor(AST[] a, EvalVisitor e) {
+        args = a;
+        ev = e;
+    }
+
+    @Override
+    public JamVal forJamClosure(JamClosure c) {
+        return null;
+    }
+
+    @Override
+    public JamVal forPrimFun(PrimFun pf) {
+        // invoke prim fun with accept method
+        return (JamVal) pf.accept(primFactory.newVisitor(ev, args));
+    }
+}
+
+class CallByNameFunVisitor<ResType> implements JamFunVisitor{
+    @Override
+    public Object forJamClosure(JamClosure c) {
+        return null;
+    }
+
+    @Override
+    public Object forPrimFun(PrimFun pf) {
+        return null;
+    }
+}
+
+class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
+    @Override
+    public Object forJamClosure(JamClosure c) {
+        return null;
+    }
+
+    @Override
+    public Object forPrimFun(PrimFun pf) {
+        return null;
+    }
+}
+
+
+
+class ValBinding extends Binding{
+
+    ValBinding(Variable v, JamVal jv) {
+        super(v, jv);
+    }
+}
+
+
+class NameBinding extends ValBinding{
+
+    NameBinding(Variable v, Suspension s) {
+        super(v, (JamVal) s);
+    }
+}
+
+class Suspension {
+    AST ast;
+    EvalVisitor ev;
+
+    // ast - f(1/0
+    // env - definition of f
+    // suspend the evaluation of the AST until its needed
+
+}
+
+
+/////////////////////////
+////////// OH ///////////
+/////////////////////////
+
+
 
 /** The class representing a Jam Closure. */
 class JamClosure extends JamFun {

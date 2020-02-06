@@ -192,6 +192,9 @@ class Interpreter {
 
         @Override
         public JamVal forApp(App a) {
+//            a.rator().accept(new CallByValFunVisitor<JamVal>(a.args(), ev) {
+//
+//            });
             return null;
         }
 
