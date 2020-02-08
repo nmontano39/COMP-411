@@ -213,8 +213,12 @@ class StandardPrimFunVisitorFactory implements PrimFunVisitorFactory{
 
     class StandardPrimFunVisitor implements PrimFunVisitor {
 
-        public StandardPrimFunVisitor(EvalVisitor ev, AST[] args) {
+        AST[] args;
+        EvalVisitor ev;
 
+        public StandardPrimFunVisitor(EvalVisitor e, AST[] a) {
+            args = a;
+            ev = e;
         }
 
         @Override
