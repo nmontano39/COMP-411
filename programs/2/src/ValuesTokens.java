@@ -269,7 +269,7 @@ class CallByValFunVisitor<ResType> implements JamFunVisitor{
     EvalVisitor ev;
     PrimFunVisitorFactory primFactory;
 
-    CallByValFunVisitor(AST[] a, EvalVisitor e) {
+    CallByValFunVisitor(EvalVisitor e, AST[] a) {
         args = a;
         ev = e;
     }
@@ -286,58 +286,64 @@ class CallByValFunVisitor<ResType> implements JamFunVisitor{
     }
 }
 
-class CallByNameFunVisitor<ResType> implements JamFunVisitor{
-    @Override
-    public Object forJamClosure(JamClosure c) {
-        return null;
-    }
-
-    @Override
-    public Object forPrimFun(PrimFun pf) {
-        return null;
-    }
-}
-
-class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
-    @Override
-    public Object forJamClosure(JamClosure c) {
-        return null;
-    }
-
-    @Override
-    public Object forPrimFun(PrimFun pf) {
-        return null;
-    }
-}
-
-
-
 class ValBinding extends Binding{
-
     ValBinding(Variable v, JamVal jv) {
         super(v, jv);
     }
 }
 
 
-class NameBinding extends ValBinding{
-
-    NameBinding(Variable v, Suspension s) {
-        super(v, (JamVal) s);
-    }
-}
-
-class Suspension {
-    AST ast;
-    EvalVisitor ev;
-
-    // ast - f(1/0
-    // env - definition of f
-    // suspend the evaluation of the AST until its needed
-
-}
+// ------------------------------
 
 
+
+
+////////////////////////////////
+///////   Call by name   ///////
+////////////////////////////////
+//
+//
+//class CallByNameFunVisitor<ResType> implements JamFunVisitor{
+//    @Override
+//    public Object forJamClosure(JamClosure c) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Object forPrimFun(PrimFun pf) {
+//        return null;
+//    }
+//}
+//
+//class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
+//    @Override
+//    public Object forJamClosure(JamClosure c) {
+//        return null;
+//    }
+//
+//    @Override
+//    public Object forPrimFun(PrimFun pf) {
+//        return null;
+//    }
+//}
+//
+//
+//class NameBinding extends ValBinding{
+//
+//    NameBinding(Variable v, Suspension s) {
+//        super(v, (JamVal) s);
+//    }
+//}
+//
+//class Suspension {
+//    AST ast;
+//    EvalVisitor ev;
+//
+//    // ast - f(1/0
+//    // env - definition of f
+//    // suspend the evaluation of the AST until its needed
+//
+//}
 /////////////////////////
 ////////// OH ///////////
 /////////////////////////
