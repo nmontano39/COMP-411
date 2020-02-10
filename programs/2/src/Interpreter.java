@@ -45,7 +45,7 @@ class EvalVisitor implements ASTVisitor{
 
     @Override
     public JamVal forVariable(Variable v) {
-        env.accept(new PureListVisitor<Binding, JamVal>() {
+        return env.accept(new PureListVisitor<Binding, JamVal>() {
             @Override
             public JamVal forEmpty(Empty<Binding> e) {
                 return error();
@@ -63,7 +63,6 @@ class EvalVisitor implements ASTVisitor{
                 }
             }
         });
-        return error();
     }
 
     @Override
@@ -242,7 +241,16 @@ class EvalVisitor implements ASTVisitor{
 
     @Override
     public JamVal forLet(Let l) {
-        return null;
+
+        Def[] defs = l.defs();
+
+        for (Def d: defs) {
+            Variable dVar = d.lhs();
+            JamVal dVal = (JamVal) d.rhs().accept(this);
+            ValBinding b = new ValBinding(dVar, dVal);
+            env.append(new Cons<>(b, new Empty<>()));
+        }
+        return (JamVal) l.body().accept(this);
     }
 }
 
@@ -406,6 +414,7 @@ class Interpreter {
     private AST ast;
 
 
+
     Interpreter(String fileName) throws IOException {
         par = new Parser(fileName);
         ast = par.parse();
@@ -418,16 +427,16 @@ class Interpreter {
 
     public JamVal callByValue() {
 //        System.out.println(ast);
-//        return ast.accept(astVis);
-        return null;
+
+        return (JamVal) ast.accept(new EvalVisitor(new Empty<Binding>()));
     };
 
     public JamVal callByName()  {
-        return null;
+        return (JamVal) ast.accept(new EvalVisitor(new Empty<Binding>()));
     };
 
     public JamVal callByNeed()  {
-        return null;
+        return (JamVal) ast.accept(new EvalVisitor(new Empty<Binding>()));
     };
 
 }
