@@ -116,7 +116,29 @@ public class Assign2Test extends TestCase {
         }
     }
 
+    public void testAppend2() {
+        try {
+            String output = "2";
+            String input = "(let x := map f to let g := map x to f(2); in g; in x(map z to z))(1)";
+            allCheck("mathOp", output, input );
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testAppend3() {
+        try {
+            String output = "4";
+            String input = "(let x := map f to map x to  f(2); in x(map z to 2*z))(1)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
 
 
     public void testMathOp() {
