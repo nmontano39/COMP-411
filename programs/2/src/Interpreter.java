@@ -30,7 +30,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forNullConstant(NullConstant n) {
-        return null;
+        return JamEmpty.ONLY;
     }
 
     @Override
@@ -58,7 +58,53 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forPrimFun(PrimFun f) {
-        return null;
+//        return f.accept(new PrimFunVisitor<JamVal>() {
+//            @Override
+//            public JamVal forFunctionPPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forNumberPPrim() {
+//                return f;
+//            }
+//
+//            @Override
+//            public JamVal forListPPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forConsPPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forNullPPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forArityPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forConsPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forFirstPrim() {
+//                return null;
+//            }
+//
+//            @Override
+//            public JamVal forRestPrim() {
+//                return null;
+//            }
+//        });
+        return f.accept(new StandardPrimFunVisitorFactory())
     }
 
     @Override
@@ -214,7 +260,16 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forApp(App a) {
-        return a.rator().accept(this);
+//        JamVal rator = a.rator().accept(this);
+//        int numArgs = a.args().length;
+//        JamVal[] argsJam = new JamVal[numArgs];
+//        for (int i = 0; i < numArgs; i++) {
+//            argsJam[i] = a.args()[i].accept(this);
+//        }
+        CallByValFunVisitor funVis = new CallByValFunVisitor(this, a.args());
+
+
+        return a.rator().accept(funVis);
     }
 
     @Override
@@ -300,13 +355,12 @@ class NeedBinding extends Binding{
 
 }
 
-interface PrimFunVisitorFactory {
-    PrimFunVisitor newVisitor(EvalVisitor env, AST[] args);
-}
+//interface PrimFunVisitorFactory {
+//    PrimFunVisitor newVisitor(EvalVisitor env, AST[] args);
+//}
 
-class StandardPrimFunVisitorFactory implements PrimFunVisitorFactory{
+class StandardPrimFunVisitorFactory {
 
-    @Override
     public PrimFunVisitor newVisitor(EvalVisitor env, AST[] args) {
         return new StandardPrimFunVisitor(env, args);
     }
