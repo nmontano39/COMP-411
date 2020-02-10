@@ -19,9 +19,7 @@ class EvalVisitor implements ASTVisitor{
         env = e;
     }
 
-    public PureList<Binding> getEnv() {
-        return env;
-    }
+
 
     public JamVal error() {
 //    for (int i = 0; i < 10; i++) {
@@ -47,7 +45,25 @@ class EvalVisitor implements ASTVisitor{
 
     @Override
     public JamVal forVariable(Variable v) {
-        return null;
+        env.accept(new PureListVisitor<Binding, JamVal>() {
+            @Override
+            public JamVal forEmpty(Empty<Binding> e) {
+                return error();
+            }
+
+            @Override
+            public JamVal forCons(Cons<Binding> c) {
+                if (c.first.var == v) {
+                    return c.first.value;
+                } else {
+                    if (c.rest.equals(new Empty<Binding>())) {
+                        return error();
+                    }
+                    return forCons((Cons<Binding>) c.rest);
+                }
+            }
+        });
+        return error();
     }
 
     @Override
@@ -389,218 +405,15 @@ class Interpreter {
 
     private AST ast;
 
-//    private ASTVisitor<JamVal> astVis = new ASTVisitor<JamVal>() {
-//        @Override
-//        public JamVal forBoolConstant(BoolConstant b) {
-//            return b;
-//        }
-//
-//        @Override
-//        public JamVal forIntConstant(IntConstant i) {
-//            return i;
-//        }
-//
-//        @Override
-//        public JamVal forNullConstant(NullConstant n) {
-//            return null;
-//        }
-//
-//        @Override
-//        public JamVal forVariable(Variable v) {
-//            return null;
-//        }
-//
-//        @Override
-//        public JamVal forPrimFun(PrimFun f) {
-//            return null;
-//        }
-//
-//        @Override
-//        public JamVal forUnOpApp(UnOpApp u) {
-//            AST term = u.arg();
-//            JamVal termJam = term.accept(this);
-//            UnOp operator = u.rator();
-//
-//            UnOpVisitor<JamVal> uopVis = new UnOpVisitor<JamVal>() {
-//                @Override
-//                public JamVal forUnOpPlus(UnOpPlus op) {
-//                    if (termJam instanceof IntConstant) {
-//                        return termJam;
-//                    }
-//
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forUnOpMinus(UnOpMinus op) {
-//                    if (termJam instanceof IntConstant) {
-//                        return new IntConstant(-1 * ((IntConstant) termJam).value());
-//                    }
-//
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpTilde(OpTilde op) {
-//                    if (termJam instanceof BoolConstant) {
-//                        return BoolConstant.toBoolConstant(!((BoolConstant) termJam).value());
-//                    }
-//
-//                    return error();
-//                }
-//            };
-//            return operator.accept(uopVis);
-//        }
-//
-//        @Override
-//        public JamVal forBinOpApp(BinOpApp b) {
-//            AST leftTerm = b.arg1();
-//            AST rightTerm = b.arg2();
-//            JamVal leftJam = leftTerm.accept(this);
-//            JamVal rightJam = rightTerm.accept(this);
-//            BinOp operator = b.rator();
-//
-//            BinOpVisitor<JamVal> bopVis = new BinOpVisitor<JamVal>() {
-//                @Override
-//                public JamVal forBinOpPlus(BinOpPlus op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return new IntConstant(((IntConstant) leftJam).value() +
-//                                                   ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//
-//                }
-//
-//                @Override
-//                public JamVal forBinOpMinus(BinOpMinus op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return new IntConstant(((IntConstant) leftJam).value() -
-//                                                   ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpTimes(OpTimes op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return new IntConstant(((IntConstant) leftJam).value() *
-//                                                   ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpDivide(OpDivide op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant) &&
-//                            (((IntConstant) rightJam).value() != 0)) {
-//                        return new IntConstant(((IntConstant) leftJam).value() /
-//                                                   ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpEquals(OpEquals op) {
-//                    return BoolConstant.toBoolConstant(leftJam == rightJam);
-//                }
-//
-//                @Override
-//                public JamVal forOpNotEquals(OpNotEquals op) {
-//                    return BoolConstant.toBoolConstant(leftJam != rightJam);
-//                }
-//
-//                @Override
-//                public JamVal forOpLessThan(OpLessThan op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return BoolConstant.toBoolConstant(((IntConstant) leftJam).value() <
-//                                                   ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpGreaterThan(OpGreaterThan op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return BoolConstant.toBoolConstant(((IntConstant) leftJam).value() >
-//                                                               ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpLessThanEquals(OpLessThanEquals op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return BoolConstant.toBoolConstant(((IntConstant) leftJam).value() <=
-//                                                               ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpGreaterThanEquals(OpGreaterThanEquals op) {
-//                    if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
-//                        return BoolConstant.toBoolConstant(((IntConstant) leftJam).value() >=
-//                                                               ((IntConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpAnd(OpAnd op) {
-//                    if ((leftJam instanceof BoolConstant) && (rightJam instanceof BoolConstant)) {
-//                        return BoolConstant.toBoolConstant(((BoolConstant) leftJam).value() &&
-//                                                               ((BoolConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//
-//                @Override
-//                public JamVal forOpOr(OpOr op) {
-//                    if ((leftJam instanceof BoolConstant) && (rightJam instanceof BoolConstant)) {
-//                        return BoolConstant.toBoolConstant(((BoolConstant) leftJam).value() ||
-//                                                               ((BoolConstant) rightJam).value());
-//                    }
-//                    return error();
-//                }
-//            };
-//            return operator.accept(bopVis);
-//        }
-//
-//        @Override
-//        public JamVal forApp(App a) {
-//            a.rator().accept(new CallByValFunVisitor<JamVal>(a.args(), ev) {
-//
-//            });
-//            return null;
-//        }
-//
-//        @Override
-//        public JamVal forMap(Map m) {
-//            return null;
-//        }
-//
-//        @Override
-//        public JamVal forIf(If i) {
-//            return null;
-//        }
-//
-//        @Override
-//        public JamVal forLet(Let l) {
-//            return null;
-//        }
-//    };
-
 
     Interpreter(String fileName) throws IOException {
         par = new Parser(fileName);
         ast = par.parse();
-
     }
 
     Interpreter(Reader reader) {
         par = new Parser(reader);
         ast = par.parse();
-
     }
 
     public JamVal callByValue() {
