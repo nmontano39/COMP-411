@@ -7,7 +7,6 @@ class EvalException extends RuntimeException {
     EvalException(String msg) { super(msg); }
 }
 
-
 class EvalVisitor implements ASTVisitor{
     PureList<Binding> env;
 
@@ -15,12 +14,7 @@ class EvalVisitor implements ASTVisitor{
         env = e;
     }
 
-
-
     public JamVal error() {
-//    for (int i = 0; i < 10; i++) {
-//      System.out.println(in.readToken());
-//    }
         throw new EvalException("Error!");
     }
 
@@ -241,6 +235,7 @@ class EvalVisitor implements ASTVisitor{
 
         Def[] defs = l.defs();
 
+        // currently coded for valBinding
 
         for (Def d: defs) {
             Variable dVar = d.lhs();
@@ -252,6 +247,39 @@ class EvalVisitor implements ASTVisitor{
     }
 }
 
+class ValBinding extends Binding{
+    ValBinding(Variable v, JamVal jv) {
+        super(v, jv);
+    }
+}
+
+class NameBinding extends Binding{
+
+    NameBinding(Variable v, JamClosure c) {
+        super(v, (JamVal) c);
+    }
+
+    @Override
+    public JamVal value() {
+        // evaluate closure
+        return null;
+    }
+}
+
+class NeedBinding extends Binding{
+    Boolean eval;
+
+    NeedBinding(Variable v, JamClosure c) {
+        super(v, (JamVal) c);
+    }
+
+    @Override
+    public JamVal value() {
+        // evaluate closure or override with value if previously evaluated
+        return null;
+    }
+
+}
 
 interface PrimFunVisitorFactory {
     PrimFunVisitor newVisitor(EvalVisitor ev, AST[] args);
@@ -343,14 +371,6 @@ class CallByValFunVisitor<ResType> implements JamFunVisitor{
     }
 }
 
-class ValBinding extends Binding{
-    ValBinding(Variable v, JamVal jv) {
-        super(v, jv);
-    }
-}
-
-
-
 class CallByNameFunVisitor<ResType> implements JamFunVisitor{
     @Override
     public Object forJamClosure(JamClosure c) {
@@ -376,33 +396,12 @@ class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
 }
 
 
-class NameBinding extends Binding{
 
-    NameBinding(Variable v, JamClosure c) {
-        super(v, (JamVal) c);
-    }
 
-    @Override
-    public JamVal value() {
-        // evaluate closure
-        return null;
-    }
-}
 
-class NeedBinding extends Binding{
-    Boolean eval;
-
-    NeedBinding(Variable v, JamClosure c) {
-        super(v, (JamVal) c);
-    }
-
-    @Override
-    public JamVal value() {
-        // evaluate closure or override with value if previously evaluated
-        return null;
-    }
-
-}
+/////////////////////////////////////////
+/////////// Interpreter Class ///////////
+/////////////////////////////////////////
 
 
 
