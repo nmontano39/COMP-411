@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/2/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Interpreter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/2/src/ValuesTokens.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/ValuesTokens.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -140,7 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1580090616291</updated>
       <workItem from="1580512570109" duration="37000" />
-      <workItem from="1580512679682" duration="23903000" />
+      <workItem from="1580512679682" duration="26335000" />
     </task>
     <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
       <created>1580090718590</created>
@@ -240,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581154540784</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="working on interpreter">
+      <created>1581154902043</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1581154902043</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
