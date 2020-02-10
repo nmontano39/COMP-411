@@ -451,7 +451,7 @@ class StandardPrimFunVisitorFactory {
 
                 JamVal jam = a.accept(env);
 
-                if (jam instanceof NullConstant) {
+                if (jam instanceof JamEmpty) {
                     return BoolConstant.toBoolConstant(true);
                 } else {
                     return BoolConstant.toBoolConstant(false);

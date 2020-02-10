@@ -140,10 +140,10 @@ public class Assign2Test extends TestCase {
         }
     }
 
-    public void testAppend4() {
+    public void testConsPX() {
         try {
-            String output = "6";
-            String input = "((map f to map x to f(x))(map z to 3 * z))(2)";
+            String output = "true";
+            String input = "cons?(cons(1,null))";
             allCheck("mathOp", output, input );
 
         } catch (Exception e) {
@@ -151,6 +151,90 @@ public class Assign2Test extends TestCase {
             fail("mathOp threw " + e);
         }
     }//end of func
+
+    public void testNull() {
+        try {
+            String output = "true";
+            String input = "null?(null)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testFunction() {
+        try {
+            String output = "true";
+            String input = "function?(map x to x)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testArity() {
+        try {
+            String output = "2";
+            String input = "arity(map x, y to x + y)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testListP() {
+        try {
+            String output = "true";
+            String input = "cons?(cons(1, null))";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testConsX() {
+        try {
+            String output = "(1)";
+            String input = "cons(1, null)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testFirstX() {
+        try {
+            String output = "1";
+            String input = "first(cons(1, null))";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
+
+    public void testRestX() {
+        try {
+            String output = "()";
+            String input = "rest(cons(1, null))";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    } //end of func
 
 
     public void testMathOp() {
@@ -307,8 +391,7 @@ public class Assign2Test extends TestCase {
 
     public void testApp0() {
         try {
-            String output = "2";
-//            String input = "(map x, y to x + y)(1, 2)";
+            String output = "8";
             String input = "(map x to (map x to 2 *  x)(1))(4)";
             allCheck("mathOp", output, input );
 
