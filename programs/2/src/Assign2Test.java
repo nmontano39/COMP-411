@@ -170,6 +170,32 @@ public class Assign2Test extends TestCase {
         }
     }
 
+    public void testIf3() {
+        try {
+            String output = "5";
+            String input = "if 2 > 4 then let x := 2; in x else let x:= 5; in x";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+
+    }
+
+    public void testIf4() {
+        try {
+            String output = "9";
+            String input = "let x := 2; in if x > 4 then x else 9";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+
+    }
+
     public void testApp0() {
         try {
             String output = "1";

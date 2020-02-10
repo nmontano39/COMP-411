@@ -7,7 +7,7 @@ class EvalException extends RuntimeException {
     EvalException(String msg) { super(msg); }
 }
 
-class EvalVisitor implements ASTVisitor{
+class EvalVisitor implements ASTVisitor<JamVal>{
     PureList<Binding> env;
 
     EvalVisitor (PureList<Binding> e) {
@@ -64,7 +64,7 @@ class EvalVisitor implements ASTVisitor{
     @Override
     public JamVal forUnOpApp(UnOpApp u) {
         AST term = u.arg();
-        JamVal termJam = (JamVal) term.accept(this);
+        JamVal termJam = term.accept(this);
         UnOp operator = u.rator();
 
         UnOpVisitor<JamVal> uopVis = new UnOpVisitor<JamVal>() {
@@ -102,8 +102,8 @@ class EvalVisitor implements ASTVisitor{
     public JamVal forBinOpApp(BinOpApp b) {
         AST leftTerm = b.arg1();
         AST rightTerm = b.arg2();
-        JamVal leftJam = (JamVal) leftTerm.accept(this);
-        JamVal rightJam = (JamVal) rightTerm.accept(this);
+        JamVal leftJam = leftTerm.accept(this);
+        JamVal rightJam = rightTerm.accept(this);
         BinOp operator = b.rator();
 
         BinOpVisitor<JamVal> bopVis = new BinOpVisitor<JamVal>() {
@@ -225,7 +225,19 @@ class EvalVisitor implements ASTVisitor{
 
     @Override
     public JamVal forIf(If i) {
-        return null;
+        AST testAST = i.test();
+        JamVal testJam = testAST.accept(this);
+        if (testJam instanceof BoolConstant) {
+            BoolConstant testBool = (BoolConstant) testJam;
+            if (testBool.value() == true) {
+                return i.conseq().accept(this);
+            } else {
+                return i.alt().accept(this);
+            }
+        } else {
+            return error();
+        }
+
     }
 
     @Override
@@ -237,11 +249,11 @@ class EvalVisitor implements ASTVisitor{
 
         for (Def d: defs) {
             Variable dVar = d.lhs();
-            JamVal dVal = (JamVal) d.rhs().accept(this);
+            JamVal dVal = d.rhs().accept(this);
             ValBinding b = new ValBinding(dVar, dVal);
             env = env.append(new Cons<>(b, new Empty<>()));
         }
-        return (JamVal) l.body().accept(this);
+        return l.body().accept(this);
     }
 }
 
@@ -424,15 +436,15 @@ class Interpreter {
     public JamVal callByValue() {
 //        System.out.println(ast);
 
-        return (JamVal) ast.accept(new EvalVisitor(new Empty<Binding>()));
+        return ast.accept(new EvalVisitor(new Empty<Binding>()));
     };
 
     public JamVal callByName()  {
-        return (JamVal) ast.accept(new EvalVisitor(new Empty<Binding>()));
+        return ast.accept(new EvalVisitor(new Empty<Binding>()));
     };
 
     public JamVal callByNeed()  {
-        return (JamVal) ast.accept(new EvalVisitor(new Empty<Binding>()));
+        return ast.accept(new EvalVisitor(new Empty<Binding>()));
     };
 
 }
