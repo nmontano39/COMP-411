@@ -58,52 +58,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forPrimFun(PrimFun f) {
-//        return f.accept(new PrimFunVisitor<JamVal>() {
-//            @Override
-//            public JamVal forFunctionPPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forNumberPPrim() {
-//                return f;
-//            }
-//
-//            @Override
-//            public JamVal forListPPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forConsPPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forNullPPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forArityPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forConsPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forFirstPrim() {
-//                return null;
-//            }
-//
-//            @Override
-//            public JamVal forRestPrim() {
-//                return null;
-//            }
-//        });
+        // Factory method for Primitive functions with no args.
         StandardPrimFunVisitorFactory myFac = new StandardPrimFunVisitorFactory();
         PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, new AST[0]);
         return f.accept(myVis);
@@ -262,39 +217,59 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forApp(App a) {
+        // Get the rator and convert it to a Jam Val.
         JamVal rator = a.rator().accept(this);
-        if (rator instanceof JamFun) {
-            JamFun ratorFun = (JamFun) rator;
-            CallByValFunVisitor<JamVal> funVis = new CallByValFunVisitor<JamVal>(this, a.args());
-            return ratorFun.accept(funVis);
+
+        // If it is a closure (aka Map)
+        if (rator instanceof JamClosure) {
+            // Get the number of arguments.
+            int numArgs = a.args().length;
+            // Store the arguments in an array.
+            JamVal[] argsJam = new JamVal[numArgs];
+            for (int i = 0; i < numArgs; i++) {
+                argsJam[i] = a.args()[i].accept(this);
+            }
+            // Breaking down the closure into
+            JamClosure ratorClos = (JamClosure) rator;
+            // The Map function.
+            Map ratorBod = ratorClos.body();
+            // The environment of the Map.
+            PureList<Binding> ratorEnv = ratorClos.env();
+            // The variables of the Map.
+            Variable[] mapVars = ratorBod.vars();
+            // The body of the Map.
+            AST mapBody = ratorBod.body();
+
+            // Checking that the number of variables = the number of arguments.
+            if (mapVars.length == numArgs) {
+                // If so, store the variables and their values in the Map's closure.
+                for (int i = 0; i < mapVars.length; i++) {
+                    ValBinding b = new ValBinding(mapVars[i], argsJam[i]);
+                    ratorEnv = ratorEnv.append(new Cons<>(b, new Empty<>()));
+                }
+                // Evaluate the body of the Map in the Map's closure. (That's why we have
+                // the new EvalVisitor...
+                return mapBody.accept(new EvalVisitor(ratorEnv));
+            // If # Variables != # Arguments, throw error.
+            } else {
+                return error();
+            }
+
+        // If it is a primitive function, do it the way you did forPrimFun but this
+        // time with the arguments.
+        } else if (rator instanceof PrimFun) {
+            StandardPrimFunVisitorFactory myFac = new StandardPrimFunVisitorFactory();
+            PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, a.args());
+            return ((PrimFun) rator).accept(myVis);
+        // If it isn't a Map or a PrimFun, throw an error.
         } else {
-            error();
+            return error();
         }
-
-//        int numArgs = a.args().length;
-//        JamVal[] argsJam = new JamVal[numArgs];
-//        for (int i = 0; i < numArgs; i++) {
-//            argsJam[i] = a.args()[i].accept(this);
-//        }
-//        CallByValFunVisitor funVis = new CallByValFunVisitor(this, a.args());
-
-
-        return a.rator().accept(funVis);
     }
 
     @Override
     public JamVal forMap(Map m) {
-        Variable[] vars = m.vars();
-
-        System.out.println("found map");
-
-        for (Variable v: vars) {
-            System.out.println("var => " + v);
-            v.accept(this);
-        }
-
-        return m.body().accept(this);
-        //return new JamClosure(m, env);
+        return new JamClosure(m, new Empty<>());
     }
 
     @Override
@@ -303,7 +278,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
         JamVal testJam = testAST.accept(this);
         if (testJam instanceof BoolConstant) {
             BoolConstant testBool = (BoolConstant) testJam;
-            if (testBool.value() == true) {
+            if (testBool.value()) {
                 return i.conseq().accept(this);
             } else {
                 return i.alt().accept(this);
@@ -450,7 +425,8 @@ class CallByValFunVisitor<JamVal> implements JamFunVisitor{
     @Override
     public JamVal forPrimFun(PrimFun pf) {
         // invoke prim fun with accept method
-        return  pf.accept(primFactory.newVisitor(ev, args));
+//        return  pf.accept(primFactory.newVisitor(ev, args));
+        return null;
     }
 }
 

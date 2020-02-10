@@ -210,8 +210,9 @@ public class Assign2Test extends TestCase {
 
     public void testApp0() {
         try {
-            String output = "1";
-            String input = "(map x to x)(1)";
+            String output = "2";
+//            String input = "(map x, y to x + y)(1, 2)";
+            String input = "(map x to (map x to 2 *  x)(1))(4)";
             allCheck("mathOp", output, input );
 
         } catch (Exception e) {
