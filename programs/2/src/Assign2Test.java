@@ -145,6 +145,31 @@ public class Assign2Test extends TestCase {
         }
     }
 
+    public void testIf0() {
+        try {
+            String output = "2";
+            String input = "if true then let x := 2; in x else let x:= 5; in x";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+
+    public void testIf1() {
+        try {
+            String output = "5";
+            String input = "if false then let x := 2; in x else let x:= 5; in x";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
     public void testApp0() {
         try {
             String output = "1";
@@ -189,17 +214,17 @@ public class Assign2Test extends TestCase {
         }
     } //end of func
 
-    public void testValName() {
-        try {
-            String output = "should throw error in val, not in name";
-            String input = "let x := 100/0; y := 1; in y";
-            allCheck("mathOp", output, input );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("mathOp threw " + e);
-        }
-    }
+//    public void testValName() {
+//        try {
+//            String output = "should throw error in val, not in name";
+//            String input = "let x := 100/0; y := 1; in y";
+//            allCheck("mathOp", output, input );
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            fail("mathOp threw " + e);
+//        }
+//    }
 
     public void testParseException() {
         try {
