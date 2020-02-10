@@ -269,7 +269,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forMap(Map m) {
-        return new JamClosure(m, new Empty<>());
+        return new JamClosure(m, env);
     }
 
     @Override

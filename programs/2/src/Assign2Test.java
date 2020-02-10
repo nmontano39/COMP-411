@@ -138,7 +138,19 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
+
+    public void testAppend4() {
+        try {
+            String output = "6";
+            String input = "((map f to map x to f(x))(map z to 3 * z))(2)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }//end of func
 
 
     public void testMathOp() {
