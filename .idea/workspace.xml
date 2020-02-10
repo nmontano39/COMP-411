@@ -65,16 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test">
-    <configuration name="Assign1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign1Test" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.Assign2Test.testNumberX">
     <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -94,16 +85,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign2Test.testLet0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
-      <option name="METHOD_NAME" value="testLet0" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign2Test.testMap0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -114,20 +95,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign2Test.testNumberP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="METHOD_NAME" value="testNumberP" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign2Test.testNumberX" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="METHOD_NAME" value="testNumberX" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.Assign1Test" />
       <item itemvalue="JUnit.Assign2Test" />
-      <item itemvalue="JUnit.Assign2Test.testLet0" />
       <item itemvalue="JUnit.Assign2Test.testApp0" />
       <item itemvalue="JUnit.Assign2Test.testMap0" />
+      <item itemvalue="JUnit.Assign2Test.testNumberP" />
+      <item itemvalue="JUnit.Assign2Test.testNumberX" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign2Test.testNumberX" />
+        <item itemvalue="JUnit.Assign2Test.testNumberP" />
         <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testMap0" />
         <item itemvalue="JUnit.Assign2Test.testApp0" />
-        <item itemvalue="JUnit.Assign2Test.testLet0" />
-        <item itemvalue="JUnit.Assign1Test" />
       </list>
     </recent_temporary>
   </component>

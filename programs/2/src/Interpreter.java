@@ -360,49 +360,101 @@ class StandardPrimFunVisitorFactory {
             env = e;
         }
 
+        public JamVal error() {
+            throw new EvalException("Error!");
+        }
+
         @Override
         public JamVal forFunctionPPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return FunctionPPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forNumberPPrim() {
-            return null;
+            if (args.length > 0) {
+                if (args.length != 1) {
+                    return error();
+                }
+
+                AST a = args[0];
+
+                JamVal jam = a.accept(env);
+
+                if (jam instanceof IntConstant) {
+                    return BoolConstant.toBoolConstant(true);
+                } else {
+                    return BoolConstant.toBoolConstant(false);
+                }
+            } else {
+                return NumberPPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forListPPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return ListPPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forConsPPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return ConsPPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forNullPPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return NullPPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forArityPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return ArityPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forConsPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return ConsPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forFirstPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return FirstPrim.ONLY;
+            }
         }
 
         @Override
         public JamVal forRestPrim() {
-            return null;
+            if (args.length > 0) {
+                return null;
+            } else {
+                return RestPrim.ONLY;
+            }
         }
     }
 }

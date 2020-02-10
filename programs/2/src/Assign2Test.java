@@ -55,6 +55,31 @@ public class Assign2Test extends TestCase {
         }
     } //end of func
 
+    public void testNumberX() {
+        try {
+            String output = "true";
+            String input = "number?()";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    } //end of func
+
+
+    public void testConsP() {
+        try {
+            String output = "cons?";
+            String input = "cons?";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    } //end of func
+
 
     public void testMathOp() {
         try {
@@ -196,17 +221,17 @@ public class Assign2Test extends TestCase {
 
     }
 
-    public void testMap0() {
-        try {
-            String output = "(closure: map x to (2 * x))";
-            String input = "map x to 2*x";
-            allCheck("mathOp", output, input );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("mathOp threw " + e);
-        }
-    }
+//    public void testMap0() {
+//        try {
+//            String output = "(closure: map x to (2 * x))";
+//            String input = "map x to 2*x";
+//            allCheck("mathOp", output, input );
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            fail("mathOp threw " + e);
+//        }
+//    }
 
     public void testApp0() {
         try {
