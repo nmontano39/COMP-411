@@ -3,29 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/ArityPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/ArityPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/Comma.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/Comma.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/ConsPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/ConsPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/ConsPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/ConsPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/EndOfFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/EndOfFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/FirstPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/FirstPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/FunctionPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/FunctionPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/JamClosure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/JamClosure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/KeyWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/KeyWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/LeftBrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/LeftBrack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/LeftParen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/LeftParen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/ListPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/ListPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/NullConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/NullConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/NullPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/NullPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/NumberPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/NumberPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/OpToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/OpToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/PrimFun.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/PrimFun.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/RefPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/RefPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/RestPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/RestPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/RightBrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/RightBrack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/RightParen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/RightParen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/SemiColon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/SemiColon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP-411/Variable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP-411/Variable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/2/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -107,16 +85,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign1Test.testLet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign1Test" />
-      <option name="METHOD_NAME" value="testLet" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign1Test.testParseException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -136,20 +104,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign2Test.testLet0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="METHOD_NAME" value="testLet0" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign1Test" />
-      <item itemvalue="JUnit.Assign1Test.testLet" />
       <item itemvalue="JUnit.Assign1Test.testFile" />
       <item itemvalue="JUnit.Assign1Test.testParseException" />
       <item itemvalue="JUnit.Assign2Test" />
+      <item itemvalue="JUnit.Assign2Test.testLet0" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign2Test" />
+        <item itemvalue="JUnit.Assign2Test.testLet0" />
         <item itemvalue="JUnit.Assign1Test" />
         <item itemvalue="JUnit.Assign1Test.testFile" />
         <item itemvalue="JUnit.Assign1Test.testParseException" />
-        <item itemvalue="JUnit.Assign1Test.testLet" />
       </list>
     </recent_temporary>
   </component>
@@ -164,7 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1580090616291</updated>
       <workItem from="1580512570109" duration="37000" />
-      <workItem from="1580512679682" duration="29282000" />
+      <workItem from="1580512679682" duration="31307000" />
     </task>
     <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
       <created>1580090718590</created>
@@ -285,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581300232154</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="OH sunday - forLet">
+      <created>1581301840371</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1581301840371</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +300,8 @@
     <MESSAGE value="working on interpreter" />
     <MESSAGE value="OH sunday" />
     <MESSAGE value="OH sunday - forvar" />
-    <option name="LAST_COMMIT_MESSAGE" value="OH sunday - forvar" />
+    <MESSAGE value="OH sunday - forLet" />
+    <option name="LAST_COMMIT_MESSAGE" value="OH sunday - forLet" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

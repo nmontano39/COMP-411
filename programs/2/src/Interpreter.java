@@ -7,10 +7,6 @@ class EvalException extends RuntimeException {
     EvalException(String msg) { super(msg); }
 }
 
-/////////////////////////
-////////// OH ///////////
-/////////////////////////
-
 
 class EvalVisitor implements ASTVisitor{
     PureList<Binding> env;
@@ -45,6 +41,7 @@ class EvalVisitor implements ASTVisitor{
 
     @Override
     public JamVal forVariable(Variable v) {
+
         return env.accept(new PureListVisitor<Binding, JamVal>() {
             @Override
             public JamVal forEmpty(Empty<Binding> e) {
@@ -244,11 +241,12 @@ class EvalVisitor implements ASTVisitor{
 
         Def[] defs = l.defs();
 
+
         for (Def d: defs) {
             Variable dVar = d.lhs();
             JamVal dVal = (JamVal) d.rhs().accept(this);
             ValBinding b = new ValBinding(dVar, dVal);
-            env.append(new Cons<>(b, new Empty<>()));
+            env = env.append(new Cons<>(b, new Empty<>()));
         }
         return (JamVal) l.body().accept(this);
     }
@@ -352,60 +350,61 @@ class ValBinding extends Binding{
 }
 
 
-// ------------------------------
+
+class CallByNameFunVisitor<ResType> implements JamFunVisitor{
+    @Override
+    public Object forJamClosure(JamClosure c) {
+        return null;
+    }
+
+    @Override
+    public Object forPrimFun(PrimFun pf) {
+        return null;
+    }
+}
+
+class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
+    @Override
+    public Object forJamClosure(JamClosure c) {
+        return null;
+    }
+
+    @Override
+    public Object forPrimFun(PrimFun pf) {
+        return null;
+    }
+}
 
 
+class NameBinding extends Binding{
+
+    NameBinding(Variable v, JamClosure c) {
+        super(v, (JamVal) c);
+    }
+
+    @Override
+    public JamVal value() {
+        // evaluate closure
+        return null;
+    }
+}
+
+class NeedBinding extends Binding{
+    Boolean eval;
+
+    NeedBinding(Variable v, JamClosure c) {
+        super(v, (JamVal) c);
+    }
+
+    @Override
+    public JamVal value() {
+        // evaluate closure or override with value if previously evaluated
+        return null;
+    }
+
+}
 
 
-////////////////////////////////
-///////   Call by name   ///////
-////////////////////////////////
-//
-//
-//class CallByNameFunVisitor<ResType> implements JamFunVisitor{
-//    @Override
-//    public Object forJamClosure(JamClosure c) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Object forPrimFun(PrimFun pf) {
-//        return null;
-//    }
-//}
-//
-//class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
-//    @Override
-//    public Object forJamClosure(JamClosure c) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Object forPrimFun(PrimFun pf) {
-//        return null;
-//    }
-//}
-//
-//
-//class NameBinding extends ValBinding{
-//
-//    NameBinding(Variable v, Suspension s) {
-//        super(v, (JamVal) s);
-//    }
-//}
-//
-//class Suspension {
-//    AST ast;
-//    EvalVisitor ev;
-//
-//    // ast - f(1/0
-//    // env - definition of f
-//    // suspend the evaluation of the AST until its needed
-//
-//}
-/////////////////////////
-////////// OH ///////////
-/////////////////////////
 
 class Interpreter {
 

@@ -109,7 +109,97 @@ public class Assign2Test extends TestCase {
     }
 
 
+    public void testLet0() {
+        try {
+            String output = "6";
+            String input = "let x := 3; y := 2; z:= 1; in x + y + z";
+            allCheck("mathOp", output, input );
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testLet1() {
+        try {
+            String output = "9";
+            String input = "let x := 1; y := 2 * x; z := 3 * y; in x + y + z";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testLet2() {
+        try {
+            String output = "1";
+            String input = "let x := 1; in x";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testApp0() {
+        try {
+            String output = "1";
+            String input = "(map x to x)(1)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testApp1() {
+        try {
+            String output = "mojo";
+            String input = "(map x to x)()";
+            allCheck("evalException", output, input );
+
+            fail("evalException did not throw EvalException exception");
+        } catch (EvalException e) {
+            //e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("evalException threw " + e);
+        }
+    } //end of func
+
+    public void testApp2() {
+        try {
+            String output = "mojo";
+            String input = "(map x to x)(1, 2)";
+            allCheck("evalException", output, input );
+
+            fail("evalException did not throw EvalException exception");
+        } catch (EvalException e) {
+            //e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("evalException threw " + e);
+        }
+    } //end of func
+
+    public void testValName() {
+        try {
+            String output = "should throw error in val, not in name";
+            String input = "let x := 100/0; y := 1; in y";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
 
     public void testParseException() {
         try {
