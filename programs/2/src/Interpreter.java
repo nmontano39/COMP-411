@@ -214,9 +214,7 @@ class EvalVisitor implements ASTVisitor{
 
     @Override
     public JamVal forApp(App a) {
-//        a.rator().accept(new CallByValFunVisitor<JamVal>(getEnv(), a.args()) {
-//
-//        });
+        a.rator().accept(this);
         return null;
     }
 
@@ -282,24 +280,24 @@ class NeedBinding extends Binding{
 }
 
 interface PrimFunVisitorFactory {
-    PrimFunVisitor newVisitor(EvalVisitor ev, AST[] args);
+    PrimFunVisitor newVisitor(EvalVisitor env, AST[] args);
 }
 
 class StandardPrimFunVisitorFactory implements PrimFunVisitorFactory{
 
     @Override
-    public PrimFunVisitor newVisitor(EvalVisitor ev, AST[] args) {
-        return new StandardPrimFunVisitor(ev, args);
+    public PrimFunVisitor newVisitor(EvalVisitor env, AST[] args) {
+        return new StandardPrimFunVisitor(env, args);
     }
 
     class StandardPrimFunVisitor implements PrimFunVisitor {
 
         AST[] args;
-        EvalVisitor ev;
+        EvalVisitor env;
 
         public StandardPrimFunVisitor(EvalVisitor e, AST[] a) {
             args = a;
-            ev = e;
+            env = e;
         }
 
         @Override
