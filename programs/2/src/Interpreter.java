@@ -60,7 +60,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
     public JamVal forPrimFun(PrimFun f) {
         // Factory method for Primitive functions with no args.
         StandardPrimFunVisitorFactory myFac = new StandardPrimFunVisitorFactory();
-        PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, new AST[0]);
+        PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, null);
         return f.accept(myVis);
     }
 
@@ -375,11 +375,9 @@ class StandardPrimFunVisitorFactory {
 
         @Override
         public JamVal forNumberPPrim() {
-            if (args.length > 0) {
-                if (args.length != 1) {
-                    return error();
-                }
-
+            if (args == null) {
+                return NumberPPrim.ONLY;
+            } else if (args.length == 1) {
                 AST a = args[0];
 
                 JamVal jam = a.accept(env);
@@ -390,7 +388,7 @@ class StandardPrimFunVisitorFactory {
                     return BoolConstant.toBoolConstant(false);
                 }
             } else {
-                return NumberPPrim.ONLY;
+                return error();
             }
         }
 
