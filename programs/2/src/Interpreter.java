@@ -214,13 +214,22 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forApp(App a) {
-        a.rator().accept(this);
-        return null;
+        return a.rator().accept(this);
     }
 
     @Override
     public JamVal forMap(Map m) {
-        return null;
+        Variable[] vars = m.vars();
+
+        System.out.println("found map");
+
+        for (Variable v: vars) {
+            System.out.println("var => " + v);
+            v.accept(this);
+        }
+
+        return m.body().accept(this);
+        //return new JamClosure(m, env);
     }
 
     @Override

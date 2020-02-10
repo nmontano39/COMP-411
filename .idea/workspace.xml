@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/2/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,22 +65,12 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test.testApp0">
+  <component name="RunManager" selected="JUnit.Assign2Test">
     <configuration name="Assign1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign1Test" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign1Test.testFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign1Test" />
-      <option name="METHOD_NAME" value="testFile" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -113,20 +104,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign2Test.testMap0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="METHOD_NAME" value="testMap0" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign1Test" />
-      <item itemvalue="JUnit.Assign1Test.testFile" />
       <item itemvalue="JUnit.Assign2Test" />
       <item itemvalue="JUnit.Assign2Test.testLet0" />
       <item itemvalue="JUnit.Assign2Test.testApp0" />
+      <item itemvalue="JUnit.Assign2Test.testMap0" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign2Test.testApp0" />
         <item itemvalue="JUnit.Assign2Test" />
+        <item itemvalue="JUnit.Assign2Test.testMap0" />
+        <item itemvalue="JUnit.Assign2Test.testApp0" />
         <item itemvalue="JUnit.Assign2Test.testLet0" />
         <item itemvalue="JUnit.Assign1Test" />
-        <item itemvalue="JUnit.Assign1Test.testFile" />
       </list>
     </recent_temporary>
   </component>

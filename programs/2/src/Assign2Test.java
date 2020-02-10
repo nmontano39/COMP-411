@@ -196,6 +196,18 @@ public class Assign2Test extends TestCase {
 
     }
 
+    public void testMap0() {
+        try {
+            String output = "(closure: map x to (2 * x))";
+            String input = "map x to 2*x";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
     public void testApp0() {
         try {
             String output = "1";
