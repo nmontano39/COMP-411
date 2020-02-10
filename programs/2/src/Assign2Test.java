@@ -55,18 +55,6 @@ public class Assign2Test extends TestCase {
         }
     } //end of func
 
-    public void testNumberX() {
-        try {
-            String output = "true";
-            String input = "number?()";
-            allCheck("numberP", output, input );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("numberP threw " + e);
-        }
-    } //end of func
-
 
     public void testConsP() {
         try {
@@ -79,6 +67,56 @@ public class Assign2Test extends TestCase {
             fail("numberP threw " + e);
         }
     } //end of func
+
+    public void testConsP2() {
+        try {
+            String output = "true";
+            String input = "cons?(cons(null, null))";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    }
+
+    public void testFirst() {
+        try {
+            String output = "()";
+            String input = "first(cons(null, null))";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    }
+
+    public void testRest() {
+        try {
+            String output = "(3 ())";
+            String input = "rest(cons(2, cons(3,cons(null, null))))";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    }
+
+    public void testCons() {
+        try {
+            String output = "(1 2 3)";
+            String input = "cons(1, cons(2, cons(3, null)))";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    }
+
+
 
 
     public void testMathOp() {
@@ -322,6 +360,18 @@ public class Assign2Test extends TestCase {
             fail("evalException threw " + e);
         }
     } //end of func
+
+    public void testDeleteThis() {
+        try {
+            String output = "4";
+            String input = "let x := first(cons(null, null)); in if x = null then 4 else 5";
+            allCheck("numberP", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("numberP threw " + e);
+        }
+    }
 
 
     public void testAppend() {

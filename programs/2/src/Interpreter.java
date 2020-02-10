@@ -366,10 +366,21 @@ class StandardPrimFunVisitorFactory {
 
         @Override
         public JamVal forFunctionPPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            if (args == null) {
                 return FunctionPPrim.ONLY;
+            } else if (args.length == 1) {
+                AST a = args[0];
+
+                JamVal jam = a.accept(env);
+
+                if (jam instanceof JamFun) {
+                    return BoolConstant.toBoolConstant(true);
+                } else {
+                    return BoolConstant.toBoolConstant(false);
+                }
+
+            } else {
+                return error();
             }
         }
 
@@ -394,64 +405,164 @@ class StandardPrimFunVisitorFactory {
 
         @Override
         public JamVal forListPPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            if (args == null) {
                 return ListPPrim.ONLY;
+            } else if (args.length == 1) {
+                AST a = args[0];
+
+                JamVal jam = a.accept(env);
+
+                if (jam instanceof JamFun) {
+                    return BoolConstant.toBoolConstant(true);
+                } else {
+                    return BoolConstant.toBoolConstant(false);
+                }
+
+            } else {
+                return error();
             }
         }
 
         @Override
         public JamVal forConsPPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            if (args == null) {
                 return ConsPPrim.ONLY;
+            } else if (args.length == 1) {
+                AST a = args[0];
+
+                JamVal jam = a.accept(env);
+
+                if (jam instanceof JamCons) {
+                    return BoolConstant.toBoolConstant(true);
+                } else {
+                    return BoolConstant.toBoolConstant(false);
+                }
+            } else {
+                return error();
             }
         }
 
         @Override
         public JamVal forNullPPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            if (args == null) {
                 return NullPPrim.ONLY;
+            } else if (args.length == 1) {
+                AST a = args[0];
+
+                JamVal jam = a.accept(env);
+
+                if (jam instanceof NullConstant) {
+                    return BoolConstant.toBoolConstant(true);
+                } else {
+                    return BoolConstant.toBoolConstant(false);
+                }
+
+            } else {
+                return error();
             }
         }
 
         @Override
         public JamVal forArityPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            if (args == null) {
                 return ArityPrim.ONLY;
+            } else if (args.length == 1) {
+                AST a = args[0];
+
+                JamVal jam = a.accept(env);
+
+                if (jam instanceof PrimFun) {
+                    return new IntConstant(1);
+                } else if (jam instanceof JamClosure) {
+
+
+                } else {
+                    return BoolConstant.toBoolConstant(false);
+                }
+
+            } else {
+                return error();
             }
+            return error();
         }
 
         @Override
         public JamVal forConsPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            if (args == null) {
                 return ConsPrim.ONLY;
+            } else if (args.length == 2) {
+                AST first = args[0];
+                JamVal firstJam = first.accept(env);
+                System.out.println(firstJam);
+
+                AST rem = args[1];
+                JamVal remJam = rem.accept(env);
+                System.out.println(remJam);
+                if (remJam instanceof JamEmpty) {
+                    JamList consList = new JamCons(firstJam, JamEmpty.ONLY);
+                    return consList;
+//                    return new Cons<>(firstJam, new Empty<>());
+                } else if (remJam instanceof JamCons){
+                    return new JamCons(firstJam, (JamCons) remJam);
+                } else {
+                    return error();
+                }
+            } else {
+                return error();
             }
         }
 
         @Override
         public JamVal forFirstPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            System.out.println("Here");
+            if (args == null) {
                 return FirstPrim.ONLY;
+            } else if (args.length == 1) {
+                System.out.println("Reached correct place");
+                AST a = args[0];
+                System.out.println(a);
+
+                JamVal jam = a.accept(env);
+                System.out.println(jam);
+
+                if (jam instanceof Cons) {
+                    Cons jamCon = (Cons) jam;
+                    return (JamVal) jamCon.first();
+                } else {
+                    return error();
+                }
+
+            } else {
+                System.out.println(args.length);
+                System.out.println(args[0]);
+                return error();
             }
         }
 
         @Override
         public JamVal forRestPrim() {
-            if (args.length > 0) {
-                return null;
-            } else {
+            System.out.println("Here");
+            if (args == null) {
                 return RestPrim.ONLY;
+            } else if (args.length == 1) {
+                System.out.println("Reached correct place");
+                AST a = args[0];
+                System.out.println(a);
+
+                JamVal jam = a.accept(env);
+                System.out.println(jam);
+
+                if (jam instanceof Cons) {
+                    Cons jamCon = (Cons) jam;
+                    return (JamVal) jamCon.rest();
+                } else {
+                    return error();
+                }
+
+            } else {
+                System.out.println(args.length);
+                System.out.println(args[0]);
+                return error();
             }
         }
     }
