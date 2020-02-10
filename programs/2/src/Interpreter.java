@@ -104,7 +104,9 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 //                return null;
 //            }
 //        });
-        return f.accept(new StandardPrimFunVisitorFactory())
+        StandardPrimFunVisitorFactory myFac = new StandardPrimFunVisitorFactory();
+        PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, new AST[0]);
+        return f.accept(myVis);
     }
 
     @Override
@@ -260,13 +262,21 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forApp(App a) {
-//        JamVal rator = a.rator().accept(this);
+        JamVal rator = a.rator().accept(this);
+        if (rator instanceof JamFun) {
+            JamFun ratorFun = (JamFun) rator;
+            CallByValFunVisitor<JamVal> funVis = new CallByValFunVisitor<JamVal>(this, a.args());
+            return ratorFun.accept(funVis);
+        } else {
+            error();
+        }
+
 //        int numArgs = a.args().length;
 //        JamVal[] argsJam = new JamVal[numArgs];
 //        for (int i = 0; i < numArgs; i++) {
 //            argsJam[i] = a.args()[i].accept(this);
 //        }
-        CallByValFunVisitor funVis = new CallByValFunVisitor(this, a.args());
+//        CallByValFunVisitor funVis = new CallByValFunVisitor(this, a.args());
 
 
         return a.rator().accept(funVis);
@@ -355,9 +365,9 @@ class NeedBinding extends Binding{
 
 }
 
-//interface PrimFunVisitorFactory {
-//    PrimFunVisitor newVisitor(EvalVisitor env, AST[] args);
-//}
+interface PrimFunVisitorFactory {
+    PrimFunVisitor newVisitor(EvalVisitor env, AST[] args);
+}
 
 class StandardPrimFunVisitorFactory {
 
@@ -422,7 +432,7 @@ class StandardPrimFunVisitorFactory {
     }
 }
 
-class CallByValFunVisitor<ResType> implements JamFunVisitor{
+class CallByValFunVisitor<JamVal> implements JamFunVisitor{
     AST[] args;
     EvalVisitor ev;
     PrimFunVisitorFactory primFactory;
@@ -440,7 +450,7 @@ class CallByValFunVisitor<ResType> implements JamFunVisitor{
     @Override
     public JamVal forPrimFun(PrimFun pf) {
         // invoke prim fun with accept method
-        return (JamVal) pf.accept(primFactory.newVisitor(ev, args));
+        return  pf.accept(primFactory.newVisitor(ev, args));
     }
 }
 
