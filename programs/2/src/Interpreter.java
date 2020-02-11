@@ -246,6 +246,8 @@ class EvalVisitor implements ASTVisitor<JamVal>{
                     Binding b;
 
                     if (callBy == 0) {
+                        System.out.println(mapVars[i]);
+                        System.out.println(a.args()[i]);
                         b = new ValBinding(mapVars[i], a.args()[i].accept(this));
 
                     } else if (callBy == 1) {
@@ -257,7 +259,25 @@ class EvalVisitor implements ASTVisitor<JamVal>{
                         b = new NeedBinding(mapVars[i], a.args()[i].accept(this));
 
                     }
-                    ratorEnv = ratorEnv.append(new Cons<>(b, new Empty<>()));
+//                    ratorEnv = ratorEnv.append(new Cons<>(b, new Empty<>()));
+                    ratorEnv = ratorEnv.accept(new PureListVisitor<Binding, Cons<Binding>>() {
+                        @Override
+                        public Cons<Binding> forEmpty(Empty<Binding> e) {
+                            return new Cons<>(b, new Empty<>());
+                        }
+
+                        @Override
+                        public Cons<Binding> forCons(Cons<Binding> c) {
+                            if (c.first().var() == b.var()) {
+                                return new Cons<>(b, new Cons<>(c.first(), c.rest()));
+                            } else {
+                                if (c.rest().equals(new Empty<Binding>())) {
+                                    return new Cons<>(c.first(), new Cons<>(b, new Empty<>()));
+                                }
+                                return new Cons<>(c.first(), forCons((Cons<Binding>) c.rest()));
+                            }
+                        }
+                    });
                 }
                 // Evaluate the body of the Map in the Map's closure. (That's why we have
                 // the new EvalVisitor...

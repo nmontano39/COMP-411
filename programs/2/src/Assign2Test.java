@@ -36,8 +36,8 @@ public class Assign2Test extends TestCase {
     }
 
     private void allCheck(String name, String answer, String program) {
-        valueCheck(name, answer, program);
-        //nameCheck(name, answer, program);
+//        valueCheck(name, answer, program);
+        nameCheck(name, answer, program);
 //        needCheck(name, answer, program);
     }
 
@@ -391,7 +391,7 @@ public class Assign2Test extends TestCase {
 
     public void testApp0() {
         try {
-            String output = "8";
+            String output = "2";
             String input = "(map x to (map x to 2 *  x)(1))(4)";
             allCheck("mathOp", output, input );
 
