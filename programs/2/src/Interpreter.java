@@ -46,13 +46,13 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
             @Override
             public JamVal forCons(Cons<Binding> c) {
-                if (c.first.var == v) {
-                    return c.first.value;
+                if (c.first().var() == v) {
+                    return c.first().value();
                 } else {
-                    if (c.rest.equals(new Empty<Binding>())) {
+                    if (c.rest().equals(new Empty<Binding>())) {
                         return error();
                     }
-                    return forCons((Cons<Binding>) c.rest);
+                    return forCons((Cons<Binding>) c.rest());
                 }
             }
         });
@@ -226,11 +226,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
         if (rator instanceof JamClosure) {
             // Get the number of arguments.
             int numArgs = a.args().length;
-            // Store the arguments in an array.
-            JamVal[] argsJam = new JamVal[numArgs];
-            for (int i = 0; i < numArgs; i++) {
-                argsJam[i] = a.args()[i].accept(this);
-            }
+
             // Breaking down the closure into
             JamClosure ratorClos = (JamClosure) rator;
             // The Map function.
@@ -250,13 +246,15 @@ class EvalVisitor implements ASTVisitor<JamVal>{
                     Binding b;
 
                     if (callBy == 0) {
-                        b = new ValBinding(mapVars[i], argsJam[i]);
+                        b = new ValBinding(mapVars[i], a.args()[i].accept(this));
 
                     } else if (callBy == 1) {
-                        b = new NameBinding(mapVars[i], argsJam[i]);
+//                        b = new NameBinding(mapVars[i], argsJam[i]);
+                        b = new NameBinding(mapVars[i], new JamClosure(
+                            new Map(new Variable[0], a.args()[i]), env));
 
                     } else {
-                        b = new NeedBinding(mapVars[i], argsJam[i]);
+                        b = new NeedBinding(mapVars[i], a.args()[i].accept(this));
 
                     }
                     ratorEnv = ratorEnv.append(new Cons<>(b, new Empty<>()));
@@ -312,18 +310,21 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
         for (Def d: defs) {
             Variable dVar = d.lhs();
-            JamVal dVal = d.rhs().accept(this);
+
 //            ValBinding b = new ValBinding(dVar, dVal);
 
             Binding b;
 
             if (callBy == 0) {
+                JamVal dVal = d.rhs().accept(this);
                 b = new ValBinding(dVar, dVal);
 
             } else if (callBy == 1) {
-                b = new NameBinding(dVar, dVal);
+//                b = new NameBinding(dVar, dVal);
+                b = new NameBinding(dVar, new JamClosure(new Map(new Variable[0], d.rhs()), env));
 
             } else {
+                JamVal dVal = d.rhs().accept(this);
                 b = new NeedBinding(dVar, dVal);
 
             }
@@ -343,21 +344,24 @@ class ValBinding extends Binding{
 class NameBinding extends Binding{
 
     NameBinding(Variable v, JamClosure c) {
-        super(v, (JamVal) c);
+        super(v, c);
     }
 
     @Override
     public JamVal value() {
         // evaluate closure
-        return null;
+//        return null;
+        Map map = ((JamClosure) this.value).body();
+        PureList env = ((JamClosure) this.value).env();
+        return map.body().accept(new EvalVisitor(env, 1));
     }
 }
 
 class NeedBinding extends Binding{
     Boolean eval;
 
-    NeedBinding(Variable v, JamClosure c) {
-        super(v, (JamVal) c);
+    NeedBinding(Variable v, JamVal c) {
+        super(v, c);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class Assign2Test extends TestCase {
     }
 
     private void allCheck(String name, String answer, String program) {
-        //valueCheck(name, answer, program);
+//        valueCheck(name, answer, program);
         nameCheck(name, answer, program);
 //        needCheck(name, answer, program);
     }
@@ -433,17 +433,17 @@ public class Assign2Test extends TestCase {
         }
     } //end of func
 
-//    public void testValName() {
-//        try {
-//            String output = "should throw error in val, not in name";
-//            String input = "let x := 100/0; y := 1; in y";
-//            allCheck("mathOp", output, input );
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            fail("mathOp threw " + e);
-//        }
-//    }
+    public void testValName() {
+        try {
+            String output = "should throw error in val, not in name";
+            String input = "let x := 100/0; y := 1; in y";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
 
     public void testParseException() {
         try {
@@ -526,7 +526,7 @@ public class Assign2Test extends TestCase {
                             "                    let fibk := (Y(FFIB))(k);" +
                             "                    in if k >= 0 then fibs(k - 1, cons(pair(k,fibk), l)) else l; " +
                             "      in (Y(FIBS))(10, null)";
-            needCheck("fib-need", output, input);
+//            needCheck("fib-need", output, input);
             nameCheck("fib-name", output, input);
         }
         catch(Exception e) {
