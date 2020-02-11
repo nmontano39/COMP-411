@@ -3,35 +3,33 @@ sec14
 
 # Program Organization
 
-We chose to write our parser to be executed by parseExp() which handles 'let', 'if', 'map', and <binary-exp>
-cases for a given lexer. If the first token is 'let' the helper method parseLet() is called to parse and return
-exp ::= let <prop-def-list> in <exp>. If the first token is 'if' the helper method parseIf() is called to parse and
-return exp :== if <exp> then <exp> else <exp>. If the first token is 'map' the helper method parseMap() is called
-to parse and return exp :== map <id-list> to <exp>. Otherwise, the first token is a <binary-exp>. In this case, the
-method parses and returns <binary-exp> ::= <term> { <biop> <exp> }*. ExpList and IdList are handled by the parsing
-methods for Term and Exp respectively in order to cleanly handle empty list cases. All private methods are named
-like parse<Symbol>, i.e. parseExp, parsePropIdList, etc.
-
-exp ::= let <prop-def-list> in <exp>
-The helper method parseLet() cycles through one or more Defs and finally makes a recursive call to parseExp().
-
-exp :== if <exp> then <exp> else <exp>
-The helper method parseIf() makes three recursive calls to parseExp().
-
-exp :== map <id-list> to <exp>
-The helper method parseMap() calls parsePropIdList() makes a recursive call to parseExp().
-
-<binary-exp> ::= <term> { <biop> <exp> }*
-This procedure calls helper method parseTerm() to parse and return <term> and optionally checks for a binary
-operator before finally making a recursive call to parseExp().
+We wrote our interpreter to be executed in the Interpreter class. Its constructor takes a filename, which it then
+parses and evaluates with its three methods callByName(), callByValue(), and callByNeed(). Each of these methods
+calls a visitor of type EvalVisitor. The EvalVisitor class implements ASTVisitor<JamVal> and takes an environment
+represented as a PureList of Bindings and an int that specifies the calling convention. For a Bool, Int, or Null,
+the interpreter returns the given JamVal. For a Variable, the environment calls a PureListVisitor. For a BinOpApp
+or UnOpApp, the specified arguments are converted to JamVals and evaluated for a given operator. For a Map, a
+new closure is created given the Map and environment. For an If, either a conseq or alt is returned depending
+on the condition. For a Let, each def is stored as a Binding which is then added to the environment. Depending
+on the calling convention, we have a separate concrete Binding class. CallByValue uses a ValueBinding to bind
+a Variable to a JamVal. CallByName uses a NameBinding to bind a Variable to a Closure in order to suspend evaluation
+until specified. CallByNeed uses a NeedBinding to bind a Variable to a JamVal or Closure depending on if the value
+has already been evaluated in the environment. For a PrimFun, we use a PrimFunFactory in order to create a new
+PrimFunVisitor that defines the behavior for each primitive function. For an App, we are given either a PrimFun
+or a Closure and a list of arguments. If we are given a PrimFun, we use a PrimFunFactory again, this time with
+the specified arguments. Otherwise, we are given a Closure AKA Map and modify the environment to store the resulting
+Bindings using the specified arguments. In each case, if the wrong number of arguments are passed, we throw an
+EvalException.
 
 
 
 # Testing Processes
 
 As suggested by the sample, we have test sets for valid ("good") and invalid ("bad") input programs corresponding
-to each file. In the beginning, we used the provided test cases in order to independently test our private parser
-methods. As we were developing  the code, we wrote unit tests to check our progress along the way for rare cases.
-However, we found the provided tests to be more comprehensive, and so we ended up deciding to use the test files
-given as Strings. We used Intellij's inbuilt plugin to test our code coverage and found that the tests covered 92%
-of the code that we have written.
+to each file. In the beginning, we used the provided test cases in order to independently test our callByValue()
+method. As we were developing the code, we wrote unit tests to check our progress along the way for rare cases.
+We initially had trouble accommodating cases that used closures within a specific scope or those that had multiple
+variables defined with the same name. Eventually, we solved this problem through the environment we were passing
+along and by using a hierarchical method to override duplicate variables. Once we got callByValue() to pass every
+test except testFib, we wrote a couple more test cases that would fail if the calling convention was callByValue
+but pass if callByName or callByValue.
