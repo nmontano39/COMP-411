@@ -37,8 +37,8 @@ public class Assign2Test extends TestCase {
 
     private void allCheck(String name, String answer, String program) {
 //        valueCheck(name, answer, program);
-        nameCheck(name, answer, program);
-//        needCheck(name, answer, program);
+//        nameCheck(name, answer, program);
+        needCheck(name, answer, program);
     }
 
 

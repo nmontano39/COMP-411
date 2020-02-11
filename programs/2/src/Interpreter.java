@@ -259,7 +259,8 @@ class EvalVisitor implements ASTVisitor<JamVal>{
                             new Map(new Variable[0], a.args()[i]), env));
 
                     } else {
-                        b = new NeedBinding(mapVars[i], a.args()[i].accept(this));
+                        b = new NeedBinding(mapVars[i], new JamClosure(
+                                new Map(new Variable[0], a.args()[i]), env));
 
                     }
 //                    ratorEnv = ratorEnv.append(new Cons<>(b, new Empty<>()));
@@ -352,8 +353,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
                 b = new NameBinding(dVar, new JamClosure(new Map(new Variable[0], d.rhs()), env));
 
             } else {
-                JamVal dVal = d.rhs().accept(this);
-                b = new NeedBinding(dVar, dVal);
+                b = new NeedBinding(dVar, new JamClosure(new Map(new Variable[0], d.rhs()), env));
 
             }
 
@@ -390,23 +390,23 @@ class NeedBinding extends Binding{
 
     NeedBinding(Variable v, JamVal c) {
         super(v, c);
+        eval = false;
     }
 
     @Override
     public JamVal value() {
         // evaluate closure or override with value if previously evaluated
-        Map map = ((JamClosure) this.value).body();
-        PureList env = ((JamClosure) this.value).env();
-
-
-        eval = true;
-
-        if (eval) {
-
-            return map.body().accept(new EvalVisitor(env, 1));
-        } else {
-            return null;
+        if (!eval) {
+            eval = true;
+            if (this.value instanceof JamClosure) {
+                Map map = ((JamClosure) this.value).body();
+                PureList env = ((JamClosure) this.value).env();
+                JamVal newVal = map.body().accept(new EvalVisitor(env, 2));
+                super.setValue(newVal);
+                System.out.println("reached closure");
+            }
         }
+        return value;
     }
 
 }

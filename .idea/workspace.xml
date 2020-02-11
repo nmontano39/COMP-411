@@ -65,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test.testDeleteThis">
+  <component name="RunManager" selected="JUnit.Assign2Test">
     <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -124,9 +124,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
         <item itemvalue="JUnit.Assign2Test.testFib" />
-        <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testArity" />
         <item itemvalue="JUnit.Assign2Test.testFunction" />
       </list>
