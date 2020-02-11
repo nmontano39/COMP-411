@@ -179,7 +179,7 @@ public class Assign2Test extends TestCase {
     public void testArity() {
         try {
             String output = "2";
-            String input = "arity(map x, y to x + y)";
+            String input = "arity(map x to x)";
             allCheck("mathOp", output, input );
 
         } catch (Exception e) {
