@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Assign2Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/2/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test.testArity">
+  <component name="RunManager" selected="JUnit.Assign2Test">
     <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -122,9 +124,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testArity" />
         <item itemvalue="JUnit.Assign2Test.testFunction" />
-        <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testAppend3" />
         <item itemvalue="JUnit.Assign2Test.testAppend2" />
       </list>

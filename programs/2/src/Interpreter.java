@@ -9,9 +9,11 @@ class EvalException extends RuntimeException {
 
 class EvalVisitor implements ASTVisitor<JamVal>{
     PureList<Binding> env;
+    int callBy;
 
-    EvalVisitor (PureList<Binding> e) {
+    EvalVisitor (PureList<Binding> e, int call) {
         env = e;
+        callBy = call;
     }
 
     public JamVal error() {
@@ -244,12 +246,24 @@ class EvalVisitor implements ASTVisitor<JamVal>{
             if (mapVars.length == numArgs) {
                 // If so, store the variables and their values in the Map's closure.
                 for (int i = 0; i < mapVars.length; i++) {
-                    ValBinding b = new ValBinding(mapVars[i], argsJam[i]);
+
+                    Binding b;
+
+                    if (callBy == 0) {
+                        b = new ValBinding(mapVars[i], argsJam[i]);
+
+                    } else if (callBy == 1) {
+                        b = new NameBinding(mapVars[i], argsJam[i]);
+
+                    } else {
+                        b = new NeedBinding(mapVars[i], argsJam[i]);
+
+                    }
                     ratorEnv = ratorEnv.append(new Cons<>(b, new Empty<>()));
                 }
                 // Evaluate the body of the Map in the Map's closure. (That's why we have
                 // the new EvalVisitor...
-                return mapBody.accept(new EvalVisitor(ratorEnv));
+                return mapBody.accept(new EvalVisitor(ratorEnv, callBy));
             // If # Variables != # Arguments, throw error.
             } else {
                 return error();
@@ -299,7 +313,21 @@ class EvalVisitor implements ASTVisitor<JamVal>{
         for (Def d: defs) {
             Variable dVar = d.lhs();
             JamVal dVal = d.rhs().accept(this);
-            ValBinding b = new ValBinding(dVar, dVal);
+//            ValBinding b = new ValBinding(dVar, dVal);
+
+            Binding b;
+
+            if (callBy == 0) {
+                b = new ValBinding(dVar, dVal);
+
+            } else if (callBy == 1) {
+                b = new NameBinding(dVar, dVal);
+
+            } else {
+                b = new NeedBinding(dVar, dVal);
+
+            }
+
             env = env.append(new Cons<>(b, new Empty<>()));
         }
         return l.body().accept(this);
@@ -568,56 +596,6 @@ class StandardPrimFunVisitorFactory {
     }
 }
 
-class CallByValFunVisitor<JamVal> implements JamFunVisitor{
-    AST[] args;
-    EvalVisitor ev;
-    PrimFunVisitorFactory primFactory;
-
-    CallByValFunVisitor(EvalVisitor e, AST[] a) {
-        args = a;
-        ev = e;
-    }
-
-    @Override
-    public JamVal forJamClosure(JamClosure c) {
-        return null;
-    }
-
-    @Override
-    public JamVal forPrimFun(PrimFun pf) {
-        // invoke prim fun with accept method
-//        return  pf.accept(primFactory.newVisitor(ev, args));
-        return null;
-    }
-}
-
-class CallByNameFunVisitor<ResType> implements JamFunVisitor{
-    @Override
-    public Object forJamClosure(JamClosure c) {
-        return null;
-    }
-
-    @Override
-    public Object forPrimFun(PrimFun pf) {
-        return null;
-    }
-}
-
-class CallByNeedFunVisitor<ResType> implements JamFunVisitor{
-    @Override
-    public Object forJamClosure(JamClosure c) {
-        return null;
-    }
-
-    @Override
-    public Object forPrimFun(PrimFun pf) {
-        return null;
-    }
-}
-
-
-
-
 
 /////////////////////////////////////////
 /////////// Interpreter Class ///////////
@@ -646,15 +624,15 @@ class Interpreter {
     public JamVal callByValue() {
 //        System.out.println(ast);
 
-        return ast.accept(new EvalVisitor(new Empty<Binding>()));
+        return ast.accept(new EvalVisitor(new Empty<Binding>(), 0));
     };
 
     public JamVal callByName()  {
-        return ast.accept(new EvalVisitor(new Empty<Binding>()));
+        return ast.accept(new EvalVisitor(new Empty<Binding>(), 1));
     };
 
     public JamVal callByNeed()  {
-        return ast.accept(new EvalVisitor(new Empty<Binding>()));
+        return ast.accept(new EvalVisitor(new Empty<Binding>(), 2));
     };
 
 }

@@ -36,8 +36,8 @@ public class Assign2Test extends TestCase {
     }
 
     private void allCheck(String name, String answer, String program) {
-        valueCheck(name, answer, program);
-//        nameCheck(name, answer, program);
+        //valueCheck(name, answer, program);
+        nameCheck(name, answer, program);
 //        needCheck(name, answer, program);
     }
 
@@ -179,7 +179,7 @@ public class Assign2Test extends TestCase {
     public void testArity() {
         try {
             String output = "2";
-            String input = "arity(cons(1, null))";
+            String input = "arity(map x, y to x+y)";
             allCheck("mathOp", output, input );
 
         } catch (Exception e) {
