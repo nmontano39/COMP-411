@@ -9,8 +9,8 @@ class EvalException extends RuntimeException {
 /** EvalVisitor Class, given callBy type **/
 class EvalVisitor implements ASTVisitor<JamVal>{
     // environment stored as PureList of Bindings
-    PureList<Binding> env;
-    int callBy;
+    private PureList<Binding> env;
+    private int callBy;
 
     // create environment e given callBy type call
     EvalVisitor (PureList<Binding> e, int call) {
@@ -19,7 +19,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
     }
 
     // throw eval exception
-    public JamVal error() {
+    private JamVal error() {
         throw new EvalException("Error!");
     }
 
@@ -66,8 +66,8 @@ class EvalVisitor implements ASTVisitor<JamVal>{
     public JamVal forPrimFun(PrimFun f) {
         // Factory method for Primitive functions with no args
         PrimFunVisitorFactory myFac = new PrimFunVisitorFactory();
-        PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, null);
-        return f.accept(myVis);
+        PrimFunVisitorFactory.StandardPrimFunVisitor myVis = myFac.newVisitor(this, null);
+        return (JamVal) f.accept(myVis);
     }
 
     @Override
@@ -290,8 +290,8 @@ class EvalVisitor implements ASTVisitor<JamVal>{
         // time with the arguments.
         if (rator instanceof PrimFun) {
             PrimFunVisitorFactory myFac = new PrimFunVisitorFactory();
-            PrimFunVisitor<JamVal> myVis = myFac.newVisitor(this, a.args());
-            return ((PrimFun) rator).accept(myVis);
+            PrimFunVisitorFactory.StandardPrimFunVisitor myVis = myFac.newVisitor(this, a.args());
+            return (JamVal) ((PrimFun) rator).accept(myVis);
         }
 
         // if we reach here throw error
@@ -374,7 +374,7 @@ class NameBinding extends Binding{
     public JamVal value() {
         // evaluate closure only when this method is called
         Map map = ((JamClosure) this.value).body();
-        PureList env = ((JamClosure) this.value).env();
+        PureList<Binding> env = ((JamClosure) this.value).env();
         return map.body().accept(new EvalVisitor(env, 1));
     }
 }
@@ -383,7 +383,7 @@ class NameBinding extends Binding{
 class NeedBinding extends Binding{
 
     // true if eval has already been evaluated
-    Boolean eval;
+    private Boolean eval;
 
     NeedBinding(Variable v, JamVal c) {
         super(v, c);
@@ -400,7 +400,7 @@ class NeedBinding extends Binding{
                 // evaluate closure
                 Map map = ((JamClosure) this.value).body();
                 // get environment
-                PureList env = ((JamClosure) this.value).env();
+                PureList<Binding> env = ((JamClosure) this.value).env();
                 // make new JamVal
                 JamVal newVal = map.body().accept(new EvalVisitor(env, 2));
                 // set value to newly evaluated closure
@@ -416,24 +416,24 @@ class NeedBinding extends Binding{
 class PrimFunVisitorFactory {
 
     // method to return a new PrimFunVisitor
-    public PrimFunVisitor newVisitor(EvalVisitor env, AST[] args) {
+    StandardPrimFunVisitor newVisitor(EvalVisitor env, AST[] args) {
         return new StandardPrimFunVisitor(env, args);
     }
 
     // concrete class for PrimFunVisitor
-    class StandardPrimFunVisitor implements PrimFunVisitor {
+    static class StandardPrimFunVisitor implements PrimFunVisitor {
 
         // given list of arguments and an environment
         AST[] args;
         EvalVisitor env;
 
-        public StandardPrimFunVisitor(EvalVisitor e, AST[] a) {
+        StandardPrimFunVisitor(EvalVisitor e, AST[] a) {
             args = a;
             env = e;
         }
 
         // throw eval exception
-        public JamVal error() {
+        JamVal error() {
             throw new EvalException("Error!");
         }
 
@@ -587,8 +587,7 @@ class PrimFunVisitorFactory {
                 JamVal remJam = rem.accept(env);
                 // if it is an empty list
                 if (remJam instanceof JamEmpty) {
-                    JamList consList = new JamCons(first.accept(env), JamEmpty.ONLY);
-                    return consList;
+                    return new JamCons(first.accept(env), JamEmpty.ONLY);
                 }
                 // if it is a cons
                 if (remJam instanceof JamCons){
@@ -663,17 +662,17 @@ class Interpreter {
     }
 
     // call by value
-    public JamVal callByValue() {
+    JamVal callByValue() {
         return ast.accept(new EvalVisitor(new Empty<Binding>(), 0));
     };
 
     // call by name
-    public JamVal callByName()  {
+    JamVal callByName()  {
         return ast.accept(new EvalVisitor(new Empty<Binding>(), 1));
     };
 
     // call by need
-    public JamVal callByNeed()  {
+    JamVal callByNeed()  {
         return ast.accept(new EvalVisitor(new Empty<Binding>(), 2));
     };
 
