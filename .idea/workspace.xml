@@ -65,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test">
+  <component name="RunManager" selected="JUnit.Assign2Test.testDeleteThis">
     <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -75,31 +75,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign2Test.testAppend2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
-      <option name="METHOD_NAME" value="testAppend2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign2Test.testAppend3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
-      <option name="METHOD_NAME" value="testAppend3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign2Test.testArity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign2Test" />
       <option name="METHOD_NAME" value="testArity" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign2Test.testDeleteThis" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="METHOD_NAME" value="testDeleteThis" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign2Test.testFib" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="METHOD_NAME" value="testFib" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -117,18 +117,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign2Test" />
-      <item itemvalue="JUnit.Assign2Test.testAppend2" />
-      <item itemvalue="JUnit.Assign2Test.testAppend3" />
       <item itemvalue="JUnit.Assign2Test.testArity" />
       <item itemvalue="JUnit.Assign2Test.testFunction" />
+      <item itemvalue="JUnit.Assign2Test.testFib" />
+      <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
+        <item itemvalue="JUnit.Assign2Test.testFib" />
         <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testArity" />
         <item itemvalue="JUnit.Assign2Test.testFunction" />
-        <item itemvalue="JUnit.Assign2Test.testAppend3" />
-        <item itemvalue="JUnit.Assign2Test.testAppend2" />
       </list>
     </recent_temporary>
   </component>

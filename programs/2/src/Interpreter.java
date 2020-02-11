@@ -367,7 +367,18 @@ class NeedBinding extends Binding{
     @Override
     public JamVal value() {
         // evaluate closure or override with value if previously evaluated
-        return null;
+        Map map = ((JamClosure) this.value).body();
+        PureList env = ((JamClosure) this.value).env();
+
+
+        eval = true;
+
+        if (eval) {
+
+            return map.body().accept(new EvalVisitor(env, 1));
+        } else {
+            return null;
+        }
     }
 
 }
@@ -524,12 +535,19 @@ class StandardPrimFunVisitorFactory {
                 return ConsPrim.ONLY;
             } else if (args.length == 2) {
                 AST first = args[0];
+
+                System.out.println("first =>  " + first);
+                System.out.println("second =>  " + args[1]);
+
                 JamVal firstJam = first.accept(env);
-                System.out.println(firstJam);
+                System.out.println("firstjam =>  " + firstJam);
 
                 AST rem = args[1];
+
+                System.out.println("rem => " + rem);
                 JamVal remJam = rem.accept(env);
-                System.out.println(remJam);
+
+                System.out.println("remjam =>  " + remJam);
                 if (remJam instanceof JamEmpty) {
                     JamList consList = new JamCons(firstJam, JamEmpty.ONLY);
                     return consList;
@@ -546,16 +564,11 @@ class StandardPrimFunVisitorFactory {
 
         @Override
         public JamVal forFirstPrim() {
-            System.out.println("Here");
             if (args == null) {
                 return FirstPrim.ONLY;
             } else if (args.length == 1) {
-                System.out.println("Reached correct place");
                 AST a = args[0];
-                System.out.println(a);
-
                 JamVal jam = a.accept(env);
-                System.out.println(jam);
 
                 if (jam instanceof Cons) {
                     Cons jamCon = (Cons) jam;
@@ -565,24 +578,17 @@ class StandardPrimFunVisitorFactory {
                 }
 
             } else {
-                System.out.println(args.length);
-                System.out.println(args[0]);
                 return error();
             }
         }
 
         @Override
         public JamVal forRestPrim() {
-            System.out.println("Here");
             if (args == null) {
                 return RestPrim.ONLY;
             } else if (args.length == 1) {
-                System.out.println("Reached correct place");
                 AST a = args[0];
-                System.out.println(a);
-
                 JamVal jam = a.accept(env);
-                System.out.println(jam);
 
                 if (jam instanceof Cons) {
                     Cons jamCon = (Cons) jam;
@@ -592,8 +598,6 @@ class StandardPrimFunVisitorFactory {
                 }
 
             } else {
-                System.out.println(args.length);
-                System.out.println(args[0]);
                 return error();
             }
         }
