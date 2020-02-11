@@ -1,8 +1,4 @@
-import java.util.StringTokenizer;
-
-
 import junit.framework.TestCase;
-
 import java.io.*;
 
 public class Assign2Test extends TestCase {
@@ -36,12 +32,10 @@ public class Assign2Test extends TestCase {
     }
 
     private void allCheck(String name, String answer, String program) {
-//        valueCheck(name, answer, program);
-//        nameCheck(name, answer, program);
+        //valueCheck(name, answer, program);
+        nameCheck(name, answer, program);
         needCheck(name, answer, program);
     }
-
-
 
     public void testNumberP() {
         try {
@@ -54,7 +48,6 @@ public class Assign2Test extends TestCase {
             fail("numberP threw " + e);
         }
     } //end of func
-
 
     public void testConsP() {
         try {
@@ -126,7 +119,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testAppend3() {
         try {
@@ -150,7 +143,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    }//end of func
+    }
 
     public void testNull() {
         try {
@@ -162,7 +155,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testFunction() {
         try {
@@ -174,7 +167,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testArity() {
         try {
@@ -186,7 +179,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testListP() {
         try {
@@ -198,7 +191,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testConsX() {
         try {
@@ -210,7 +203,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testFirstX() {
         try {
@@ -222,7 +215,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testRestX() {
         try {
@@ -234,8 +227,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
-
+    }
 
     public void testMathOp() {
         try {
@@ -247,7 +239,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("mathOp threw " + e);
         }
-    } //end of func
+    }
 
     public void testMathOp2() {
         try {
@@ -288,7 +280,6 @@ public class Assign2Test extends TestCase {
             fail("mathOp threw " + e);
         }
     }
-
 
     public void testLet0() {
         try {
@@ -338,6 +329,17 @@ public class Assign2Test extends TestCase {
         }
     }
 
+    public void testIf2() {
+        try {
+            String output = "500";
+            String input = "if 7 / 3 + 9 - 2 >= 24 then map x, y to x * y / 0 else let x:= 500; in x";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
 
     public void testIf1() {
         try {
@@ -377,18 +379,6 @@ public class Assign2Test extends TestCase {
 
     }
 
-//    public void testMap0() {
-//        try {
-//            String output = "(closure: map x to (2 * x))";
-//            String input = "map x to 2*x";
-//            allCheck("mathOp", output, input );
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            fail("mathOp threw " + e);
-//        }
-//    }
-
     public void testApp0() {
         try {
             String output = "2";
@@ -415,7 +405,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("evalException threw " + e);
         }
-    } //end of func
+    }
 
     public void testApp2() {
         try {
@@ -431,17 +421,28 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("evalException threw " + e);
         }
-    } //end of func
+    }
 
     public void testValName() {
         try {
-            String output = "should throw error in val, not in name";
+            String output = "1";
             String input = "let x := 100/0; y := 1; in y";
             allCheck("mathOp", output, input );
 
         } catch (Exception e) {
-            e.printStackTrace();
-            fail("mathOp threw " + e);
+            try {
+                String output = "haha";
+                String input = " 1 +";
+                allCheck("parseException", output, input );
+
+                fail("parseException did not throw ParseException exception");
+            } catch (ParseException ex) {
+                //e.printStackTrace();
+
+            } catch (Exception ex) {
+                e.printStackTrace();
+                fail("parseException threw " + e);
+            }
         }
     }
 
@@ -459,8 +460,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("parseException threw " + e);
         }
-    } //end of func
-
+    }
 
     public void testEvalException() {
         try {
@@ -476,8 +476,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("evalException threw " + e);
         }
-    } //end of func
-
+    }
 
     public void testAppend() {
         try {
@@ -497,7 +496,7 @@ public class Assign2Test extends TestCase {
             e.printStackTrace();
             fail("append threw " + e);
         }
-    } //end of func
+    }
 
     public void testFib() {
         try {
@@ -514,12 +513,12 @@ public class Assign2Test extends TestCase {
                             "                    let fibk := (Y(FFIB))(k);" +
                             "                    in if k >= 0 then fibs(k - 1, cons(pair(k,fibk), l)) else l; " +
                             "      in (Y(FIBS))(10, null)";
-//            needCheck("fib-need", output, input);
+            needCheck("fib-need", output, input);
             nameCheck("fib-name", output, input);
         }
         catch(Exception e) {
             e.printStackTrace();
             fail("[3.00] fib threw " + e);
         }
-    } //end
+    }
 }
