@@ -38,6 +38,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
     @Override
     public JamVal forVariable(Variable v) {
 
+
         return env.accept(new PureListVisitor<Binding, JamVal>() {
             @Override
             public JamVal forEmpty(Empty<Binding> e) {
@@ -105,6 +106,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
     @Override
     public JamVal forBinOpApp(BinOpApp b) {
+//        System.out.println("Gets to BinOp: " + b);
         AST leftTerm = b.arg1();
         AST rightTerm = b.arg2();
         JamVal leftJam = leftTerm.accept(this);
@@ -125,6 +127,7 @@ class EvalVisitor implements ASTVisitor<JamVal>{
             @Override
             public JamVal forBinOpMinus(BinOpMinus op) {
                 if ((leftJam instanceof IntConstant) && (rightJam instanceof IntConstant)) {
+//                    System.out.println(((IntConstant) leftJam).value());
                     return new IntConstant(((IntConstant) leftJam).value() -
                             ((IntConstant) rightJam).value());
                 }
@@ -152,12 +155,12 @@ class EvalVisitor implements ASTVisitor<JamVal>{
 
             @Override
             public JamVal forOpEquals(OpEquals op) {
-                return BoolConstant.toBoolConstant(leftJam == rightJam);
+                return BoolConstant.toBoolConstant(leftJam.equals(rightJam));
             }
 
             @Override
             public JamVal forOpNotEquals(OpNotEquals op) {
-                return BoolConstant.toBoolConstant(leftJam != rightJam);
+                return BoolConstant.toBoolConstant(!(leftJam.equals(rightJam)));
             }
 
             @Override
@@ -308,11 +311,16 @@ class EvalVisitor implements ASTVisitor<JamVal>{
     public JamVal forIf(If i) {
         AST testAST = i.test();
         JamVal testJam = testAST.accept(this);
+        System.out.println(testJam);
         if (testJam instanceof BoolConstant) {
             BoolConstant testBool = (BoolConstant) testJam;
             if (testBool.value()) {
+                System.out.println("Reached correct consequence");
+                System.out.println(i.conseq());
                 return i.conseq().accept(this);
             } else {
+                System.out.println("Reached inc consequence");
+                System.out.println("Alt is: " + i.alt());
                 return i.alt().accept(this);
             }
         } else {
@@ -559,8 +567,8 @@ class StandardPrimFunVisitorFactory {
                 System.out.println("first =>  " + first);
                 System.out.println("second =>  " + args[1]);
 
-                JamVal firstJam = first.accept(env);
-                System.out.println("firstjam =>  " + firstJam);
+//                JamVal firstJam = first.accept(env);
+//                System.out.println("firstjam =>  " + firstJam);
 
                 AST rem = args[1];
 
@@ -569,11 +577,13 @@ class StandardPrimFunVisitorFactory {
 
                 System.out.println("remjam =>  " + remJam);
                 if (remJam instanceof JamEmpty) {
-                    JamList consList = new JamCons(firstJam, JamEmpty.ONLY);
+                    System.out.println("Reached here");
+                    JamList consList = new JamCons(first.accept(env), JamEmpty.ONLY);
                     return consList;
 //                    return new Cons<>(firstJam, new Empty<>());
                 } else if (remJam instanceof JamCons){
-                    return new JamCons(firstJam, (JamCons) remJam);
+                    System.out.println("Do I get here?");
+                    return new JamCons(first.accept(env), (JamCons) remJam);
                 } else {
                     return error();
                 }

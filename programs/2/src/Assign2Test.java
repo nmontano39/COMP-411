@@ -478,18 +478,6 @@ public class Assign2Test extends TestCase {
         }
     } //end of func
 
-    public void testDeleteThis() {
-        try {
-            String output = "(8)";
-            String input = "(let x := 5; in map x to cons(x*8, null))(1)";
-            allCheck("numberP", output, input );
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("numberP threw " + e);
-        }
-    }
-
 
     public void testAppend() {
         try {
