@@ -474,16 +474,16 @@ class StandardPrimFunVisitorFactory {
                 if (jam instanceof PrimFun) {
                     return new IntConstant(1);
                 } else if (jam instanceof JamClosure) {
-
-
+                    JamClosure jamClos = (JamClosure) jam;
+                    Map jamMap = jamClos.body();
+                    return new IntConstant(jamMap.vars().length);
                 } else {
-                    return BoolConstant.toBoolConstant(false);
+                    return error();
                 }
 
             } else {
                 return error();
             }
-            return error();
         }
 
         @Override
