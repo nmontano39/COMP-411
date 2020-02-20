@@ -676,4 +676,30 @@ class Interpreter {
         return ast.accept(new EvalVisitor(new Empty<Binding>(), 2));
     };
 
+    public void valueValue() {
+    }
+
+    public void valueName() {
+    }
+
+    public void valueNeed() {
+    }
+
+    public void nameValue() {
+    }
+
+    public void nameName() {
+    }
+
+    public void nameNeed() {
+    }
+
+    public void needValue() {
+    }
+
+    public void needName() {
+    }
+
+    public void needNeed() {
+    }
 }
