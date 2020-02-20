@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/3/src/AST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/3/src/Interpreter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/3/src/Lexer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/3/src/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/3/src/ValuesTokens.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/2/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/2/src/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,13 +48,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580509274655" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/programs/3" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\3" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/programs/2/src" />
     </key>
@@ -67,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign2Test">
+  <component name="RunManager" selected="JUnit.Assign3Test">
     <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -107,12 +114,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign2Test.testFunction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
-      <option name="METHOD_NAME" value="testFunction" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,17 +126,17 @@
     <list>
       <item itemvalue="JUnit.Assign2Test" />
       <item itemvalue="JUnit.Assign2Test.testArity" />
-      <item itemvalue="JUnit.Assign2Test.testFunction" />
       <item itemvalue="JUnit.Assign2Test.testFib" />
       <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
+      <item itemvalue="JUnit.Assign3Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign3Test" />
         <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
         <item itemvalue="JUnit.Assign2Test.testFib" />
         <item itemvalue="JUnit.Assign2Test.testArity" />
-        <item itemvalue="JUnit.Assign2Test.testFunction" />
       </list>
     </recent_temporary>
   </component>
