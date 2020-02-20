@@ -676,30 +676,39 @@ class Interpreter {
         return ast.accept(new EvalVisitor(new Empty<Binding>(), 2));
     };
 
-    public void valueValue() {
+    public JamVal valueValue() {
+        return null;
     }
 
-    public void valueName() {
+    public JamVal valueName() {
+        return null;
     }
 
-    public void valueNeed() {
+    public JamVal valueNeed() {
+        return null;
     }
 
-    public void nameValue() {
+    public JamVal nameValue() {
+        return null;
     }
 
-    public void nameName() {
+    public JamVal nameName() {
+        return null;
     }
 
-    public void nameNeed() {
+    public JamVal nameNeed() {
+        return null;
     }
 
-    public void needValue() {
+    public JamVal needValue() {
+        return null;
     }
 
-    public void needName() {
+    public JamVal needName() {
+        return null;
     }
 
-    public void needNeed() {
+    public JamVal needNeed() {
+        return null;
     }
 }
