@@ -1,5 +1,7 @@
 import java.util.StringTokenizer;
 import junit.framework.TestCase;
+import org.junit.Test;
+
 import java.io.*;
 
 public class Assign3Test extends TestCase {

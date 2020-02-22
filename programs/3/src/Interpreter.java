@@ -206,6 +206,11 @@ class Interpreter {
         }
 
         public JamVal forLet(Let l) {
+
+
+            // TODO: Make recursive let
+
+
             Def[] defs = l.defs();
             int n = defs.length;
 
@@ -452,6 +457,11 @@ class Interpreter {
             }
 
             private JamCons evalJamConsArg(AST arg, String fun) {
+
+
+                // TODO: implement cons convention
+
+
                 JamVal val = arg.accept(evalVisitor);
                 if (val instanceof JamCons) return (JamCons) val;
                 throw new EvalException("Primitive function `" + fun + "' applied to argument " + val +
@@ -489,6 +499,9 @@ class Interpreter {
             }
 
             public JamVal forConsPrim() {
+
+                // TODO: implement cons convention
+
                 JamVal[] vals = evalArgs();
                 if (vals.length != 2) return primFunError("cons");
                 if (vals[1] instanceof JamList) return new JamCons(vals[0], (JamList) vals[1]);
@@ -560,42 +573,82 @@ class Interpreter {
 
 
     public JamVal valueValue() {
+
+        // callBy: value
+        // cons: value
+
         return null;
     }
 
     public JamVal valueName() {
+
+        // callBy: value
+        // cons: name
+
         return null;
     }
 
     public JamVal valueNeed() {
+
+        // callBy: value
+        // cons: need
+
         return null;
     }
 
     public JamVal nameValue() {
+
+        // callBy: name
+        // cons: value
+
         return null;
     }
 
     public JamVal nameName() {
+
+        // callBy: name
+        // cons: name
+
         return null;
     }
 
     public JamVal nameNeed() {
+
+        // callBy: name
+        // cons: need
+
         return null;
     }
 
     public JamVal needValue() {
+
+        // callBy: need
+        // cons: value
+
         return null;
     }
 
     public JamVal needName() {
+
+        // callBy: need
+        // cons: name
+
         return null;
     }
 
     public JamVal needNeed() {
+
+        // callBy: need
+        // cons: need
+
         return null;
     }
 }
 
 class EvalException extends RuntimeException {
     EvalException(String msg) { super(msg); }
+}
+
+class SyntaxException extends RuntimeException {
+    SyntaxException(String msg) { super(msg); }
 }
