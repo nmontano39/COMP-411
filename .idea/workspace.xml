@@ -96,16 +96,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign2Test.testFib" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
-      <option name="METHOD_NAME" value="testFib" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -115,20 +105,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign3Test.testContextCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
+      <option name="METHOD_NAME" value="testContextCheck" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Interpreter" />
       <item itemvalue="JUnit.Assign2Test" />
-      <item itemvalue="JUnit.Assign2Test.testFib" />
       <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
       <item itemvalue="JUnit.Assign3Test" />
+      <item itemvalue="JUnit.Assign3Test.testContextCheck" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign3Test" />
+        <item itemvalue="JUnit.Assign3Test.testContextCheck" />
         <item itemvalue="Application.Interpreter" />
         <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign2Test.testDeleteThis" />
-        <item itemvalue="JUnit.Assign2Test.testFib" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +145,7 @@
       <workItem from="1580512570109" duration="37000" />
       <workItem from="1580512679682" duration="32713000" />
       <workItem from="1581420450133" duration="757000" />
-      <workItem from="1582161763789" duration="2490000" />
+      <workItem from="1582161763789" duration="3928000" />
     </task>
     <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
       <created>1580090718590</created>
@@ -364,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582329859567</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="added TODOs">
+      <created>1582332117670</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1582332117670</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
