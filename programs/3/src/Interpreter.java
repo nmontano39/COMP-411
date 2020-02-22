@@ -11,6 +11,7 @@ interface EvalVisitor extends ASTVisitor<JamVal> {
     EvalVisitor newVisitor(PureList<Binding> e);
     PureList<Binding> env();
     Binding newBinding(Variable var, AST ast);
+    String consConv();
 }
 
 /** A class that implements call-by-value, call-by-name, and call-by-need interpretation of Jam programs. */
@@ -178,6 +179,9 @@ class Interpreter {
         /** Getter for env field */
         public PureList<Binding> env() { return env; }
 
+        /** Getter for env field */
+        public String consConv() { return consConv; }
+
         /* EvalVisitor methods */
         public JamVal forBoolConstant(BoolConstant b) { return b; }
         public JamVal forIntConstant(IntConstant i) { return i; }
@@ -269,13 +273,19 @@ class Interpreter {
 
             // construct newEnv for JamClosure body using JamClosure env
             PureList<Binding> newEnv = closure.env();
-            for (int i = n-1; i >= 0; i--)
+            for (int i = n-1; i >= 0; i--) {
 
                 // TODO check cons convention
 
+                if (evalVisitor.consConv().equals("need")) {
+                    System.out.println("cons convention = need");
+                }
+                System.out.println(evalVisitor.consConv());
 
 
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], args[i]));
+            }
+
             return map.body().accept(evalVisitor.newVisitor(newEnv));
         }
 
@@ -306,6 +316,11 @@ class Interpreter {
                 }
 
                 // TODO check cons convention
+                if (evalVisitor.consConv().equals("need")) {
+                    System.out.println("cons convention = need");
+                }
+                System.out.println(evalVisitor.consConv());
+
 
                 varList.add(vars[i]);
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
@@ -496,6 +511,11 @@ class Interpreter {
 
 
                 // TODO: implement cons convention
+                if (evalVisitor.consConv().equals("need")) {
+                    System.out.println("cons convention = need");
+                }
+                System.out.println(evalVisitor.consConv());
+
 
 
                 JamVal val = arg.accept(evalVisitor);
@@ -537,6 +557,10 @@ class Interpreter {
             public JamVal forConsPrim() {
 
                 // TODO: implement cons convention
+                if (evalVisitor.consConv().equals("need")) {
+                    System.out.println("cons convention = need");
+                }
+                System.out.println(evalVisitor.consConv());
 
                 JamVal[] vals = evalArgs();
                 if (vals.length != 2) return primFunError("cons");
@@ -552,7 +576,7 @@ class Interpreter {
                 return ((JamFun) vals[0]).accept(ArityVisitor.ONLY);
             }
 
-            // TODO chekc cons convention when calling first or last
+            // TODO check cons convention when calling first or last
             public JamVal forFirstPrim() { return evalJamConsArg(args[0], "first").first(); }
             public JamVal forRestPrim() { return evalJamConsArg(args[0], "rest").rest(); }
 
