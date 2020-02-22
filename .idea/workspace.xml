@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +44,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580509274655" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/programs/3" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -70,12 +71,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.Assign3Test">
-    <configuration name="Interpreter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Interpreter" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -115,20 +110,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign3Test.testLazyCons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
+      <option name="METHOD_NAME" value="testLazyCons" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.Interpreter" />
       <item itemvalue="JUnit.Assign3Test" />
       <item itemvalue="JUnit.Assign3Test.testContextCheck" />
       <item itemvalue="JUnit.Assign3Test.testContextCheck1" />
       <item itemvalue="JUnit.Assign3Test.testContextCheck4" />
+      <item itemvalue="JUnit.Assign3Test.testLazyCons" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign3Test" />
+        <item itemvalue="JUnit.Assign3Test.testLazyCons" />
         <item itemvalue="JUnit.Assign3Test.testContextCheck4" />
         <item itemvalue="JUnit.Assign3Test.testContextCheck1" />
         <item itemvalue="JUnit.Assign3Test.testContextCheck" />
-        <item itemvalue="Application.Interpreter" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +150,7 @@
       <workItem from="1580512570109" duration="37000" />
       <workItem from="1580512679682" duration="32713000" />
       <workItem from="1581420450133" duration="757000" />
-      <workItem from="1582161763789" duration="7114000" />
+      <workItem from="1582161763789" duration="9205000" />
     </task>
     <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
       <created>1580090718590</created>
@@ -392,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582336648583</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="working on Lazy Cons">
+      <created>1582336944311</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1582336944311</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +444,8 @@
     <MESSAGE value="added TODOs" />
     <MESSAGE value="context checking" />
     <MESSAGE value="context checking - var declaration done" />
-    <option name="LAST_COMMIT_MESSAGE" value="context checking - var declaration done" />
+    <MESSAGE value="working on Lazy Cons" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on Lazy Cons" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
