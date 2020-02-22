@@ -1,6 +1,7 @@
 /** Call-by-value, Call-by-name, and Call-by-need Jam interpreter */
 
 import java.io.*;
+import java.util.ArrayList;
 
 /** Interpreter Classes */
 
@@ -279,9 +280,18 @@ class Interpreter {
 
             int n = vars.length;
 
+            ArrayList<Variable> varList = new ArrayList<>();
+
+
             // construct newEnv for Let body; vars are bound to values of corresponding exps using evalVisitor
             PureList<Binding> newEnv = evalVisitor.env();
-            for (int i = n-1; i >= 0; i--) newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
+            for (int i = n-1; i >= 0; i--) {
+                if (varList.contains(vars[i])) {
+                    throw new SyntaxException("Variable" + vars[i] + " declared more than once in let");
+                }
+                varList.add(vars[i]);
+                newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
+            }
 
             EvalVisitor newEvalVisitor = evalVisitor.newVisitor(newEnv);
 
