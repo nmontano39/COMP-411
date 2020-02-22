@@ -603,7 +603,7 @@ class Interpreter {
         // callBy: value
         // cons: value
 
-        return null;
+        return callByValue();
     }
 
     public JamVal valueName() {
@@ -611,7 +611,7 @@ class Interpreter {
         // callBy: value
         // cons: name
 
-        return null;
+        return callByValue();
     }
 
     public JamVal valueNeed() {
@@ -619,7 +619,7 @@ class Interpreter {
         // callBy: value
         // cons: need
 
-        return null;
+        return callByValue();
     }
 
     public JamVal nameValue() {
@@ -627,7 +627,7 @@ class Interpreter {
         // callBy: name
         // cons: value
 
-        return null;
+        return callByName();
     }
 
     public JamVal nameName() {
@@ -635,7 +635,7 @@ class Interpreter {
         // callBy: name
         // cons: name
 
-        return null;
+        return callByName();
     }
 
     public JamVal nameNeed() {
@@ -643,7 +643,7 @@ class Interpreter {
         // callBy: name
         // cons: need
 
-        return null;
+        return callByName();
     }
 
     public JamVal needValue() {
@@ -651,7 +651,7 @@ class Interpreter {
         // callBy: need
         // cons: value
 
-        return null;
+        return callByNeed();
     }
 
     public JamVal needName() {
@@ -659,7 +659,7 @@ class Interpreter {
         // callBy: need
         // cons: name
 
-        return null;
+        return callByNeed();
     }
 
     public JamVal needNeed() {
@@ -667,7 +667,7 @@ class Interpreter {
         // callBy: need
         // cons: need
 
-        return null;
+        return callByNeed();
     }
 }
 
