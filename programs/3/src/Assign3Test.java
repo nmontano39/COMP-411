@@ -178,7 +178,7 @@ public class Assign3Test extends TestCase {
     public void testLetRec() {
         try {
             String output = "(1 2 3 1 2 3)";
-            String input = "let append :=       map x,y to          if x = null then y else cons(first(x), append(rest(x), y));    l      := cons(1,cons(2,cons(3,null))); in append(l,l)";
+            String input = "let append := map x,y to if x = null then y else cons(first(x), append(rest(x), y)); l := cons(1,cons(2,cons(3,null))); in append(l,l)";
             allCheck("letRec", output, input );
 
         } catch (Exception e) {
@@ -192,7 +192,7 @@ public class Assign3Test extends TestCase {
         try {
             String output = "0";
             String input = "let zeroes := cons(0,zeroes);in first(rest(zeroes))";
-//          lazyCheck("lazyCons", output, input );
+            //lazyCheck("lazyCons", output, input );
             //valueValueCheck("lazyCons", output, input );
             valueNameCheck("lazyCons", output, input );
 

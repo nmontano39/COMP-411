@@ -118,7 +118,7 @@ class Interpreter {
         public JamVal forCons(Cons<Binding> c) {
             Binding b = c.first();
 
-            // TODO check cons convention
+            // TODO we think this references the environment
 
             if (var == b.var()) return b.value();
             return c.rest().accept(this);
@@ -275,12 +275,9 @@ class Interpreter {
             PureList<Binding> newEnv = closure.env();
             for (int i = n-1; i >= 0; i--) {
 
-                // TODO check cons convention
+                // TODO we think this is referencing the environment
 
-                if (evalVisitor.consConv().equals("need")) {
-                    System.out.println("cons convention = need");
-                }
-                System.out.println(evalVisitor.consConv());
+
 
 
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], args[i]));
@@ -316,10 +313,7 @@ class Interpreter {
                 }
 
                 // TODO check cons convention
-                if (evalVisitor.consConv().equals("need")) {
-                    System.out.println("cons convention = need");
-                }
-                System.out.println(evalVisitor.consConv());
+
 
 
                 varList.add(vars[i]);
@@ -511,10 +505,7 @@ class Interpreter {
 
 
                 // TODO: implement cons convention
-                if (evalVisitor.consConv().equals("need")) {
-                    System.out.println("cons convention = need");
-                }
-                System.out.println(evalVisitor.consConv());
+
 
 
 
@@ -557,9 +548,6 @@ class Interpreter {
             public JamVal forConsPrim() {
 
                 // TODO: implement cons convention
-                if (evalVisitor.consConv().equals("need")) {
-                    System.out.println("cons convention = need");
-                }
                 System.out.println(evalVisitor.consConv());
 
                 JamVal[] vals = evalArgs();
