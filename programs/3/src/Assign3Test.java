@@ -99,7 +99,7 @@ public class Assign3Test extends TestCase {
     }
 
     public void testSyntaxExceptionExists() {
-        //new SyntaxException("Is it defined?");
+        new SyntaxException("Is it defined?");
     } //end of func
 
     public void testNumberP() {
