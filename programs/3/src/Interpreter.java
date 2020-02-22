@@ -28,33 +28,31 @@ class Interpreter {
     Interpreter(Reader reader) { parser = new Parser(reader); }
 
     /** Parses and CBV interprets the input embeded in parser */
-    public JamVal callByValue() {
+    public JamVal callByValue(String cc) {
         AST prog = parser.parse();
-        return prog.accept(valueEvalVisitor);
+        return prog.accept(new FlexEvalVisitor(CallByValue.ONLY, cc));
     }
 
     /** Parses and CBNm interprets the input embeded in parser */
-    public JamVal callByName() {
+    public JamVal callByName(String cc) {
         AST prog = parser.parse();
-        return prog.accept(nameEvalVisitor);
+        return prog.accept(new FlexEvalVisitor(CallByName.ONLY, cc));
     }
 
     /** Parses and CBNd interprets the input embeded in parser */
-    public JamVal callByNeed() {
+    public JamVal callByNeed(String cc) {
         AST prog = parser.parse();
-        return prog.accept(needEvalVisitor);
+        return prog.accept(new FlexEvalVisitor(CallByNeed.ONLY, cc));
     }
 
     /** CBV Interprets prog with respect to symbols in lexer */
-    public JamVal callByValue(AST prog) {
-        return prog.accept(valueEvalVisitor);
-    }
+    public JamVal callByValue(AST prog, String cc) { return prog.accept(new FlexEvalVisitor(CallByValue.ONLY, cc)); }
 
     /** CBName Interprets prog with respect to symbols in lexer */
-    public JamVal callByName(AST prog) { return prog.accept(nameEvalVisitor); }
+    public JamVal callByName(AST prog, String cc) { return prog.accept(new FlexEvalVisitor(CallByName.ONLY, cc)); }
 
     /** CBNeed Interprets prog with respect to symbols in lexer */
-    public JamVal callByNeed(AST prog) { return prog.accept(needEvalVisitor); }
+    public JamVal callByNeed(AST prog, String cc) { return prog.accept(new FlexEvalVisitor(CallByNeed.ONLY, cc)); }
 
     /** A class representing an unevaluated expresssion (together with the corresponding evaluator). */
     static class Suspension {
@@ -118,7 +116,9 @@ class Interpreter {
 
         public JamVal forCons(Cons<Binding> c) {
             Binding b = c.first();
-            //System.out.println(b.var + " " + b.value());
+
+            // TODO check cons convention
+
             if (var == b.var()) return b.value();
             return c.rest().accept(this);
         }
@@ -157,18 +157,20 @@ class Interpreter {
 
         PureList<Binding> env;  // the embdedded environment
         EvalPolicy evalPolicy;  // the embedded EvalPolicy
+        String consConv;        // cons convention
 
         /** Recursive constructor. */
-        private FlexEvalVisitor(PureList<Binding> e, EvalPolicy ep) {
+        private FlexEvalVisitor(PureList<Binding> e, EvalPolicy ep, String cc) {
             env = e;
             evalPolicy = ep;
+            consConv = cc;
         }
 
         /** Top level constructor. */
-        public FlexEvalVisitor(EvalPolicy ep) { this(new Empty<Binding>(), ep); }
+        public FlexEvalVisitor(EvalPolicy ep, String cc) { this(new Empty<Binding>(), ep, cc); }
 
         /** factory method that constructs a new visitor of This class with environment env */
-        public EvalVisitor newVisitor(PureList<Binding> e) { return new FlexEvalVisitor(e, evalPolicy); }
+        public EvalVisitor newVisitor(PureList<Binding> e) { return new FlexEvalVisitor(e, evalPolicy, consConv); }
 
         /** Factory method that constructs a Binding of var to ast corresponding to this */
         public Binding newBinding(Variable var, AST ast) { return evalPolicy.newBinding(var, ast, this); }
@@ -234,9 +236,9 @@ class Interpreter {
     }
 
     /** Top-level FlexVisitors implementing CBV, CBNm, and CBNd evaluation. */
-    static EvalVisitor valueEvalVisitor = new FlexEvalVisitor(CallByValue.ONLY);
-    static EvalVisitor nameEvalVisitor = new FlexEvalVisitor(CallByName.ONLY);
-    static EvalVisitor needEvalVisitor = new FlexEvalVisitor(CallByNeed.ONLY);
+//    static EvalVisitor valueEvalVisitor = new FlexEvalVisitor(CallByValue.ONLY);
+//    static EvalVisitor nameEvalVisitor = new FlexEvalVisitor(CallByName.ONLY);
+//    static EvalVisitor needEvalVisitor = new FlexEvalVisitor(CallByNeed.ONLY);
 
     /** Class that implements the evaluation of function applications given the embedded arguments and evalVisitor. */
     static class StandardFunVisitor implements JamFunVisitor<JamVal> {
@@ -268,6 +270,11 @@ class Interpreter {
             // construct newEnv for JamClosure body using JamClosure env
             PureList<Binding> newEnv = closure.env();
             for (int i = n-1; i >= 0; i--)
+
+                // TODO check cons convention
+
+
+
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], args[i]));
             return map.body().accept(evalVisitor.newVisitor(newEnv));
         }
@@ -297,6 +304,9 @@ class Interpreter {
                 if (varList.contains(vars[i])) {
                     throw new SyntaxException("Variable" + vars[i] + " declared more than once in let");
                 }
+
+                // TODO check cons convention
+
                 varList.add(vars[i]);
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
             }
@@ -542,6 +552,7 @@ class Interpreter {
                 return ((JamFun) vals[0]).accept(ArityVisitor.ONLY);
             }
 
+            // TODO chekc cons convention when calling first or last
             public JamVal forFirstPrim() { return evalJamConsArg(args[0], "first").first(); }
             public JamVal forRestPrim() { return evalJamConsArg(args[0], "rest").rest(); }
 
@@ -581,20 +592,20 @@ class Interpreter {
         p = new Parser(args[0]);
         AST prog = p.parse();
         System.out.println("AST is: " + prog);
-        Interpreter i = new Interpreter(p);
-        if (args.length == 1) {
-            System.out.println("Call-by-value Answer is: " + i.callByValue(prog));
-            System.out.println("Call-by-name Answer is: " + i.callByName(prog));
-            System.out.println("Call-by-need Answer is: " + i.callByNeed(prog));
-        }
-        else if (args[1].equals("value")) {
-            System.out.println("Call-by-value Answer is: " + i.callByValue(prog));
-        }
-        else if (args[1].equals("need")) {
-            System.out.println("Call-by-need Answer is: " + i.callByNeed(prog));
-        }
-        else
-            System.out.println("Call-by-name Answer is: " + i.callByName(prog));
+//        Interpreter i = new Interpreter(p);
+//        if (args.length == 1) {
+//            System.out.println("Call-by-value Answer is: " + i.callByValue(prog));
+//            System.out.println("Call-by-name Answer is: " + i.callByName(prog));
+//            System.out.println("Call-by-need Answer is: " + i.callByNeed(prog));
+//        }
+//        else if (args[1].equals("value")) {
+//            System.out.println("Call-by-value Answer is: " + i.callByValue(prog));
+//        }
+//        else if (args[1].equals("need")) {
+//            System.out.println("Call-by-need Answer is: " + i.callByNeed(prog));
+//        }
+//        else
+//            System.out.println("Call-by-name Answer is: " + i.callByName(prog));
     }
 
 
@@ -603,7 +614,7 @@ class Interpreter {
         // callBy: value
         // cons: value
 
-        return callByValue();
+        return callByValue("value");
     }
 
     public JamVal valueName() {
@@ -611,7 +622,7 @@ class Interpreter {
         // callBy: value
         // cons: name
 
-        return callByValue();
+        return callByValue("name");
     }
 
     public JamVal valueNeed() {
@@ -619,7 +630,7 @@ class Interpreter {
         // callBy: value
         // cons: need
 
-        return callByValue();
+        return callByValue("need");
     }
 
     public JamVal nameValue() {
@@ -627,7 +638,7 @@ class Interpreter {
         // callBy: name
         // cons: value
 
-        return callByName();
+        return callByName("value");
     }
 
     public JamVal nameName() {
@@ -635,7 +646,7 @@ class Interpreter {
         // callBy: name
         // cons: name
 
-        return callByName();
+        return callByName("name");
     }
 
     public JamVal nameNeed() {
@@ -643,7 +654,7 @@ class Interpreter {
         // callBy: name
         // cons: need
 
-        return callByName();
+        return callByName("need");
     }
 
     public JamVal needValue() {
@@ -651,7 +662,7 @@ class Interpreter {
         // callBy: need
         // cons: value
 
-        return callByNeed();
+        return callByNeed("value");
     }
 
     public JamVal needName() {
@@ -659,7 +670,7 @@ class Interpreter {
         // callBy: need
         // cons: name
 
-        return callByNeed();
+        return callByNeed("name");
     }
 
     public JamVal needNeed() {
@@ -667,7 +678,7 @@ class Interpreter {
         // callBy: need
         // cons: need
 
-        return callByNeed();
+        return callByNeed("need");
     }
 }
 

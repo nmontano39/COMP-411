@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/3/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Interpreter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +152,7 @@
       <workItem from="1580512570109" duration="37000" />
       <workItem from="1580512679682" duration="32713000" />
       <workItem from="1581420450133" duration="757000" />
-      <workItem from="1582161763789" duration="9205000" />
+      <workItem from="1582161763789" duration="12475000" />
     </task>
     <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
       <created>1580090718590</created>
@@ -404,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582336944311</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="working on Lazy Cons">
+      <created>1582338922630</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1582338922630</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
