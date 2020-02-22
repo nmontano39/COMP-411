@@ -192,7 +192,11 @@ public class Assign3Test extends TestCase {
         try {
             String output = "0";
             String input = "let zeroes := cons(0,zeroes);in first(rest(zeroes))";
-            lazyCheck("lazyCons", output, input );
+//          lazyCheck("lazyCons", output, input );
+            //valueValueCheck("lazyCons", output, input );
+            valueNameCheck("lazyCons", output, input );
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -205,7 +209,7 @@ public class Assign3Test extends TestCase {
         try {
             String output = "did not throw SyntaxException: Variable x declared more than once in let";
             String input = "let x := 1; y := 2; z := 4; x := 9; in x";
-            lazyCheck("lazyCons", output, input );
+            allCheck("lazyCons", output, input );
 
             fail("did not throw SyntaxException");
         } catch (SyntaxException e) {
@@ -221,7 +225,7 @@ public class Assign3Test extends TestCase {
         try {
             String output = "did not throw SyntaxException: Variable x appears free in this expression";
             String input = "list?(cons(1, null)) | cons(x, 1)";
-            lazyCheck("lazyCons", output, input );
+            allCheck("lazyCons", output, input );
 
             fail("did not throw SyntaxException");
         } catch (SyntaxException e) {
@@ -238,7 +242,7 @@ public class Assign3Test extends TestCase {
         try {
             String output = "did not throw SyntaxException: Variable x appears free in this expression";
             String input = "false & (x + 2)";
-            lazyCheck("lazyCons", output, input );
+            allCheck("lazyCons", output, input );
 
             fail("did not throw SyntaxException");
         } catch (SyntaxException e) {
@@ -255,7 +259,7 @@ public class Assign3Test extends TestCase {
         try {
             String output = "did not throw SyntaxException: Variable x appears free in this expression";
             String input = "x";
-            lazyCheck("lazyCons", output, input );
+            allCheck("lazyCons", output, input );
 
             fail("did not throw SyntaxException");
         } catch (SyntaxException e) {
@@ -272,7 +276,7 @@ public class Assign3Test extends TestCase {
             String output = "did not throw SyntaxException: Variable y appears free in this expression";
             //String input = "map x to x + y";
             String input = "(map x to x + y)(1)";
-            lazyCheck("lazyCons", output, input );
+            allCheck("lazyCons", output, input );
 
             fail("did not throw SyntaxException");
         } catch (SyntaxException e) {
