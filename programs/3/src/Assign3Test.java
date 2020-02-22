@@ -257,6 +257,42 @@ public class Assign3Test extends TestCase {
     } //end of func
 
 
+    public void testContextCheck3() {
+        try {
+            String output = "did not throw SyntaxException: Variable x appears free in this expression";
+            String input = "x";
+            //lazyCheck("lazyCons", output, input );
+            Interpreter interp = new Interpreter(new StringReader(input));
+            assertEquals("by-value", output, interp.callByValue().toString());
+
+            fail("did not throw SyntaxException");
+        } catch (SyntaxException e) {
+            //e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("syntaxException threw " + e);
+        }
+    } //end of func
+
+    public void testContextCheck4() {
+        try {
+            String output = "did not throw SyntaxException: Variable y appears free in this expression";
+            String input = "map x to x + y";
+            //lazyCheck("lazyCons", output, input );
+            Interpreter interp = new Interpreter(new StringReader(input));
+            assertEquals("by-value", output, interp.callByValue().toString());
+
+            fail("did not throw SyntaxException");
+        } catch (SyntaxException e) {
+            //e.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("syntaxException threw " + e);
+        }
+    } //end of func
+
 }
 
 

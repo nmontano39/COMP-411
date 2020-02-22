@@ -114,10 +114,11 @@ class Interpreter {
         LookupVisitor(Variable v) { var = v; }
 
         /* Visitor methods. */
-        public JamVal forEmpty(Empty<Binding> e) { throw new EvalException("variable " + var + " is unbound"); }
+        public JamVal forEmpty(Empty<Binding> e) { throw new SyntaxException("variable " + var + " appears free in this expression"); }
 
         public JamVal forCons(Cons<Binding> c) {
             Binding b = c.first();
+            //System.out.println(b.var + " " + b.value());
             if (var == b.var()) return b.value();
             return c.rest().accept(this);
         }
@@ -179,9 +180,14 @@ class Interpreter {
         public JamVal forBoolConstant(BoolConstant b) { return b; }
         public JamVal forIntConstant(IntConstant i) { return i; }
         public JamVal forNullConstant(NullConstant n) { return JamEmpty.ONLY; }
-        public JamVal forVariable(Variable v) {  return env.accept(new LookupVisitor(v)); }
+        public JamVal forVariable(Variable v) {
+            //System.out.println(v);
+            return env.accept(new LookupVisitor(v));
+        }
 
-        public JamVal forPrimFun(PrimFun f) { return f; }
+        public JamVal forPrimFun(PrimFun f) {
+            //System.out.println(f);
+            return f; }
 
         public JamVal forUnOpApp(UnOpApp u) {
             return u.rator().accept(evalPolicy.newUnOpVisitor(u.arg().accept(this)));
@@ -197,7 +203,9 @@ class Interpreter {
             throw new EvalException(rator + " appears at head of application " + a + " but it is not a valid function");
         }
 
-        public JamVal forMap(Map m) { return new JamClosure(m,env); }
+        public JamVal forMap(Map m) {
+            //System.out.println(m.body());
+            return new JamClosure(m,env); }
 
         public JamVal forIf(If i) {
             JamVal test = i.test().accept(this);
@@ -421,13 +429,21 @@ class Interpreter {
 
         public JamVal forOpAnd(OpAnd op) {
             BoolConstant b1 = evalBooleanArg(arg1,op);
-            if (b1 == BoolConstant.FALSE) return BoolConstant.FALSE;
-            return evalBooleanArg(arg2,op);
+            BoolConstant b2 = evalBooleanArg(arg2, op);
+            if (b1 == BoolConstant.TRUE && b2 == BoolConstant.TRUE) {
+                return BoolConstant.TRUE;
+            } else {
+                return BoolConstant.FALSE;
+            }
         }
         public JamVal forOpOr(OpOr op) {
             BoolConstant b1 = evalBooleanArg(arg1,op);
-            if (b1 == BoolConstant.TRUE) return BoolConstant.TRUE;
-            return evalBooleanArg(arg2,op);
+            BoolConstant b2 = evalBooleanArg(arg2, op);
+            if (b1 == BoolConstant.TRUE || b2 == BoolConstant.TRUE) {
+                return BoolConstant.TRUE;
+            } else {
+                return BoolConstant.FALSE;
+            }
         }
         // public JamVal forOpGets(OpGets op) { return ... ; }  // Supports addition of ref cells to Jam
     }
