@@ -12,6 +12,7 @@ interface EvalVisitor extends ASTVisitor<JamVal> {
     PureList<Binding> env();
     Binding newBinding(Variable var, AST ast);
     String consConv();
+    PureList consEnv();
 }
 
 /** A class that implements call-by-value, call-by-name, and call-by-need interpretation of Jam programs. */
@@ -158,20 +159,22 @@ class Interpreter {
 
         PureList<Binding> env;  // the embdedded environment
         EvalPolicy evalPolicy;  // the embedded EvalPolicy
+        PureList<Cons<Suspension>> consEnv;
         String consConv;        // cons convention
 
         /** Recursive constructor. */
-        private FlexEvalVisitor(PureList<Binding> e, EvalPolicy ep, String cc) {
+        private FlexEvalVisitor(PureList<Binding> e, EvalPolicy ep, String cc, PureList<Cons<Suspension>> cenv) {
             env = e;
             evalPolicy = ep;
             consConv = cc;
+            consEnv = cenv;
         }
 
         /** Top level constructor. */
-        public FlexEvalVisitor(EvalPolicy ep, String cc) { this(new Empty<Binding>(), ep, cc); }
+        public FlexEvalVisitor(EvalPolicy ep, String cc) { this(new Empty<Binding>(), ep, cc, new Empty<>()); }
 
         /** factory method that constructs a new visitor of This class with environment env */
-        public EvalVisitor newVisitor(PureList<Binding> e) { return new FlexEvalVisitor(e, evalPolicy, consConv); }
+        public EvalVisitor newVisitor(PureList<Binding> e) { return new FlexEvalVisitor(e, evalPolicy, consConv, consEnv); }
 
         /** Factory method that constructs a Binding of var to ast corresponding to this */
         public Binding newBinding(Variable var, AST ast) { return evalPolicy.newBinding(var, ast, this); }
@@ -179,8 +182,11 @@ class Interpreter {
         /** Getter for env field */
         public PureList<Binding> env() { return env; }
 
-        /** Getter for env field */
+        /** Getter for conv field */
         public String consConv() { return consConv; }
+
+        /** Getter for cons Env field */
+        public PureList consEnv() { return consEnv; }
 
         /* EvalVisitor methods */
         public JamVal forBoolConstant(BoolConstant b) { return b; }
@@ -548,7 +554,20 @@ class Interpreter {
             public JamVal forConsPrim() {
 
                 // TODO: implement cons convention
-                System.out.println(evalVisitor.consConv());
+//                System.out.println(evalVisitor.consConv());
+                if (evalVisitor.consConv().equals("name")) {
+                    if (args.length != 2) {
+                        return primFunError("cons");
+                    } else {
+                        Suspension sus = new Suspension(args[0], evalVisitor);
+                        Suspension sus2 = new Suspension(args[1], evalVisitor);
+                        Cons<Suspension> susCons = new Cons<>(sus, new Cons<Suspension>(sus2, new Empty<Suspension>()));
+                        // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
+                        evalVisitor.consEnv().append(susCons);
+                        evalVisitor.consEnv();
+                        return new IntConstant(0);
+                    }
+                }
 
                 JamVal[] vals = evalArgs();
                 if (vals.length != 2) return primFunError("cons");
