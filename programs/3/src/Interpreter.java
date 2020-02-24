@@ -105,6 +105,64 @@ class Interpreter {
         public String toString() { return "[" + var + ", " + value + ", " + susp + "]"; }
     }
 
+    // TODO create NameCons and NeedCons
+
+    /** Class representing a cons in call by name convention */
+    static class NameCons extends JamCons {
+        protected Suspension sus;
+        protected NameCons susCons;
+
+        public NameCons(Suspension s, NameCons sCons) {
+            super(null, null);
+            sus = s;
+            susCons = sCons;
+        }
+
+        public NameCons cons(Suspension s) {
+            return new NameCons(s, this);
+        }
+
+        public JamVal first() {
+            return null;
+            //return (JamList) super.rest();
+        }
+
+        public JamList rest() {
+            return null;
+            //return (JamList) super.rest();
+        }
+    }
+
+
+    /** Class representing a cons in call by need convention */
+    static class NeedCons extends JamCons {
+        protected Suspension sus;
+        protected NeedCons susCons;
+
+        public NeedCons(Suspension s, NeedCons sCons) {
+            super(null, null);
+            sus = s;
+            susCons = sCons;
+        }
+
+        public NeedCons cons(Suspension s) {
+            return new NeedCons(s, this);
+        }
+
+        public JamVal first() {
+            return null;
+            //return (JamList) super.rest();
+        }
+
+        public JamList rest() {
+            return null;
+            //return (JamList) super.rest();
+        }
+    }
+
+
+
+
     /** Visitor class implementing a lookup method on environments.
      * @return value() for variable var for both lazy and eager environments. */
     static class LookupVisitor implements PureListVisitor<Binding,JamVal> {
@@ -542,7 +600,7 @@ class Interpreter {
 
 //                System.out.println(evalVisitor.consConv());
 
-                // callByName cons
+
                 if (evalVisitor.consConv().equals("name")) {
                     if (args.length != 2) {
                         return primFunError("cons");
@@ -551,17 +609,24 @@ class Interpreter {
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
 
-                        // create Cons of Suspensions using sus and sus2
-                        Cons<Suspension> susCons = new Cons<>(sus, new Cons<Suspension>(sus2, new Empty<Suspension>()));
+//                        // create Cons of Suspensions using sus and sus2
+//                        Cons<Suspension> susCons = new Cons<>(sus, new Cons<Suspension>(sus2, new Empty<Suspension>()));
+//                        // append this Cons to consEnv
+//                        // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
+//                        evalVisitor.consEnv().append(susCons);
+//                        // return index of that Cons in consEnv
+//                        return new IntConstant(0);
 
-                        // append this Cons to consEnv
-                        // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
-                        evalVisitor.consEnv().append(susCons);
+                        NameCons nameCons = new NameCons(sus, new NameCons(sus2, ));
+                        return nameCons;
+                    }
+                }
 
-
-                        
-                        // return index of that Cons in consEnv
-                        return new IntConstant(0);
+                if (evalVisitor.consConv().equals("need")) {
+                    if (args.length != 2) {
+                        return primFunError("cons");
+                    } else {
+                        //NeedCons needCons = new NeedCons();
                     }
                 }
 
