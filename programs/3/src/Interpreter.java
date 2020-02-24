@@ -12,7 +12,6 @@ interface EvalVisitor extends ASTVisitor<JamVal> {
     PureList<Binding> env();
     Binding newBinding(Variable var, AST ast);
     String consConv();
-    PureList consEnv();
 }
 
 /** A class that implements call-by-value, call-by-name, and call-by-need interpretation of Jam programs. */
@@ -105,7 +104,9 @@ class Interpreter {
         public String toString() { return "[" + var + ", " + value + ", " + susp + "]"; }
     }
 
-    // TODO create NameCons and NeedCons
+
+
+    // TODO NameCons
 
     /** Class representing a cons in call by name convention */
     static class NameCons extends JamCons {
@@ -124,7 +125,7 @@ class Interpreter {
         }
 
         public JamList rest() {
-            JamList restVal = susCons.accept(new PureListVisitor<Suspension, JamList>() {
+            return susCons.accept(new PureListVisitor<Suspension, JamList>() {
                 @Override
                 public JamList forEmpty(Empty<Suspension> e) {
                     throw new EvalException("Cons is empty");
@@ -137,37 +138,32 @@ class Interpreter {
                     throw new EvalException("Rest is not a JamList");
                 }
             });
-            return restVal;
         }
     }
 
 
+    // TODO NeedCons
+
+
     /** Class representing a cons in call by need convention */
     static class NeedCons extends JamCons {
-        protected Suspension sus;
-        protected NeedCons susCons;
+        Suspension sus;
+        PureList<Suspension> susCons;
 
-        public NeedCons(Suspension s, NeedCons sCons) {
+        public NeedCons(Suspension s, PureList<Suspension> sCons) {
             super(null, null);
             sus = s;
             susCons = sCons;
         }
 
-        public NeedCons cons(Suspension s) {
-            return new NeedCons(s, this);
-        }
-
         public JamVal first() {
             return null;
-            //return (JamList) super.rest();
         }
 
         public JamList rest() {
             return null;
-            //return (JamList) super.rest();
         }
     }
-
 
 
 
@@ -222,22 +218,20 @@ class Interpreter {
 
         PureList<Binding> env;  // the embdedded environment
         EvalPolicy evalPolicy;  // the embedded EvalPolicy
-        PureList<Cons<Suspension>> consEnv;
         String consConv;        // cons convention
 
         /** Recursive constructor. */
-        private FlexEvalVisitor(PureList<Binding> e, EvalPolicy ep, String cc, PureList<Cons<Suspension>> cenv) {
+        private FlexEvalVisitor(PureList<Binding> e, EvalPolicy ep, String cc) {
             env = e;
             evalPolicy = ep;
             consConv = cc;
-            consEnv = cenv;
         }
 
         /** Top level constructor. */
-        public FlexEvalVisitor(EvalPolicy ep, String cc) { this(new Empty<Binding>(), ep, cc, new Empty<>()); }
+        public FlexEvalVisitor(EvalPolicy ep, String cc) { this(new Empty<Binding>(), ep, cc); }
 
         /** factory method that constructs a new visitor of This class with environment env */
-        public EvalVisitor newVisitor(PureList<Binding> e) { return new FlexEvalVisitor(e, evalPolicy, consConv, consEnv); }
+        public EvalVisitor newVisitor(PureList<Binding> e) { return new FlexEvalVisitor(e, evalPolicy, consConv); }
 
         /** Factory method that constructs a Binding of var to ast corresponding to this */
         public Binding newBinding(Variable var, AST ast) { return evalPolicy.newBinding(var, ast, this); }
@@ -247,9 +241,6 @@ class Interpreter {
 
         /** Getter for conv field */
         public String consConv() { return consConv; }
-
-        /** Getter for cons Env field */
-        public PureList consEnv() { return consEnv; }
 
         /* EvalVisitor methods */
         public JamVal forBoolConstant(BoolConstant b) { return b; }
@@ -307,11 +298,6 @@ class Interpreter {
             return evalPolicy.letEval(vars, exps, l.body(), this);
         }
     }
-
-    /** Top-level FlexVisitors implementing CBV, CBNm, and CBNd evaluation. */
-//    static EvalVisitor valueEvalVisitor = new FlexEvalVisitor(CallByValue.ONLY);
-//    static EvalVisitor nameEvalVisitor = new FlexEvalVisitor(CallByName.ONLY);
-//    static EvalVisitor needEvalVisitor = new FlexEvalVisitor(CallByNeed.ONLY);
 
     /** Class that implements the evaluation of function applications given the embedded arguments and evalVisitor. */
     static class StandardFunVisitor implements JamFunVisitor<JamVal> {
@@ -374,8 +360,6 @@ class Interpreter {
                 if (varList.contains(vars[i])) {
                     throw new SyntaxException("Variable" + vars[i] + " declared more than once in let");
                 }
-
-                // TODO check cons convention
 
                 varList.add(vars[i]);
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
@@ -620,9 +604,6 @@ class Interpreter {
 
                 // TODO: implement cons convention
 
-//                System.out.println(evalVisitor.consConv());
-
-
                 if (evalVisitor.consConv().equals("name")) {
                     if (args.length != 2) {
                         return primFunError("cons");
@@ -631,14 +612,6 @@ class Interpreter {
                         // get first and second Suspension from args[0] and args[1]
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
-
-//                        // create Cons of Suspensions using sus and sus2
-//                        Cons<Suspension> susCons = new Cons<>(sus, new Cons<Suspension>(sus2, new Empty<Suspension>()));
-//                        // append this Cons to consEnv
-//                        // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
-//                        evalVisitor.consEnv().append(susCons);
-//                        // return index of that Cons in consEnv
-//                        return new IntConstant(0);
 
                         NameCons nameCons = new NameCons(sus, new Cons<>(sus2, new Empty<>()));
                         return nameCons;
@@ -649,7 +622,10 @@ class Interpreter {
                     if (args.length != 2) {
                         return primFunError("cons");
                     } else {
-                        //NeedCons needCons = new NeedCons();
+                        Suspension sus = new Suspension(args[0], evalVisitor);
+                        Suspension sus2 = new Suspension(args[1], evalVisitor);
+                        NeedCons needCons = new NeedCons(sus, new Cons<>(sus2, new Empty<>()));
+                        return needCons;
                     }
                 }
 
@@ -724,7 +700,7 @@ class Interpreter {
         p = new Parser(args[0]);
         AST prog = p.parse();
         System.out.println("AST is: " + prog);
-//        Interpreter i = new Interpreter(p);
+        Interpreter i = new Interpreter(p);
 //        if (args.length == 1) {
 //            System.out.println("Call-by-value Answer is: " + i.callByValue(prog));
 //            System.out.println("Call-by-name Answer is: " + i.callByName(prog));
@@ -740,78 +716,23 @@ class Interpreter {
 //            System.out.println("Call-by-name Answer is: " + i.callByName(prog));
     }
 
+    public JamVal valueValue() { return callByValue("value"); }
 
-    public JamVal valueValue() {
+    public JamVal valueName() { return callByValue("name"); }
 
-        // callBy: value
-        // cons: value
+    public JamVal valueNeed() { return callByValue("need"); }
 
-        return callByValue("value");
-    }
+    public JamVal nameValue() { return callByName("value"); }
 
-    public JamVal valueName() {
+    public JamVal nameName() { return callByName("name"); }
 
-        // callBy: value
-        // cons: name
+    public JamVal nameNeed() { return callByName("need"); }
 
-        return callByValue("name");
-    }
+    public JamVal needValue() { return callByNeed("value"); }
 
-    public JamVal valueNeed() {
+    public JamVal needName() { return callByNeed("name"); }
 
-        // callBy: value
-        // cons: need
-
-        return callByValue("need");
-    }
-
-    public JamVal nameValue() {
-
-        // callBy: name
-        // cons: value
-
-        return callByName("value");
-    }
-
-    public JamVal nameName() {
-
-        // callBy: name
-        // cons: name
-
-        return callByName("name");
-    }
-
-    public JamVal nameNeed() {
-
-        // callBy: name
-        // cons: need
-
-        return callByName("need");
-    }
-
-    public JamVal needValue() {
-
-        // callBy: need
-        // cons: value
-
-        return callByNeed("value");
-    }
-
-    public JamVal needName() {
-
-        // callBy: need
-        // cons: name
-
-        return callByNeed("name");
-    }
-
-    public JamVal needNeed() {
-
-        // callBy: need
-        // cons: need
-
-        return callByNeed("need");
-    }
+    public JamVal needNeed() { return callByNeed("need"); }
 }
 
 class EvalException extends RuntimeException {
