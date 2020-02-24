@@ -370,7 +370,7 @@ class Interpreter {
         // TODO: modify for letrec?
         public JamVal letEval(Variable[] vars, AST[] exps, AST body, EvalVisitor evalVisitor) {
             /* let semantics */
-
+            System.out.println("Reaches let Eval");
             int n = vars.length;
 
             ArrayList<Variable> varList = new ArrayList<>();
@@ -378,18 +378,39 @@ class Interpreter {
 
             // construct newEnv for Let body; vars are bound to values of corresponding exps using evalVisitor
             PureList<Binding> newEnv = evalVisitor.env();
-            for (int i = n-1; i >= 0; i--) {
+            System.out.println("Reaches let Eval");
+
+            // THIS PRINTS STUFF IN AN ENVIRONMENT.
+
+
+//            for (int i = n-1; i >= 0; i--) {
+            for (int i = 0; i < n; i++) {
                 if (varList.contains(vars[i])) {
                     throw new SyntaxException("Variable" + vars[i] + " declared more than once in let");
                 }
 
                 varList.add(vars[i]);
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
+                evalVisitor = evalVisitor.newVisitor(newEnv);
+
+                String varsInEnv = newEnv.accept(new PureListVisitor<Binding, String>() {
+                @Override
+                public String forEmpty(Empty<Binding> e) {
+                    return "";
+                }
+
+                @Override
+                public String forCons(Cons<Binding> c) {
+                    return "" + c.first().var() + ":" + c.first().value() + " " + c.rest().accept(this);
+                }
+            });
+
+            System.out.println("Variables in Envionment " + varsInEnv);
             }
 
-            EvalVisitor newEvalVisitor = evalVisitor.newVisitor(newEnv);
+//            EvalVisitor newEvalVisitor = evalVisitor.newVisitor(newEnv);
 
-            return body.accept(newEvalVisitor);
+            return body.accept(evalVisitor);
         }
 
         public UnOpVisitor<JamVal> newUnOpVisitor(JamVal arg) {
