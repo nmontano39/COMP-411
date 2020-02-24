@@ -105,9 +105,6 @@ class Interpreter {
     }
 
 
-
-    // TODO NameCons
-
     /** Class representing a cons in call by name convention */
     static class NameCons extends JamCons {
         Suspension sus;
@@ -153,10 +150,6 @@ class Interpreter {
         }
     }
 
-//        public String toString() {
-//            return "(" + toStringHelper() + ")";
-//        }
-
 
 
     // TODO NeedCons
@@ -174,11 +167,36 @@ class Interpreter {
         }
 
         public JamVal first() {
-            return null;
+//            sus.putEv();
+//            System.out.println(sus.exp());
+            return sus.exp().accept(sus.ev());
         }
 
         public JamList rest() {
-            return null;
+            return susCons.accept(new PureListVisitor<Suspension, JamList>() {
+                @Override
+                public JamList forEmpty(Empty<Suspension> e) {
+                    // Rest on a list with element returns an empty list
+                    return JamEmpty.ONLY;
+                }
+
+                @Override
+                public JamList forCons(Cons<Suspension> c) {
+                    JamVal restJamVal = c.first().exp().accept(c.first().ev());
+                    if (restJamVal instanceof JamList) {
+                        return (JamList) restJamVal;
+                    }
+                    throw new EvalException("Rest is not a JamList");
+                }
+            });
+        }
+
+        public String toString() {
+            return "(" + sus.eval() + rest().toStringHelp() + ")";
+        }
+
+        public String toStringHelp() {
+            return " " + sus.eval() + rest().toStringHelp();
         }
     }
 
@@ -565,8 +583,6 @@ class Interpreter {
 
             private JamCons evalJamConsArg(AST arg, String fun) {
 
-                // TODO: implement cons convention
-
                 JamVal val = arg.accept(evalVisitor);
                 if (val instanceof JamCons) {
                     if (evalVisitor.consConv().equals("name")) {
@@ -587,6 +603,25 @@ class Interpreter {
                             susConsElement.putEv(evalVisitor);
                         }
                         return (NameCons) val;
+                    }
+                    if (evalVisitor.consConv().equals("need")) {
+                        ((NeedCons) val).sus.putEv(evalVisitor);
+                        Suspension
+                                susConsElement =
+                                ((NeedCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
+                                    public Suspension forEmpty(Empty<Suspension> e) {
+//                                throw new EvalException("Cons is empty");
+                                        return null;
+                                    }
+
+                                    public Suspension forCons(Cons<Suspension> c) {
+                                        return c.first();
+                                    }
+                                });
+                        if (susConsElement != null) {
+                            susConsElement.putEv(evalVisitor);
+                        }
+                        return (NeedCons) val;
                     }
                     return (JamCons) val;
                 }
@@ -626,8 +661,6 @@ class Interpreter {
 
             public JamVal forConsPrim() {
 
-                // TODO: implement cons convention
-
                 if (evalVisitor.consConv().equals("name")) {
                     if (args.length != 2) {
                         return primFunError("cons");
@@ -637,8 +670,7 @@ class Interpreter {
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
 
-                        NameCons nameCons = new NameCons(sus, new Cons<>(sus2, new Empty<>()));
-                        return nameCons;
+                        return new NameCons(sus, new Cons<>(sus2, new Empty<>()));
                     }
                 }
 
@@ -648,8 +680,7 @@ class Interpreter {
                     } else {
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
-                        NeedCons needCons = new NeedCons(sus, new Cons<>(sus2, new Empty<>()));
-                        return needCons;
+                        return new NeedCons(sus, new Cons<>(sus2, new Empty<>()));
                     }
                 }
 
@@ -667,12 +698,14 @@ class Interpreter {
                 return ((JamFun) vals[0]).accept(ArityVisitor.ONLY);
             }
 
-            // TODO check cons convention when calling first or last
+
             public JamVal forFirstPrim() {
 //                System.out.println("Do we get here?");
                 if (evalVisitor.consConv().equals("name")){
-                    NameCons myNameCons = (NameCons) evalJamConsArg(args[0], "first");
-                    return myNameCons.first();
+                    return ((NameCons) evalJamConsArg(args[0], "first")).first();
+                }
+                if (evalVisitor.consConv().equals("need")){
+                    return ((NeedCons) evalJamConsArg(args[0], "first")).first();
                 }
                 return evalJamConsArg(args[0], "first").first();
 
@@ -680,8 +713,10 @@ class Interpreter {
             public JamVal forRestPrim() {
 
                 if (evalVisitor.consConv().equals("name")){
-                    NameCons myNameCons = (NameCons) evalJamConsArg(args[0], "rest");
-                    return myNameCons.rest();
+                    return ((NameCons) evalJamConsArg(args[0], "rest")).rest();
+                }
+                if (evalVisitor.consConv().equals("need")){
+                    return ((NeedCons) evalJamConsArg(args[0], "rest")).rest();
                 }
                 return evalJamConsArg(args[0], "rest").rest();
 
