@@ -109,27 +109,34 @@ class Interpreter {
 
     /** Class representing a cons in call by name convention */
     static class NameCons extends JamCons {
-        protected Suspension sus;
-        protected NameCons susCons;
+        Suspension sus;
+        PureList<Suspension> susCons;
 
-        public NameCons(Suspension s, NameCons sCons) {
+        public NameCons(Suspension s, PureList<Suspension> sCons) {
             super(null, null);
             sus = s;
             susCons = sCons;
         }
 
-        public NameCons cons(Suspension s) {
-            return new NameCons(s, this);
-        }
-
         public JamVal first() {
-            return null;
-            //return (JamList) super.rest();
+            return sus.exp().accept(sus.ev());
         }
 
         public JamList rest() {
-            return null;
-            //return (JamList) super.rest();
+            JamList restVal = susCons.accept(new PureListVisitor<Suspension, JamList>() {
+                @Override
+                public JamList forEmpty(Empty<Suspension> e) {
+                    throw new EvalException("Cons is empty");
+                }
+
+                @Override
+                public JamList forCons(Cons<Suspension> c) {
+                    JamVal restJamVal = c.first().exp().accept(c.first().ev());
+                    if (restJamVal instanceof JamList) return new JamCons(restJamVal, JamEmpty.ONLY);
+                    throw new EvalException("Rest is not a JamList");
+                }
+            });
+            return restVal;
         }
     }
 
@@ -617,7 +624,7 @@ class Interpreter {
 //                        // return index of that Cons in consEnv
 //                        return new IntConstant(0);
 
-                        NameCons nameCons = new NameCons(sus, new NameCons(sus2, ));
+                        NameCons nameCons = new NameCons(sus, new Cons<>(sus2, new Empty<>()));
                         return nameCons;
                     }
                 }
