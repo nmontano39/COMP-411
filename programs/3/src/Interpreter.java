@@ -121,7 +121,7 @@ class Interpreter {
 
         public JamVal first() {
 //            sus.putEv();
-            System.out.println(sus.exp());
+//            System.out.println(sus.exp());
             return sus.exp().accept(sus.ev());
         }
 
@@ -137,7 +137,7 @@ class Interpreter {
                 public JamList forCons(Cons<Suspension> c) {
                     JamVal restJamVal = c.first().exp().accept(c.first().ev());
                     if (restJamVal instanceof JamList) {
-                        return (NameCons) restJamVal;
+                        return (JamList) restJamVal;
                     }
                     throw new EvalException("Rest is not a JamList");
                 }
@@ -145,26 +145,37 @@ class Interpreter {
         }
 
         public String toString() {
-            JamVal firstVal = sus.eval();
-//            JamVal restVal = susCons.accept(new PureListVisitor<Suspension, JamVal>() {
-//                @Override
-//                public JamVal forEmpty(Empty<Suspension> e) {
-//                    return JamEmpty.ONLY;
-//                }
-//
-//                @Override
-//                public JamVal forCons(Cons<Suspension> c) {
-//                    return c.first().eval();
-//                }
-//            });
-            return "(" + firstVal + " space " + ")";
+            NameCons temp = new NameCons(susCons.);
+            return "(" + sus.eval() + rest.toStringHelp() + ")";
         }
 
-//        public String toStringHelp() {
-//            JamVal firstVal = sus.eval();
-//            return " " + firstVal + susCons.toStringHelp();
-//        }
+        public String toStringHelp() {
+            JamVal firstVal = sus.eval();
+            JamVal restVal = susCons.accept(new PureListVisitor<Suspension, JamVal>() {
+                @Override
+                public JamVal forEmpty(Empty<Suspension> e) {
+                    return JamEmpty.ONLY;
+                }
+
+                @Override
+                public JamVal forCons(Cons<Suspension> c) {
+                    return c.first().eval();
+                }
+            });
+            if (((JamList) restVal).equals(JamEmpty.ONLY)) {
+                return "" + firstVal;
+            } else {
+                System.out.println(firstVal);
+                return firstVal + " " + restVal;
+            }
+
+        }
     }
+
+//        public String toString() {
+//            return "(" + toStringHelper() + ")";
+//        }
+
 
 
     // TODO NeedCons
