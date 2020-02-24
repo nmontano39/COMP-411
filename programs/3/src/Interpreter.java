@@ -542,6 +542,7 @@ class Interpreter {
 
 //                System.out.println(evalVisitor.consConv());
 
+                // callByName cons
                 if (evalVisitor.consConv().equals("name")) {
                     if (args.length != 2) {
                         return primFunError("cons");
@@ -556,8 +557,9 @@ class Interpreter {
                         // append this Cons to consEnv
                         // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
                         evalVisitor.consEnv().append(susCons);
-                        evalVisitor.consEnv();
 
+
+                        
                         // return index of that Cons in consEnv
                         return new IntConstant(0);
                     }
@@ -578,8 +580,16 @@ class Interpreter {
             }
 
             // TODO check cons convention when calling first or last
-            public JamVal forFirstPrim() { return evalJamConsArg(args[0], "first").first(); }
-            public JamVal forRestPrim() { return evalJamConsArg(args[0], "rest").rest(); }
+            public JamVal forFirstPrim() {
+
+                return evalJamConsArg(args[0], "first").first();
+
+            }
+            public JamVal forRestPrim() {
+
+                return evalJamConsArg(args[0], "rest").rest();
+
+            }
 
             /** Visitor class that implements the Jam arity method. */
             static private class ArityVisitor implements JamFunVisitor<IntConstant> {
