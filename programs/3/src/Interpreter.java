@@ -311,8 +311,6 @@ class Interpreter {
 
                 // TODO check cons convention
 
-
-
                 varList.add(vars[i]);
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
             }
@@ -500,11 +498,7 @@ class Interpreter {
 
             private JamCons evalJamConsArg(AST arg, String fun) {
 
-
                 // TODO: implement cons convention
-
-
-
 
                 JamVal val = arg.accept(evalVisitor);
                 if (val instanceof JamCons) return (JamCons) val;
