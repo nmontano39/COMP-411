@@ -145,6 +145,18 @@ public class Assign3Test extends TestCase {
     } //end of func
 
 
+    public void testLet1() {
+        try {
+            String output = "9";
+            String input = "let x := 1; y := 2 * x; z := 3 * y; in x + y + z";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
     public void testEvalException() {
         try {
             String output = "mojo";
