@@ -119,6 +119,7 @@ class Interpreter {
         }
 
         public JamVal first() {
+//            sus.putEv();
             return sus.exp().accept(sus.ev());
         }
 
@@ -566,7 +567,21 @@ class Interpreter {
                 // TODO: implement cons convention
 
                 JamVal val = arg.accept(evalVisitor);
-                if (val instanceof JamCons) return (JamCons) val;
+                if (val instanceof JamCons) {
+                    if (evalVisitor.consConv().equals("name")) {
+                        ((NameCons) val).sus.putEv(evalVisitor);
+                        ((NameCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
+                            public Suspension forEmpty(Empty<Suspension> e) {
+                                throw new EvalException("Cons is empty");
+                            }
+
+                            public Suspension forCons(Cons<Suspension> c) {
+                                return c.first();
+                            }
+                        }).putEv(evalVisitor);
+                    }
+                    return (JamCons) val;
+                }
                 throw new EvalException("Primitive function `" + fun + "' applied to argument " + val +
                         " that is not a JamCons");
             }
@@ -612,6 +627,7 @@ class Interpreter {
                     if (args.length != 2) {
                         return primFunError("cons");
                     } else {
+                        System.out.println("This gets where I want it to get");
                         // get first and second Suspension from args[0] and args[1]
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
@@ -653,12 +669,21 @@ class Interpreter {
 
             // TODO check cons convention when calling first or last
             public JamVal forFirstPrim() {
-
+                System.out.println("Do we get here?");
+                if (evalVisitor.consConv().equals("name")){
+                    NameCons myNameCons = (NameCons) evalJamConsArg(args[0], "first");
+                    System.out.println(myNameCons.rest());
+                    return myNameCons.first();
+                }
                 return evalJamConsArg(args[0], "first").first();
 
             }
             public JamVal forRestPrim() {
 
+                if (evalVisitor.consConv().equals("name")){
+                    NameCons myNameCons = (NameCons) evalJamConsArg(args[0], "rest");
+                    return myNameCons.rest();
+                }
                 return evalJamConsArg(args[0], "rest").rest();
 
             }
