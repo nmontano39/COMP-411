@@ -145,30 +145,11 @@ class Interpreter {
         }
 
         public String toString() {
-            NameCons temp = new NameCons(susCons.);
-            return "(" + sus.eval() + rest.toStringHelp() + ")";
+            return "(" + sus.eval() + rest().toStringHelp() + ")";
         }
 
         public String toStringHelp() {
-            JamVal firstVal = sus.eval();
-            JamVal restVal = susCons.accept(new PureListVisitor<Suspension, JamVal>() {
-                @Override
-                public JamVal forEmpty(Empty<Suspension> e) {
-                    return JamEmpty.ONLY;
-                }
-
-                @Override
-                public JamVal forCons(Cons<Suspension> c) {
-                    return c.first().eval();
-                }
-            });
-            if (((JamList) restVal).equals(JamEmpty.ONLY)) {
-                return "" + firstVal;
-            } else {
-                System.out.println(firstVal);
-                return firstVal + " " + restVal;
-            }
-
+            return " " + sus.eval() + rest().toStringHelp();
         }
     }
 
@@ -651,7 +632,7 @@ class Interpreter {
                     if (args.length != 2) {
                         return primFunError("cons");
                     } else {
-                        System.out.println("This gets where I want it to get");
+//                        System.out.println("This gets where I want it to get");
                         // get first and second Suspension from args[0] and args[1]
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
@@ -688,7 +669,7 @@ class Interpreter {
 
             // TODO check cons convention when calling first or last
             public JamVal forFirstPrim() {
-                System.out.println("Do we get here?");
+//                System.out.println("Do we get here?");
                 if (evalVisitor.consConv().equals("name")){
                     NameCons myNameCons = (NameCons) evalJamConsArg(args[0], "first");
                     return myNameCons.first();
