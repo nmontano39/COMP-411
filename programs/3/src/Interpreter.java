@@ -104,21 +104,20 @@ class Interpreter {
         public String toString() { return "[" + var + ", " + value + ", " + susp + "]"; }
     }
 
-
-    /** Class representing a cons in call by name convention */
+    /** Class representing cons by name convention */
     static class NameCons extends JamCons {
         Suspension sus;
         PureList<Suspension> susCons;
 
+        // given a Suspension and a list of Suspensions
         public NameCons(Suspension s, PureList<Suspension> sCons) {
+            // dummy values
             super(null, null);
             sus = s;
             susCons = sCons;
         }
 
         public JamVal first() {
-//            sus.putEv();
-//            System.out.println(sus.exp());
             return sus.exp().accept(sus.ev());
         }
 
@@ -126,7 +125,6 @@ class Interpreter {
             return susCons.accept(new PureListVisitor<Suspension, JamList>() {
                 @Override
                 public JamList forEmpty(Empty<Suspension> e) {
-                    // Rest on a list with element returns an empty list
                     return JamEmpty.ONLY;
                 }
 
@@ -150,25 +148,21 @@ class Interpreter {
         }
     }
 
-
-
-    // TODO NeedCons
-
-
-    /** Class representing a cons in call by need convention */
+    // TODO: NeedCons
+    /** Class representing cons by need convention */
     static class NeedCons extends JamCons {
         Suspension sus;
         PureList<Suspension> susCons;
 
+        // given a Suspension and a list of Suspensions
         public NeedCons(Suspension s, PureList<Suspension> sCons) {
+            // dummy values
             super(null, null);
             sus = s;
             susCons = sCons;
         }
 
         public JamVal first() {
-//            sus.putEv();
-//            System.out.println(sus.exp());
             return sus.exp().accept(sus.ev());
         }
 
@@ -199,8 +193,6 @@ class Interpreter {
             return " " + sus.eval() + rest().toStringHelp();
         }
     }
-
-
 
     /** Visitor class implementing a lookup method on environments.
      * @return value() for variable var for both lazy and eager environments. */
@@ -315,11 +307,8 @@ class Interpreter {
             return i.alt().accept(this);
         }
 
+        // TODO: Make recursive let
         public JamVal forLet(Let l) {
-
-
-            // TODO: Make recursive let
-
 
             Def[] defs = l.defs();
             int n = defs.length;
@@ -372,15 +361,13 @@ class Interpreter {
 
         public JamVal forPrimFun(PrimFun primFun) {
             int n = args.length;
-      /* JamVal[] vals = new JamVal[n];
-       for (int i = 0; i < n; i++)
-       vals[i] = args[i].accept(evalVisitor); */
             return primFun.accept(primFunFactory.newVisitor(evalVisitor, args));
         }
     }
 
     abstract static class CommonEvalPolicy implements EvalPolicy {
 
+        // TODO: modify for letrec?
         public JamVal letEval(Variable[] vars, AST[] exps, AST body, EvalVisitor evalVisitor) {
             /* let semantics */
 
@@ -408,6 +395,7 @@ class Interpreter {
         public UnOpVisitor<JamVal> newUnOpVisitor(JamVal arg) {
             return new StandardUnOpVisitor(arg);
         }
+
         public BinOpVisitor<JamVal> newBinOpVisitor(AST arg1, AST arg2, EvalVisitor ev) {
             return new StandardBinOpVisitor(arg1, arg2, ev);
         }
@@ -585,44 +573,32 @@ class Interpreter {
 
                 JamVal val = arg.accept(evalVisitor);
                 if (val instanceof JamCons) {
+
+                    // cons by name
                     if (evalVisitor.consConv().equals("name")) {
                         ((NameCons) val).sus.putEv(evalVisitor);
-                        Suspension
-                            susConsElement =
+                        Suspension susConsElement =
                             ((NameCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
-                                public Suspension forEmpty(Empty<Suspension> e) {
-//                                throw new EvalException("Cons is empty");
-                                    return null;
-                                }
-
-                                public Suspension forCons(Cons<Suspension> c) {
-                                    return c.first();
-                                }
+                                public Suspension forEmpty(Empty<Suspension> e) { return null; }
+                                public Suspension forCons(Cons<Suspension> c) { return c.first(); }
                             });
-                        if (susConsElement != null) {
-                            susConsElement.putEv(evalVisitor);
-                        }
+                        if (susConsElement != null) { susConsElement.putEv(evalVisitor); }
                         return (NameCons) val;
                     }
+
+                    // cons by need
                     if (evalVisitor.consConv().equals("need")) {
                         ((NeedCons) val).sus.putEv(evalVisitor);
-                        Suspension
-                                susConsElement =
+                        Suspension susConsElement =
                                 ((NeedCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
-                                    public Suspension forEmpty(Empty<Suspension> e) {
-//                                throw new EvalException("Cons is empty");
-                                        return null;
-                                    }
-
-                                    public Suspension forCons(Cons<Suspension> c) {
-                                        return c.first();
-                                    }
+                                    public Suspension forEmpty(Empty<Suspension> e) { return null; }
+                                    public Suspension forCons(Cons<Suspension> c) { return c.first(); }
                                 });
-                        if (susConsElement != null) {
-                            susConsElement.putEv(evalVisitor);
-                        }
+                        if (susConsElement != null) { susConsElement.putEv(evalVisitor); }
                         return (NeedCons) val;
                     }
+
+                    // cons by value
                     return (JamCons) val;
                 }
                 throw new EvalException("Primitive function `" + fun + "' applied to argument " + val +
