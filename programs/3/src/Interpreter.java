@@ -121,6 +121,7 @@ class Interpreter {
 
         public JamVal first() {
 //            sus.putEv();
+            System.out.println(sus.exp());
             return sus.exp().accept(sus.ev());
         }
 
@@ -128,17 +129,41 @@ class Interpreter {
             return susCons.accept(new PureListVisitor<Suspension, JamList>() {
                 @Override
                 public JamList forEmpty(Empty<Suspension> e) {
-                    throw new EvalException("Cons is empty");
+                    // Rest on a list with element returns an empty list
+                    return JamEmpty.ONLY;
                 }
 
                 @Override
                 public JamList forCons(Cons<Suspension> c) {
                     JamVal restJamVal = c.first().exp().accept(c.first().ev());
-                    if (restJamVal instanceof JamList) return new JamCons(restJamVal, JamEmpty.ONLY);
+                    if (restJamVal instanceof JamList) {
+                        return (NameCons) restJamVal;
+                    }
                     throw new EvalException("Rest is not a JamList");
                 }
             });
         }
+
+        public String toString() {
+            JamVal firstVal = sus.eval();
+//            JamVal restVal = susCons.accept(new PureListVisitor<Suspension, JamVal>() {
+//                @Override
+//                public JamVal forEmpty(Empty<Suspension> e) {
+//                    return JamEmpty.ONLY;
+//                }
+//
+//                @Override
+//                public JamVal forCons(Cons<Suspension> c) {
+//                    return c.first().eval();
+//                }
+//            });
+            return "(" + firstVal + " space " + ")";
+        }
+
+//        public String toStringHelp() {
+//            JamVal firstVal = sus.eval();
+//            return " " + firstVal + susCons.toStringHelp();
+//        }
     }
 
 
@@ -554,20 +579,27 @@ class Interpreter {
                 if (val instanceof JamCons) {
                     if (evalVisitor.consConv().equals("name")) {
                         ((NameCons) val).sus.putEv(evalVisitor);
-                        ((NameCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
-                            public Suspension forEmpty(Empty<Suspension> e) {
-                                throw new EvalException("Cons is empty");
-                            }
+                        Suspension
+                            susConsElement =
+                            ((NameCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
+                                public Suspension forEmpty(Empty<Suspension> e) {
+//                                throw new EvalException("Cons is empty");
+                                    return null;
+                                }
 
-                            public Suspension forCons(Cons<Suspension> c) {
-                                return c.first();
-                            }
-                        }).putEv(evalVisitor);
+                                public Suspension forCons(Cons<Suspension> c) {
+                                    return c.first();
+                                }
+                            });
+                        if (susConsElement != null) {
+                            susConsElement.putEv(evalVisitor);
+                        }
+                        return (NameCons) val;
                     }
                     return (JamCons) val;
                 }
                 throw new EvalException("Primitive function `" + fun + "' applied to argument " + val +
-                        " that is not a JamCons");
+                                            " that is not a JamCons");
             }
 
             public JamVal forFunctionPPrim() {
@@ -648,7 +680,6 @@ class Interpreter {
                 System.out.println("Do we get here?");
                 if (evalVisitor.consConv().equals("name")){
                     NameCons myNameCons = (NameCons) evalJamConsArg(args[0], "first");
-                    System.out.println(myNameCons.rest());
                     return myNameCons.first();
                 }
                 return evalJamConsArg(args[0], "first").first();
