@@ -118,9 +118,6 @@ class Interpreter {
 
         public JamVal forCons(Cons<Binding> c) {
             Binding b = c.first();
-
-            // TODO we think this references the environment
-
             if (var == b.var()) return b.value();
             return c.rest().accept(this);
         }
@@ -280,12 +277,6 @@ class Interpreter {
             // construct newEnv for JamClosure body using JamClosure env
             PureList<Binding> newEnv = closure.env();
             for (int i = n-1; i >= 0; i--) {
-
-                // TODO we think this is referencing the environment
-
-
-
-
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], args[i]));
             }
 
@@ -562,6 +553,8 @@ class Interpreter {
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
                         Cons<Suspension> susCons = new Cons<>(sus, new Cons<Suspension>(sus2, new Empty<Suspension>()));
+
+
                         // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
                         evalVisitor.consEnv().append(susCons);
                         evalVisitor.consEnv();
