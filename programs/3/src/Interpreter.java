@@ -545,19 +545,26 @@ class Interpreter {
             public JamVal forConsPrim() {
 
                 // TODO: implement cons convention
+
 //                System.out.println(evalVisitor.consConv());
+
                 if (evalVisitor.consConv().equals("name")) {
                     if (args.length != 2) {
                         return primFunError("cons");
                     } else {
+                        // get first and second Suspension from args[0] and args[1]
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
+
+                        // create Cons of Suspensions using sus and sus2
                         Cons<Suspension> susCons = new Cons<>(sus, new Cons<Suspension>(sus2, new Empty<Suspension>()));
 
-
+                        // append this Cons to consEnv
                         // NEED TO FIGURE OUT A WAY TO INDEX THIS LIST.
                         evalVisitor.consEnv().append(susCons);
                         evalVisitor.consEnv();
+
+                        // return index of that Cons in consEnv
                         return new IntConstant(0);
                     }
                 }
