@@ -153,6 +153,8 @@ class Interpreter {
     static class NeedCons extends JamCons {
         Suspension sus;
         PureList<Suspension> susCons;
+        JamVal firstVal = null;
+        JamList restVal = null;
 
         // given a Suspension and a list of Suspensions
         public NeedCons(Suspension s, PureList<Suspension> sCons) {
@@ -163,26 +165,32 @@ class Interpreter {
         }
 
         public JamVal first() {
-            return sus.exp().accept(sus.ev());
+            if (firstVal == null) {
+                firstVal = sus.exp().accept(sus.ev());
+            }
+            return firstVal;
         }
 
         public JamList rest() {
-            return susCons.accept(new PureListVisitor<Suspension, JamList>() {
-                @Override
-                public JamList forEmpty(Empty<Suspension> e) {
-                    // Rest on a list with element returns an empty list
-                    return JamEmpty.ONLY;
-                }
-
-                @Override
-                public JamList forCons(Cons<Suspension> c) {
-                    JamVal restJamVal = c.first().exp().accept(c.first().ev());
-                    if (restJamVal instanceof JamList) {
-                        return (JamList) restJamVal;
+            if (restVal == null) {
+                restVal = susCons.accept(new PureListVisitor<Suspension, JamList>() {
+                    @Override
+                    public JamList forEmpty(Empty<Suspension> e) {
+                        // Rest on a list with element returns an empty list
+                        return JamEmpty.ONLY;
                     }
-                    throw new EvalException("Rest is not a JamList");
-                }
-            });
+
+                    @Override
+                    public JamList forCons(Cons<Suspension> c) {
+                        JamVal restJamVal = c.first().exp().accept(c.first().ev());
+                        if (restJamVal instanceof JamList) {
+                            return (JamList) restJamVal;
+                        }
+                        throw new EvalException("Rest is not a JamList");
+                    }
+                });
+            }
+            return restVal;
         }
 
         public String toString() {
@@ -376,16 +384,27 @@ class Interpreter {
                                 }
 
                                 @Override
-                                public Suspension forCons(Cons<Binding> c) {
-                                    Binding b = c.first();
-                                    Suspension x = ((NeedBinding) b).susp;
+                                public Suspension forCons(Cons<Binding> c2) {
+                                    Binding b = c2.first();
+                                    if (b instanceof NameBinding) {
+                                        Suspension x = ((NameBinding) b).susp;
+                                        if (needBinding.var() == b.var()) return x;
+                                    }
 
-                                    if (needBinding.var() == b.var()) return x;
-                                    return c.rest().accept(this);
+                                    return c2.rest().accept(this);
                                 }
                             });
-                            Binding newBinding = new NeedBinding(c.first().var(), susVal);
-                            return new Cons<>(newBinding, c.rest().accept(this));
+
+
+                            Binding myBinding;
+                            if (susVal == null) {
+                                JamVal newVal = evalVisitor.env().accept(new LookupVisitor(needBinding.var()));
+                                myBinding = new ValueBinding(needBinding.var(), newVal);
+                            } else {
+                                myBinding = new NeedBinding(c.first().var(), susVal);
+                            }
+
+                            return new Cons<>(myBinding, c.rest().accept(this));
                         } else {
                             return new Cons<>(c.first(), c.rest().accept(this));
                         }

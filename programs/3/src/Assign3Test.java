@@ -63,29 +63,33 @@ public class Assign3Test extends TestCase {
     }
 
     private void allCheck(String name, String answer, String program) {
-//        valueValueCheck(name, answer, program);
-//        valueNameCheck(name, answer, program);
-//        valueNeedCheck(name, answer, program);
-//        nameValueCheck(name, answer, program);
-//        nameNameCheck(name, answer, program);
-//        nameNeedCheck(name, answer, program);
-        needValueCheck(name, answer, program);
-        needNameCheck(name, answer, program);
-        needNeedCheck(name, answer, program);
-    }
-
-    private void noNameCheck(String name, String answer, String program) {
         valueValueCheck(name, answer, program);
         valueNameCheck(name, answer, program);
         valueNeedCheck(name, answer, program);
+        nameValueCheck(name, answer, program);
+        nameNameCheck(name, answer, program);
+        nameNeedCheck(name, answer, program);
         needValueCheck(name, answer, program);
         needNameCheck(name, answer, program);
         needNeedCheck(name, answer, program);
     }
 
-    private void needCheck(String name, String answer, String program) {
+    private void noValueCheck(String name, String answer, String program) {
+        nameValueCheck(name, answer, program);
+        nameNameCheck(name, answer, program);
+        nameNeedCheck(name, answer, program);
         needValueCheck(name, answer, program);
+        needNameCheck(name, answer, program);
         needNeedCheck(name, answer, program);
+    }
+
+    private void noNeedCheck(String name, String answer, String program) {
+        valueValueCheck(name, answer, program);
+        valueNameCheck(name, answer, program);
+        valueNeedCheck(name, answer, program);
+        nameValueCheck(name, answer, program);
+        nameNameCheck(name, answer, program);
+        nameNeedCheck(name, answer, program);
     }
 
 
@@ -145,7 +149,7 @@ public class Assign3Test extends TestCase {
     } //end of func
 
 
-    public void testLet1() {
+    public void testFib() {
         try {
             String output = "((0 1) (1 1) (2 2) (3 3) (4 5) (5 8) (6 13) (7 21) (8 34) (9 55) (10 89) (11 144) (12 233) (13 377) (14 610) (15 987) (16 1597) (17 2584) (18 4181) (19 6765) (20 10946) (21 17711) (22 28657) (23 46368) (24 75025) (25 121393))";
             String input = "let Y    := map f to\n" +
@@ -168,7 +172,7 @@ public class Assign3Test extends TestCase {
                     "                              fibs(k - 1, cons(pair(k,fibk), l))\n" +
                     "                            else l;\n" +
                     "         in (Y(FIBS))(25, null)";
-            allCheck("mathOp", output, input );
+            noValueCheck("mathOp", output, input );
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -210,7 +214,7 @@ public class Assign3Test extends TestCase {
         try {
             String output = "(1 2 3 1 2 3)";
             String input = "let append := map x,y to if x = null then y else cons(first(x), append(rest(x), y)); l := cons(1,cons(2,cons(3,null))); in append(l,l)";
-            allCheck("letRec", output, input );
+            noNeedCheck("letRec", output, input );
 
         } catch (Exception e) {
             e.printStackTrace();
