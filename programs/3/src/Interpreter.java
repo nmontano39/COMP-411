@@ -274,7 +274,7 @@ class Interpreter {
         public JamVal forIntConstant(IntConstant i) { return i; }
         public JamVal forNullConstant(NullConstant n) { return JamEmpty.ONLY; }
         public JamVal forVariable(Variable v) {
-            //System.out.println(v);
+            System.out.println("Variable " + v);
             return env.accept(new LookupVisitor(v));
         }
 
@@ -291,6 +291,7 @@ class Interpreter {
         }
 
         public JamVal forApp(App a) {
+            System.out.println("For App rator: " + a.rator());
             JamVal rator = a.rator().accept(this);
             if (rator instanceof JamFun) return ((JamFun) rator).accept(evalPolicy.newFunVisitor(a.args(), this));
             throw new EvalException(rator + " appears at head of application " + a + " but it is not a valid function");
@@ -301,6 +302,7 @@ class Interpreter {
             return new JamClosure(m,env); }
 
         public JamVal forIf(If i) {
+            System.out.println("Reached if");
             JamVal test = i.test().accept(this);
             if (! (test instanceof BoolConstant)) throw new EvalException("non Boolean " + test + " used as test in if");
             if (test == BoolConstant.TRUE) return i.conseq().accept(this);
@@ -343,6 +345,7 @@ class Interpreter {
 
         /* Visitor methods. */
         public JamVal forJamClosure(JamClosure closure) {
+            System.out.println("Gets to Jam Closure");
             Map map = closure.body();
 
             int n = args.length;
@@ -352,6 +355,30 @@ class Interpreter {
 
             // construct newEnv for JamClosure body using JamClosure env
             PureList<Binding> newEnv = closure.env();
+            newEnv = newEnv.accept(new PureListVisitor<Binding, PureList<Binding>>() {
+                @Override
+                public PureList<Binding> forEmpty(Empty<Binding> e) {
+                    System.out.println("STRAIGHT TO EMPTY??");
+                    return new Empty<>();
+                }
+
+                @Override
+                public PureList<Binding> forCons(Cons<Binding> c) {
+                    System.out.println("HERE!!!" + c.first().var());
+                    JamVal firstVal = c.first().value();
+                    if (firstVal == null) {
+                        Binding newBinding = new ValueBinding(c.first().var(),
+                            evalVisitor.env().accept(new LookupVisitor(c.first().var())));
+                        return new Cons<>(newBinding, c.rest().accept(this));
+//                        return new Cons<>(evalVisitor.env().accept(new LookupVisitor(c.first().var())));
+                    } else {
+                        return new Cons<>(c.first(), c.rest().accept(this));
+                    }
+                }
+            });
+
+
+
             for (int i = n-1; i >= 0; i--) {
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], args[i]));
             }
@@ -380,7 +407,11 @@ class Interpreter {
             PureList<Binding> newEnv = evalVisitor.env();
             System.out.println("Reaches let Eval");
 
-            // THIS PRINTS STUFF IN AN ENVIRONMENT.
+            // MIGHT NEED TO MOVE THIS OVER.
+            for (int i = 0; i < n; i++) {
+                newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], null));
+            }
+            evalVisitor = evalVisitor.newVisitor(newEnv);
 
 
 //            for (int i = n-1; i >= 0; i--) {
@@ -390,22 +421,24 @@ class Interpreter {
                 }
 
                 varList.add(vars[i]);
+
+
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
                 evalVisitor = evalVisitor.newVisitor(newEnv);
 
-                String varsInEnv = newEnv.accept(new PureListVisitor<Binding, String>() {
-                @Override
-                public String forEmpty(Empty<Binding> e) {
-                    return "";
-                }
-
-                @Override
-                public String forCons(Cons<Binding> c) {
-                    return "" + c.first().var() + ":" + c.first().value() + " " + c.rest().accept(this);
-                }
-            });
-
-            System.out.println("Variables in Envionment " + varsInEnv);
+//                String varsInEnv = newEnv.accept(new PureListVisitor<Binding, String>() {
+//                @Override
+//                public String forEmpty(Empty<Binding> e) {
+//                    return "";
+//                }
+//
+//                @Override
+//                public String forCons(Cons<Binding> c) {
+//                    return "" + c.first().var() + ":" + c.first().value() + " " + c.rest().accept(this);
+//                }
+//            });
+//
+//            System.out.println("Variables in Envionment " + varsInEnv);
             }
 
 //            EvalVisitor newEvalVisitor = evalVisitor.newVisitor(newEnv);
@@ -434,7 +467,13 @@ class Interpreter {
         /** Inherited letEval works because newBinding method is customized! */
 
         /** Constructs binding of var to value of arg in ev */
-        public Binding newBinding(Variable var, AST arg, EvalVisitor ev) { return new ValueBinding(var, arg.accept(ev)); }
+        public Binding newBinding(Variable var, AST arg, EvalVisitor ev) {
+            if (arg == null) {
+                return new ValueBinding(var, null);
+            } else {
+                return new ValueBinding(var, arg.accept(ev));
+            }
+        }
     }
 
     static class CallByName extends CommonEvalPolicy {
