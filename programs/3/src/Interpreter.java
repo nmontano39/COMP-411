@@ -377,7 +377,19 @@ class Interpreter {
                             // TODO: make let rec for call by name
 //                            Binding newBinding = new NameBinding(c.first().var(),
 //                                    evalVisitor.env().accept( new LookupVisitor(c.first().var())));
-                            JamVal newVal = evalVisitor.env().accept(new LookupVisitor(c.first().var()));
+                            Suspension newVal = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
+                                @Override
+                                public Suspension forEmpty(Empty<Binding> e) {
+                                    throw new SyntaxException("variable " + c.first().var() + " appears free in this expression");
+                                }
+
+                                @Override
+                                public Suspension forCons(Cons<Binding> c) {
+                                    Binding b = c.first();
+                                    if (var == b.var()) return b.value();
+                                    return c.rest().accept(this);
+                                }
+                            });
 
                             Binding newBinding = new NameBinding(c.first().var(), newSus);
                             return new Cons<>(newBinding, c.rest().accept(this));
