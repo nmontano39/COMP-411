@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/3/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Interpreter.java" afterDir="false" />
@@ -75,15 +76,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.Assign3Test">
-    <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -93,31 +85,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign3Test.testAppend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign3Test.testFib1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testAppend" />
+      <option name="METHOD_NAME" value="testFib1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign3Test.testLazyCons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign3Test.testIn2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testLazyCons" />
+      <option name="METHOD_NAME" value="testIn2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign3Test.testLet1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign3Test.testName1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testLet1" />
+      <option name="METHOD_NAME" value="testName1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign3Test.testName2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
+      <option name="METHOD_NAME" value="testName2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,18 +127,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign3Test" />
-      <item itemvalue="JUnit.Assign3Test.testLazyCons" />
-      <item itemvalue="JUnit.Assign3Test.testAppend" />
-      <item itemvalue="JUnit.Assign2Test" />
-      <item itemvalue="JUnit.Assign3Test.testLet1" />
+      <item itemvalue="JUnit.Assign3Test.testFib1" />
+      <item itemvalue="JUnit.Assign3Test.testIn2" />
+      <item itemvalue="JUnit.Assign3Test.testName1" />
+      <item itemvalue="JUnit.Assign3Test.testName2" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign3Test" />
-        <item itemvalue="JUnit.Assign3Test.testLet1" />
-        <item itemvalue="JUnit.Assign2Test" />
-        <item itemvalue="JUnit.Assign3Test.testAppend" />
-        <item itemvalue="JUnit.Assign3Test.testLazyCons" />
+        <item itemvalue="JUnit.Assign3Test.testName2" />
+        <item itemvalue="JUnit.Assign3Test.testName1" />
+        <item itemvalue="JUnit.Assign3Test.testIn2" />
+        <item itemvalue="JUnit.Assign3Test.testFib1" />
       </list>
     </recent_temporary>
   </component>
