@@ -63,12 +63,12 @@ public class Assign3Test extends TestCase {
     }
 
     private void allCheck(String name, String answer, String program) {
-        valueValueCheck(name, answer, program);
-        valueNameCheck(name, answer, program);
-        valueNeedCheck(name, answer, program);
-        nameValueCheck(name, answer, program);
-        nameNameCheck(name, answer, program);
-        nameNeedCheck(name, answer, program);
+//        valueValueCheck(name, answer, program);
+//        valueNameCheck(name, answer, program);
+//        valueNeedCheck(name, answer, program);
+//        nameValueCheck(name, answer, program);
+//        nameNameCheck(name, answer, program);
+//        nameNeedCheck(name, answer, program);
         needValueCheck(name, answer, program);
         needNameCheck(name, answer, program);
         needNeedCheck(name, answer, program);
@@ -147,8 +147,27 @@ public class Assign3Test extends TestCase {
 
     public void testLet1() {
         try {
-            String output = "9";
-            String input = "let x := 1; y := 2 * x; z := 3 * y; in x + y + z";
+            String output = "((0 1) (1 1) (2 2) (3 3) (4 5) (5 8) (6 13) (7 21) (8 34) (9 55) (10 89) (11 144) (12 233) (13 377) (14 610) (15 987) (16 1597) (17 2584) (18 4181) (19 6765) (20 10946) (21 17711) (22 28657) (23 46368) (24 75025) (25 121393))";
+            String input = "let Y    := map f to\n" +
+                    "              let g := map x to f(x(x));\n" +
+                    "              in g(g);\n" +
+                    "    FIB  := map fib to\n" +
+                    "              map n to if n <= 1 then 1 else fib(n - 1) + fib(n - 2);\n" +
+                    " FIBHELP := map fibhelp to\n" +
+                    "              map k,fn,fnm1 to\n" +
+                    "                if k = 0 then fn\n" +
+                    "                else fibhelp(k - 1, fn + fnm1, fn);\n" +
+                    "    pair := map x,y to cons(x, cons(y, null));\n" +
+                    "in let FFIB := map ffib to\n" +
+                    "                 map n to if n = 0 then 1 else (Y(FIBHELP))(n - 1,1,1);\n" +
+                    "   in let ffib := Y(FFIB);\n" +
+                    "      in let FIBS := map fibs to\n" +
+                    "                       map k,l to\n" +
+                    "                         let fibk := ffib(k);\n" +
+                    "                         in if 0 <= k then\n" +
+                    "                              fibs(k - 1, cons(pair(k,fibk), l))\n" +
+                    "                            else l;\n" +
+                    "         in (Y(FIBS))(25, null)";
             allCheck("mathOp", output, input );
 
         } catch (Exception e) {

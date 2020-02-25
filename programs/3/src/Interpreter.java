@@ -363,14 +363,54 @@ class Interpreter {
                 @Override
                 public PureList<Binding> forCons(Cons<Binding> c) {
 
+                    if (c.first() instanceof NeedBinding) {
+                        NeedBinding needBinding = (NeedBinding) c.first();
+                        Suspension s = needBinding.susp;
+                        if (s != null && s.exp() == null) {
+
+                            Suspension susVal = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
+                                @Override
+                                public Suspension forEmpty(Empty<Binding> e) {
+                                    return new Suspension(null, evalVisitor);
+                                    //throw new SyntaxException("shoulf fail here");
+                                }
+
+                                @Override
+                                public Suspension forCons(Cons<Binding> c) {
+                                    Binding b = c.first();
+                                    Suspension x = ((NeedBinding) b).susp;
+
+                                    if (needBinding.var() == b.var()) return x;
+                                    return c.rest().accept(this);
+                                }
+                            });
+                            Binding newBinding = new NeedBinding(c.first().var(), susVal);
+                            return new Cons<>(newBinding, c.rest().accept(this));
+                        } else {
+                            return new Cons<>(c.first(), c.rest().accept(this));
+                        }
+                    }
+
                     if (c.first() instanceof NameBinding) {
                         NameBinding nameBinding = (NameBinding) c.first();
                         Suspension s = nameBinding.susp;
                         if (s != null && s.exp() == null) {
-                            
-                            JamVal newVal = evalVisitor.env().accept( new LookupVisitor(c.first().var()));
 
-                            Binding newBinding = new ValueBinding(c.first().var(), newVal);
+                            Suspension susVal = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
+                                @Override
+                                public Suspension forEmpty(Empty<Binding> e) {
+                                    return new Suspension(null, evalVisitor);
+                                    //throw new SyntaxException("shoulf fail here");
+                                }
+
+                                @Override
+                                public Suspension forCons(Cons<Binding> c) {
+                                    Binding b = c.first();
+                                    if (nameBinding.var() == b.var()) return ((NameBinding) b).susp;
+                                    return c.rest().accept(this);
+                                }
+                            });
+                            Binding newBinding = new NameBinding(c.first().var(), susVal);
                             return new Cons<>(newBinding, c.rest().accept(this));
                         } else {
                             return new Cons<>(c.first(), c.rest().accept(this));
