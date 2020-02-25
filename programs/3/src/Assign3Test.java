@@ -69,9 +69,9 @@ public class Assign3Test extends TestCase {
         nameValueCheck(name, answer, program);
         nameNameCheck(name, answer, program);
         nameNeedCheck(name, answer, program);
-//        needValueCheck(name, answer, program);
-//        needNameCheck(name, answer, program);
-//        needNeedCheck(name, answer, program);
+        needValueCheck(name, answer, program);
+        needNameCheck(name, answer, program);
+        needNeedCheck(name, answer, program);
     }
 
     private void noNameCheck(String name, String answer, String program) {

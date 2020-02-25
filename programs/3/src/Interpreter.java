@@ -364,34 +364,13 @@ class Interpreter {
                 public PureList<Binding> forCons(Cons<Binding> c) {
 
                     if (c.first() instanceof NameBinding) {
-
-                        System.out.println("Found a NameBinding");
-
                         NameBinding nameBinding = (NameBinding) c.first();
                         Suspension s = nameBinding.susp;
+                        if (s != null && s.exp() == null) {
+                            
+                            JamVal newVal = evalVisitor.env().accept( new LookupVisitor(c.first().var()));
 
-                        if (s.exp() == null) {
-
-                            System.out.println("NameBinding suspension is null");
-
-                            // TODO: make let rec for call by name
-//                            Binding newBinding = new NameBinding(c.first().var(),
-//                                    evalVisitor.env().accept( new LookupVisitor(c.first().var())));
-                            Suspension newSus = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
-                                @Override
-                                public Suspension forEmpty(Empty<Binding> e) {
-                                    throw new SyntaxException("variable " + c.first().var() + " appears free in this expression");
-                                }
-
-                                @Override
-                                public Suspension forCons(Cons<Binding> c) {
-                                    Binding b = c.first();
-                                    if (nameBinding.var() == b.var()) return ((NameBinding) b).susp;
-                                    return c.rest().accept(this);
-                                }
-                            });
-
-                            Binding newBinding = new NameBinding(c.first().var(), newSus);
+                            Binding newBinding = new ValueBinding(c.first().var(), newVal);
                             return new Cons<>(newBinding, c.rest().accept(this));
                         } else {
                             return new Cons<>(c.first(), c.rest().accept(this));
