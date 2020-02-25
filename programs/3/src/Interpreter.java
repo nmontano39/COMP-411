@@ -364,16 +364,22 @@ class Interpreter {
                 public PureList<Binding> forCons(Cons<Binding> c) {
 
                     if (c.first() instanceof NameBinding) {
+
+                        System.out.println("Found a NameBinding");
+
                         NameBinding nameBinding = (NameBinding) c.first();
                         Suspension s = nameBinding.susp;
 
                         if (s.exp() == null) {
+
+                            System.out.println("NameBinding suspension is null");
+
                             // TODO: make let rec for call by name
 //                            Binding newBinding = new NameBinding(c.first().var(),
 //                                    evalVisitor.env().accept( new LookupVisitor(c.first().var())));
-                            //Suspension newSus = (Suspension) evalVisitor.env().accept(new LookupVisitor(c.first().var()));
+                            JamVal newVal = evalVisitor.env().accept(new LookupVisitor(c.first().var()));
 
-                            Binding newBinding = new NameBinding(c.first().var(), s);
+                            Binding newBinding = new NameBinding(c.first().var(), newSus);
                             return new Cons<>(newBinding, c.rest().accept(this));
                         } else {
                             return new Cons<>(c.first(), c.rest().accept(this));
