@@ -82,7 +82,7 @@ class Interpreter {
 
     /** Class representing a binding in CBNm evaluation. */
     static class NameBinding extends Binding {
-        protected Suspension susp;
+        Suspension susp;
         NameBinding(Variable v, Suspension s) {
             super(v, null);
             susp = s;
@@ -274,7 +274,7 @@ class Interpreter {
         public JamVal forIntConstant(IntConstant i) { return i; }
         public JamVal forNullConstant(NullConstant n) { return JamEmpty.ONLY; }
         public JamVal forVariable(Variable v) {
-            System.out.println("Variable " + v);
+//            System.out.println("Variable " + v);
             return env.accept(new LookupVisitor(v));
         }
 
@@ -291,7 +291,7 @@ class Interpreter {
         }
 
         public JamVal forApp(App a) {
-            System.out.println("For App rator: " + a.rator());
+//            System.out.println("For App rator: " + a.rator());
             JamVal rator = a.rator().accept(this);
             if (rator instanceof JamFun) return ((JamFun) rator).accept(evalPolicy.newFunVisitor(a.args(), this));
             throw new EvalException(rator + " appears at head of application " + a + " but it is not a valid function");
@@ -302,14 +302,13 @@ class Interpreter {
             return new JamClosure(m,env); }
 
         public JamVal forIf(If i) {
-            System.out.println("Reached if");
+//            System.out.println("Reached if");
             JamVal test = i.test().accept(this);
             if (! (test instanceof BoolConstant)) throw new EvalException("non Boolean " + test + " used as test in if");
             if (test == BoolConstant.TRUE) return i.conseq().accept(this);
             return i.alt().accept(this);
         }
 
-        // TODO: Make recursive let
         public JamVal forLet(Let l) {
 
             Def[] defs = l.defs();
@@ -345,7 +344,7 @@ class Interpreter {
 
         /* Visitor methods. */
         public JamVal forJamClosure(JamClosure closure) {
-            System.out.println("Gets to Jam Closure");
+//            System.out.println("Gets to Jam Closure");
             Map map = closure.body();
 
             int n = args.length;
@@ -358,19 +357,36 @@ class Interpreter {
             newEnv = newEnv.accept(new PureListVisitor<Binding, PureList<Binding>>() {
                 @Override
                 public PureList<Binding> forEmpty(Empty<Binding> e) {
-                    System.out.println("STRAIGHT TO EMPTY??");
                     return new Empty<>();
                 }
 
                 @Override
                 public PureList<Binding> forCons(Cons<Binding> c) {
-                    System.out.println("HERE!!!" + c.first().var());
+
+                    if (c.first() instanceof NameBinding) {
+                        NameBinding nameBinding = (NameBinding) c.first();
+                        Suspension s = nameBinding.susp;
+
+                        if (s.exp() == null) {
+                            // TODO: make let rec for call by name
+//                            Binding newBinding = new NameBinding(c.first().var(),
+//                                    evalVisitor.env().accept( new LookupVisitor(c.first().var())));
+                            //Suspension newSus = (Suspension) evalVisitor.env().accept(new LookupVisitor(c.first().var()));
+
+                            Binding newBinding = new NameBinding(c.first().var(), s);
+                            return new Cons<>(newBinding, c.rest().accept(this));
+                        } else {
+                            return new Cons<>(c.first(), c.rest().accept(this));
+                        }
+                    }
+
+
                     JamVal firstVal = c.first().value();
+
                     if (firstVal == null) {
                         Binding newBinding = new ValueBinding(c.first().var(),
                             evalVisitor.env().accept(new LookupVisitor(c.first().var())));
                         return new Cons<>(newBinding, c.rest().accept(this));
-//                        return new Cons<>(evalVisitor.env().accept(new LookupVisitor(c.first().var())));
                     } else {
                         return new Cons<>(c.first(), c.rest().accept(this));
                     }
@@ -394,18 +410,14 @@ class Interpreter {
 
     abstract static class CommonEvalPolicy implements EvalPolicy {
 
-        // TODO: modify for letrec?
         public JamVal letEval(Variable[] vars, AST[] exps, AST body, EvalVisitor evalVisitor) {
             /* let semantics */
-            System.out.println("Reaches let Eval");
             int n = vars.length;
 
             ArrayList<Variable> varList = new ArrayList<>();
 
-
             // construct newEnv for Let body; vars are bound to values of corresponding exps using evalVisitor
             PureList<Binding> newEnv = evalVisitor.env();
-            System.out.println("Reaches let Eval");
 
             // MIGHT NEED TO MOVE THIS OVER.
             for (int i = 0; i < n; i++) {
@@ -413,35 +425,14 @@ class Interpreter {
             }
             evalVisitor = evalVisitor.newVisitor(newEnv);
 
-
-//            for (int i = n-1; i >= 0; i--) {
             for (int i = 0; i < n; i++) {
                 if (varList.contains(vars[i])) {
                     throw new SyntaxException("Variable" + vars[i] + " declared more than once in let");
                 }
-
                 varList.add(vars[i]);
-
-
                 newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], exps[i]));
                 evalVisitor = evalVisitor.newVisitor(newEnv);
-
-//                String varsInEnv = newEnv.accept(new PureListVisitor<Binding, String>() {
-//                @Override
-//                public String forEmpty(Empty<Binding> e) {
-//                    return "";
-//                }
-//
-//                @Override
-//                public String forCons(Cons<Binding> c) {
-//                    return "" + c.first().var() + ":" + c.first().value() + " " + c.rest().accept(this);
-//                }
-//            });
-//
-//            System.out.println("Variables in Envionment " + varsInEnv);
             }
-
-//            EvalVisitor newEvalVisitor = evalVisitor.newVisitor(newEnv);
 
             return body.accept(evalVisitor);
         }
