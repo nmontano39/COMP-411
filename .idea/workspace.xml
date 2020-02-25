@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Assign3Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/3/src/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/src/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/3/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/3/README" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,13 +154,6 @@
       <workItem from="1580512679682" duration="32713000" />
       <workItem from="1581420450133" duration="757000" />
       <workItem from="1582161763789" duration="14194000" />
-    </task>
-    <task id="LOCAL-00001" summary="Junit works. Certain test pass.">
-      <created>1580090718590</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1580090718591</updated>
     </task>
     <task id="LOCAL-00002" summary="Junit works. Certain test pass.">
       <created>1580090794171</created>
@@ -500,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582600046475</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="writing README, all tests pass.">
+      <created>1582624151713</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1582624151713</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +543,8 @@
     <MESSAGE value="call by name cons works" />
     <MESSAGE value="TODO: letRec, callByNeed" />
     <MESSAGE value="TODO: letRec callByname" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO: letRec callByname" />
+    <MESSAGE value="writing README, all tests pass." />
+    <option name="LAST_COMMIT_MESSAGE" value="writing README, all tests pass." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -553,5 +552,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/COMP_411$Assign2Test.ic" NAME="Assign2Test Coverage Results" MODIFIED="1581413543057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/COMP_411$Assign3Test.ic" NAME="Assign3Test Coverage Results" MODIFIED="1582628131895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
