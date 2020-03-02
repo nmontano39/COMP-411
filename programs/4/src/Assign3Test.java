@@ -252,6 +252,41 @@ public class Assign3Test extends TestCase {
     }
   }
 
+  public void testRef2() {
+    try {
+      String output = "true";
+      String input = "ref?(ref 10)";
+      allCheck("+ as PrimFun", output, input);
+      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testBang0() {
+    try {
+      String output = "9";
+      String input = "let x := ref (map x to x * x)(3); in ! x";
+      allCheck("+ as PrimFun", output, input);
+      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testUnit0() {
+    try {
+      String output = "unit";
+      String input = "let x := let x := ref 9; in x <- ref 6; in x";
+      allCheck("+ as PrimFun", output, input);
+      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
 }
 
 
