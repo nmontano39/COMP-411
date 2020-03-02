@@ -180,6 +180,81 @@ public class Assign3Test extends TestCase {
         }
     }
 
+
+    public void testIn1() {
+        try {
+            String output = "6";
+            String input = "let Y    := map f to \n" +
+                    "              let g := map x to f(map z to (x(x))(z));\n" +
+                    "\t    in g(g);\n" +
+                    "    FACT := map f to \n" +
+                    "\t      map n to if n = 0 then 1 else n * f(n - 1);\n" +
+                    "in (Y(FACT))(3)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testIn2() {
+        try {
+            String output = "(1 2 3 1 2 3)";
+            String input = "let Y    := map f to \n" +
+                    "              let g := map x to f(map z1,z2 to (x(x))(z1,z2));\n" +
+                    "\t    in g(g);\n" +
+                    "    APPEND := map ap to \n" +
+                    "\t        map x,y to \n" +
+                    "                  if x = null then y else cons(first(x), ap(rest(x), y));\n" +
+                    "    l      := cons(1,cons(2,cons(3,null)));\t\n" +
+                    "in (Y(APPEND))(l,l)";
+            allCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testName1() {
+        try {
+            String output = "6";
+            String input = "let Y    := map f to \n" +
+                    "              let g := map x to f(x(x));\n" +
+                    "\t    in g(g);\n" +
+                    "    FACT := map f to \n" +
+                    "\t      map n to if n = 0 then 1 else n * f(n - 1);\n" +
+                    "in (Y(FACT))(3)";
+            noValueCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+    public void testName2() {
+        try {
+            String output = "(1 2 3 1 2 3)";
+            String input = "let Y    := map f to \n" +
+                    "              let g := map x to f(x(x));\n" +
+                    "\t    in g(g);\n" +
+                    "    APPEND := map ap to \n" +
+                    "\t        map x,y to \n" +
+                    "                  if x = null then y else cons(first(x), ap(rest(x), y));\n" +
+                    "    l      := cons(1,cons(2,cons(3,null)));\t\n" +
+                    "in (Y(APPEND))(l,l)";
+            noValueCheck("mathOp", output, input );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("mathOp threw " + e);
+        }
+    }
+
+
+
     public void testEvalException() {
         try {
             String output = "mojo";
@@ -215,6 +290,7 @@ public class Assign3Test extends TestCase {
             String output = "(1 2 3 1 2 3)";
             String input = "let append := map x,y to if x = null then y else cons(first(x), append(rest(x), y)); l := cons(1,cons(2,cons(3,null))); in append(l,l)";
             noNeedCheck("letRec", output, input );
+//            allCheck("letRec", output, input );
 
         } catch (Exception e) {
             e.printStackTrace();

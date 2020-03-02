@@ -117,10 +117,12 @@ class Interpreter {
             susCons = sCons;
         }
 
+        // return first element as JamVal
         public JamVal first() {
             return sus.exp().accept(sus.ev());
         }
 
+        // return other elements as JamList
         public JamList rest() {
             return susCons.accept(new PureListVisitor<Suspension, JamList>() {
                 @Override
@@ -140,15 +142,14 @@ class Interpreter {
         }
 
         public String toString() {
-            return "(" + sus.eval() + rest().toStringHelp() + ")";
+            return "(" + first() + rest().toStringHelp() + ")";
         }
 
         public String toStringHelp() {
-            return " " + sus.eval() + rest().toStringHelp();
+            return " " + first() + rest().toStringHelp();
         }
     }
 
-    // TODO: NeedCons
     /** Class representing cons by need convention */
     static class NeedCons extends JamCons {
         Suspension sus;
@@ -164,14 +165,18 @@ class Interpreter {
             susCons = sCons;
         }
 
+        // return first element as JamVal
         public JamVal first() {
+            // if it hasnt been evaluated yet
             if (firstVal == null) {
                 firstVal = sus.exp().accept(sus.ev());
             }
             return firstVal;
         }
 
+        // return other elements as JamList
         public JamList rest() {
+            // if it hasnt been evaluated yet
             if (restVal == null) {
                 restVal = susCons.accept(new PureListVisitor<Suspension, JamList>() {
                     @Override
@@ -194,11 +199,11 @@ class Interpreter {
         }
 
         public String toString() {
-            return "(" + sus.eval() + rest().toStringHelp() + ")";
+            return "(" + first() + rest().toStringHelp() + ")";
         }
 
         public String toStringHelp() {
-            return " " + sus.eval() + rest().toStringHelp();
+            return " " + first() + rest().toStringHelp();
         }
     }
 
@@ -236,7 +241,7 @@ class Interpreter {
         BinOpVisitor<JamVal> newBinOpVisitor(AST arg1, AST arg2, EvalVisitor ev);
 
         /** Constructs a JamFunVisitor with the specified array of unevaluated arguments and EvalVisitor */
-        JamFunVisitor<JamVal> newFunVisitor(AST args[], EvalVisitor ev);
+        JamFunVisitor<JamVal> newFunVisitor(AST[] args, EvalVisitor ev);
 
         /** Constructs the appropriate binding object for this, binding var to ast in the evaluator ev */
         Binding newBinding(Variable var, AST ast, EvalVisitor ev);
@@ -251,7 +256,7 @@ class Interpreter {
          * * The only objects used as boolean values are BoolConstant.TRUE and BoolConstant.FALSE.
          * Hence,  == can be used to compare Variable objects, OpTokens, and BoolConstants. */
 
-        PureList<Binding> env;  // the embdedded environment
+        PureList<Binding> env;  // the embedded environment
         EvalPolicy evalPolicy;  // the embedded EvalPolicy
         String consConv;        // cons convention
 
@@ -355,6 +360,7 @@ class Interpreter {
 //            System.out.println("Gets to Jam Closure");
             Map map = closure.body();
 
+            // check number of args
             int n = args.length;
             Variable[] vars = map.vars();
             if (vars.length != n)
@@ -371,37 +377,40 @@ class Interpreter {
                 @Override
                 public PureList<Binding> forCons(Cons<Binding> c) {
 
+                    // for call by need
                     if (c.first() instanceof NeedBinding) {
+                        // get binding and suspension
                         NeedBinding needBinding = (NeedBinding) c.first();
                         Suspension s = needBinding.susp;
-                        if (s != null && s.exp() == null) {
 
-                            Suspension susVal = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
+                        // if suspension not null and it is undefined
+                        if (s != null && s.exp() == null) {
+                            // get suspension
+                            Suspension sus = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
                                 @Override
                                 public Suspension forEmpty(Empty<Binding> e) {
+                                    // return undefined Suspension
                                     return new Suspension(null, evalVisitor);
-                                    //throw new SyntaxException("shoulf fail here");
                                 }
 
                                 @Override
                                 public Suspension forCons(Cons<Binding> c2) {
-                                    Binding b = c2.first();
-                                    if (b instanceof NameBinding) {
-                                        Suspension x = ((NameBinding) b).susp;
-                                        if (needBinding.var() == b.var()) return x;
+                                    // get NameBinding and return its Suspension
+                                    if (c2.first() instanceof NameBinding) {
+                                        NameBinding b = (NameBinding) c2.first();
+                                        if (needBinding.var() == b.var() && b.susp != null) return b.susp;
                                     }
-
                                     return c2.rest().accept(this);
                                 }
                             });
 
 
                             Binding myBinding;
-                            if (susVal == null) {
-                                JamVal newVal = evalVisitor.env().accept(new LookupVisitor(needBinding.var()));
-                                myBinding = new ValueBinding(needBinding.var(), newVal);
+                            if (sus.exp() != null) {
+                                JamVal newVal = evalVisitor.env().accept(new LookupVisitor(c.first().var()));
+                                myBinding = new ValueBinding(c.first().var(), newVal);
                             } else {
-                                myBinding = new NeedBinding(c.first().var(), susVal);
+                                myBinding = new NeedBinding(c.first().var(), sus);
                             }
 
                             return new Cons<>(myBinding, c.rest().accept(this));
@@ -410,45 +419,55 @@ class Interpreter {
                         }
                     }
 
+                    // for call by name
                     if (c.first() instanceof NameBinding) {
+                        // get NameBinding and its Suspension
                         NameBinding nameBinding = (NameBinding) c.first();
                         Suspension s = nameBinding.susp;
-                        if (s != null && s.exp() == null) {
+                        // if suspension is undefined
+                        if (s.exp() == null) {
 
-                            Suspension susVal = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
+                            // get the suspension
+                            Suspension sus = evalVisitor.env().accept(new PureListVisitor<Binding, Suspension>() {
                                 @Override
                                 public Suspension forEmpty(Empty<Binding> e) {
+                                    // return undefined Suspension
                                     return new Suspension(null, evalVisitor);
-                                    //throw new SyntaxException("shoulf fail here");
                                 }
 
                                 @Override
-                                public Suspension forCons(Cons<Binding> c) {
-                                    Binding b = c.first();
-                                    if (nameBinding.var() == b.var()) return ((NameBinding) b).susp;
-                                    return c.rest().accept(this);
+                                public Suspension forCons(Cons<Binding> c2) {
+                                    // get NameBinding and return its Suspension
+                                    if (c2.first() instanceof NameBinding) {
+                                        NameBinding b = (NameBinding) c2.first();
+                                        if (nameBinding.var() == b.var()) return b.susp;
+                                    }
+                                    return c2.rest().accept(this);
                                 }
                             });
-                            Binding newBinding = new NameBinding(c.first().var(), susVal);
+                            // make new NameBinding mapping var to sus
+                            Binding newBinding = new NameBinding(c.first().var(), sus);
+                            // add this binding to the environment
                             return new Cons<>(newBinding, c.rest().accept(this));
                         } else {
                             return new Cons<>(c.first(), c.rest().accept(this));
                         }
                     }
 
-
+                    // for call by value
                     JamVal firstVal = c.first().value();
 
                     if (firstVal == null) {
+                        // make new ValueBinding mapping undefined var to JamVal returned by LookUpVisitor
                         Binding newBinding = new ValueBinding(c.first().var(),
                             evalVisitor.env().accept(new LookupVisitor(c.first().var())));
+                        // add this binding to the environment
                         return new Cons<>(newBinding, c.rest().accept(this));
                     } else {
                         return new Cons<>(c.first(), c.rest().accept(this));
                     }
                 }
             });
-
 
 
             for (int i = n-1; i >= 0; i--) {
@@ -466,6 +485,7 @@ class Interpreter {
 
     abstract static class CommonEvalPolicy implements EvalPolicy {
 
+        // recursive let
         public JamVal letEval(Variable[] vars, AST[] exps, AST body, EvalVisitor evalVisitor) {
             /* let semantics */
             int n = vars.length;
@@ -475,12 +495,14 @@ class Interpreter {
             // construct newEnv for Let body; vars are bound to values of corresponding exps using evalVisitor
             PureList<Binding> newEnv = evalVisitor.env();
 
-            // MIGHT NEED TO MOVE THIS OVER.
-            for (int i = 0; i < n; i++) {
-                newEnv = newEnv.cons(evalVisitor.newBinding(vars[i], null));
+            // loop through each var and add add a binding mapping it to null in the env
+            for (Variable var : vars) {
+                newEnv = newEnv.cons(evalVisitor.newBinding(var, null));
             }
+            // update the environment
             evalVisitor = evalVisitor.newVisitor(newEnv);
 
+            // loop through each var and add its binding to corresponding exp in the env
             for (int i = 0; i < n; i++) {
                 if (varList.contains(vars[i])) {
                     throw new SyntaxException("Variable" + vars[i] + " declared more than once in let");
@@ -490,6 +512,7 @@ class Interpreter {
                 evalVisitor = evalVisitor.newVisitor(newEnv);
             }
 
+            // evaluate the body
             return body.accept(evalVisitor);
         }
 
@@ -683,7 +706,9 @@ class Interpreter {
 
                     // cons by name
                     if (evalVisitor.consConv().equals("name")) {
+                        // put env into suspension
                         ((NameCons) val).sus.putEv(evalVisitor);
+                        // evaluate and return the suspension
                         Suspension susConsElement =
                             ((NameCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
                                 public Suspension forEmpty(Empty<Suspension> e) { return null; }
@@ -695,7 +720,9 @@ class Interpreter {
 
                     // cons by need
                     if (evalVisitor.consConv().equals("need")) {
+                        // put env into suspension
                         ((NeedCons) val).sus.putEv(evalVisitor);
+                        // evaluate return the suspension
                         Suspension susConsElement =
                                 ((NeedCons) val).susCons.accept(new PureListVisitor<Suspension, Suspension>() {
                                     public Suspension forEmpty(Empty<Suspension> e) { return null; }
@@ -744,29 +771,33 @@ class Interpreter {
 
             public JamVal forConsPrim() {
 
+                // cons by Name
                 if (evalVisitor.consConv().equals("name")) {
                     if (args.length != 2) {
                         return primFunError("cons");
                     } else {
-//                        System.out.println("This gets where I want it to get");
                         // get first and second Suspension from args[0] and args[1]
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
-
+                        // return a new NameCons
                         return new NameCons(sus, new Cons<>(sus2, new Empty<>()));
                     }
                 }
 
+                // cons by Need
                 if (evalVisitor.consConv().equals("need")) {
                     if (args.length != 2) {
                         return primFunError("cons");
                     } else {
+                        // get first and second Suspension from args[0] and args[1]
                         Suspension sus = new Suspension(args[0], evalVisitor);
                         Suspension sus2 = new Suspension(args[1], evalVisitor);
+                        // return a new NeedCons
                         return new NeedCons(sus, new Cons<>(sus2, new Empty<>()));
                     }
                 }
 
+                // cons by Value
                 JamVal[] vals = evalArgs();
                 if (vals.length != 2) return primFunError("cons");
                 if (vals[1] instanceof JamList) return new JamCons(vals[0], (JamList) vals[1]);
@@ -783,7 +814,6 @@ class Interpreter {
 
 
             public JamVal forFirstPrim() {
-//                System.out.println("Do we get here?");
                 if (evalVisitor.consConv().equals("name")){
                     return ((NameCons) evalJamConsArg(args[0], "first")).first();
                 }
@@ -791,10 +821,9 @@ class Interpreter {
                     return ((NeedCons) evalJamConsArg(args[0], "first")).first();
                 }
                 return evalJamConsArg(args[0], "first").first();
-
             }
-            public JamVal forRestPrim() {
 
+            public JamVal forRestPrim() {
                 if (evalVisitor.consConv().equals("name")){
                     return ((NameCons) evalJamConsArg(args[0], "rest")).rest();
                 }
@@ -802,7 +831,6 @@ class Interpreter {
                     return ((NeedCons) evalJamConsArg(args[0], "rest")).rest();
                 }
                 return evalJamConsArg(args[0], "rest").rest();
-
             }
 
             /** Visitor class that implements the Jam arity method. */

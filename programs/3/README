@@ -3,10 +3,42 @@ sec14
 
 # Program Organization
 
---
+Context Sensitive Checking:
+
+There are two cases in which we throw a Syntax Exception: there is a free variable or
+a variable is declared more than once. In the case of a free variable, our Interpreter
+handles this in the LookUpVisitor. When LookUpVisitor is called, it is given a variable
+to evaluate by traversing through the environment which is represented as a List of Bindings.
+If LookUpVisitor cannot find the given variable, we throw a SyntaxException. In the case
+of a variable declared more than once, our Interpreter handles this in its letEval method.
+When letEval is called, it loops through an array of variables and adds it to the
+environment. If a variable already exists in the environment, we throw a SyntaxException.
+
+
+Lazy Cons:
+
+In order to implement lazy cons evaluation, we chose to pass a field consConv which is
+accessible throughout each evalVisitor. For cons-by-value we simply use JamCons but for
+cons-by-name and cons-by-need, we created NameCons and NeedCons classes that extend JamCons.
+The field consConv is used to specify which Cons to use in the methods forConsPrim, forFirstPrim,
+forRestPrim, and evalJamConsArg. The constructor for NameCons is given a Suspension and a List
+of Suspensions, but these Suspensions are only evaluated when its first or rest method is called.
+NeedCons functions the same way except its first and rest methods only evaluate a variable once
+and caches them.
+
+
+
+Recursive Let:
+
+We implemented recursive let by modifying the letEval method. Each time a let is given variables
+to add to the environment, it binds them as undefined before evaluating them. For call-by-value it
+binds each variable to null, and for call-by-name and call-by-need it binds each variable to a
+suspension with no arguments. When our Interpreter attempts to evaluate a closure, it recursively
+updates each of these bindings in the environment.
 
 
 
 # Testing Processes
 
---
+We decided to use the provided test cases along with some simple tests of our own. Our Interpreter
+class passes all of our tests with 74% line coverage.
