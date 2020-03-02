@@ -30,7 +30,7 @@ public class Assign1Test extends TestCase {
       fail("Critical error: IOException caught while reading input file");
     }
   }
-  
+
   
   public void testAdd() {
     try {
