@@ -4,6 +4,7 @@
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Assign3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Interp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign3Test">
+  <component name="RunManager" selected="JUnit.Assign3Test.testBlock1">
     <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -83,11 +84,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign3Test.testIn2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign3Test.testBlock1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testIn2" />
+      <option name="METHOD_NAME" value="testBlock1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,18 +126,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign3Test" />
-      <item itemvalue="JUnit.Assign3Test.testIn2" />
       <item itemvalue="JUnit.Assign3Test.testName1" />
       <item itemvalue="JUnit.Assign3Test.testName2" />
       <item itemvalue="JUnit.Assign3Test.testRef0" />
+      <item itemvalue="JUnit.Assign3Test.testBlock1" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign3Test.testBlock1" />
         <item itemvalue="JUnit.Assign3Test" />
         <item itemvalue="JUnit.Assign3Test.testRef0" />
         <item itemvalue="JUnit.Assign3Test.testName2" />
         <item itemvalue="JUnit.Assign3Test.testName1" />
-        <item itemvalue="JUnit.Assign3Test.testIn2" />
       </list>
     </recent_temporary>
   </component>
@@ -154,14 +155,7 @@
       <workItem from="1580512679682" duration="32713000" />
       <workItem from="1581420450133" duration="757000" />
       <workItem from="1582161763789" duration="14194000" />
-      <workItem from="1583109358064" duration="1977000" />
-    </task>
-    <task id="LOCAL-00005" summary="added assign2test and interpreter">
-      <created>1580512991097</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1580512991097</updated>
+      <workItem from="1583109358064" duration="2937000" />
     </task>
     <task id="LOCAL-00006" summary="added assign2test and interpreter">
       <created>1580513080809</created>
@@ -499,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583109862155</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="added some test cases">
+      <created>1583111533669</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1583111533669</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,7 +523,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Junit works. Certain test pass." />
     <MESSAGE value="Done some more debugging on IDList and Let" />
     <MESSAGE value="A1 submission." />
     <MESSAGE value="added assign2test and interpreter" />
@@ -547,7 +547,8 @@
     <MESSAGE value="writing README, all tests pass." />
     <MESSAGE value="done." />
     <MESSAGE value="added testRef" />
-    <option name="LAST_COMMIT_MESSAGE" value="added testRef" />
+    <MESSAGE value="added some test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some test cases" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

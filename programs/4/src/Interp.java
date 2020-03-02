@@ -2,6 +2,18 @@
  * The binding policy is either: call-by-value, call-by-name, or call-by-need.
  * The cons evaluation policy is either: call-by-value (eager), call-by-name (redundant lazy), or
  * call-by-need (efficient lazy).
+ *
+ *
+ * TODO: ref? check for ref
+ * TODO: ref is reference like pointer to box
+ * TODO: ! gets the value for a box
+ * TODO: <- set ref to any value
+ *
+ * TODO: Unit extends JamVal
+ * TODO: JamBox extends JamVal
+ *
+ * TODO: Block (like let, map, or if)
+ *
  */
 
 import java.io.IOException;
