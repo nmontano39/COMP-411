@@ -50,8 +50,8 @@ interface UnOpVisitor<ResType> {
   ResType forUnOpPlus(UnOpPlus op);
   ResType forUnOpMinus(UnOpMinus op);
   ResType forOpTilde(OpTilde op);
-  // ResType forOpBang(OpBang op);  // Supports ref cell extension to Jam
-  // ResType forOpRef(OpRef op);    // Supports ref cell extension to Jam
+   ResType forOpBang(OpBang op);  // Supports ref cell extension to Jam
+   ResType forOpRef(OpRef op);    // Supports ref cell extension to Jam
 }
 
 /** BinOp ::= BinOpPlus | BinOpMinus | OpTimes | OpDivide | OpEquals | OpNotEquals | OpLessThan | OpGreaterThan |
@@ -106,7 +106,7 @@ class OpTilde extends UnOp {
   }
 }
 
-/*  Supports ref cell extension to Jam
+//  Supports ref cell extension to Jam
   class OpBang extends UnOp {
   public static final OpBang ONLY = new OpBang();
   private OpBang() { super("!"); }
@@ -122,7 +122,7 @@ class OpRef extends UnOp {
     return v.forOpRef(this); 
   }
 }
-*/
+
 
 class BinOpPlus extends BinOp {
   public static final BinOpPlus ONLY = new BinOpPlus();

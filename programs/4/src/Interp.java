@@ -496,10 +496,17 @@ class Evaluator implements EvalVisitor {
       throw new EvalException("Unary operator `" + op + "' applied to non-boolean " + val);
     }
 
+    private JamVal checkReference(UnOp op) {
+        if (val instanceof JamBox) return ((JamBox) val).getValue();
+        throw new EvalException("Unary operator `" + op + "' applied to non-reference (box) " + val);
+    }
+
     /* Visitor methods */
     public JamVal forUnOpPlus(UnOpPlus op) { return checkInteger(op); }
     public JamVal forUnOpMinus(UnOpMinus op) { return new IntConstant(-checkInteger(op).value()); }
     public JamVal forOpTilde(OpTilde op) { return checkBoolean(op).not(); }
+    public JamVal forOpBang(OpBang op) {return checkReference(op);}
+    public JamVal forOpRef(OpRef op) {return new JamBox(val);}
   }
 
   /** Evaluator for binary operators. */

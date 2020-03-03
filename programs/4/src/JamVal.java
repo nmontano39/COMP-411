@@ -363,18 +363,18 @@ class RestPrim extends PrimFun {
 
 class JamBox implements JamVal {
 
-  JamVal ref;
+  JamVal value;
 
   public JamBox(JamVal val) {
-    this.ref = val;
+    this.value = val;
   }
 
-  public JamVal getRef() {
-    return ref;
+  public JamVal getValue() {
+    return value;
   }
 
-  public void setRef(JamVal newVal) {
-    this.ref = newVal;
+  public void setValue(JamVal newVal) {
+    this.value = newVal;
   }
 
 

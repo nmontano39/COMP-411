@@ -42,9 +42,9 @@ class Lexer extends StreamTokenizer {
   public static final OpToken OR = OpToken.newBinOpToken(OpOr.ONLY);
   
   /* Used to support reference cells. */
-//  public static final OpToken BANG = OpToken.newUnOpToken(OpBang.ONLY);
+  public static final OpToken BANG = OpToken.newUnOpToken(OpBang.ONLY);
 //  public static final OpToken GETS = OpToken.newBinOpToken(OpGets.ONLY);
-//  public static final OpToken REF = OpToken.newUnOpToken(OpRef.ONLY);
+  public static final OpToken REF = OpToken.newUnOpToken(OpRef.ONLY);
   
   /* Keywords */
 
@@ -198,11 +198,11 @@ class Lexer extends StreamTokenizer {
       case '!':
         tokenType = getToken();
         if (tokenType == '=') return NOT_EQUALS;
-        throw new
-          ParseException("`" + ((char) tokenType) + "' is not a legal token");
+//        throw new
+//          ParseException("`" + ((char) tokenType) + "' is not a legal token");
         // Support the addition of ref cells to Java (remove preceding statement)
-        // pushBack();
-        // return BANG;
+         pushBack();
+         return BANG;
       case '&': return AND;
       case '|': return OR;
       case ':': {
@@ -263,6 +263,7 @@ class Lexer extends StreamTokenizer {
     wordTable.put("in",   Lexer.IN);
     wordTable.put("map",  Lexer.MAP);
     wordTable.put("to",   Lexer.TO);
+    wordTable.put("ref",  Lexer.REF);
   }
 
   public static void main(String[] args) throws IOException {
