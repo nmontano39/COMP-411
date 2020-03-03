@@ -292,7 +292,7 @@ interface PrimFunVisitor<ResType> {
   ResType forConsPPrim();
   ResType forNullPPrim();
 //  /* Supports addition of ref cells to Jam *;/
-//  ResType forRefPPrim();
+  ResType forRefPPrim();
   
   ResType forArityPrim();
   ResType forConsPrim();
@@ -333,11 +333,11 @@ class NullPPrim extends PrimFun {
   public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forNullPPrim(); }
 }
 ///* Supports the addition of ref to Jam. */
-//class RefPPrim extends PrimFun {
-//  public static final RefPPrim ONLY = new RefPPrim();
-//  private RefPPrim() { super("ref?"); }
-//  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forNullPPrim(); }
-//}
+class RefPPrim extends PrimFun {
+  public static final RefPPrim ONLY = new RefPPrim();
+  private RefPPrim() { super("ref?"); }
+  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forRefPPrim(); }
+}
 
 class ArityPrim extends PrimFun {
   public static final ArityPrim ONLY = new ArityPrim();

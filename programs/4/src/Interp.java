@@ -450,6 +450,12 @@ class Evaluator implements EvalVisitor {
         return BoolConstant.toBoolConstant(vals[0] instanceof JamEmpty);
       }
 
+      public JamVal forRefPPrim() {
+        JamVal[] vals = evalArgs();
+        if (vals.length != 1) primFunError("ref?");
+        return BoolConstant.toBoolConstant(vals[0] instanceof JamBox);
+      }
+
       public JamVal forConsPrim() {
         if (args.length != 2) primFunError("cons");
         return consPolicy.evalCons(args, Evaluator.this);   // Evaluation strategy determined by consEp

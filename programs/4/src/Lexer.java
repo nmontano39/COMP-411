@@ -248,7 +248,7 @@ class Lexer extends StreamTokenizer {
     wordTable.put("null?",     NullPPrim.ONLY);
     wordTable.put("cons?",     ConsPPrim.ONLY);
 //    /* Supports addition of ref cells to Jam *;/
-//     wordTable.put("ref?",      RefPPrim.ONLY);
+     wordTable.put("ref?",      RefPPrim.ONLY);
 
     wordTable.put("arity",     ArityPrim.ONLY);
     wordTable.put("cons",      ConsPrim.ONLY);
