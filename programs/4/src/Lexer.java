@@ -173,8 +173,8 @@ class Lexer extends StreamTokenizer {
       case ')': return RightParen.ONLY;
       case '[': return LeftBrack.ONLY;
       case ']': return RightBrack.ONLY;
-      // case '{': return LeftBrace.ONLY;   // Supports the addition of blocks to Jam
-      // case '}': return RightBrace.ONLY;  // Supports the addition of blocks to Jam
+      case '{': return LeftBrace.ONLY;   // Supports the addition of blocks to Jam
+      case '}': return RightBrace.ONLY;  // Supports the addition of blocks to Jam
       case ',': return Comma.ONLY;
       case ';': return SemiColon.ONLY;
 

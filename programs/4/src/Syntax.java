@@ -86,13 +86,15 @@ class CheckVisitor implements ASTVisitor<Void> {
     l.body().accept(newVisitor); // may throw a SyntaxException
     return null;
   }
-  
-//  public Void forBlock(Block b) {
-//    AST[] exps =  b.exps();
-//    int n = exps.length;
-//    for (int i = 0; i < n; i++) exps[i].accept(this);  // may throw a SyntaxException
-//    return null;
-//  }
+
+  // TODO: PROVIDED
+  /*  Supports the addition of blocks to Jam */
+  public Void forBlock(Block b) {
+    AST[] exps =  b.exps();
+    int n = exps.length;
+    for (int i = 0; i < n; i++) exps[i].accept(this);  // may throw a SyntaxException
+    return null;
+  }
 }
 
 /** Singleton visitor that checks for duplicate variables in a symbol table. Returns normally unless an error is found.

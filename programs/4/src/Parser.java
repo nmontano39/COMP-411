@@ -53,7 +53,8 @@ class Parser {
     *            | let <prop-def-list> in <exp>
     *            | map <id-list> to <exp>
     *            | <term> { <biop> <term> }*  // (left associatively!)
-    */
+   * @return
+   */
   private AST parseExp() {
     Token token = in.readToken();
     
@@ -61,14 +62,15 @@ class Parser {
 //    if (token == Lexer.LETREC) return parseLetRec();  // supports addition of letrec
     if (token == Lexer.LET) return parseLet();
     if (token == Lexer.MAP) return parseMap();
-    
+
+    // TODO: PROVIDED
     /*  Supports the addition of blocks to Jam */
-//    if (token == LeftBrace.ONLY) {
-//      AST[] exps = parseExps(SemiColon.ONLY,RightBrace.ONLY);  
-//      // including closing brace
-//      if (exps.length == 0) throw new ParseException("Illegal empty block");
-//      return new Block(exps);
-//    }
+    if (token == LeftBrace.ONLY) {
+      AST[] exps = parseExps(SemiColon.ONLY,RightBrace.ONLY);
+      // including closing brace
+      if (exps.length == 0) throw new ParseException("Illegal empty block");
+      return new Block(exps);
+    }
     
     /* Note: the code for the class Block is not included in AST.java */
     

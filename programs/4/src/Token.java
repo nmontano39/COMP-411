@@ -104,17 +104,17 @@ class RightBrack implements Token {
 }
 
 /* Supports the addition of blocks to Jam */
-//class LeftBrace implements Token {
-//  public String toString() { return "{"; }
-//  private LeftBrace() {}
-//  public static final LeftBrace ONLY = new LeftBrace();
-//}
-//
-//class RightBrace implements Token {
-//  public String toString() { return "}"; }
-//  private RightBrace() {}
-//  public static final RightBrace ONLY = new RightBrace();
-//}
+class LeftBrace implements Token {
+  public String toString() { return "{"; }
+  private LeftBrace() {}
+  public static final LeftBrace ONLY = new LeftBrace();
+}
+
+class RightBrace implements Token {
+  public String toString() { return "}"; }
+  private RightBrace() {}
+  public static final RightBrace ONLY = new RightBrace();
+}
 
 class Comma implements Token {
   public String toString() { return ","; }

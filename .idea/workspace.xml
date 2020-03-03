@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/AST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Interp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/src/Syntax.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Syntax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Token.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign3Test">
+  <component name="RunManager" selected="JUnit.Assign3Test,testBlock0 and 3 more">
     <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -84,21 +88,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign3Test,testBlock0 and 3 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="Assign3Test,testBlock0" />
+        <pattern testClass="Assign3Test,testBlock1" />
+        <pattern testClass="Assign3Test,testBlock2" />
+        <pattern testClass="Assign3Test,testBlock3" />
+      </patterns>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Assign3Test.testBlock1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign3Test" />
       <option name="METHOD_NAME" value="testBlock1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign3Test.testRef0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testRef0" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -126,18 +135,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign3Test" />
-      <item itemvalue="JUnit.Assign3Test.testRef0" />
       <item itemvalue="JUnit.Assign3Test.testBlock1" />
       <item itemvalue="JUnit.Assign3Test.testRef3" />
       <item itemvalue="JUnit.Assign3Test.testRef2" />
+      <item itemvalue="JUnit.Assign3Test,testBlock0 and 3 more" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign3Test,testBlock0 and 3 more" />
         <item itemvalue="JUnit.Assign3Test" />
         <item itemvalue="JUnit.Assign3Test.testRef2" />
         <item itemvalue="JUnit.Assign3Test.testRef3" />
         <item itemvalue="JUnit.Assign3Test.testBlock1" />
-        <item itemvalue="JUnit.Assign3Test.testRef0" />
       </list>
     </recent_temporary>
   </component>

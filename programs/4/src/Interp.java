@@ -5,9 +5,9 @@
  *
  *
  * TODO: <- set ref to any value
- *
  * TODO: Unit extends JamVal
- * TODO: JamBox extends JamVal
+ *
+ * TODO: JamBox extends JamVal - toString
  *
  * TODO: Block (like let, map, or if)
  *
@@ -360,6 +360,20 @@ class Evaluator implements EvalVisitor {
       bindings[i].setBinding(exps[i], newEV);  // modifies newEnv and newEvalVisitor
     }
     return l.body().accept(newEV);
+  }
+
+  // TODO
+  public JamVal forBlock(Block b) {
+
+    System.out.println(b.toString());
+    return null;
+
+//    AST[] exps = b.exps();
+//    int n = exps.length;
+//    for(int i = 0; i < n; i++) {
+//      exps[i].accept(this);
+//    }
+//    return ;
   }
 
   /* Inner classes */

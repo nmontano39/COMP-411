@@ -22,6 +22,8 @@ interface ASTVisitor<ResType> {
   ResType forMap(Map m);
   ResType forIf(If i);
   ResType forLet(Let l);
+
+  ResType forBlock(Block b);
 }
 
 /* The Term interface correspond to AST's that when output as concrete syntax by toString() can be used as terms 
@@ -335,6 +337,22 @@ class Let implements AST {
     return exps;
   }
 }  
+
+// TODO
+class Block implements AST{
+  private AST[] exps;
+  Block(AST[] e) { exps = e; }
+
+  public <ResType> ResType accept(ASTVisitor<ResType> v) { return v.forBlock(this); }
+
+  public AST[] exps() {
+    return exps;
+  }
+
+  public String toString() {
+    return "{ " + ToString.toString(exps, "; ") + " }";
+  }
+}
 
 /** Def class representing a definition embedded inside a Let. */
 class Def {
