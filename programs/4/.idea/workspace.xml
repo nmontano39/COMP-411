@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interp.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -38,14 +39,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="511" />
-          <entry key="txt" value="122" />
+          <entry key="java" value="572" />
+          <entry key="txt" value="200" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="511" />
-          <entry key="PLAIN_TEXT" value="122" />
+          <entry key="JAVA" value="572" />
+          <entry key="PLAIN_TEXT" value="200" />
         </counts>
       </usages-collector>
     </session>
@@ -61,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign3Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-652">
-              <caret line="245" column="60" selection-start-line="245" selection-start-column="60" selection-end-line="245" selection-end-column="60" />
+            <state relative-caret-position="56">
+              <caret line="293" column="62" selection-start-line="293" selection-start-column="62" selection-end-line="293" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -106,11 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3215">
-              <caret line="607" column="17" selection-start-line="607" selection-start-column="17" selection-end-line="607" selection-end-column="17" />
+            <state relative-caret-position="230">
+              <caret line="603" column="68" selection-start-line="603" selection-start-column="68" selection-end-line="603" selection-end-column="68" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -296,7 +297,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583205213101" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583205334211" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Spring2019Acads/322/Homework" />
   </component>
   <component name="RunDashboard">
@@ -375,22 +376,17 @@
       <option name="project" value="LOCAL" />
       <updated>1583203826440</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Got gets (&lt;-) to work for the most part. Need to implement unit.">
+      <created>1583205272921</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583205272921</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign3Test_testRef1 - 2020.03.02 at 20h 37m 48s.xml">
-      <configuration name="Assign3Test.testRef1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testRef1 - 2020.03.02 at 20h 43m 40s.xml">
-      <configuration name="Assign3Test.testRef1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testRef1 - 2020.03.02 at 20h 46m 03s.xml">
-      <configuration name="Assign3Test.testRef1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testRef1 - 2020.03.02 at 20h 46m 51s.xml">
-      <configuration name="Assign3Test.testRef1" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign3Test_testRef1 - 2020.03.02 at 20h 46m 59s.xml">
       <configuration name="Assign3Test.testRef1" configurationId="JUnit" />
     </history-entry>
@@ -409,6 +405,18 @@
     <history-entry file="Assign3Test_testRef1 - 2020.03.02 at 20h 48m 51s.xml">
       <configuration name="Assign3Test.testRef1" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Assign3Test_testUnit0 - 2020.03.02 at 21h 11m 49s.xml">
+      <configuration name="Assign3Test.testUnit0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test_testUnit0 - 2020.03.02 at 21h 12m 10s.xml">
+      <configuration name="Assign3Test.testUnit0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test_testUnit0 - 2020.03.02 at 21h 13m 11s.xml">
+      <configuration name="Assign3Test.testUnit0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test_testUnit0 - 2020.03.02 at 21h 13m 34s.xml">
+      <configuration name="Assign3Test.testUnit0" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
@@ -423,7 +431,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32896176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -450,7 +458,8 @@
     <MESSAGE value="Add a JamBox class to the JamVals files." />
     <MESSAGE value="Basic functionality of Ref works." />
     <MESSAGE value="Updated a test to reflect its original." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated a test to reflect its original." />
+    <MESSAGE value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Assign1Test.java">
@@ -494,19 +503,6 @@
             <element signature="e#13875#13876#0" expanded="true" />
             <element signature="e#13914#13915#0" expanded="true" />
             <element signature="e#13941#13942#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3215">
-          <caret line="607" column="17" selection-start-line="607" selection-start-column="17" selection-end-line="607" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#11642#11643#0" expanded="true" />
-            <element signature="e#11704#11705#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -558,8 +554,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign3Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-652">
-          <caret line="245" column="60" selection-start-line="245" selection-start-column="60" selection-end-line="245" selection-end-column="60" />
+        <state relative-caret-position="56">
+          <caret line="293" column="62" selection-start-line="293" selection-start-column="62" selection-end-line="293" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="603" column="68" selection-start-line="603" selection-start-column="68" selection-end-line="603" selection-end-column="68" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#11642#11643#0" expanded="true" />
+            <element signature="e#11704#11705#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

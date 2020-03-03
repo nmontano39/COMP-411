@@ -601,7 +601,7 @@ class Evaluator implements EvalVisitor {
 
     @Override
     public JamVal forOpGets(OpGets op) {
-      System.out.println("Found <-");
+      System.out.println("IN FOR OP GETS. CHANGE THIS TO RETURN UNIT");
       JamBox left = evalRefArg(arg1, op);
       JamVal right = arg2.accept(Evaluator.this);
       left.setValue(right);
