@@ -291,7 +291,7 @@ public class Assign3Test extends TestCase {
   public void testUnit0() {
     try {
       String output = "unit";
-      String input = "let x := let x := ref 9; in x <- ref 6; in x";
+      String input = "let x := let x := ref 9; in x <- 6; in !x";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
@@ -299,6 +299,7 @@ public class Assign3Test extends TestCase {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
     }
   }
+
 
   public void testBlock0() {
     try {

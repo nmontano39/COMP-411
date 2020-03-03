@@ -536,6 +536,12 @@ class Evaluator implements EvalVisitor {
       throw new EvalException("Binary operator `" + b + "' applied to non-boolean " + val);
     }
 
+    private JamBox evalRefArg(AST arg, BinOp b) {
+        JamVal val = arg.accept(Evaluator.this);
+        if (val instanceof JamBox) return (JamBox) val;
+        throw new EvalException("Binary operator `" + b + "' applied to non-reference (box) " + val);
+    }
+
     /* Visitor methods */
     public JamVal forBinOpPlus(BinOpPlus op) {
       return new IntConstant(evalIntegerArg(arg1, op).value() + evalIntegerArg(arg2, op).value());
@@ -596,7 +602,10 @@ class Evaluator implements EvalVisitor {
     @Override
     public JamVal forOpGets(OpGets op) {
       System.out.println("Found <-");
-      return null;
+      JamBox left = evalRefArg(arg1, op);
+      JamVal right = arg2.accept(Evaluator.this);
+      left.setValue(right);
+      return left;
     }
   }
 }
