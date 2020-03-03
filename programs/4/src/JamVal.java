@@ -13,6 +13,7 @@ interface JamValVisitor<ResType> {
   ResType forBoolConstant(BoolConstant jb);
   ResType forJamList(JamList jl);
   ResType forJamFun(JamFun jf);
+  ResType forJamBox(JamBox jb);
 }
 
 /* JamVal classes */
@@ -357,4 +358,28 @@ class RestPrim extends PrimFun {
   public static final RestPrim ONLY = new RestPrim();
   private RestPrim() { super("rest"); }
   public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forRestPrim(); }
+}
+
+
+class JamBox implements JamVal {
+
+  JamVal ref;
+
+  public JamBox(JamVal val) {
+    this.ref = val;
+  }
+
+  public JamVal getRef() {
+    return ref;
+  }
+
+  public void setRef(JamVal newVal) {
+    this.ref = newVal;
+  }
+
+
+  public <ResType> ResType accept(JamValVisitor<ResType> v) { return v.forJamBox(this); }
+
+//  public <ResType> ResType accept(ASTVisitor<ResType> av) { return av.forBox(this); }
+
 }
