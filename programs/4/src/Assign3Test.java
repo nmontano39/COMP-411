@@ -233,7 +233,7 @@ public class Assign3Test extends TestCase {
       String output = "(ref (ref 17))";
       String input = "let x := ref 10; in {x <- ref 17; x}";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
@@ -242,7 +242,7 @@ public class Assign3Test extends TestCase {
 
   public void testRef1() {
     try {
-      String output = "10";
+      String output = "false";
       String input = "let x := ref 10; y := ref 10; in x = y";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
@@ -257,19 +257,31 @@ public class Assign3Test extends TestCase {
       String output = "true";
       String input = "ref?(ref 10)";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
     }
   }
 
+    public void testRef3() {
+        try {
+            String output = "10";
+            String input = "let x := ref ref 10; in ! ! x";
+            allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+        }
+        catch(Exception e) {
+            fail("forwardRef threw Exception " + e + " rather than an EvalException");
+        }
+    }
+
   public void testBang0() {
     try {
       String output = "9";
       String input = "let x := ref (map x to x * x)(3); in ! x";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
@@ -281,7 +293,7 @@ public class Assign3Test extends TestCase {
       String output = "unit";
       String input = "let x := let x := ref 9; in x <- ref 6; in x";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
@@ -293,7 +305,7 @@ public class Assign3Test extends TestCase {
       String output = "20";
       String input = "({ 10 * 3; 10; 10*2 })";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
@@ -305,7 +317,7 @@ public class Assign3Test extends TestCase {
       String output = "125";
       String input = "let x := 5; in { x * x; x * x; x * x * x }";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
@@ -317,7 +329,7 @@ public class Assign3Test extends TestCase {
       String output = "5";
       String input = "let x := ref 10; y := 5; in { x <- y; !x }";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted a/.as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
@@ -329,7 +341,7 @@ public class Assign3Test extends TestCase {
       String output = "3";
       String input = "let x := ref 10; y := 3; in { x <- ref y; !!x }";
       allCheck("+ as PrimFun", output, input);
-      fail("+ accepted as PrimFun");
+//      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
       fail("forwardRef threw Exception " + e + " rather than an EvalException");
