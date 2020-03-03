@@ -4,9 +4,6 @@
  * call-by-need (efficient lazy).
  *
  *
- * TODO: ref? check for ref
- * TODO: ref is reference like pointer to box
- * TODO: ! gets the value for a box
  * TODO: <- set ref to any value
  *
  * TODO: Unit extends JamVal
@@ -594,6 +591,12 @@ class Evaluator implements EvalVisitor {
       BoolConstant b1 = evalBooleanArg(arg1, op);
       if (b1 == BoolConstant.TRUE) return BoolConstant.TRUE;
       return evalBooleanArg(arg2, op);
+    }
+
+    @Override
+    public JamVal forOpGets(OpGets op) {
+      System.out.println("Found <-");
+      return null;
     }
   }
 }

@@ -79,7 +79,7 @@ interface BinOpVisitor<ResType> {
   ResType forOpGreaterThanEquals(OpGreaterThanEquals op);
   ResType forOpAnd(OpAnd op);
   ResType forOpOr(OpOr op);
-  // ResType forOpGets(OpGets op);  // Supports the ref cell extension to Jam
+  ResType forOpGets(OpGets op);  // Supports the ref cell extension to Jam
 }
 
 class UnOpPlus extends UnOp {
@@ -220,7 +220,7 @@ class OpOr extends BinOp {
   }
 }
 
-/* Supports the ref cell extension to Jam
+// Supports the ref cell extension to Jam
 class OpGets extends BinOp {
   public static final OpGets ONLY = new OpGets();
   private OpGets() { super("<-"); }
@@ -228,7 +228,7 @@ class OpGets extends BinOp {
     return v.forOpGets(this); 
   }
 }
-*/
+
 
 /* UnOpApp is a Term because it does not need enclosing parentheses when appearing in a binary expression */
 class UnOpApp implements Term {

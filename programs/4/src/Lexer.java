@@ -43,7 +43,7 @@ class Lexer extends StreamTokenizer {
   
   /* Used to support reference cells. */
   public static final OpToken BANG = OpToken.newUnOpToken(OpBang.ONLY);
-//  public static final OpToken GETS = OpToken.newBinOpToken(OpGets.ONLY);
+  public static final OpToken GETS = OpToken.newBinOpToken(OpGets.ONLY);
   public static final OpToken REF = OpToken.newUnOpToken(OpRef.ONLY);
   
   /* Keywords */
@@ -187,7 +187,7 @@ class Lexer extends StreamTokenizer {
       case '<':
         tokenType = getToken();
         if (tokenType == '=') return LESS_THAN_EQUALS;
-        // if (tokenType == '-') return GETS;  // Support the addition of ref cells to Jam
+        if (tokenType == '-') return GETS;  // Support the addition of ref cells to Jam
         pushBack();
         return LESS_THAN;
       case '>':
