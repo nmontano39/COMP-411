@@ -243,7 +243,7 @@ public class Assign3Test extends TestCase {
   public void testRef1() {
     try {
       String output = "10";
-      String input = "let x := ref 10; y := ref 10; in !x";
+      String input = "let x := ref 10; y := ref 10; in x = y";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
