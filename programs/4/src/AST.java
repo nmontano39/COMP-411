@@ -336,9 +336,9 @@ class Let implements AST {
     for(int i = 0; i < n; i++) { exps[i] = defs[i].rhs(); }
     return exps;
   }
-}  
+}
 
-// TODO
+/** Block class representing a list of expressions */
 class Block implements AST{
   private AST[] exps;
   Block(AST[] e) { exps = e; }

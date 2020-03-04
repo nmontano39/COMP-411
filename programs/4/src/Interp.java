@@ -365,15 +365,16 @@ class Evaluator implements EvalVisitor {
   // TODO
   public JamVal forBlock(Block b) {
 
-    System.out.println(b.toString());
-    return null;
+    //System.out.println(b.toString());
 
-//    AST[] exps = b.exps();
-//    int n = exps.length;
-//    for(int i = 0; i < n; i++) {
-//      exps[i].accept(this);
-//    }
-//    return ;
+    JamVal jv = null;
+
+    AST[] exps = b.exps();
+    int n = exps.length;
+    for(int i = 0; i < n; i++) {
+      jv = exps[i].accept(this);
+    }
+    return jv;
   }
 
   /* Inner classes */

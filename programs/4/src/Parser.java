@@ -63,7 +63,7 @@ class Parser {
     if (token == Lexer.LET) return parseLet();
     if (token == Lexer.MAP) return parseMap();
 
-    // TODO: PROVIDED
+    // PROVIDED
     /*  Supports the addition of blocks to Jam */
     if (token == LeftBrace.ONLY) {
       AST[] exps = parseExps(SemiColon.ONLY,RightBrace.ONLY);

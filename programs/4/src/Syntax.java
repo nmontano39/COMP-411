@@ -87,7 +87,7 @@ class CheckVisitor implements ASTVisitor<Void> {
     return null;
   }
 
-  // TODO: PROVIDED
+  // PROVIDED
   /*  Supports the addition of blocks to Jam */
   public Void forBlock(Block b) {
     AST[] exps =  b.exps();

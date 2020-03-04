@@ -316,7 +316,7 @@ public class Assign3Test extends TestCase {
   public void testBlock1() {
     try {
       String output = "125";
-      String input = "let x := 5; in { x * x; x * x; x * x * x }";
+      String input = "let x := 5; in { x; x * x; x * x * x }";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
@@ -328,7 +328,7 @@ public class Assign3Test extends TestCase {
   public void testBlock2() {
     try {
       String output = "5";
-      String input = "let x := ref 10; y := 5; in { x <- y; !x }";
+      String input = "let x := ref 10; y := 5; in { x <- y; ! x }";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted a/.as PrimFun");
     }
@@ -340,7 +340,7 @@ public class Assign3Test extends TestCase {
   public void testBlock3() {
     try {
       String output = "3";
-      String input = "let x := ref 10; y := 3; in { x <- ref y; !!x }";
+      String input = "let x := ref 10; y := 3; in { x <- ref y; ! ! x }";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
