@@ -13,6 +13,8 @@
  *
  */
 
+import org.omg.CORBA.SystemException;
+
 import java.io.IOException;
 import java.io.Reader;
 
@@ -616,11 +618,10 @@ class Evaluator implements EvalVisitor {
 
     @Override
     public JamVal forOpGets(OpGets op) {
-      System.out.println("IN FOR OP GETS. CHANGE THIS TO RETURN UNIT");
       JamBox left = evalRefArg(arg1, op);
       JamVal right = arg2.accept(Evaluator.this);
       left.setValue(right);
-      return left;
+      return Unit.ONLY;
     }
   }
 }

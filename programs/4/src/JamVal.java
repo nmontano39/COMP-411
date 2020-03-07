@@ -14,6 +14,7 @@ interface JamValVisitor<ResType> {
   ResType forJamList(JamList jl);
   ResType forJamFun(JamFun jf);
   ResType forJamBox(JamBox jb);
+  ResType forUnit(Unit u);
 }
 
 /* JamVal classes */
@@ -380,6 +381,26 @@ class JamBox implements JamVal {
 
   public <ResType> ResType accept(JamValVisitor<ResType> v) { return v.forJamBox(this); }
 
+  public String toString() {
+    return "(" + "ref " + getValue() + ")";
+  }
+
 //  public <ResType> ResType accept(ASTVisitor<ResType> av) { return av.forBox(this); }
+
+}
+
+class Unit implements JamVal {
+
+  // Empty constructor because Unit does nothing.
+
+  public static final JamVal ONLY = new Unit();
+
+  private Unit() {}
+
+  public <ResType> ResType accept(JamValVisitor<ResType> v) { return v.forUnit(this); }
+
+  public String toString() {
+    return "unit";
+  }
 
 }

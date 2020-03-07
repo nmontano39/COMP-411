@@ -232,7 +232,7 @@ public class Assign3Test extends TestCase {
     try {
       String output = "(ref (ref 17))";
       String input = "let x := ref 10; in {x <- ref 17; x}";
-      allCheck("+ as PrimFun", output, input);
+      noNameCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
@@ -291,7 +291,7 @@ public class Assign3Test extends TestCase {
   public void testUnit0() {
     try {
       String output = "unit";
-      String input = "let x := let x := ref 9; in x <- 6; in !x";
+      String input = "let x := let x := ref 9; in x <- 6; in x";
       allCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
@@ -329,7 +329,7 @@ public class Assign3Test extends TestCase {
     try {
       String output = "5";
       String input = "let x := ref 10; y := 5; in { x <- y; ! x }";
-      allCheck("+ as PrimFun", output, input);
+      noNameCheck("+ as PrimFun", output, input);
 //      fail("+ accepted a/.as PrimFun");
     }
     catch(Exception e) {
@@ -341,7 +341,7 @@ public class Assign3Test extends TestCase {
     try {
       String output = "3";
       String input = "let x := ref 10; y := 3; in { x <- ref y; ! ! x }";
-      allCheck("+ as PrimFun", output, input);
+      noNameCheck("+ as PrimFun", output, input);
 //      fail("+ accepted as PrimFun");
     }
     catch(Exception e) {
