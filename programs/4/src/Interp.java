@@ -359,18 +359,19 @@ class Evaluator implements EvalVisitor {
     return l.body().accept(newEV);
   }
 
-  //TODO comments, readme
+  // forBlock
   public JamVal forBlock(Block b) {
-
-    //System.out.println(b.toString());
 
     JamVal jv = null;
 
+    // set list of expressions
     AST[] exps = b.exps();
     int n = exps.length;
-    for(int i = 0; i < n; i++) {
-      jv = exps[i].accept(this);
+    // evaluate each expression
+    for (AST exp : exps) {
+      jv = exp.accept(this);
     }
+    // return the rightmost expresssion
     return jv;
   }
 

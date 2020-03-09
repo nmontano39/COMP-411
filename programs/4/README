@@ -11,8 +11,8 @@ value for ! and <- and returns the special unit value when appropriate.
 Adding blocks:
 To handle blocks, we created a class implementing AST in AST.java named Block. A Block is constructed similar
 to a Box except it contains a list of expressions instead of a value. When our interpreter encounters a left
-brace it creates a Block object and evaluates each internal expression from left to right and returns the
-rightmost evaluation.
+brace it parses and creates a Block object and evaluates each internal expression from left to right then
+returns the rightmost evaluation.
 
 
 # Testing Processes
