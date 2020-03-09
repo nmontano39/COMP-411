@@ -4,12 +4,7 @@
  * call-by-need (efficient lazy).
  *
  *
- * TODO: <- set ref to any value
- * TODO: Unit extends JamVal
  *
- * TODO: JamBox extends JamVal - toString
- *
- * TODO: Block (like let, map, or if)
  *
  */
 
@@ -364,7 +359,7 @@ class Evaluator implements EvalVisitor {
     return l.body().accept(newEV);
   }
 
-  // TODO
+  //TODO comments, readme
   public JamVal forBlock(Block b) {
 
     //System.out.println(b.toString());
@@ -616,7 +611,6 @@ class Evaluator implements EvalVisitor {
       return evalBooleanArg(arg2, op);
     }
 
-    @Override
     public JamVal forOpGets(OpGets op) {
       JamBox left = evalRefArg(arg1, op);
       JamVal right = arg2.accept(Evaluator.this);

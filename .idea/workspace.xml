@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/programs/4/src/Assign4Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/src/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/AST.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Assign3Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Interp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/4/src/JamVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/JamVal.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +27,7 @@
     <SUITE FILE_PATH="coverage/COMP_411$Assign1Test.ic" NAME="Assign1Test Coverage Results" MODIFIED="1580224271587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="168" />
+    <option name="myElementSize" value="136" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -55,11 +59,14 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\3" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/programs/2/src" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\3" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -74,7 +81,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign3Test">
+  <component name="RunManager" selected="JUnit.Assign4Test">
+    <configuration name="Assign1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign1Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign2Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Assign3Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -99,50 +124,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign3Test.testBlock1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign4Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testBlock1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign3Test.testRef2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testRef2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign3Test.testRef3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="METHOD_NAME" value="testRef3" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="Assign4Test" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign3Test" />
-      <item itemvalue="JUnit.Assign3Test.testBlock1" />
-      <item itemvalue="JUnit.Assign3Test.testRef3" />
-      <item itemvalue="JUnit.Assign3Test.testRef2" />
       <item itemvalue="JUnit.Assign3Test,testBlock0 and 3 more" />
+      <item itemvalue="JUnit.Assign1Test" />
+      <item itemvalue="JUnit.Assign2Test" />
+      <item itemvalue="JUnit.Assign4Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign4Test" />
         <item itemvalue="JUnit.Assign3Test" />
+        <item itemvalue="JUnit.Assign2Test" />
+        <item itemvalue="JUnit.Assign1Test" />
         <item itemvalue="JUnit.Assign3Test,testBlock0 and 3 more" />
-        <item itemvalue="JUnit.Assign3Test.testRef2" />
-        <item itemvalue="JUnit.Assign3Test.testRef3" />
-        <item itemvalue="JUnit.Assign3Test.testBlock1" />
       </list>
     </recent_temporary>
   </component>
@@ -561,7 +565,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/COMP_411$Assign2Test.ic" NAME="Assign2Test Coverage Results" MODIFIED="1581413543057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/COMP_411$Assign1Test.ic" NAME="Assign1Test Coverage Results" MODIFIED="1583658540236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/COMP_411$Assign2Test.ic" NAME="Assign2Test Coverage Results" MODIFIED="1583658613724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/COMP_411$Assign4Test.ic" NAME="Assign4Test Coverage Results" MODIFIED="1583658757760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/COMP_411$Assign3Test.ic" NAME="Assign3Test Coverage Results" MODIFIED="1582628131895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

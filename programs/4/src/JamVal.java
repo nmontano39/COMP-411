@@ -361,42 +361,45 @@ class RestPrim extends PrimFun {
   public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forRestPrim(); }
 }
 
-
+/** The class representing a JamBox. */
 class JamBox implements JamVal {
 
   JamVal value;
 
+  // constructor
   public JamBox(JamVal val) {
     this.value = val;
   }
 
+  // value getter
   public JamVal getValue() {
     return value;
   }
 
+  // value setter
   public void setValue(JamVal newVal) {
     this.value = newVal;
   }
 
-
+  // look at forJamBox
   public <ResType> ResType accept(JamValVisitor<ResType> v) { return v.forJamBox(this); }
 
   public String toString() {
     return "(" + "ref " + getValue() + ")";
   }
 
-//  public <ResType> ResType accept(ASTVisitor<ResType> av) { return av.forBox(this); }
-
 }
 
+
+/** The class representing a unit. */
 class Unit implements JamVal {
 
   // Empty constructor because Unit does nothing.
-
   public static final JamVal ONLY = new Unit();
 
   private Unit() {}
 
+  // look at forUnit
   public <ResType> ResType accept(JamValVisitor<ResType> v) { return v.forUnit(this); }
 
   public String toString() {

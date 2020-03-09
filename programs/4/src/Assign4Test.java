@@ -1,10 +1,10 @@
-import java.util.StringTokenizer;
 import junit.framework.TestCase;
-import java.io.*;
 
-public class Assign3Test extends TestCase {
+import java.io.StringReader;
 
-  public Assign3Test (String name) { super(name); }
+public class Assign4Test extends TestCase {
+
+  public Assign4Test(String name) { super(name); }
   
   /** The following 9 check methods create an interpreter object with the specified String as the program, invoke the 
     * respective evaluation method (valueValue, valueName, valueNeed, etc.), and check that the result matches the 
@@ -228,7 +228,126 @@ public class Assign3Test extends TestCase {
     catch(Exception e) {  /* Success! + rejected as PrimFun  */  }
   }
 
+  public void testRef0() {
+    try {
+      String output = "(ref (ref 17))";
+      String input = "let x := ref 10; in {x <- ref 17; x}";
+      noNameCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
 
+  public void testRef1() {
+    try {
+      String output = "false";
+      String input = "let x := ref 10; y := ref 10; in x = y";
+      allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testRef2() {
+    try {
+      String output = "true";
+      String input = "ref?(ref 10)";
+      allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+    public void testRef3() {
+        try {
+            String output = "10";
+            String input = "let x := ref ref 10; in ! ! x";
+            allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+        }
+        catch(Exception e) {
+            fail("forwardRef threw Exception " + e + " rather than an EvalException");
+        }
+    }
+
+  public void testBang0() {
+    try {
+      String output = "9";
+      String input = "let x := ref (map x to x * x)(3); in ! x";
+      allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testUnit0() {
+    try {
+      String output = "unit";
+      String input = "let x := let x := ref 9; in x <- 6; in x";
+      allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+
+  public void testBlock0() {
+    try {
+      String output = "20";
+      String input = "({ 10 * 3; 10; 10*2 })";
+      allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testBlock1() {
+    try {
+      String output = "125";
+      String input = "let x := 5; in { x; x * x; x * x * x }";
+      allCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testBlock2() {
+    try {
+      String output = "5";
+      String input = "let x := ref 10; y := 5; in { x <- y; ! x }";
+      noNameCheck("+ as PrimFun", output, input);
+//      fail("+ accepted a/.as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
+
+  public void testBlock3() {
+    try {
+      String output = "3";
+      String input = "let x := ref 10; y := 3; in { x <- ref y; ! ! x }";
+      noNameCheck("+ as PrimFun", output, input);
+//      fail("+ accepted as PrimFun");
+    }
+    catch(Exception e) {
+      fail("forwardRef threw Exception " + e + " rather than an EvalException");
+    }
+  }
 }
 
 
