@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="working on 5">
-      <change afterPath="$PROJECT_DIR$/programs/5/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/AST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign1Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign2Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign3Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign4Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/JamVal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Lexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/NewAssign2Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Syntax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/programs/5/src/Token.java" afterDir="false" />
+    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/COMP-411.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP-411.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/4/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Interp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -180,14 +161,7 @@
       <workItem from="1582161763789" duration="14194000" />
       <workItem from="1583109358064" duration="2937000" />
       <workItem from="1583292471314" duration="317000" />
-      <workItem from="1585733750233" duration="1053000" />
-    </task>
-    <task id="LOCAL-00011" summary="working on interpreter">
-      <created>1580861883678</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1580861883678</updated>
+      <workItem from="1585733750233" duration="1451000" />
     </task>
     <task id="LOCAL-00012" summary="working on interpreter">
       <created>1580868977622</created>
@@ -525,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583749733143</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="working on 5">
+      <created>1585734852450</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1585734852451</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
