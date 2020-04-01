@@ -119,8 +119,6 @@ class Interpreter {
     throw new EvalException("Attempt to evaluate variable " + v + " bound to null, indicating an illegal forward reference");
   }
 
-
-
   static class ValueBinding extends Binding {
     ValueBinding(Variable v, JamVal jv) { super(v, jv); }
     public JamVal value() {
@@ -194,6 +192,12 @@ class Interpreter {
 
   /** Parses and NeedNeed interprets the input embeded in parser, returning the result. */
   public JamVal needNeed() { return prog.accept(needNeedVisitor); }
+
+  /** Parses and NeedName interprets the input embeded in parser, returning the result. */
+  public JamVal eagerEval() { return prog.accept(valueValueVisitor); }
+
+  /** Parses and NeedNeed interprets the input embeded in parser, returning the result. */
+  public JamVal lazyEval() { return prog.accept(valueNameVisitor); }
 
   /** Binding policy for call-by-value. */
   static final BindingPolicy CALL_BY_VALUE = new BindingPolicy() {

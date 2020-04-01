@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="done.">
-      <change beforePath="$PROJECT_DIR$/programs/4/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/README" afterDir="false" />
+    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="working on 5">
+      <change afterPath="$PROJECT_DIR$/programs/5/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/AST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign1Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign2Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign3Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign4Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/JamVal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Lexer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/NewAssign2Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Syntax.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/5/src/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/4/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/4/src/Interp.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,7 +65,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580509274655" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/programs/3/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/programs/5/src" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -54,14 +73,20 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/programs/2/src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Interp.java" />
+      <recent name="Interp" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src" />
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs" />
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\3" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\3" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/programs/2/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -76,7 +101,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign4Test">
+  <component name="RunManager" selected="JUnit.Assign5Test">
     <configuration name="Assign1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -104,21 +129,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign3Test,testBlock0 and 3 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign3Test" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="Assign3Test,testBlock0" />
-        <pattern testClass="Assign3Test,testBlock1" />
-        <pattern testClass="Assign3Test,testBlock2" />
-        <pattern testClass="Assign3Test,testBlock3" />
-      </patterns>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign4Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -128,20 +138,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign5Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign3Test" />
-      <item itemvalue="JUnit.Assign3Test,testBlock0 and 3 more" />
       <item itemvalue="JUnit.Assign1Test" />
       <item itemvalue="JUnit.Assign2Test" />
       <item itemvalue="JUnit.Assign4Test" />
+      <item itemvalue="JUnit.Assign5Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign5Test" />
         <item itemvalue="JUnit.Assign4Test" />
         <item itemvalue="JUnit.Assign3Test" />
         <item itemvalue="JUnit.Assign2Test" />
         <item itemvalue="JUnit.Assign1Test" />
-        <item itemvalue="JUnit.Assign3Test,testBlock0 and 3 more" />
       </list>
     </recent_temporary>
   </component>
@@ -161,13 +180,7 @@
       <workItem from="1582161763789" duration="14194000" />
       <workItem from="1583109358064" duration="2937000" />
       <workItem from="1583292471314" duration="317000" />
-    </task>
-    <task id="LOCAL-00010" summary="working on interpreter">
-      <created>1580861808657</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1580861808657</updated>
+      <workItem from="1585733750233" duration="1053000" />
     </task>
     <task id="LOCAL-00011" summary="working on interpreter">
       <created>1580861883678</created>
@@ -505,7 +518,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583749512124</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="done.">
+      <created>1583749733143</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1583749733143</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,7 +548,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working on interpreter" />
     <MESSAGE value="OH sunday" />
     <MESSAGE value="OH sunday - forvar" />
     <MESSAGE value="OH sunday - forLet" />
@@ -553,7 +572,8 @@
     <MESSAGE value="ref? works" />
     <MESSAGE value="worked on Block a little" />
     <MESSAGE value="done." />
-    <option name="LAST_COMMIT_MESSAGE" value="done." />
+    <MESSAGE value="working on 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on 5" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
