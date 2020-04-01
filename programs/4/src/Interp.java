@@ -119,8 +119,6 @@ class Interpreter {
     throw new EvalException("Attempt to evaluate variable " + v + " bound to null, indicating an illegal forward reference");
   }
 
-
-
   static class ValueBinding extends Binding {
     ValueBinding(Variable v, JamVal jv) { super(v, jv); }
     public JamVal value() {
