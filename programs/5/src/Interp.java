@@ -435,24 +435,26 @@ class Evaluator implements EvalVisitor {
                 EvalException("Primitive function `" + fun + "' applied to argument " + val + " that is not a JamCons");
       }
 
+      //TODO: removed for p5
+
       /* Visitor methods. */
-      public JamVal forFunctionPPrim() {
-        JamVal[] vals = evalArgs();
-        if (vals.length != 1) primFunError("function?");
-        return BoolConstant.toBoolConstant(vals[0] instanceof JamFun);
-      }
+//      public JamVal forFunctionPPrim() {
+//        JamVal[] vals = evalArgs();
+//        if (vals.length != 1) primFunError("function?");
+//        return BoolConstant.toBoolConstant(vals[0] instanceof JamFun);
+//      }
 
-      public JamVal forNumberPPrim() {
-        JamVal[] vals = evalArgs();
-        if (vals.length != 1) primFunError("number?");
-        return BoolConstant.toBoolConstant(vals[0] instanceof IntConstant);
-      }
+//      public JamVal forNumberPPrim() {
+//        JamVal[] vals = evalArgs();
+//        if (vals.length != 1) primFunError("number?");
+//        return BoolConstant.toBoolConstant(vals[0] instanceof IntConstant);
+//      }
 
-      public JamVal forListPPrim() {
-        JamVal[] vals = evalArgs();
-        if (vals.length != 1) primFunError("list?");
-        return BoolConstant.toBoolConstant(vals[0] instanceof JamList);
-      }
+//      public JamVal forListPPrim() {
+//        JamVal[] vals = evalArgs();
+//        if (vals.length != 1) primFunError("list?");
+//        return BoolConstant.toBoolConstant(vals[0] instanceof JamList);
+//      }
 
       public JamVal forConsPPrim() {
         JamVal[] vals = evalArgs();
@@ -466,27 +468,27 @@ class Evaluator implements EvalVisitor {
         return BoolConstant.toBoolConstant(vals[0] instanceof JamEmpty);
       }
 
-      public JamVal forRefPPrim() {
-        JamVal[] vals = evalArgs();
-        if (vals.length != 1) primFunError("ref?");
-        return BoolConstant.toBoolConstant(vals[0] instanceof JamBox);
-      }
+//      public JamVal forRefPPrim() {
+//        JamVal[] vals = evalArgs();
+//        if (vals.length != 1) primFunError("ref?");
+//        return BoolConstant.toBoolConstant(vals[0] instanceof JamBox);
+//      }
 
       public JamVal forConsPrim() {
         if (args.length != 2) primFunError("cons");
         return consPolicy.evalCons(args, Evaluator.this);   // Evaluation strategy determined by consEp
       }
 
-      public JamVal forArityPrim() {
-        JamVal[] vals = evalArgs();
-        if (vals.length != 1) primFunError("arity");
-        if (!(vals[0] instanceof JamFun))  throw new EvalException("arity applied to argument " +  vals[0]);
-
-        return ((JamFun)vals[0]).accept(new JamFunVisitor<IntConstant>() {
-          public IntConstant forJamClosure(JamClosure jc) { return new IntConstant(jc.body().vars().length); }
-          public IntConstant forPrimFun(PrimFun jpf) { return new IntConstant(jpf instanceof ConsPrim ? 2 : 1); }
-        });
-      }
+//      public JamVal forArityPrim() {
+//        JamVal[] vals = evalArgs();
+//        if (vals.length != 1) primFunError("arity");
+//        if (!(vals[0] instanceof JamFun))  throw new EvalException("arity applied to argument " +  vals[0]);
+//
+//        return ((JamFun)vals[0]).accept(new JamFunVisitor<IntConstant>() {
+//          public IntConstant forJamClosure(JamClosure jc) { return new IntConstant(jc.body().vars().length); }
+//          public IntConstant forPrimFun(PrimFun jpf) { return new IntConstant(jpf instanceof ConsPrim ? 2 : 1); }
+//        });
+//      }
 
       public JamVal forFirstPrim() {
         if (args.length != 1) primFunError("first");

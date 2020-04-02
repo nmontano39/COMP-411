@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/COMP-411.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP-411.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/src/JamVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/JamVal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Lexer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,6 +69,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src\Interp\java" />
       <recent name="$PROJECT_DIR$/programs/2/src" />
     </key>
   </component>
@@ -161,21 +164,7 @@
       <workItem from="1582161763789" duration="14194000" />
       <workItem from="1583109358064" duration="2937000" />
       <workItem from="1583292471314" duration="317000" />
-      <workItem from="1585733750233" duration="1451000" />
-    </task>
-    <task id="LOCAL-00012" summary="working on interpreter">
-      <created>1580868977622</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1580868977622</updated>
-    </task>
-    <task id="LOCAL-00013" summary="working on interpreter">
-      <created>1580948112964</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1580948112964</updated>
+      <workItem from="1585733750233" duration="5162000" />
     </task>
     <task id="LOCAL-00014" summary="working on interpreter">
       <created>1581154540784</created>
@@ -506,7 +495,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585734852451</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="working on 5">
+      <created>1585735240495</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1585735240495</updated>
+    </task>
+    <task id="LOCAL-00062" summary="starting p5">
+      <created>1585735327587</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1585735327587</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -529,7 +532,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="OH sunday" />
     <MESSAGE value="OH sunday - forvar" />
     <MESSAGE value="OH sunday - forLet" />
     <MESSAGE value="OH sunday - end of OH" />
@@ -554,7 +556,8 @@
     <MESSAGE value="worked on Block a little" />
     <MESSAGE value="done." />
     <MESSAGE value="working on 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on 5" />
+    <MESSAGE value="starting p5" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting p5" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
