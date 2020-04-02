@@ -37,6 +37,11 @@ class EvalException extends RuntimeException {
   EvalException(String msg) { super(msg); }
 }
 
+/** The exception class for Jam run-time errors. */
+class TypeException extends RuntimeException {
+  TypeException(String msg) { super(msg); }
+}
+
 /** The visitor interface for interpreting ASTs. */
 interface EvalVisitor extends ASTVisitor<JamVal> {
 
@@ -311,7 +316,15 @@ class Evaluator implements EvalVisitor {
 
   public JamVal forBoolConstant(BoolConstant b) { return b; }
   public JamVal forIntConstant(IntConstant i) { return i; }
-  public JamVal forNullConstant(NullConstant n) { return JamEmpty.ONLY; }
+  public JamVal forNullConstant(NullConstant n) {
+
+    // TODO: allow for typed null
+    // null : int    returns ()
+    // null : bool   returns ()
+
+    return JamEmpty.ONLY;
+
+  }
 
   public JamVal forVariable(Variable v) {
     Binding match = env.accept(new LookupVisitor<Binding>(v));

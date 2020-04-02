@@ -5,6 +5,8 @@ import java.util.*;
 /** A data object representing a Jam token */
 interface Token {}
 
+
+// TODO: modify null constant class with type
 /** Null constant class. Part of AST and Token composite hierarchies. */
 class NullConstant implements Token, Constant {
   public static final NullConstant ONLY = new NullConstant();

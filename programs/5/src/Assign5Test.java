@@ -85,6 +85,83 @@ public class Assign5Test extends TestCase {
     }
   } //end of func
 
+  public void testNull2() {
+    try {
+      String output = "SHOULD RETURN -> ParseException: Expecting : but found end of input";
+      String input = "null";
+      allCheck("null", output, input );
+    } catch (ParseException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("did not return TypeException");
+    }
+  } //end of func
+
+  public void testNull3() {
+    try {
+      String output = "()";
+      String input = "null : int)";
+      allCheck("null", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("null threw " + e);
+    }
+  } //end of func
+
+  public void testNull4() {
+    try {
+      String output = "true";
+      String input = "null : int = null : int)";
+      allCheck("null", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("null threw " + e);
+    }
+  } //end of func
+
+  public void testNull5() {
+    try {
+      String output = "SHOULD RETURN -> TypeException: Expected type list int, but found list bool";
+      String input = "null : int = null : bool)";
+      allCheck("null", output, input );
+
+    } catch (TypeException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("did not return TypeException");
+    }
+  } //end of func
+
+
+  public void testList() {
+    try {
+      String output = "1";
+      String input = "first(cons(1, null : int))";
+      allCheck("null", output, input );
+
+    } catch (TypeException e) {
+      e.printStackTrace();
+      fail("null in list threw" + e);
+    }
+  } //end of func
+
+  public void testList2() {
+    try {
+      String output = "SHOULD RETURN -> TypeException: cons arg type mismatch: {}, {}intlist bool";
+      String input = "first(cons(1, null : bool))";
+      allCheck("null", output, input );
+
+    } catch (TypeException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("did not return TypeException");
+    }
+  } //end of func
 
   public void testEmptyBlock() {
     try {
@@ -166,9 +243,9 @@ public class Assign5Test extends TestCase {
       allCheck("assign", output, input );
 
       fail("assign did not throw TypeException exception");
-    } //catch (TypeException e) {
-      //e.printStackTrace();
-    //}
+    } catch (TypeException e) {
+      e.printStackTrace();
+    }
     catch (Exception e) {
       e.printStackTrace();
       fail("assign threw " + e);
@@ -183,9 +260,9 @@ public class Assign5Test extends TestCase {
       allCheck("badAssign", output, input );
 
       fail("badAssign did not throw TypeException exception");
-    } //catch (TypeException e) {
-      //e.printStackTrace();
-    //}
+    } catch (TypeException e) {
+      e.printStackTrace();
+    }
     catch (Exception e) {
       e.printStackTrace();
       fail("badAssign threw " + e);
