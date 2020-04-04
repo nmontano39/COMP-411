@@ -4,7 +4,7 @@
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Token.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,15 +86,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.Assign5Test">
-    <configuration name="Assign4Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign4Test" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -142,20 +133,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign5Test.testType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign5Test" />
+      <option name="METHOD_NAME" value="testType" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.Assign4Test" />
       <item itemvalue="JUnit.Assign5Test" />
       <item itemvalue="JUnit.Assign5Test.testNull2" />
       <item itemvalue="JUnit.Assign5Test,testNull2 and 1 more" />
       <item itemvalue="JUnit.Assign5Test,testNull2 and 3 more" />
+      <item itemvalue="JUnit.Assign5Test.testType" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign5Test" />
+        <item itemvalue="JUnit.Assign5Test.testType" />
         <item itemvalue="JUnit.Assign5Test,testNull2 and 3 more" />
         <item itemvalue="JUnit.Assign5Test,testNull2 and 1 more" />
         <item itemvalue="JUnit.Assign5Test.testNull2" />
-        <item itemvalue="JUnit.Assign4Test" />
       </list>
     </recent_temporary>
   </component>
@@ -176,14 +177,7 @@
       <workItem from="1583109358064" duration="2937000" />
       <workItem from="1583292471314" duration="317000" />
       <workItem from="1585733750233" duration="5342000" />
-      <workItem from="1585831272354" duration="2287000" />
-    </task>
-    <task id="LOCAL-00015" summary="working on interpreter">
-      <created>1581154902043</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1581154902043</updated>
+      <workItem from="1585831272354" duration="4132000" />
     </task>
     <task id="LOCAL-00016" summary="OH sunday">
       <created>1581299046918</created>
@@ -521,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585793432813</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="added tests and TODOs for null : Type">
+      <created>1585833687605</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1585833687606</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +545,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="OH sunday - forLet" />
     <MESSAGE value="OH sunday - end of OH" />
     <MESSAGE value="OH sunday - testing if" />
     <MESSAGE value="all tests pass" />
@@ -569,7 +569,8 @@
     <MESSAGE value="working on 5" />
     <MESSAGE value="starting p5" />
     <MESSAGE value="step 2 - id : type" />
-    <option name="LAST_COMMIT_MESSAGE" value="step 2 - id : type" />
+    <MESSAGE value="added tests and TODOs for null : Type" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tests and TODOs for null : Type" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

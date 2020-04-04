@@ -138,6 +138,8 @@ class Lexer extends StreamTokenizer {
     }
   }
 
+
+  // TODO: may need to change for p5
   public Token readToken() {
 
     /* This method uses getToken() to read next token.  It constructs Token objects representing Jam tokens.
@@ -160,6 +162,7 @@ class Lexer extends StreamTokenizer {
         throw
           new ParseException("The number " + nval + " is not a 32 bit integer");
       case WORD:
+        // TODO?
         Token regToken = wordTable.get(sval);
         if (regToken == null) {
           // must be new variable name
@@ -205,10 +208,13 @@ class Lexer extends StreamTokenizer {
          return BANG;
       case '&': return AND;
       case '|': return OR;
+
+      // TODO?
       case ':': {
         tokenType = getToken();
         if (tokenType == '=') return BIND;
         pushBack();
+        System.out.println("found a colon");
         throw new ParseException("`:' is not a legal token");
       }
       default:

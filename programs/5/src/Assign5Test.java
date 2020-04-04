@@ -163,6 +163,33 @@ public class Assign5Test extends TestCase {
     }
   } //end of func
 
+  public void testType() {
+    try {
+      String output = "9";
+      String input = "let x: int := 2; in x+7";
+      allCheck("null", output, input );
+
+    } catch (TypeException e) {
+      e.printStackTrace();
+      fail("null in list threw" + e);
+    }
+  } //end of func
+
+  public void testType2() {
+    try {
+      String output = "SHOULD RETURN -> TypeException: Declared type bool doesn't match expression type int";
+      String input = "let x: bool := 0; in x = true";
+      allCheck("null", output, input );
+
+    } catch (TypeException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("did not return TypeException");
+    }
+  } //end of func
+
+
   public void testEmptyBlock() {
     try {
       String output = "0";

@@ -15,6 +15,7 @@ class NullConstant implements Token, Constant {
   public String toString() { return "null"; }
 }
 
+// TODO: needs to be typed
 class Variable implements Token, Term, WithVariable {
   private String name;
   Variable(String n) { name = n; }
