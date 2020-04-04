@@ -57,7 +57,9 @@ class Lexer extends StreamTokenizer {
   public static final KeyWord MAP    = new KeyWord("map");
   public static final KeyWord TO     = new KeyWord("to");
   public static final KeyWord BIND   = new KeyWord(":=");
-  
+  public static final KeyWord COLON   = new KeyWord(":");
+
+
   /**fields**/ 
   
   /** The Reader from which this lexer reads. */
@@ -139,7 +141,6 @@ class Lexer extends StreamTokenizer {
   }
 
 
-  // TODO: may need to change for p5
   public Token readToken() {
 
     /* This method uses getToken() to read next token.  It constructs Token objects representing Jam tokens.
@@ -156,13 +157,14 @@ class Lexer extends StreamTokenizer {
 
     int tokenType = getToken();
     switch (tokenType) {
+      //case TYPE:
+        //int t = (Type) sval;
       case NUMBER:
         int value = (int) nval;
         if (nval == (double) value) return new IntConstant(value);
         throw
           new ParseException("The number " + nval + " is not a 32 bit integer");
       case WORD:
-        // TODO?
         Token regToken = wordTable.get(sval);
         if (regToken == null) {
           // must be new variable name
@@ -209,13 +211,13 @@ class Lexer extends StreamTokenizer {
       case '&': return AND;
       case '|': return OR;
 
-      // TODO?
+      //
       case ':': {
         tokenType = getToken();
         if (tokenType == '=') return BIND;
         pushBack();
-        System.out.println("found a colon");
-        throw new ParseException("`:' is not a legal token");
+        return COLON;
+        //throw new ParseException("`:' is not a legal token");
       }
       default:
         throw new
@@ -230,7 +232,7 @@ class Lexer extends StreamTokenizer {
     // <null>  ::= null
     // <bool>  ::= true | false
 
-    wordTable.put("null", NullConstant.ONLY);
+    wordTable.put("null", NullToken.ONLY);
     wordTable.put("true",  BoolConstant.TRUE);
     wordTable.put("false", BoolConstant.FALSE);
 

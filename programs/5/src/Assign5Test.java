@@ -94,14 +94,14 @@ public class Assign5Test extends TestCase {
       e.printStackTrace();
     } catch (Exception e) {
       e.printStackTrace();
-      fail("did not return TypeException");
+      fail("did not return ParseException");
     }
   } //end of func
 
   public void testNull3() {
     try {
       String output = "()";
-      String input = "null : int)";
+      String input = "null : int";
       allCheck("null", output, input );
 
     } catch (Exception e) {
@@ -125,7 +125,7 @@ public class Assign5Test extends TestCase {
   public void testNull5() {
     try {
       String output = "SHOULD RETURN -> TypeException: Expected type list int, but found list bool";
-      String input = "null : int = null : bool)";
+      String input = "null : int = null : bool";
       allCheck("null", output, input );
 
     } catch (TypeException e) {

@@ -104,7 +104,22 @@ class Parser {
       return new UnOpApp(op.toUnOp(), parseTerm(in.readToken()));
     }
     
-    if (token instanceof Constant) return (Constant) token;
+    if (token instanceof Constant) {
+      if (token instanceof NullToken) {
+        NullConstant nullConstant;
+
+        // need to check if followed by " : Type"
+
+        // in.readToken() should be : else parseException
+
+
+        // in.readToken() should be type
+        //nullConstant = new NullConstant(in.readToken());
+
+        //return Constant(nullConstant);
+      }
+      return (Constant) token;
+    }
     
     AST factor = parseFactor(token);
     Token next = in.peek();

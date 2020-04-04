@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Token.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,9 +57,9 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Interp.java" />
-      <recent name="Interp" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src\Interp\java" />
+      <recent name="$PROJECT_DIR$/programs/2/src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src" />
@@ -68,9 +69,9 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src\Interp\java" />
-      <recent name="$PROJECT_DIR$/programs/2/src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Interp.java" />
+      <recent name="Interp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -85,7 +86,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign5Test">
+  <component name="RunManager" selected="JUnit.Assign5Test,testNull2 and 4 more">
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -123,12 +124,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign5Test.testNull2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign5Test,testNull2 and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testNull2" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="Assign5Test,testNull2" />
+        <pattern testClass="Assign5Test,testNull3" />
+        <pattern testClass="Assign5Test,testNull4" />
+        <pattern testClass="Assign5Test,testNull5" />
+        <pattern testClass="Assign5Test,testNull" />
+      </patterns>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -145,18 +152,18 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign5Test" />
-      <item itemvalue="JUnit.Assign5Test.testNull2" />
       <item itemvalue="JUnit.Assign5Test,testNull2 and 1 more" />
       <item itemvalue="JUnit.Assign5Test,testNull2 and 3 more" />
       <item itemvalue="JUnit.Assign5Test.testType" />
+      <item itemvalue="JUnit.Assign5Test,testNull2 and 4 more" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign5Test,testNull2 and 4 more" />
         <item itemvalue="JUnit.Assign5Test" />
         <item itemvalue="JUnit.Assign5Test.testType" />
         <item itemvalue="JUnit.Assign5Test,testNull2 and 3 more" />
         <item itemvalue="JUnit.Assign5Test,testNull2 and 1 more" />
-        <item itemvalue="JUnit.Assign5Test.testNull2" />
       </list>
     </recent_temporary>
   </component>
@@ -177,14 +184,7 @@
       <workItem from="1583109358064" duration="2937000" />
       <workItem from="1583292471314" duration="317000" />
       <workItem from="1585733750233" duration="5342000" />
-      <workItem from="1585831272354" duration="4132000" />
-    </task>
-    <task id="LOCAL-00016" summary="OH sunday">
-      <created>1581299046918</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1581299046918</updated>
+      <workItem from="1585831272354" duration="8678000" />
     </task>
     <task id="LOCAL-00017" summary="OH sunday - forvar">
       <created>1581300232153</created>
@@ -522,7 +522,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585833687606</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="added tests and TODOs for null : Type">
+      <created>1585963580974</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1585963580974</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
