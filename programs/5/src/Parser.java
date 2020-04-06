@@ -285,7 +285,7 @@ class Parser {
     
     Token semi = in.readToken();
     if (semi != SemiColon.ONLY) error(semi,"`;'");
-    return new Def((Variable) new TypedVariable(var.toString(), (Type) next), exp);
+    return new Def( new TypedVariable(var.toString(), (Type) next), exp);
   }
   
   private AST error(Token found, String expected) {
