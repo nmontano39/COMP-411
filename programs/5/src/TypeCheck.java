@@ -40,33 +40,7 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         // TODO: force any Factor that is a Prim to be followed by an application argument list.
         //  This restriction prevents a Prim from being used as a general value.
 
-        return f.accept(new PrimFunVisitor<Type>() {
-            @Override
-            public Type forConsPPrim() {
-                return BoolType.ONLY;
-            }
-
-            @Override
-            public Type forNullPPrim() {
-                return BoolType.ONLY;
-            }
-
-            @Override
-            public Type forConsPrim() {
-                System.out.println("found cons");
-                return null;
-            }
-
-            @Override
-            public Type forFirstPrim() {
-                return null;
-            }
-
-            @Override
-            public Type forRestPrim() {
-                return null;
-            }
-        });
+        throw new TypeException("Primitive function is not followed by an application argument list");
     }
 
     public Type forUnOpApp(UnOpApp u) {

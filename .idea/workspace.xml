@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="working on forPrim in typeCheck">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/README" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +83,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign5Test.testList2">
+  <component name="RunManager" selected="JUnit.Assign5Test">
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -150,8 +148,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign5Test.testList2" />
         <item itemvalue="JUnit.Assign5Test" />
+        <item itemvalue="JUnit.Assign5Test.testList2" />
         <item itemvalue="JUnit.Assign5Test.testMathOp" />
         <item itemvalue="JUnit.Assign5Test.testAssign" />
         <item itemvalue="JUnit.Assign5Test,testNull2 and 4 more" />
@@ -176,13 +174,6 @@
       <workItem from="1583292471314" duration="317000" />
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
-    </task>
-    <task id="LOCAL-00018" summary="OH sunday - forLet">
-      <created>1581301840371</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1581301840371</updated>
     </task>
     <task id="LOCAL-00019" summary="OH sunday - end of OH">
       <created>1581303864627</created>
@@ -520,7 +511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585968196193</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="working on forPrim in typeCheck">
+      <created>1586161671219</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1586161671219</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="OH sunday - end of OH" />
     <MESSAGE value="OH sunday - testing if" />
     <MESSAGE value="all tests pass" />
     <MESSAGE value="solution 2" />
@@ -568,7 +565,8 @@
     <MESSAGE value="starting p5" />
     <MESSAGE value="step 2 - id : type" />
     <MESSAGE value="added tests and TODOs for null : Type" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests and TODOs for null : Type" />
+    <MESSAGE value="working on forPrim in typeCheck" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on forPrim in typeCheck" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -578,6 +576,7 @@
     <SUITE FILE_PATH="coverage/COMP_411$Assign1Test.ic" NAME="Assign1Test Coverage Results" MODIFIED="1583658540236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/COMP_411$Assign2Test.ic" NAME="Assign2Test Coverage Results" MODIFIED="1583658613724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/COMP_411$Assign4Test.ic" NAME="Assign4Test Coverage Results" MODIFIED="1583658757760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/COMP_411$Assign5Test.ic" NAME="Assign5Test Coverage Results" MODIFIED="1586166176706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/COMP_411$Assign3Test.ic" NAME="Assign3Test Coverage Results" MODIFIED="1582628131895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
