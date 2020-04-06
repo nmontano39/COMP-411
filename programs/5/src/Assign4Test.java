@@ -1,4 +1,5 @@
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.io.StringReader;
 
@@ -10,7 +11,7 @@ public class Assign4Test extends TestCase {
     * respective evaluation method (valueValue, valueName, valueNeed, etc.), and check that the result matches the 
     * (given) expected output.  
     */
- 
+
   private void valueValueCheck(String name, String answer, String program) {
     Interpreter interp = new Interpreter(new StringReader(program));
     assertEquals("by-value-value " + name, answer, interp.valueValue().toString());

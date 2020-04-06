@@ -105,6 +105,17 @@ class Parser {
     }
     
     if (token instanceof Constant) {
+      if (token instanceof NullConstant) {
+        Token next = in.readToken();
+        if (!(next == Colon.ONLY)) {
+          throw new ParseException("ParseException: Expecting : but found " + next);
+        }
+        next = in.readToken();
+        if (!(next instanceof Type)) {
+          throw new ParseException("ParseException: No matching clause (type) for null");
+        }
+        return new TypedNullConstant((Type) next);
+      }
       return (Constant) token;
     }
     
@@ -133,7 +144,19 @@ class Parser {
     
     if (! (token instanceof PrimFun) && ! (token instanceof Variable))
       error(token,"constant, primitive, variable, or `('");
-    
+
+    if (token instanceof Variable) {
+      Token next = in.readToken();
+      if (!(next == Colon.ONLY)) {
+        throw new ParseException("ParseException: Expecting : but found " + next);
+      }
+      next = in.readToken();
+      if (!(next instanceof Type)) {
+        throw new ParseException("ParseException: No matching clause (type) for null");
+      }
+      return new TypedVariable(token.toString(), (Type) next);
+    }
+
     // Term = Variable or PrimFun       
     return (Term) token;
   }      

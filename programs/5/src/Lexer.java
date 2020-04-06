@@ -57,7 +57,7 @@ class Lexer extends StreamTokenizer {
   public static final KeyWord MAP    = new KeyWord("map");
   public static final KeyWord TO     = new KeyWord("to");
   public static final KeyWord BIND   = new KeyWord(":=");
-  public static final KeyWord COLON   = new KeyWord(":");
+//  public static final KeyWord COLON   = new KeyWord(":");
 
 
   /**fields**/ 
@@ -216,7 +216,7 @@ class Lexer extends StreamTokenizer {
         tokenType = getToken();
         if (tokenType == '=') return BIND;
         pushBack();
-        return COLON;
+        return Colon.ONLY;
         //throw new ParseException("`:' is not a legal token");
       }
       default:
@@ -231,7 +231,10 @@ class Lexer extends StreamTokenizer {
     // constants
     // <null>  ::= null
     // <bool>  ::= true | false
-
+    wordTable.put("int", IntType.ONLY);
+    wordTable.put("bool", BoolType.ONLY);
+    wordTable.put("unit", UnitType.ONLY);
+    // TODO: Once you create the other Type classes, add those tokens to the wordTable.
     wordTable.put("null", NullConstant.ONLY);
     wordTable.put("true",  BoolConstant.TRUE);
     wordTable.put("false", BoolConstant.FALSE);

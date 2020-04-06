@@ -87,11 +87,11 @@ public class Assign5Test extends TestCase {
 
   public void testNull2() {
     try {
-      String output = "SHOULD RETURN -> ParseException: Expecting : but found end of input";
+      String output = "ParseException: Expecting : but found end of input";
       String input = "null";
       allCheck("null", output, input );
     } catch (ParseException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
     } catch (Exception e) {
       e.printStackTrace();
       fail("did not return ParseException");
@@ -113,7 +113,7 @@ public class Assign5Test extends TestCase {
   public void testNull4() {
     try {
       String output = "true";
-      String input = "null : int = null : int)";
+      String input = "null : int = null : int";
       allCheck("null", output, input );
 
     } catch (Exception e) {

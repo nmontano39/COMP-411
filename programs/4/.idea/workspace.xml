@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assign3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign3Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JamVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JamVal.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +22,10 @@
     <session id="376870782">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -41,30 +40,30 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="973" />
-          <entry key="txt" value="200" />
+          <entry key="java" value="975" />
+          <entry key="txt" value="225" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="973" />
-          <entry key="PLAIN_TEXT" value="200" />
+          <entry key="JAVA" value="975" />
+          <entry key="PLAIN_TEXT" value="225" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="378" column="14" lean-forward="true" selection-start-line="378" selection-start-column="14" selection-end-line="378" selection-end-column="14" />
+            <state relative-caret-position="765">
+              <caret line="374" column="14" selection-start-line="374" selection-start-column="14" selection-end-line="374" selection-end-column="14" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#11653#11654#0" expanded="true" />
-                <element signature="e#11715#11716#0" expanded="true" />
+                <element signature="e#11547#11548#0" expanded="true" />
+                <element signature="e#11609#11610#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,25 +72,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign3Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-760">
-              <caret line="294" selection-start-line="294" selection-end-line="294" />
+            <state relative-caret-position="5016">
+              <caret line="230" selection-start-line="230" selection-end-line="230" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JamVal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="384" column="41" selection-start-line="384" selection-start-column="41" selection-end-line="384" selection-end-column="41" />
-              <folding>
-                <element signature="e#13943#13944#0" expanded="true" />
-                <element signature="e#13972#13973#0" expanded="true" />
-                <element signature="e#14123#14124#0" expanded="true" />
-                <element signature="e#14146#14147#0" expanded="true" />
-                <element signature="e#14457#14458#0" expanded="true" />
-                <element signature="e#14475#14476#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="8470">
+              <caret line="387" column="41" selection-start-line="387" selection-start-column="41" selection-end-line="387" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -99,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="341" column="6" selection-start-line="341" selection-start-column="6" selection-end-line="341" selection-end-column="6" />
+            <state relative-caret-position="6424">
+              <caret line="342" column="6" selection-start-line="342" selection-start-column="6" selection-end-line="342" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -142,9 +133,9 @@
         <option value="$PROJECT_DIR$/src/Assign1Test.java" />
         <option value="$PROJECT_DIR$/src/AST.java" />
         <option value="$PROJECT_DIR$/src/Lexer.java" />
-        <option value="$PROJECT_DIR$/src/Assign3Test.java" />
         <option value="$PROJECT_DIR$/src/Interp.java" />
         <option value="$PROJECT_DIR$/src/JamVal.java" />
+        <option value="$PROJECT_DIR$/src/Assign3Test.java" />
       </list>
     </option>
   </component>
@@ -165,8 +156,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,15 +191,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583589278559" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Spring2019Acads/322/Homework" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583589674162" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../5" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -328,25 +319,17 @@
       <option name="project" value="LOCAL" />
       <updated>1583205272921</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="All of our tests pass.">
+      <created>1583589311780</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1583589311780</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 48m 15s.xml">
-      <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testBlock0 - 2020.03.07 at 07h 49m 36s.xml">
-      <configuration name="Assign3Test.testBlock0" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testBlock1 - 2020.03.07 at 07h 49m 40s.xml">
-      <configuration name="Assign3Test.testBlock1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 49m 43s.xml">
-      <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 50m 05s.xml">
-      <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 50m 16s.xml">
       <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
     </history-entry>
@@ -362,22 +345,35 @@
     <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 50m 44s.xml">
       <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 51m 21s.xml">
+      <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test - 2020.03.07 at 07h 51m 23s.xml">
+      <configuration name="Assign3Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test - 2020.03.07 at 07h 52m 56s.xml">
+      <configuration name="Assign3Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test_testRef0 - 2020.03.07 at 07h 54m 18s.xml">
+      <configuration name="Assign3Test.testRef0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign3Test_testRef0 - 2020.03.07 at 07h 54m 40s.xml">
+      <configuration name="Assign3Test.testRef0" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2561629" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25937834" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32896176" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -386,6 +382,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32896176" />
+      <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="right" id="Palette" order="2" />
@@ -405,7 +402,8 @@
     <MESSAGE value="Basic functionality of Ref works." />
     <MESSAGE value="Updated a test to reflect its original." />
     <MESSAGE value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
+    <MESSAGE value="All of our tests pass." />
+    <option name="LAST_COMMIT_MESSAGE" value="All of our tests pass." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -447,45 +445,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AST.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="341" column="6" selection-start-line="341" selection-start-column="6" selection-end-line="341" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Interp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="378" column="14" lean-forward="true" selection-start-line="378" selection-start-column="14" selection-end-line="378" selection-end-column="14" />
+        <state relative-caret-position="765">
+          <caret line="374" column="14" selection-start-line="374" selection-start-column="14" selection-end-line="374" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#11653#11654#0" expanded="true" />
-            <element signature="e#11715#11716#0" expanded="true" />
+            <element signature="e#11547#11548#0" expanded="true" />
+            <element signature="e#11609#11610#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign3Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-760">
-          <caret line="294" selection-start-line="294" selection-end-line="294" />
+        <state relative-caret-position="5016">
+          <caret line="230" selection-start-line="230" selection-end-line="230" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JamVal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="384" column="41" selection-start-line="384" selection-start-column="41" selection-end-line="384" selection-end-column="41" />
-          <folding>
-            <element signature="e#13943#13944#0" expanded="true" />
-            <element signature="e#13972#13973#0" expanded="true" />
-            <element signature="e#14123#14124#0" expanded="true" />
-            <element signature="e#14146#14147#0" expanded="true" />
-            <element signature="e#14457#14458#0" expanded="true" />
-            <element signature="e#14475#14476#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="8470">
+          <caret line="387" column="41" selection-start-line="387" selection-start-column="41" selection-end-line="387" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6424">
+          <caret line="342" column="6" selection-start-line="342" selection-start-column="6" selection-end-line="342" selection-end-column="6" />
         </state>
       </provider>
     </entry>

@@ -5,23 +5,78 @@ import java.util.*;
 /** A data object representing a Jam token */
 interface Token {}
 
+interface Type extends Token{
+
+  public String toString();
+
+  public Boolean equals(Type otherType);
+}
+
+class IntType implements Type {
+  public static final IntType ONLY = new IntType();
+
+  private IntType() {}
+
+  public String toString() {
+    return "int";
+  }
+
+  public Boolean equals(Type otherType) {
+    // TODO: Make sure this is the correct way to do equals.
+    return otherType instanceof IntType;
+  }
+}
+
+class BoolType implements Type {
+  public static final BoolType ONLY = new BoolType();
+
+  private BoolType() {}
+
+  public String toString() {
+    return "bool";
+  }
+
+  public Boolean equals(Type otherType) {
+    return otherType instanceof BoolType;
+  }
+}
+
+class UnitType implements Type {
+  public static final UnitType ONLY = new UnitType();
+
+  private UnitType() {}
+
+  public String toString() {
+    return "unit";
+  }
+
+  public Boolean equals(Type otherType) {
+    return otherType instanceof UnitType;
+  }
+}
+
+//TODO: Add classes for listType, refType and typeListType (?)
+
+
 
 
 // TODO: modify null constant class with type
 /** Null constant class. Part of AST composite hierarchy. */
 class NullConstant implements Token, Constant {
   public static final NullConstant ONLY = new NullConstant();
-  private NullConstant() { }
+  public NullConstant() { }
   public <T> T accept(ASTVisitor<T> v) { return v.forNullConstant(this); }
   public String toString() { return "null"; }
 }
 
 
-//class TypedNullConstant extends NullConstant {
-//  private TypedNullConstant() {
-//
-//  }
-//}
+class TypedNullConstant extends NullConstant {
+  private Type nullType;
+  public TypedNullConstant(Type nullType) {
+    super();
+    this.nullType = nullType;
+  }
+}
 
 // TODO: needs to be typed
 class Variable implements Token, Term, WithVariable {
@@ -38,8 +93,11 @@ class Variable implements Token, Term, WithVariable {
 }
 
 class TypedVariable extends Variable {
-  TypedVariable(String n) {
+  private Type varType;
+
+  TypedVariable(String n, Type varType) {
     super(n);
+    this.varType = varType;
   }
 }
 
@@ -149,4 +207,10 @@ class EndOfFile implements Token {
   public String toString() { return "*EOF*"; }
   private EndOfFile() {}
   public static final EndOfFile ONLY = new EndOfFile();
+}
+
+class Colon implements Token {
+  public String toString() { return ":"; }
+  private Colon() {}
+  public static final Colon ONLY = new Colon();
 }
