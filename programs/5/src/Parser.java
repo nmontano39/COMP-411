@@ -112,10 +112,13 @@ class Parser {
           throw new ParseException("ParseException: Expecting : but found " + next);
         }
         next = in.readToken();
-        if (!(next instanceof Type)) {
-          throw new ParseException("ParseException: No matching clause (type) for null");
-        }
-        return new TypedNullConstant((Type) next);
+//        if (!(next instanceof Type)) {
+//          throw new ParseException("ParseException: No matching clause (type) for null");
+//        }
+        System.out.println(next);
+        Type type = parseType(next);
+
+        return new TypedNullConstant(type);
       }
       return (Constant) token;
     }

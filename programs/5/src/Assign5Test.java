@@ -159,7 +159,7 @@ public class Assign5Test extends TestCase {
       allCheck("null", output, input );
 
     } catch (TypeException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
     } catch (Exception e) {
       e.printStackTrace();
       fail("did not return TypeException");

@@ -1,4 +1,5 @@
 import javax.lang.model.type.NullType;
+import java.util.List;
 
 /** A visitor class for the type checker. Returns normally unless there is a type error. On a type error,
  * throws a TypeException.
@@ -226,15 +227,70 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
 
     //TODO: Come back to this, still returning null
     public Type forApp(App a) {
-        a.rator().accept(this);
         AST[] args = a.args();
         int n = args.length;
+
+        if (a.rator() instanceof PrimFun) {
+            PrimFun rator = (PrimFun) a.rator();
+            Type firstType = args[0].accept(this);
+//            Type restType = args[1].accept(this);
+            ASTVisitor<Type> myVisitor = this;
+            return rator.accept(new PrimFunVisitor<Type>() {
+                @Override
+                public Type forConsPPrim() {
+                    return BoolType.ONLY;
+                }
+
+                @Override
+                public Type forNullPPrim() {
+                    return BoolType.ONLY;
+                }
+
+                @Override
+                public Type forConsPrim() {
+                    Type restType = args[1].accept(myVisitor);
+                    if (args[1] instanceof TypedNullConstant) {
+                        if (((TypedNullConstant) args[1]).type().equals(firstType)) {
+                            return new ListType(firstType);
+                        } else {
+                            throw new TypeException("List type not consistent");
+                        }
+                    } else if (restType instanceof ListType) {
+                        if (((ListType) restType).listType().equals(firstType)) {
+                            return new ListType(firstType);
+                        } else {
+                            throw new TypeException("List type not consistent");
+                        }
+                    } else {
+                        System.out.println(firstType + " " + restType);
+                        throw new TypeException("List type not consistent");
+                    }
+                }
+
+                @Override
+                public Type forFirstPrim() {
+                    return firstType;
+                }
+
+                @Override
+                public Type forRestPrim() {
+                    return firstType;
+                }
+            });
+        }
+
+        Type ratorType = a.rator().accept(this);
+        FunType ratorFunType = (FunType) ratorType;
+
 //        Type firstType = first.accept(this).
         for(int i = 0; i < n; i++) {
-            //System.out.println("a: " + args[i]);
-            args[i].accept(this);
+            Type funArgType = ratorFunType.paramType()[i];
+            Type argType = args[i].accept(this);
+            if (!(funArgType.equals(argType))) {
+                throw new TypeException("Argument for App has incorrect type");
+            }
         }
-        return null;
+        return ratorFunType.outType();
     }
 
     public Type forMap(Map m) {
