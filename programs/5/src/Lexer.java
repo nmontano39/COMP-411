@@ -57,6 +57,7 @@ class Lexer extends StreamTokenizer {
   public static final KeyWord MAP    = new KeyWord("map");
   public static final KeyWord TO     = new KeyWord("to");
   public static final KeyWord BIND   = new KeyWord(":=");
+  public static final KeyWord LIST   = new KeyWord("list");
 //  public static final KeyWord COLON   = new KeyWord(":");
 
 
@@ -275,6 +276,7 @@ class Lexer extends StreamTokenizer {
     wordTable.put("map",  Lexer.MAP);
     wordTable.put("to",   Lexer.TO);
     wordTable.put("ref",  Lexer.REF);
+    wordTable.put("list",  Lexer.LIST);
   }
 
   public static void main(String[] args) throws IOException {

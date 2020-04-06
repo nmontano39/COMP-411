@@ -177,6 +177,14 @@ class Variable implements Token, Term, WithVariable {
   
   public <ResType> ResType accept(ASTVisitor<ResType> v) { return v.forVariable(this); }
   public String toString() { return name; }
+
+  public boolean equals(Object o) {
+      if (!(o instanceof Variable)) {
+          return false;
+      } else {
+          return ((Variable) o).name().equals(this.name());
+      }
+  }
 }
 
 class TypedVariable extends Variable {

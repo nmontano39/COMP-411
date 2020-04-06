@@ -83,8 +83,7 @@ class LookupVisitor<ElemType extends WithVariable> implements PureListVisitor<El
   /** Case for non-empty lists. */
   public ElemType forCons(Cons<ElemType> c) {
     ElemType e = c.first();
-    System.out.println("var = " + var + " e.var() = " + e.var());
-    if (var.name().equals(e.var().name())) return e;
+    if (var.equals(e.var())) return e;
     return c.rest().accept(this);
   }
 }

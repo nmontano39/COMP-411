@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AST.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assign5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign5Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TypeCheck.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -65,27 +70,27 @@
           <entry key="DoubleCheck" value="1" />
           <entry key="README" value="1" />
           <entry key="class" value="1" />
-          <entry key="java" value="13" />
+          <entry key="java" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="13" />
+          <entry key="JAVA" value="15" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="DoubleCheck" value="489" />
-          <entry key="java" value="3499" />
-          <entry key="txt" value="157" />
+          <entry key="java" value="4315" />
+          <entry key="txt" value="215" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3499" />
-          <entry key="PLAIN_TEXT" value="646" />
+          <entry key="JAVA" value="4315" />
+          <entry key="PLAIN_TEXT" value="704" />
         </counts>
       </usages-collector>
     </session>
@@ -95,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign5Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state relative-caret-position="204">
+              <caret line="253" selection-start-line="253" selection-end-line="253" />
             </state>
           </provider>
         </entry>
@@ -104,8 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Lexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="218" column="25" selection-start-line="218" selection-start-column="25" selection-end-line="218" selection-end-column="25" />
+            <state relative-caret-position="470">
+              <caret line="278" column="39" selection-start-line="278" selection-start-column="39" selection-end-line="278" selection-end-column="39" />
               <folding>
                 <element signature="e#3402#3416#0" expanded="true" />
               </folding>
@@ -116,26 +121,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JamVal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="350" column="6" selection-start-line="350" selection-start-column="6" selection-end-line="350" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Parser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="287" column="19" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
+            <state relative-caret-position="206">
+              <caret line="117" column="17" lean-forward="true" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="706">
+              <caret line="286" column="54" selection-start-line="286" selection-start-column="54" selection-end-line="286" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TypeCheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="196" column="37" selection-start-line="196" selection-start-column="37" selection-end-line="196" selection-end-column="37" />
+            <state relative-caret-position="545">
+              <caret line="242" column="54" selection-start-line="242" selection-start-column="54" selection-end-line="242" selection-end-column="54" />
               <folding>
                 <element signature="e#368#383#0" expanded="true" />
                 <element signature="e#1335#1336#0" expanded="true" />
@@ -150,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+            <state relative-caret-position="382">
+              <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -159,8 +164,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Interp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="543" column="5" lean-forward="true" selection-start-line="543" selection-start-column="5" selection-end-line="543" selection-end-column="5" />
+            <state relative-caret-position="336">
+              <caret line="85" column="28" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -174,8 +179,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-528">
-              <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+            <state relative-caret-position="184">
+              <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
               <folding>
                 <element signature="e#1207#1208#0" expanded="true" />
                 <element signature="e#1247#1248#0" expanded="true" />
@@ -207,8 +212,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+            <state relative-caret-position="508">
+              <caret line="363" column="44" lean-forward="true" selection-start-line="363" selection-start-column="44" selection-end-line="363" selection-end-column="44" />
               <folding>
                 <element signature="e#0#11976#0" expanded="true" />
               </folding>
@@ -227,8 +232,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Ref</find>
-      <find>OpRef</find>
       <find>NOT</find>
       <find>UnOp</find>
       <find>ref</find>
@@ -252,9 +255,13 @@
       <find>Syntax</find>
       <find>Check</find>
       <find>SyntaxException</find>
-      <find>TODO</find>
       <find>forMap</find>
       <find>forVariable</find>
+      <find>forLet</find>
+      <find>contains</find>
+      <find>Look</find>
+      <find>TODO</find>
+      <find>Ref</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -276,15 +283,15 @@
         <option value="$PROJECT_DIR$/src/Assign3Test.java" />
         <option value="$PROJECT_DIR$/src/JamVal.java" />
         <option value="$PROJECT_DIR$/src/Assign4Test.java" />
-        <option value="$PROJECT_DIR$/src/Lexer.java" />
-        <option value="$PROJECT_DIR$/src/AST.java" />
         <option value="$PROJECT_DIR$/src/Syntax.java" />
         <option value="$PROJECT_DIR$/src/DoubleCheck" />
-        <option value="$PROJECT_DIR$/src/Interp.java" />
+        <option value="$PROJECT_DIR$/src/TypeCheck.java" />
         <option value="$PROJECT_DIR$/src/Assign5Test.java" />
         <option value="$PROJECT_DIR$/src/Token.java" />
+        <option value="$PROJECT_DIR$/src/Interp.java" />
+        <option value="$PROJECT_DIR$/src/AST.java" />
+        <option value="$PROJECT_DIR$/src/Lexer.java" />
         <option value="$PROJECT_DIR$/src/Parser.java" />
-        <option value="$PROJECT_DIR$/src/TypeCheck.java" />
       </list>
     </option>
   </component>
@@ -354,7 +361,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586157384508" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586160577648" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -372,7 +379,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign5Test.testMathOp">
+  <component name="RunManager" selected="JUnit.Assign5Test">
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
@@ -381,11 +388,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign5Test.testList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign5Test.testBangApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testList" />
+      <option name="METHOD_NAME" value="testBangApp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign5Test.testDupVar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign5Test" />
+      <option name="METHOD_NAME" value="testDupVar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -411,30 +428,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign5Test.testNull5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testNull5" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.Assign5Test.testNull5" />
       <item itemvalue="JUnit.Assign5Test" />
-      <item itemvalue="JUnit.Assign5Test.testList" />
       <item itemvalue="JUnit.Assign5Test.testList2" />
       <item itemvalue="JUnit.Assign5Test.testMathOp" />
+      <item itemvalue="JUnit.Assign5Test.testBangApp" />
+      <item itemvalue="JUnit.Assign5Test.testDupVar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign5Test" />
+        <item itemvalue="JUnit.Assign5Test.testDupVar" />
+        <item itemvalue="JUnit.Assign5Test.testBangApp" />
         <item itemvalue="JUnit.Assign5Test.testMathOp" />
         <item itemvalue="JUnit.Assign5Test.testList2" />
-        <item itemvalue="JUnit.Assign5Test" />
-        <item itemvalue="JUnit.Assign5Test.testList" />
-        <item itemvalue="JUnit.Assign5Test.testNull5" />
       </list>
     </recent_temporary>
   </component>
@@ -505,39 +512,46 @@
       <option name="project" value="LOCAL" />
       <updated>1586143608521</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Type checking done (need to test) for UnOp and BinOp">
+      <created>1586157606161</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586157606161</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign5Test - 2020.04.05 at 21h 39m 52s.xml">
+    <history-entry file="Assign5Test - 2020.04.06 at 02h 21m 03s.xml">
       <configuration name="Assign5Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test - 2020.04.05 at 22h 04m 03s.xml">
+    <history-entry file="Assign5Test - 2020.04.06 at 02h 34m 21s.xml">
       <configuration name="Assign5Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testList2 - 2020.04.05 at 22h 12m 15s.xml">
-      <configuration name="Assign5Test.testList2" configurationId="JUnit" />
+    <history-entry file="Assign5Test_testBangApp - 2020.04.06 at 02h 35m 11s.xml">
+      <configuration name="Assign5Test.testBangApp" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testList2 - 2020.04.05 at 22h 14m 41s.xml">
-      <configuration name="Assign5Test.testList2" configurationId="JUnit" />
+    <history-entry file="Assign5Test - 2020.04.06 at 02h 37m 01s.xml">
+      <configuration name="Assign5Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testList2 - 2020.04.05 at 22h 15m 20s.xml">
-      <configuration name="Assign5Test.testList2" configurationId="JUnit" />
+    <history-entry file="Assign5Test_testDupVar - 2020.04.06 at 02h 44m 26s.xml">
+      <configuration name="Assign5Test.testDupVar" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testList2 - 2020.04.05 at 22h 18m 34s.xml">
-      <configuration name="Assign5Test.testList2" configurationId="JUnit" />
+    <history-entry file="Assign5Test_testDupVar - 2020.04.06 at 02h 45m 15s.xml">
+      <configuration name="Assign5Test.testDupVar" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testList2 - 2020.04.05 at 22h 18m 47s.xml">
-      <configuration name="Assign5Test.testList2" configurationId="JUnit" />
+    <history-entry file="Assign5Test_testDupVar - 2020.04.06 at 02h 46m 52s.xml">
+      <configuration name="Assign5Test.testDupVar" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testList2 - 2020.04.05 at 22h 22m 28s.xml">
-      <configuration name="Assign5Test.testList2" configurationId="JUnit" />
+    <history-entry file="Assign5Test_testDupVar - 2020.04.06 at 02h 47m 24s.xml">
+      <configuration name="Assign5Test.testDupVar" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testMathOp - 2020.04.06 at 00h 36m 28s.xml">
-      <configuration name="Assign5Test.testMathOp" configurationId="JUnit" />
+    <history-entry file="Assign5Test_testDupVar - 2020.04.06 at 02h 50m 30s.xml">
+      <configuration name="Assign5Test.testDupVar" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign5Test_testMathOp - 2020.04.06 at 00h 52m 43s.xml">
-      <configuration name="Assign5Test.testMathOp" configurationId="JUnit" />
+    <history-entry file="Assign5Test - 2020.04.06 at 02h 51m 17s.xml">
+      <configuration name="Assign5Test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -553,7 +567,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32896176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -586,7 +600,8 @@
     <MESSAGE value="Still working on parsing defs..." />
     <MESSAGE value="Created required type classes." />
     <MESSAGE value="Working on type checking." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on type checking." />
+    <MESSAGE value="Type checking done (need to test) for UnOp and BinOp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Type checking done (need to test) for UnOp and BinOp" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -634,16 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Lexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="218" column="25" selection-start-line="218" selection-start-column="25" selection-end-line="218" selection-end-column="25" />
-          <folding>
-            <element signature="e#3402#3416#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DoubleCheck">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -660,36 +665,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JamVal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="350" column="6" selection-start-line="350" selection-start-column="6" selection-end-line="350" selection-end-column="6" />
+        <state relative-caret-position="206">
+          <caret line="117" column="17" lean-forward="true" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Syntax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+        <state relative-caret-position="382">
+          <caret line="112" column="22" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parser.java">
+    <entry file="jar://$USER_HOME$/java8/jdk1.8.0_181/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="287" column="19" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign5Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        <state relative-caret-position="194">
+          <caret line="147" column="19" selection-start-line="147" selection-start-column="19" selection-end-line="147" selection-end-column="19" />
+          <folding>
+            <element signature="e#5748#5749#0" expanded="true" />
+            <element signature="e#5784#5785#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="543" column="5" lean-forward="true" selection-start-line="543" selection-start-column="5" selection-end-line="543" selection-end-column="5" />
+        <state relative-caret-position="336">
+          <caret line="85" column="28" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -699,20 +701,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign5Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="253" selection-start-line="253" selection-end-line="253" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TypeCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="242" column="54" selection-start-line="242" selection-start-column="54" selection-end-line="242" selection-end-column="54" />
+          <folding>
+            <element signature="e#368#383#0" expanded="true" />
+            <element signature="e#1335#1336#0" expanded="true" />
+            <element signature="e#1399#1400#0" expanded="true" />
+            <element signature="e#2492#2493#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="42" column="15" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+        <state relative-caret-position="508">
+          <caret line="363" column="44" lean-forward="true" selection-start-line="363" selection-start-column="44" selection-end-line="363" selection-end-column="44" />
           <folding>
             <element signature="e#0#11976#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="278" column="39" selection-start-line="278" selection-start-column="39" selection-end-line="278" selection-end-column="39" />
+          <folding>
+            <element signature="e#3402#3416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528">
-          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+        <state relative-caret-position="184">
+          <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
           <folding>
             <element signature="e#1207#1208#0" expanded="true" />
             <element signature="e#1247#1248#0" expanded="true" />
@@ -740,17 +773,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TypeCheck.java">
+    <entry file="file://$PROJECT_DIR$/src/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="196" column="37" selection-start-line="196" selection-start-column="37" selection-end-line="196" selection-end-column="37" />
-          <folding>
-            <element signature="e#368#383#0" expanded="true" />
-            <element signature="e#1335#1336#0" expanded="true" />
-            <element signature="e#1399#1400#0" expanded="true" />
-            <element signature="e#2492#2493#0" expanded="true" />
-            <element signature="e#2535#2536#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="706">
+          <caret line="286" column="54" selection-start-line="286" selection-start-column="54" selection-end-line="286" selection-end-column="54" />
         </state>
       </provider>
     </entry>

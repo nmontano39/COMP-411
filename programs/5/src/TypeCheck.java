@@ -228,25 +228,26 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         return i.alt().accept(this);
     }
 
-    public Void forLet(Let l) {
+    public Type forLet(Let l) {
         Variable[] vars = l.vars();
         AST[] exps = l.exps();
         int n = vars.length;
         PureList<TypedVariable> newEnv = env;
-        for(int i = n - 1; i >= 0; i--) {
-            newEnv = newEnv.cons((TypedVariable) vars[i]);
-        }
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
-        for(int i = 0; i < n; i++) {
-            exps[i].accept(newVisitor);
-        } // may throw a SyntaxException
-        l.body().accept(newVisitor); // may throw a SyntaxException
-        return null;
+        for(int i = n - 1; i >= 0; i--) {
+            Type expType = exps[i].accept(newVisitor);
+            if (!(expType.equals(((TypedVariable) vars[i]).type()))) {
+                throw new TypeException("Incorrect type in Def in Let");
+            }
+            newEnv = newEnv.cons((TypedVariable) vars[i]);
+            newVisitor = new TypeCheckVisitor(newEnv);
+        }
+        return l.body().accept(newVisitor); // may throw a SyntaxException
     }
 
     // PROVIDED
     /*  Supports the addition of blocks to Jam */
-    public Void forBlock(Block b) {
+    public Type forBlock(Block b) {
         AST[] exps =  b.exps();
         int n = exps.length;
         for (int i = 0; i < n; i++) exps[i].accept(this);  // may throw a SyntaxException

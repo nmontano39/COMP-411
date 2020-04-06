@@ -259,6 +259,7 @@ public class Assign5Test extends TestCase {
   public void testBangApp() {
     try {
       String output = "10";
+      //TODO: Need to fix Parser to be able to handle list type, ref type etc.
       String input = "let x: ref int := ref 10; in !x";
       allCheck("bangApp", output, input );
 
