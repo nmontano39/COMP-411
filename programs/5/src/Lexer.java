@@ -45,7 +45,9 @@ class Lexer extends StreamTokenizer {
   public static final OpToken BANG = OpToken.newUnOpToken(OpBang.ONLY);
   public static final OpToken GETS = OpToken.newBinOpToken(OpGets.ONLY);
   public static final OpToken REF = OpToken.newUnOpToken(OpRef.ONLY);
-  
+
+
+
   /* Keywords */
 
   public static final KeyWord IF     = new KeyWord("if");
@@ -58,7 +60,7 @@ class Lexer extends StreamTokenizer {
   public static final KeyWord TO     = new KeyWord("to");
   public static final KeyWord BIND   = new KeyWord(":=");
   public static final KeyWord LIST   = new KeyWord("list");
-//  public static final KeyWord COLON   = new KeyWord(":");
+  public static final KeyWord TYPESET   = new KeyWord("->");
 
 
   /**fields**/ 
@@ -185,7 +187,13 @@ class Lexer extends StreamTokenizer {
       case ';': return SemiColon.ONLY;
 
       case '+': return PLUS;
-      case '-': return MINUS;
+      case '-': {
+        if (getToken() == '>') {
+          return TYPESET;
+        } else {
+          return MINUS;
+        }
+      }
       case '*': return TIMES;
       case '/': return DIVIDE;
       case '~': return NOT;
@@ -212,7 +220,6 @@ class Lexer extends StreamTokenizer {
       case '&': return AND;
       case '|': return OR;
 
-      // TODO?
       case ':': {
         tokenType = getToken();
         if (tokenType == '=') return BIND;

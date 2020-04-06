@@ -547,6 +547,7 @@ class Evaluator implements EvalVisitor {
     public JamVal forOpTilde(OpTilde op) { return checkBoolean(op).not(); }
     public JamVal forOpBang(OpBang op) {return checkReference(op);}
     public JamVal forOpRef(OpRef op) {return new JamBox(val);}
+
   }
 
   /** Evaluator for binary operators. */

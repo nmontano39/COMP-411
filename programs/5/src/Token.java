@@ -58,9 +58,15 @@ class UnitType implements Type {
 class ListType implements Type {
 
     private Type listType;
+    private ArrayList<Type> types = new ArrayList<>();
 
     public ListType(Type listType) {
         this.listType = listType;
+    }
+
+    public ListType(Type listType, ArrayList<Type> types) {
+        this.listType = listType;
+        this.types = types;
     }
 
     public String toString() {
@@ -70,6 +76,7 @@ class ListType implements Type {
     public Type listType() {
         return this.listType;
     }
+
 
     public Boolean equals(Type otherType) {
         return otherType instanceof ListType && this.listType().equals(((ListType) otherType).listType());

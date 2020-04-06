@@ -290,22 +290,52 @@ class Parser {
     return new Def( new TypedVariable(var.toString(), type), exp);
   }
 
-  private Type parseType(Token tok) {
+  public Type parseType(Token tok) {
+    System.out.println("token => " + tok);
     if (tok instanceof Type) {
+      System.out.println("reaches 3");
       return (Type) tok;
     } else if (tok == Lexer.REF) {
       return new RefType(parseType(in.readToken()));
     } else if (tok == Lexer.LIST) {
-      return new ListType(parseType(in.readToken()));
+      System.out.println("reaches 1");
+      Token next = in.readToken();
+      if (next == LeftParen.ONLY) {
+        return parseTypeList(in.readToken());
+      }
+      System.out.println("reaches 2");
+      return new ListType(parseType(next));
     } else {
+      if (tok == LeftParen.ONLY) {
+        return parseTypeList(in.readToken());
+      }
       throw new ParseException("ParseException: Invalid Type");
     }
   }
+
+  public Type parseTypeList(Token next) {
+    ArrayList<Type> listTypes = new ArrayList<>();
+    listTypes.add(parseType(next));
+    next = in.readToken();
+
+    while (next == Comma.ONLY) {
+      next = in.readToken();
+      listTypes.add(parseType(next));
+      next = in.readToken();
+    }
+    if (next != Lexer.TYPESET) {
+      throw new ParseException("ParseException: Could not parse the TypeList ->");
+    }
+    Type myType = parseType(in.readToken());
+    in.readToken();
+    return new ListType(myType, listTypes);
+  }
+
   
   private AST error(Token found, String expected) {
 //    for (int i = 0; i < 10; i++) {
 //      System.out.println(in.readToken());
-//    }   
+//    }
     throw new ParseException("Token `" + found + "' appears where " + expected + " was expected");
   }
   
