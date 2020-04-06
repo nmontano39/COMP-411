@@ -373,6 +373,7 @@ class Evaluator implements EvalVisitor {
 
     /* Fix up the dummy values. */
     for(int i = 0; i < n; i++) {
+      System.out.println(exps[i]);
       bindings[i].setBinding(exps[i], newEV);  // modifies newEnv and newEvalVisitor
     }
     return l.body().accept(newEV);

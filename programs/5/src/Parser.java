@@ -145,18 +145,6 @@ class Parser {
     if (! (token instanceof PrimFun) && ! (token instanceof Variable))
       error(token,"constant, primitive, variable, or `('");
 
-    if (token instanceof Variable) {
-      Token next = in.readToken();
-      if (!(next == Colon.ONLY)) {
-        throw new ParseException("ParseException: Expecting : but found " + next);
-      }
-      next = in.readToken();
-      if (!(next instanceof Type)) {
-        throw new ParseException("ParseException: No matching clause (type) for null");
-      }
-      return new TypedVariable(token.toString(), (Type) next);
-    }
-
     // Term = Variable or PrimFun       
     return (Term) token;
   }      
@@ -279,6 +267,15 @@ class Parser {
   private Def parseDef(Token var) {
     
     if (! (var instanceof Variable)) error(var, "variable");
+
+    Token next = in.readToken();
+    if (!(next == Colon.ONLY)) {
+      throw new ParseException("ParseException: Expecting : but found " + next);
+    }
+    next = in.readToken();
+    if (!(next instanceof Type)) {
+      throw new ParseException("ParseException: No matching clause (type) for null");
+    }
     
     Token key = in.readToken();
     if (key != Lexer.BIND) error (key,"`:='");
@@ -287,7 +284,7 @@ class Parser {
     
     Token semi = in.readToken();
     if (semi != SemiColon.ONLY) error(semi,"`;'");
-    return new Def((Variable) var, exp);
+    return new Def(new TypedVariable(var.toString(), (Type) next), exp);
   }
   
   private AST error(Token found, String expected) {
