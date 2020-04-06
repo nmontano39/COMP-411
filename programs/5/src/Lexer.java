@@ -211,7 +211,7 @@ class Lexer extends StreamTokenizer {
       case '&': return AND;
       case '|': return OR;
 
-      //
+      // TODO?
       case ':': {
         tokenType = getToken();
         if (tokenType == '=') return BIND;
@@ -232,7 +232,7 @@ class Lexer extends StreamTokenizer {
     // <null>  ::= null
     // <bool>  ::= true | false
 
-    wordTable.put("null", NullToken.ONLY);
+    wordTable.put("null", NullConstant.ONLY);
     wordTable.put("true",  BoolConstant.TRUE);
     wordTable.put("false", BoolConstant.FALSE);
 

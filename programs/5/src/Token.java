@@ -5,28 +5,23 @@ import java.util.*;
 /** A data object representing a Jam token */
 interface Token {}
 
-class Type {
-  // TODO: fill this in and move somewhere
-}
+
 
 // TODO: modify null constant class with type
 /** Null constant class. Part of AST composite hierarchy. */
-class NullConstant implements Constant {
-  //public static final NullConstant ONLY = new NullConstant();
-  //private NullConstant() { }
-  public Type type;
-  private NullConstant(Type nullType) { type = nullType; }
+class NullConstant implements Token, Constant {
+  public static final NullConstant ONLY = new NullConstant();
+  private NullConstant() { }
   public <T> T accept(ASTVisitor<T> v) { return v.forNullConstant(this); }
   public String toString() { return "null"; }
 }
 
-/** Null constant class. Part of Token composite hierarchy. */
-class NullToken implements Token {
-  public String toString() { return "null"; }
-  private NullToken() {}
-  public static final NullToken ONLY = new NullToken();
-}
 
+//class TypedNullConstant extends NullConstant {
+//  private TypedNullConstant() {
+//
+//  }
+//}
 
 // TODO: needs to be typed
 class Variable implements Token, Term, WithVariable {
@@ -40,6 +35,12 @@ class Variable implements Token, Term, WithVariable {
   
   public <ResType> ResType accept(ASTVisitor<ResType> v) { return v.forVariable(this); }
   public String toString() { return name; }
+}
+
+class TypedVariable extends Variable {
+  TypedVariable(String n) {
+    super(n);
+  }
 }
 
 class OpToken implements Token {
