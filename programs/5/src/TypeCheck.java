@@ -33,7 +33,9 @@ class TypeCheckVisitor implements ASTVisitor<Void> {
         return null;
     }
 
-    public Void forPrimFun(PrimFun f) { return null;  }
+    public Void forPrimFun(PrimFun f) {
+        return null;
+    }
 
     public Void forUnOpApp(UnOpApp u) {
         u.arg().accept(this);  // mzy throw a SyntaxException
@@ -58,7 +60,11 @@ class TypeCheckVisitor implements ASTVisitor<Void> {
         a.rator().accept(this); // may throw a SyntaxException
         AST[] args = a.args();
         int n = args.length;
-        for(int i = 0; i < n; i++) { args[i].accept(this); } // may throw a SyntaxException
+//        Type firstType = first.accept(this).
+        for(int i = 0; i < n; i++) {
+            System.out.println("a: " + args[i]);
+            args[i].accept(this);
+        } // may throw a SyntaxException
         return null;
     }
 

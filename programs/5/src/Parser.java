@@ -46,6 +46,7 @@ class Parser {
     
     prog.accept(CheckVisitor.INITIAL);   // aborts on an error by throwing an exception
     prog.accept(TypeCheckVisitor.INITIAL);
+    System.out.println(prog);
     return prog;
   }
   
