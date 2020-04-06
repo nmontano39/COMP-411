@@ -5,8 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Assign5Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign5Test">
+  <component name="RunManager" selected="JUnit.Assign5Test.testList2">
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -152,10 +150,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign5Test.testList2" />
         <item itemvalue="JUnit.Assign5Test" />
         <item itemvalue="JUnit.Assign5Test.testMathOp" />
         <item itemvalue="JUnit.Assign5Test.testAssign" />
-        <item itemvalue="JUnit.Assign5Test.testList2" />
         <item itemvalue="JUnit.Assign5Test,testNull2 and 4 more" />
       </list>
     </recent_temporary>

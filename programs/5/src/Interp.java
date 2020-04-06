@@ -116,8 +116,7 @@ class Interpreter {
 
     // TODO: delete these print lines
 
-    System.out.println(prog);
-    System.out.println("\nDid parse check, doing type check...\n");
+    System.out.println("\nDoing type check...\n");
 
     prog.accept(TypeCheckVisitor.INITIAL);
     System.out.println(prog);

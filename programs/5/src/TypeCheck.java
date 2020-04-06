@@ -34,14 +34,40 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         return env.accept(new LookupVisitor<>(v)).type();
     }
 
-    //TODO: Come back to this
+    //TODO: Come back to this, still returning null
     public Type forPrimFun(PrimFun f) {
         // TODO: force any Factor that is a Prim to be followed by an application argument list.
         //  This restriction prevents a Prim from being used as a general value.
-        return null;
+
+        return f.accept(new PrimFunVisitor<Type>() {
+            @Override
+            public Type forConsPPrim() {
+                return BoolType.ONLY;
+            }
+
+            @Override
+            public Type forNullPPrim() {
+                return BoolType.ONLY;
+            }
+
+            @Override
+            public Type forConsPrim() {
+                System.out.println("found cons");
+                return null;
+            }
+
+            @Override
+            public Type forFirstPrim() {
+                return null;
+            }
+
+            @Override
+            public Type forRestPrim() {
+                return null;
+            }
+        });
     }
 
-    //TODO: Come back to this
     public Type forUnOpApp(UnOpApp u) {
         Type argType = u.arg().accept(this);  // may throw a TypeException
         return u.rator().accept(new UnOpVisitor<Type>() {
@@ -84,7 +110,6 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         });
     }
 
-    //TODO: Come back to this
     public Type forBinOpApp(BinOpApp b) {
         Type t1 = b.arg1().accept(this); // may throw a TypeException
         Type t2 = b.arg2().accept(this); // may throw a TypeException
@@ -199,21 +224,20 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         });
     }
 
+    //TODO: Come back to this, still returning null
     public Type forApp(App a) {
-        a.rator().accept(this); // may throw a SyntaxException
+        a.rator().accept(this);
         AST[] args = a.args();
         int n = args.length;
 //        Type firstType = first.accept(this).
         for(int i = 0; i < n; i++) {
-            System.out.println("a: " + args[i]);
+            //System.out.println("a: " + args[i]);
             args[i].accept(this);
-        } // may throw a SyntaxException
+        }
         return null;
     }
 
     public Type forMap(Map m) {
-        //TODO: Map type check should catch this case.
-        // (map x:bool to x + 1)
         Variable[] vars = m.vars();
         // Add to env
         for (int i = 0; i < vars.length; i++) {
@@ -242,15 +266,14 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
             newEnv = newEnv.cons((TypedVariable) vars[i]);
             newVisitor = new TypeCheckVisitor(newEnv);
         }
-        return l.body().accept(newVisitor); // may throw a SyntaxException
+        return l.body().accept(newVisitor);
     }
 
-    // PROVIDED
     /*  Supports the addition of blocks to Jam */
     public Type forBlock(Block b) {
         AST[] exps =  b.exps();
         int n = exps.length;
-        for (int i = 0; i < n; i++) exps[i].accept(this);  // may throw a SyntaxException
+        for (int i = 0; i < n; i++) exps[i].accept(this);
         return null;
     }
 }

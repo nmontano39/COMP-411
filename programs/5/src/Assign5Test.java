@@ -155,7 +155,7 @@ public class Assign5Test extends TestCase {
   public void testList2() {
     try {
       String output = "SHOULD RETURN -> TypeException: cons arg type mismatch: {}, {}intlist bool";
-      String input = "first(cons(1, null : bool))";
+      String input = "cons(1, null : bool)";
       allCheck("null", output, input );
 
     } catch (TypeException e) {
