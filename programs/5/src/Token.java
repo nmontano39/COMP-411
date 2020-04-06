@@ -55,12 +55,95 @@ class UnitType implements Type {
   }
 }
 
-//TODO: Add classes for listType, refType and typeListType (?)
+class ListType implements Type {
+
+    private Type listType;
+
+    public ListType(Type listType) {
+        this.listType = listType;
+    }
+
+    public String toString() {
+        return "list " + listType;
+    }
+
+    public Type listType() {
+        return this.listType;
+    }
+
+    public Boolean equals(Type otherType) {
+        return otherType instanceof ListType && this.listType().equals(((ListType) otherType).listType());
+    }
+}
+
+class RefType implements Type {
+
+    private Type refType;
+
+    public RefType(Type refType) {
+        this.refType = refType;
+    }
+
+    public String toString() {
+        return "ref " + refType;
+    }
+
+    public Type refType() {
+        return this.refType;
+    }
+
+    public Boolean equals(Type otherType) {
+        return otherType instanceof RefType && this.refType().equals(((RefType) otherType).refType());
+    }
+}
+
+class FunType implements Type {
+
+    private Type[] paramType;
+    private Type outType;
+
+    public FunType(Type[] paramType, Type outType) {
+        this.paramType = paramType;
+        this.outType = outType;
+    }
+
+    public String toString() {
+        return "fun " + outType;
+    }
+
+    public Type[] paramType() {
+        return this.paramType;
+    }
+
+    public Type outType() {
+        return this.outType;
+    }
+
+    public Boolean equals(Type otherType) {
+        if (!(otherType instanceof FunType)) {
+            return false;
+        }
+
+        FunType other = (FunType) otherType;
+
+        if (!(this.outType().equals(other.outType()))) {
+            return false;
+        }
+
+        if (this.paramType().length != other.paramType().length) {
+            return false;
+        }
+
+        for (int i = 0; i < this.paramType().length; i++) {
+            if (!(this.paramType()[i].equals(other.paramType()[i]))) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 
 
-
-
-// TODO: modify null constant class with type
 /** Null constant class. Part of AST composite hierarchy. */
 class NullConstant implements Token, Constant {
   public static final NullConstant ONLY = new NullConstant();
@@ -76,9 +159,9 @@ class TypedNullConstant extends NullConstant {
     super();
     this.nullType = nullType;
   }
+    public Type type() { return nullType; }
 }
 
-// TODO: needs to be typed
 class Variable implements Token, Term, WithVariable {
   private String name;
   Variable(String n) { name = n; }
@@ -99,6 +182,8 @@ class TypedVariable extends Variable {
     super(n);
     this.varType = varType;
   }
+
+  public Type type() { return varType; }
 }
 
 class OpToken implements Token {

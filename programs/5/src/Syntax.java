@@ -27,6 +27,7 @@ class CheckVisitor implements ASTVisitor<Void> {
   public Void forNullConstant(NullConstant n) { return null; }
   
   public Void forVariable(Variable v) {
+//    System.out.println(v);
     Variable match = env.accept(new LookupVisitor<Variable>(v));
     if (match == null)  throw new SyntaxException("variable " + v + " is unbound");
     return null;

@@ -357,11 +357,11 @@ class Block implements AST{
 
 /** Def class representing a definition embedded inside a Let. */
 class Def {
-  private TypedVariable lhs;
+  private Variable lhs;
   private AST rhs;  
   
-  Def(TypedVariable l, AST r) { lhs = l; rhs = r; }
-  public TypedVariable lhs() { return lhs; }
+  Def(Variable l, AST r) { lhs = l; rhs = r; }
+  public Variable lhs() { return lhs; }
   public AST rhs() { return rhs; }
   
   public String toString() { return lhs + " := " + rhs + ";"; }

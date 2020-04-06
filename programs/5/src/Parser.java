@@ -45,6 +45,7 @@ class Parser {
     if (t != EndOfFile.ONLY) throw new ParseException("Legal program '" + prog + "'followed by extra token " + t);
     
     prog.accept(CheckVisitor.INITIAL);   // aborts on an error by throwing an exception
+    prog.accept(TypeCheckVisitor.INITIAL);
     return prog;
   }
   
@@ -284,7 +285,7 @@ class Parser {
     
     Token semi = in.readToken();
     if (semi != SemiColon.ONLY) error(semi,"`;'");
-    return new Def(new TypedVariable(var.toString(), (Type) next), exp);
+    return new Def((Variable) new TypedVariable(var.toString(), (Type) next), exp);
   }
   
   private AST error(Token found, String expected) {

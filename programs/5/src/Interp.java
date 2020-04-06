@@ -37,11 +37,6 @@ class EvalException extends RuntimeException {
   EvalException(String msg) { super(msg); }
 }
 
-/** The exception class for Jam run-time errors. */
-class TypeException extends RuntimeException {
-  TypeException(String msg) { super(msg); }
-}
-
 /** The visitor interface for interpreting ASTs. */
 interface EvalVisitor extends ASTVisitor<JamVal> {
 
@@ -88,7 +83,8 @@ class LookupVisitor<ElemType extends WithVariable> implements PureListVisitor<El
   /** Case for non-empty lists. */
   public ElemType forCons(Cons<ElemType> c) {
     ElemType e = c.first();
-    if (var == e.var()) return e;
+    System.out.println("var = " + var + " e.var() = " + e.var());
+    if (var.name().equals(e.var().name())) return e;
     return c.rest().accept(this);
   }
 }

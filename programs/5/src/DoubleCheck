@@ -1,0 +1,8 @@
+This file contains the stuff we're not a 100% sure about, specifically in terms of coding style.
+
+1. Since we now have TypedVariables as well as Variables, we compare these by making sure that the
+names are the same.
+Eg: let x:int := 5; in x + 7
+
+Here x is saved as a typed variable in the environment when going through the def (:=) of the let,
+but is looked up as a variable in order to compute x+7 because this is just an expression.
