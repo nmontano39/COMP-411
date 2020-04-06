@@ -114,6 +114,14 @@ class Interpreter {
   Interpreter(Reader reader) {
     parser = new Parser(reader);
     prog = parser.parseAndCheck();
+
+    // TODO: delete these print lines
+
+    System.out.println(prog);
+    System.out.println("\nDid parse check, doing type check...\n");
+
+    prog.accept(TypeCheckVisitor.INITIAL);
+    System.out.println(prog);
   }
 
   static JamVal illegalForwardReference(Variable v) {

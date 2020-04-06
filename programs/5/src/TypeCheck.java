@@ -34,6 +34,9 @@ class TypeCheckVisitor implements ASTVisitor<Void> {
     }
 
     public Void forPrimFun(PrimFun f) {
+        // TODO: force any Factor that is a Prim to be followed by an application argument list.
+        //  This restriction prevents a Prim from being used as a general value.
+
         return null;
     }
 

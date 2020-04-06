@@ -45,8 +45,7 @@ class Parser {
     if (t != EndOfFile.ONLY) throw new ParseException("Legal program '" + prog + "'followed by extra token " + t);
     
     prog.accept(CheckVisitor.INITIAL);   // aborts on an error by throwing an exception
-    prog.accept(TypeCheckVisitor.INITIAL);
-    System.out.println(prog);
+
     return prog;
   }
   

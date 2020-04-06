@@ -32,6 +32,9 @@ public class Assign5Test extends TestCase {
 
   public void testMathOp() {
     try {
+
+      // TODO: throwing parse exception here
+
       String output = "18";
       String input = "2 * 3 + 12";
       allCheck("mathOp", output, input );
@@ -222,7 +225,7 @@ public class Assign5Test extends TestCase {
 
   public void testDupVar() {
     try {
-      String output = "ha!";
+      String output = "SHOULD RETURN -> SyntaxException: Variable x declared more than once in let";
       String input = "let x: int :=3; x:int :=4; in x";
       allCheck("dupVar", output, input );
 
@@ -239,6 +242,9 @@ public class Assign5Test extends TestCase {
 
   public void testRefApp() {
     try {
+
+      // TODO: throwing parse exception here
+
       String output = "(ref 17)";
       String input = "let x: ref int := ref 10; in {x <- 17; x}";
       allCheck("refApp", output, input );
@@ -265,7 +271,7 @@ public class Assign5Test extends TestCase {
 
   public void testAssign() {
     try {
-      String output = "true";
+      String output = "SHOULD RETURN -> TypeException: Expected type int, but found bool";
       String input = "let x: int :=5; y: bool :=true; in x !=y";
       allCheck("assign", output, input );
 
@@ -282,6 +288,9 @@ public class Assign5Test extends TestCase {
 
   public void testBadAssign() {
     try {
+
+      // TODO: throwing eval exception here
+
       String output = "0";
       String input = "let x: int := 10; in x <- 5";
       allCheck("badAssign", output, input );

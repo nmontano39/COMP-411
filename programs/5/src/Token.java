@@ -160,6 +160,10 @@ class TypedNullConstant extends NullConstant {
     this.nullType = nullType;
   }
     public Type type() { return nullType; }
+
+    public String toString() {
+      return "null:" + nullType;
+    }
 }
 
 class Variable implements Token, Term, WithVariable {
@@ -184,7 +188,15 @@ class TypedVariable extends Variable {
   }
 
   public Type type() { return varType; }
+
+  // TODO: not sure about this because we compare names of variables to names of typedvariables
+  public String toString() {
+      return super.toString() + ":" + varType;
+  }
 }
+
+
+
 
 class OpToken implements Token {
   private String symbol;
