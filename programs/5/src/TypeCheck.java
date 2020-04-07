@@ -33,15 +33,11 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forNullConstant(NullConstant n) { return ((TypedNullConstant) n).type(); }
 
     public Type forVariable(Variable v) {
-//        System.out.println("Variable: " + v);
         return env.accept(new LookupVisitor<>(v)).type();
     }
 
     //TODO: Come back to this, still returning null
     public Type forPrimFun(PrimFun f) {
-        // TODO: force any Factor that is a Prim to be followed by an application argument list.
-        //  This restriction prevents a Prim from being used as a general value.
-
         throw new TypeException("Primitive function is not followed by an application argument list");
     }
 
@@ -90,7 +86,6 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forBinOpApp(BinOpApp b) {
         Type t1 = b.arg1().accept(this); // may throw a TypeException
         Type t2 = b.arg2().accept(this); // may throw a TypeException
-        System.out.printf("arg 1: %s, type1: %s, arg2: %s, tpye2: %s\n", b.arg1(), t1, b.arg2(), t2);
         return b.rator().accept(new BinOpVisitor<Type>() {
             @Override
             public Type forBinOpPlus(BinOpPlus op) {
@@ -234,27 +229,25 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
                         if (NullType.equals(firstType)) {
                             return new ListType(firstType);
                         } else {
-                            System.out.println("FirstType: " + firstType);
-                            System.out.println("RestType: " + restType);
                             throw new TypeException("List type not consistent");
                         }
                     } else if (restType instanceof ListType) {
                         if (((ListType) restType).listType().equals(firstType)) {
                             return new ListType(firstType);
                         } else {
-                            System.out.println("arg 0: " + args[0] + " FirstType: " + firstType);
-                            System.out.println("arg 1: " + args[1] + " RestType: " + restType);
                             throw new TypeException("List type not consistent");
                         }
                     } else {
-                        System.out.println(firstType + " " + restType);
                         throw new TypeException("List type not consistent");
                     }
                 }
 
                 @Override
                 public Type forFirstPrim() {
-                    return firstType;
+                    if (!(firstType instanceof ListType)) {
+                        throw new TypeException("Prim fun first applied on something that's not a list");
+                    }
+                    return ((ListType) firstType).listType();
                 }
 
                 @Override
@@ -264,9 +257,6 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
             });
         }
 
-        for (int i = 0; i < n; i++) {
-            System.out.println(args[i]);
-        }
 
         Type ratorType = a.rator().accept(this);
         FunType ratorFunType = (FunType) ratorType;
@@ -284,26 +274,15 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
 
     public Type forMap(Map m) {
         ArrayList<Type> listTypes = new ArrayList<>();
-        System.out.println("Reached Map!!: " + m);
         Variable[] vars = m.vars();
-        System.out.println("Number of vars = " + vars.length);
         PureList<TypedVariable> newEnv = env;
         // Add to env
         for (int i = 0; i < vars.length; i++) {
             TypedVariable typedVar = (TypedVariable) vars[i];
-            System.out.println(typedVar);
             listTypes.add(typedVar.type());
             newEnv = newEnv.cons(typedVar);
-            // Should I be doing the following. Doesn't really seem to do anything since
-            // I'll just be putting the variable in the environment and then checking if
-            // it is in the environment. Seems to be redundant.
-
-            // vars[i].accept(this);
         }
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
-//        System.out.println("Vars 0: " + vars[0]);
-//        System.out.println("NewEnv contains append? " + newVisitor.env.contains((TypedVariable) vars[0]));
-        System.out.println("LAST PART OF MAP");
         Type t = m.body().accept(newVisitor);
         return new FunType(listTypes.toArray(new Type[0]), t);
     }
@@ -311,44 +290,24 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forIf(If i) {
         i.test().accept(this);
         i.conseq().accept(this);
-        System.out.println("Things in environment " + this.env.accept(new PureListVisitor<TypedVariable, String>() {
-            public String forEmpty(Empty e) {
-                return "";
-            }
-
-            public String forCons(Cons c) {
-                return c.first() + " " + c.rest().accept(this);
-            }
-        }));
         return i.alt().accept(this);
     }
 
     public Type forLet(Let l) {
-        System.out.println("Reached LET!!");
         Variable[] vars = l.vars();
         AST[] exps = l.exps();
         int n = vars.length;
-        System.out.println("n in LET: " + n);
         PureList<TypedVariable> newEnv = env;
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
-//        for(int i = n - 1; i >= 0; i--) {
         for (int i = 0; i < n; i++) {
-            System.out.println("THE EXP IS: " + exps[i]);
             newEnv = newEnv.cons((TypedVariable) vars[i]);
             newVisitor = new TypeCheckVisitor(newEnv);
             Type expType = exps[i].accept(newVisitor);
 
             if (!(expType.equals(((TypedVariable) vars[i]).type()))) {
-                System.out.println("Exp: " + exps[i] + " Type: " + expType +
-                                       " Var: " + vars[i] + " Type: " +
-                                       ((TypedVariable) vars[i]).type());
                 throw new TypeException("Incorrect type in Def in Let");
             }
-//            newEnv = newEnv.cons((TypedVariable) vars[i]);
-            newVisitor = new TypeCheckVisitor(newEnv);
         }
-        System.out.println("Vars 0: " + vars[0]);
-        System.out.println("NewEnv contains append? " + newVisitor.env.contains((TypedVariable) vars[0]));
         return l.body().accept(newVisitor);
     }
 
@@ -356,8 +315,11 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forBlock(Block b) {
         AST[] exps =  b.exps();
         int n = exps.length;
-        for (int i = 0; i < n; i++) exps[i].accept(this);
-        return null;
+        Type t = exps[0].accept(this);
+        for (int i = 1; i < n; i++) {
+            t = exps[i].accept(this);
+        }
+        return t;
     }
 }
 

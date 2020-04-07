@@ -75,6 +75,20 @@ public class Assign5Test extends TestCase {
     }
   }
 
+  public void testPrimFunNoArgs() {
+    try {
+      String output = "SHOULD RETURN -> TypeException: Declared type bool doesn't match expression type int";
+      String input = "cons?";
+      allCheck("null", output, input );
+
+    } catch (TypeException e) {
+//      e.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("did not return TypeException");
+    }
+  }
+
   public void testAppend() {
     try {
       String output = "(1 2 3 1 2 3)";
