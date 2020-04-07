@@ -269,6 +269,7 @@ class JamClosure extends JamFun {
   Map body() { return body; }
   PureList<Binding> env() { return env; }
   public <ResType> ResType accept(JamFunVisitor<ResType> jfv) { return jfv.forJamClosure(this); }
+  public String toString() {return "closure";}
 }
 
 /** A Jam Primitive Function.  It is a variant of the JamFun, Token, and Term types.  It is a subtype of JamVal.

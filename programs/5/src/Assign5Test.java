@@ -28,6 +28,20 @@ public class Assign5Test extends TestCase {
     lazyCheck(name, answer, program);
   }
 
+  public void testManyOps() {
+    try {
+
+      String output = "true";
+      String input = "let x:int := +1 / 1 + 3 - 5 * 6; y:bool := (-2 > x) & (5 >= 3);\n" +
+                         "z:bool := ~y | (x <= 10) | (x < 10); in z";
+      allCheck("mathOp", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("mathOp threw " + e);
+    }
+  }
+
 
   public void testMathOp() {
     try {
@@ -59,9 +73,41 @@ public class Assign5Test extends TestCase {
     }
   } //end of func
 
+  public void testTypeException() {
+    try {
+      String output = "haha";
+      String input = " 1 + true";
+      allCheck("parseException", output, input );
+
+      fail("expected TypeException");
+    } catch (TypeException e) {
+      //e.printStackTrace();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("parseException threw " + e);
+    }
+  }
+
+  public void testTypeException2() {
+    try {
+      String output = "haha";
+      String input = " - true";
+      allCheck("parseException", output, input );
+
+      fail("expected TypeException");
+    } catch (TypeException e) {
+      //e.printStackTrace();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("parseException threw " + e);
+    }
+  }
+
   public void testAppend0() {
     try {
-      String output = "(1 2 3 1 2 3)";
+      String output = "closure";
       String input = "let append:(list int, list int -> list int):= map x: list int, y: list int to\n" +
       "if x = null: int then y else cons(first(x), append(rest(x), y)); in append";
       allCheck("append", output, input );
@@ -100,7 +146,7 @@ public class Assign5Test extends TestCase {
 
   public void testComplexType() {
     try {
-      String output = "(JamClosure@5d099f62)";
+      String output = "(closure)";
       String input = "let l : list (int, bool, ref int -> unit) := cons(map x:int, y:bool, z: ref int to z <- x, null : (int, bool, ref int -> unit)); in l";
       allCheck("append", output, input );
 

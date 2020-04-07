@@ -82,7 +82,9 @@ class Parser {
     while (next instanceof OpToken) {
       OpToken op = (OpToken) next;
       in.readToken(); // remove next from input stream
-      if (! (op.isBinOp())) error(next, "binary operator");
+      if (! (op.isBinOp())) {
+        error(next, "binary operator");
+      }
       AST newTerm = parseTerm(in.readToken());
       exp = new BinOpApp(op.toBinOp(), exp, newTerm);
 //      System.err.println("exp updated to: " + exp);
@@ -115,7 +117,6 @@ class Parser {
 //        if (!(next instanceof Type)) {
 //          throw new ParseException("ParseException: No matching clause (type) for null");
 //        }
-        System.out.println(next);
         Type type = parseType(next);
 
         return new TypedNullConstant(type);
@@ -146,8 +147,9 @@ class Parser {
       return exp;
     }
     
-    if (! (token instanceof PrimFun) && ! (token instanceof Variable))
-      error(token,"constant, primitive, variable, or `('");
+    if (! (token instanceof PrimFun) && ! (token instanceof Variable)) {
+      error(token, "constant, primitive, variable, or `('");
+    }
 
     // Term = Variable or PrimFun       
     return (Term) token;
@@ -286,7 +288,7 @@ class Parser {
     
     Token key = in.readToken();
     if (key != Lexer.BIND) error (key,"`:='");
-    
+
     AST exp = parseExp();
     
     Token semi = in.readToken();
@@ -295,19 +297,15 @@ class Parser {
   }
 
   public Type parseType(Token tok) {
-//    System.out.println("token => " + tok);
     if (tok instanceof Type) {
-//      System.out.println("reaches 3");
       return (Type) tok;
     } else if (tok == Lexer.REF) {
       return new RefType(parseType(in.readToken()));
     } else if (tok == Lexer.LIST) {
-//      System.out.println("reaches 1");
       Token next = in.readToken();
       if (next == LeftParen.ONLY) {
         return new ListType(parseTypeList(in.readToken()));
       }
-//      System.out.println("reaches 2");
       return new ListType(parseType(next));
     } else {
       if (tok == LeftParen.ONLY) {
@@ -337,9 +335,9 @@ class Parser {
 
   
   private AST error(Token found, String expected) {
-//    for (int i = 0; i < 10; i++) {
-//      System.out.println(in.readToken());
-//    }
+    for (int i = 0; i < 10; i++) {
+      System.out.println(in.readToken());
+    }
     throw new ParseException("Token `" + found + "' appears where " + expected + " was expected");
   }
   

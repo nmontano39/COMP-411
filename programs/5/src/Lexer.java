@@ -188,9 +188,11 @@ class Lexer extends StreamTokenizer {
 
       case '+': return PLUS;
       case '-': {
-        if (getToken() == '>') {
+        tokenType = getToken();
+        if (tokenType == '>') {
           return TYPESET;
         } else {
+          pushBack();
           return MINUS;
         }
       }
