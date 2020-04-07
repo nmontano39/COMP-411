@@ -58,15 +58,9 @@ class UnitType implements Type {
 class ListType implements Type {
 
     private Type listType;
-    private ArrayList<Type> types = new ArrayList<>();
 
     public ListType(Type listType) {
         this.listType = listType;
-    }
-
-    public ListType(Type listType, ArrayList<Type> types) {
-        this.listType = listType;
-        this.types = types;
     }
 
     public String toString() {
@@ -164,7 +158,7 @@ class TypedNullConstant extends NullConstant {
   private Type nullType;
   public TypedNullConstant(Type nullType) {
     super();
-    this.nullType = nullType;
+    this.nullType = new ListType(nullType);
   }
     public Type type() { return nullType; }
 

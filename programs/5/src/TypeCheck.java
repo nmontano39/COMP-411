@@ -1,4 +1,5 @@
 import javax.lang.model.type.NullType;
+import java.util.ArrayList;
 import java.util.List;
 
 /** A visitor class for the type checker. Returns normally unless there is a type error. On a type error,
@@ -32,6 +33,7 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forNullConstant(NullConstant n) { return ((TypedNullConstant) n).type(); }
 
     public Type forVariable(Variable v) {
+        System.out.println("Variable: " + v);
         return env.accept(new LookupVisitor<>(v)).type();
     }
 
@@ -88,6 +90,7 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forBinOpApp(BinOpApp b) {
         Type t1 = b.arg1().accept(this); // may throw a TypeException
         Type t2 = b.arg2().accept(this); // may throw a TypeException
+        System.out.printf("arg 1: %s, type1: %s, arg2: %s, tpye2: %s\n", b.arg1(), t1, b.arg2(), t2);
         return b.rator().accept(new BinOpVisitor<Type>() {
             @Override
             public Type forBinOpPlus(BinOpPlus op) {
@@ -224,9 +227,15 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
                 public Type forConsPrim() {
                     Type restType = args[1].accept(myVisitor);
                     if (args[1] instanceof TypedNullConstant) {
-                        if (((TypedNullConstant) args[1]).type().equals(firstType)) {
+                        // Changed Null Type to reflect list type rather than just type
+                        // (See TypedNullConstant)
+                        Type NullType = ((TypedNullConstant) args[1]).type();
+                        NullType = ((ListType) NullType).listType();
+                        if (NullType.equals(firstType)) {
                             return new ListType(firstType);
                         } else {
+                            System.out.println("FirstType: " + firstType);
+                            System.out.println("RestType: " + restType);
                             throw new TypeException("List type not consistent");
                         }
                     } else if (restType instanceof ListType) {
@@ -268,12 +277,25 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     }
 
     public Type forMap(Map m) {
+        ArrayList<Type> listTypes = new ArrayList<>();
+        System.out.println("Reached Map!!: " + m);
         Variable[] vars = m.vars();
+        System.out.println("Number of vars = " + vars.length);
+        PureList<TypedVariable> newEnv = env;
         // Add to env
         for (int i = 0; i < vars.length; i++) {
-            vars[i].accept(this);
+            TypedVariable typedVar = (TypedVariable) vars[i];
+            System.out.println(typedVar);
+            listTypes.add(typedVar.type());
+            newEnv = newEnv.cons(typedVar);
+            // Should I be doing the following. Doesn't really seem to do anything since
+            // I'll just be putting the variable in the environment and then checking if
+            // it is in the environment. Seems to be redundant.
+
+            // vars[i].accept(this);
         }
-        return m.body().accept(this);
+        TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
+        return new FunType(listTypes.toArray(new Type[0]), m.body().accept(newVisitor));
     }
 
     public Type forIf(If i) {
@@ -291,6 +313,9 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         for(int i = n - 1; i >= 0; i--) {
             Type expType = exps[i].accept(newVisitor);
             if (!(expType.equals(((TypedVariable) vars[i]).type()))) {
+                System.out.println("Exp: " + exps[i] + " Type: " + expType +
+                                       " Var: " + vars[i] + " Type: " +
+                                       ((TypedVariable) vars[i]).type());
                 throw new TypeException("Incorrect type in Def in Let");
             }
             newEnv = newEnv.cons((TypedVariable) vars[i]);

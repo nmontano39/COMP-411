@@ -75,6 +75,18 @@ public class Assign5Test extends TestCase {
     }
   } //end of func
 
+  public void testComplexType() {
+    try {
+      String output = "(JamClosure@5d099f62)";
+      String input = "let l : list (int, bool, ref int -> unit) := cons(map x:int, y:bool, z: ref int to z <- x, null : (int, bool, ref int -> unit)); in l";
+      allCheck("append", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("append threw " + e);
+    }
+  } //end of func
+
 
   public void testNull() {
     try {

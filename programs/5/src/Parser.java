@@ -229,13 +229,17 @@ class Parser {
     */
   private Variable[] parseVars() {
     
-    LinkedList<Variable> vars = new LinkedList<Variable>();
+    LinkedList<TypedVariable> vars = new LinkedList<TypedVariable>();
     Token t = in.readToken();
     if (t == Lexer.TO) return new Variable[0];
     
     do {
       if (! (t instanceof Variable)) error(t,"variable");
-      vars.addLast((Variable)t);
+      Token next = in.readToken();
+      if (! (next == Colon.ONLY)) error(t, "colon");
+      Type type = parseType(in.readToken());
+      TypedVariable typedVar = new TypedVariable(((Variable) t).name(), type);
+      vars.addLast(typedVar);
       t = in.readToken();
       if (t == Lexer.TO) break; 
       if (t != Comma.ONLY) error(t, "`to' or `, '");
@@ -291,19 +295,19 @@ class Parser {
   }
 
   public Type parseType(Token tok) {
-    System.out.println("token => " + tok);
+//    System.out.println("token => " + tok);
     if (tok instanceof Type) {
-      System.out.println("reaches 3");
+//      System.out.println("reaches 3");
       return (Type) tok;
     } else if (tok == Lexer.REF) {
       return new RefType(parseType(in.readToken()));
     } else if (tok == Lexer.LIST) {
-      System.out.println("reaches 1");
+//      System.out.println("reaches 1");
       Token next = in.readToken();
       if (next == LeftParen.ONLY) {
-        return parseTypeList(in.readToken());
+        return new ListType(parseTypeList(in.readToken()));
       }
-      System.out.println("reaches 2");
+//      System.out.println("reaches 2");
       return new ListType(parseType(next));
     } else {
       if (tok == LeftParen.ONLY) {
@@ -328,7 +332,7 @@ class Parser {
     }
     Type myType = parseType(in.readToken());
     in.readToken();
-    return new ListType(myType, listTypes);
+    return new FunType(listTypes.toArray(new Type[0]), myType);
   }
 
   
