@@ -335,9 +335,9 @@ class Parser {
 
   
   private AST error(Token found, String expected) {
-    for (int i = 0; i < 10; i++) {
-      System.out.println(in.readToken());
-    }
+//    for (int i = 0; i < 10; i++) {
+//      System.out.println(in.readToken());
+//    }
     throw new ParseException("Token `" + found + "' appears where " + expected + " was expected");
   }
   

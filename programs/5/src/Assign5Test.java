@@ -228,7 +228,7 @@ public class Assign5Test extends TestCase {
       allCheck("null", output, input );
 
     } catch (TypeException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
       fail("null in list threw" + e);
     }
   } //end of func
@@ -266,7 +266,7 @@ public class Assign5Test extends TestCase {
       allCheck("null", output, input );
 
     } catch (TypeException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
     } catch (Exception e) {
       e.printStackTrace();
       fail("did not return TypeException");
@@ -369,7 +369,7 @@ public class Assign5Test extends TestCase {
 
       fail("assign did not throw TypeException exception");
     } catch (TypeException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
     }
     catch (Exception e) {
       e.printStackTrace();
@@ -388,7 +388,7 @@ public class Assign5Test extends TestCase {
 
       fail("badAssign did not throw TypeException exception");
     } catch (TypeException e) {
-      e.printStackTrace();
+//      e.printStackTrace();
     }
     catch (Exception e) {
       e.printStackTrace();

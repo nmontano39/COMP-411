@@ -114,7 +114,12 @@ class Interpreter {
     parser = new Parser(reader);
     prog = parser.parseAndCheck();
 
-    prog.accept(TypeCheckVisitor.INITIAL);
+    prog = checkTypes(prog);
+  }
+
+  static AST checkTypes(AST ast) {
+    ast.accept(TypeCheckVisitor.INITIAL);
+    return ast;
   }
 
   static JamVal illegalForwardReference(Variable v) {

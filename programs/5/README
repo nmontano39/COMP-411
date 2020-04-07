@@ -13,4 +13,4 @@ including those used as arguments for functions and as components of lists.
 
 We decided to use the provided test cases along with additional tests of our own. Some edge cases we
 tested for include lists of typed-nulls and incorrectly typed lists/functions. Our code passes all of
-these tests with 66% line coverage.
+these tests with 82% line coverage.
