@@ -262,6 +262,10 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
             });
         }
 
+        for (int i = 0; i < n; i++) {
+            System.out.println(args[i]);
+        }
+
         Type ratorType = a.rator().accept(this);
         FunType ratorFunType = (FunType) ratorType;
 
@@ -295,12 +299,24 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
             // vars[i].accept(this);
         }
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
-        return new FunType(listTypes.toArray(new Type[0]), m.body().accept(newVisitor));
+        System.out.println("NewEnv contains append? " + newEnv.contains((TypedVariable) vars[0]));
+        System.out.println("LAST PART OF MAP");
+        Type t = m.body().accept(newVisitor);
+        return new FunType(listTypes.toArray(new Type[0]), t);
     }
 
     public Type forIf(If i) {
         i.test().accept(this);
         i.conseq().accept(this);
+        System.out.println("Things in environment " + this.env.accept(new PureListVisitor<TypedVariable, String>() {
+            public String forEmpty(Empty e) {
+                return "";
+            }
+
+            public String forCons(Cons c) {
+                return c.first() + " " + c.rest().accept(this);
+            }
+        }));
         return i.alt().accept(this);
     }
 
@@ -310,7 +326,8 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         int n = vars.length;
         PureList<TypedVariable> newEnv = env;
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
-        for(int i = n - 1; i >= 0; i--) {
+//        for(int i = n - 1; i >= 0; i--) {
+        for (int i = 0; i < n; i++) {
             Type expType = exps[i].accept(newVisitor);
             if (!(expType.equals(((TypedVariable) vars[i]).type()))) {
                 System.out.println("Exp: " + exps[i] + " Type: " + expType +
