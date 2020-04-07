@@ -33,7 +33,7 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public Type forNullConstant(NullConstant n) { return ((TypedNullConstant) n).type(); }
 
     public Type forVariable(Variable v) {
-        System.out.println("Variable: " + v);
+//        System.out.println("Variable: " + v);
         return env.accept(new LookupVisitor<>(v)).type();
     }
 
@@ -242,6 +242,8 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
                         if (((ListType) restType).listType().equals(firstType)) {
                             return new ListType(firstType);
                         } else {
+                            System.out.println("arg 0: " + args[0] + " FirstType: " + firstType);
+                            System.out.println("arg 1: " + args[1] + " RestType: " + restType);
                             throw new TypeException("List type not consistent");
                         }
                     } else {
@@ -299,7 +301,8 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
             // vars[i].accept(this);
         }
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
-        System.out.println("NewEnv contains append? " + newEnv.contains((TypedVariable) vars[0]));
+//        System.out.println("Vars 0: " + vars[0]);
+//        System.out.println("NewEnv contains append? " + newVisitor.env.contains((TypedVariable) vars[0]));
         System.out.println("LAST PART OF MAP");
         Type t = m.body().accept(newVisitor);
         return new FunType(listTypes.toArray(new Type[0]), t);
@@ -321,23 +324,31 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     }
 
     public Type forLet(Let l) {
+        System.out.println("Reached LET!!");
         Variable[] vars = l.vars();
         AST[] exps = l.exps();
         int n = vars.length;
+        System.out.println("n in LET: " + n);
         PureList<TypedVariable> newEnv = env;
         TypeCheckVisitor newVisitor = new TypeCheckVisitor(newEnv);
 //        for(int i = n - 1; i >= 0; i--) {
         for (int i = 0; i < n; i++) {
+            System.out.println("THE EXP IS: " + exps[i]);
+            newEnv = newEnv.cons((TypedVariable) vars[i]);
+            newVisitor = new TypeCheckVisitor(newEnv);
             Type expType = exps[i].accept(newVisitor);
+
             if (!(expType.equals(((TypedVariable) vars[i]).type()))) {
                 System.out.println("Exp: " + exps[i] + " Type: " + expType +
                                        " Var: " + vars[i] + " Type: " +
                                        ((TypedVariable) vars[i]).type());
                 throw new TypeException("Incorrect type in Def in Let");
             }
-            newEnv = newEnv.cons((TypedVariable) vars[i]);
+//            newEnv = newEnv.cons((TypedVariable) vars[i]);
             newVisitor = new TypeCheckVisitor(newEnv);
         }
+        System.out.println("Vars 0: " + vars[0]);
+        System.out.println("NewEnv contains append? " + newVisitor.env.contains((TypedVariable) vars[0]));
         return l.body().accept(newVisitor);
     }
 

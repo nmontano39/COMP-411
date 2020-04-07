@@ -65,7 +65,8 @@ public class Assign5Test extends TestCase {
   public void testAppend0() {
     try {
       String output = "(1 2 3 1 2 3)";
-      String input = "let append:  (list int, list int -> list int) :=       map x: list int, y: list int to         if x = null: int then y else cons(first(x), append(rest(x), y)); in append";
+      String input = "let append:(list int, list int -> list int):= map x: list int, y: list int to\n" +
+      "if x = null: int then y else cons(first(x), append(rest(x), y)); in append";
       allCheck("append", output, input );
 
     } catch (Exception e) {

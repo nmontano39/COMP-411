@@ -204,7 +204,7 @@ class Interpreter {
   public JamVal eagerEval() { return prog.accept(valueValueVisitor); }
 
   /** Parses and NeedNeed interprets the input embeded in parser, returning the result. */
-  public JamVal lazyEval() { return prog.accept(valueNameVisitor); }
+  public JamVal lazyEval() { return prog.accept(valueNeedVisitor); }
 
   /** Binding policy for call-by-value. */
   static final BindingPolicy CALL_BY_VALUE = new BindingPolicy() {
