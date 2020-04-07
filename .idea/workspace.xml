@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/AST.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/AST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Interp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
