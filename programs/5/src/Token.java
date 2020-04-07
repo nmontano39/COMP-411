@@ -22,7 +22,6 @@ class IntType implements Type {
   }
 
   public Boolean equals(Type otherType) {
-    // TODO: Make sure this is the correct way to do equals.
     return otherType instanceof IntType;
   }
 }
@@ -198,7 +197,6 @@ class TypedVariable extends Variable {
 
   public Type type() { return varType; }
 
-  // TODO: not sure about this because we compare names of variables to names of typedvariables
   public String toString() {
       return super.toString() + ":" + varType;
   }

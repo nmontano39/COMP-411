@@ -29,11 +29,8 @@ public class Assign5Test extends TestCase {
   }
 
 
-
   public void testMathOp() {
     try {
-
-      // TODO: throwing parse exception here
 
       String output = "18";
       String input = "2 * 3 + 12";
@@ -260,6 +257,18 @@ public class Assign5Test extends TestCase {
     }
   } //end of func
 
+  public void testBlock2() {
+    try {
+      String output = "1";
+      String input = "let x:int := 1; y: ref int := ref 2; in {y <- x; !y}";
+      allCheck("block", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("block threw " + e);
+    }
+  }
+
 
   public void testDupVar() {
     try {
@@ -281,7 +290,6 @@ public class Assign5Test extends TestCase {
   public void testRefApp() {
     try {
 
-      // TODO: throwing parse exception here
 
       String output = "(ref 17)";
       String input = "let x: ref int := ref 10; in {x <- 17; x}";
@@ -297,7 +305,6 @@ public class Assign5Test extends TestCase {
   public void testBangApp() {
     try {
       String output = "10";
-      //TODO: Need to fix Parser to be able to handle list type, ref type etc.
       String input = "let x: ref int := ref 10; in !x";
       allCheck("bangApp", output, input );
 
@@ -328,7 +335,6 @@ public class Assign5Test extends TestCase {
   public void testBadAssign() {
     try {
 
-      // TODO: throwing eval exception here
 
       String output = "0";
       String input = "let x: int := 10; in x <- 5";

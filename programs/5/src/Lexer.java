@@ -212,8 +212,6 @@ class Lexer extends StreamTokenizer {
       case '!':
         tokenType = getToken();
         if (tokenType == '=') return NOT_EQUALS;
-//        throw new
-//          ParseException("`" + ((char) tokenType) + "' is not a legal token");
         // Support the addition of ref cells to Java (remove preceding statement)
          pushBack();
          return BANG;
@@ -242,7 +240,6 @@ class Lexer extends StreamTokenizer {
     wordTable.put("int", IntType.ONLY);
     wordTable.put("bool", BoolType.ONLY);
     wordTable.put("unit", UnitType.ONLY);
-    // TODO: Once you create the other Type classes, add those tokens to the wordTable.
     wordTable.put("null", NullConstant.ONLY);
     wordTable.put("true",  BoolConstant.TRUE);
     wordTable.put("false", BoolConstant.FALSE);
@@ -260,13 +257,6 @@ class Lexer extends StreamTokenizer {
      * Install primitive functions
      *   <prim>  ::= number? | function? | list? | null? | cons? ref? | arity | cons | first | rest
      */
-    // TODO: removed for p5
-//    wordTable.put("number?",   NumberPPrim.ONLY);
-//    wordTable.put("function?", FunctionPPrim.ONLY);
-//    wordTable.put("list?",     ListPPrim.ONLY);
-    //    /* Supports addition of ref cells to Jam *;/
-//     wordTable.put("ref?",      RefPPrim.ONLY);
-//    wordTable.put("arity",     ArityPrim.ONLY);
 
     wordTable.put("null?",     NullPPrim.ONLY);
     wordTable.put("cons?",     ConsPPrim.ONLY);

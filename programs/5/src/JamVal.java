@@ -287,13 +287,6 @@ abstract class PrimFun extends JamFun implements Token, Term {
 
 /** The visitor interface for type PrimFun. */
 interface PrimFunVisitor<ResType> {
-  // TODO: removed for p5
-//  ResType forFunctionPPrim();
-//  ResType forNumberPPrim();
-//  ResType forListPPrim();
-//  /* Supports addition of ref cells to Jam *;/
-//  ResType forRefPPrim();
-//  ResType forArityPrim();
   ResType forConsPPrim();
   ResType forNullPPrim();
 
@@ -302,52 +295,19 @@ interface PrimFunVisitor<ResType> {
   ResType forRestPrim();
 }
 
-//TODO: removed for p5
-
-///** The class representing the function? primitive. */
-//class FunctionPPrim extends PrimFun {
-//  public static final FunctionPPrim ONLY = new FunctionPPrim();
-//  private FunctionPPrim() { super("function?"); }
-//  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forFunctionPPrim(); }
-//}
-
-///** The class representing the number? primitive. */
-//class NumberPPrim extends PrimFun {
-//  public static final NumberPPrim ONLY = new NumberPPrim();
-//  private NumberPPrim() { super("number?"); }
-//  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forNumberPPrim(); }
-//}
-
-///** The class representing the list? primitive. */
-//class ListPPrim extends PrimFun {
-//  public static final ListPPrim ONLY = new ListPPrim();
-//  private ListPPrim() { super("list?"); }
-//  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forListPPrim(); }
-//}
-
 /** The class representing the function? primitive. */
 class ConsPPrim extends PrimFun {
   public static final ConsPPrim ONLY = new ConsPPrim();
   private ConsPPrim() { super("cons?"); }
   public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forConsPPrim(); }
 }
+
 class NullPPrim extends PrimFun {
   public static final NullPPrim ONLY = new NullPPrim();
   private NullPPrim() { super("null?"); }
   public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forNullPPrim(); }
 }
-/////* Supports the addition of ref to Jam. */
-//class RefPPrim extends PrimFun {
-//  public static final RefPPrim ONLY = new RefPPrim();
-//  private RefPPrim() { super("ref?"); }
-//  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forRefPPrim(); }
-//}
-//
-//class ArityPrim extends PrimFun {
-//  public static final ArityPrim ONLY = new ArityPrim();
-//  private ArityPrim() { super("arity"); }
-//  public <ResType> ResType accept(PrimFunVisitor<ResType> pfv) { return pfv.forArityPrim(); }
-//}
+
 class ConsPrim extends PrimFun {
   public static final ConsPrim ONLY = new ConsPrim();
   private ConsPrim() { super("cons"); }

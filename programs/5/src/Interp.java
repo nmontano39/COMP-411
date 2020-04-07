@@ -114,12 +114,7 @@ class Interpreter {
     parser = new Parser(reader);
     prog = parser.parseAndCheck();
 
-    // TODO: delete these print lines
-
-    System.out.println("\nDoing type check...\n");
-
     prog.accept(TypeCheckVisitor.INITIAL);
-    System.out.println(prog);
   }
 
   static JamVal illegalForwardReference(Variable v) {
@@ -163,42 +158,6 @@ class Interpreter {
     public void setBinding(AST exp, EvalVisitor ev) { susp = new Suspension(exp, ev); value = null; }
     public String toString() { return "[" + var + ", " + value + ", " + susp + "]"; }
   }
-
-  /** Parses and ValueValue interprets the input embeded in parser, returning the result. */
-  public JamVal callByValue() { return prog.accept(valueValueVisitor); }
-
-  /** Parses and NameValue interprets the input embeded in parser, returning the result. */
-  public JamVal callByName() { return prog.accept(nameValueVisitor); }
-
-  /** Parses and NeedValue interprets the input embeded in parser, returning the result. */
-  public JamVal callByNeed() { return prog.accept(needValueVisitor); }
-
-  /** Parses and ValueValue interprets the input embeded in parser, returning the result. */
-  public JamVal valueValue() { return prog.accept(valueValueVisitor); }
-
-  /** Parses and ValueName interprets the input embeded in parser, returning the result. */
-  public JamVal valueName() { return prog.accept(valueNameVisitor); }
-
-  /** Parses and ValueNeed interprets the input embeded in parser, returning the result. */
-  public JamVal valueNeed() {return prog.accept(valueNeedVisitor); }
-
-  /** Parses and NameValue interprets the input embeded in parser, returning the result.  */
-  public JamVal nameValue() { return prog.accept(nameValueVisitor); }
-
-  /** Parses and NameName interprets the input embeded in parser, returning the result. */
-  public JamVal nameName() { return prog.accept(nameNameVisitor); }
-
-  /** Parses and NameNeed interprets the input embeded in parser, returning the result. */
-  public JamVal nameNeed() { return prog.accept(nameNeedVisitor); }
-
-  /** Parses and NeedValue interprets the input embeded in parser, returning the result. */
-  public JamVal needValue() { return prog.accept(needValueVisitor); }
-
-  /** Parses and NeedName interprets the input embeded in parser, returning the result. */
-  public JamVal needName() { return prog.accept(needNameVisitor); }
-
-  /** Parses and NeedNeed interprets the input embeded in parser, returning the result. */
-  public JamVal needNeed() { return prog.accept(needNeedVisitor); }
 
   /** Parses and NeedName interprets the input embeded in parser, returning the result. */
   public JamVal eagerEval() { return prog.accept(valueValueVisitor); }
@@ -319,11 +278,6 @@ class Evaluator implements EvalVisitor {
   public JamVal forBoolConstant(BoolConstant b) { return b; }
   public JamVal forIntConstant(IntConstant i) { return i; }
   public JamVal forNullConstant(NullConstant n) {
-
-    // TODO: allow for typed null
-    // null : int    returns ()
-    // null : bool   returns ()
-
     return JamEmpty.ONLY;
 
   }
@@ -375,7 +329,6 @@ class Evaluator implements EvalVisitor {
 
     /* Fix up the dummy values. */
     for(int i = 0; i < n; i++) {
-      System.out.println(exps[i]);
       bindings[i].setBinding(exps[i], newEV);  // modifies newEnv and newEvalVisitor
     }
     return l.body().accept(newEV);
@@ -451,27 +404,6 @@ class Evaluator implements EvalVisitor {
                 EvalException("Primitive function `" + fun + "' applied to argument " + val + " that is not a JamCons");
       }
 
-      //TODO: removed for p5
-
-      /* Visitor methods. */
-//      public JamVal forFunctionPPrim() {
-//        JamVal[] vals = evalArgs();
-//        if (vals.length != 1) primFunError("function?");
-//        return BoolConstant.toBoolConstant(vals[0] instanceof JamFun);
-//      }
-
-//      public JamVal forNumberPPrim() {
-//        JamVal[] vals = evalArgs();
-//        if (vals.length != 1) primFunError("number?");
-//        return BoolConstant.toBoolConstant(vals[0] instanceof IntConstant);
-//      }
-
-//      public JamVal forListPPrim() {
-//        JamVal[] vals = evalArgs();
-//        if (vals.length != 1) primFunError("list?");
-//        return BoolConstant.toBoolConstant(vals[0] instanceof JamList);
-//      }
-
       public JamVal forConsPPrim() {
         JamVal[] vals = evalArgs();
         if (vals.length != 1) primFunError("cons?");
@@ -484,27 +416,10 @@ class Evaluator implements EvalVisitor {
         return BoolConstant.toBoolConstant(vals[0] instanceof JamEmpty);
       }
 
-//      public JamVal forRefPPrim() {
-//        JamVal[] vals = evalArgs();
-//        if (vals.length != 1) primFunError("ref?");
-//        return BoolConstant.toBoolConstant(vals[0] instanceof JamBox);
-//      }
-
       public JamVal forConsPrim() {
         if (args.length != 2) primFunError("cons");
         return consPolicy.evalCons(args, Evaluator.this);   // Evaluation strategy determined by consEp
       }
-
-//      public JamVal forArityPrim() {
-//        JamVal[] vals = evalArgs();
-//        if (vals.length != 1) primFunError("arity");
-//        if (!(vals[0] instanceof JamFun))  throw new EvalException("arity applied to argument " +  vals[0]);
-//
-//        return ((JamFun)vals[0]).accept(new JamFunVisitor<IntConstant>() {
-//          public IntConstant forJamClosure(JamClosure jc) { return new IntConstant(jc.body().vars().length); }
-//          public IntConstant forPrimFun(PrimFun jpf) { return new IntConstant(jpf instanceof ConsPrim ? 2 : 1); }
-//        });
-//      }
 
       public JamVal forFirstPrim() {
         if (args.length != 1) primFunError("first");

@@ -4,7 +4,8 @@
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Assign5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign5Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TypeCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NewAssign2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NewAssign2Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,38 +66,50 @@
           <entry key="DoubleCheck" value="1" />
           <entry key="README" value="1" />
           <entry key="class" value="1" />
-          <entry key="java" value="16" />
+          <entry key="java" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="16" />
+          <entry key="JAVA" value="18" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="DoubleCheck" value="489" />
-          <entry key="java" value="7354" />
-          <entry key="txt" value="370" />
+          <entry key="java" value="7461" />
+          <entry key="txt" value="432" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7354" />
-          <entry key="PLAIN_TEXT" value="859" />
+          <entry key="JAVA" value="7461" />
+          <entry key="PLAIN_TEXT" value="921" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign5Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1782">
-              <caret line="85" column="27" lean-forward="true" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
+            <state relative-caret-position="5874">
+              <caret line="271" column="3" lean-forward="true" selection-start-line="271" selection-start-column="3" selection-end-line="271" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Assign4Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="307" column="58" selection-start-line="307" selection-start-column="58" selection-end-line="307" selection-end-column="58" />
+            <state relative-caret-position="204">
+              <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
               <folding>
                 <element signature="e#7261#7276#0" expanded="true" />
               </folding>
@@ -137,8 +150,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TypeCheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state>
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#368#383#0" expanded="true" />
@@ -158,19 +171,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Syntax.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="113" column="56" selection-start-line="113" selection-start-column="56" selection-end-line="113" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Interp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="206" column="68" lean-forward="true" selection-start-line="206" selection-start-column="68" selection-end-line="206" selection-end-column="68" />
+            <state relative-caret-position="28">
+              <caret line="159" column="3" selection-start-line="159" selection-start-column="3" selection-end-line="159" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -239,11 +243,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TODO</find>
-      <find>Ref</find>
-      <find>testList2</find>
-      <find>primfun</find>
-      <find>testappne</find>
       <find>forApp</find>
       <find>colon</find>
       <find>parseTerm</find>
@@ -264,11 +263,16 @@
       <find>lazy</find>
       <find>lazyEval</find>
       <find>first</find>
-      <find>System.out</find>
       <find>system</find>
       <find>System</find>
       <find>system,</find>
       <find>syste</find>
+      <find>testE,</find>
+      <find>testBlock</find>
+      <find>System.out.println</find>
+      <find>System.</find>
+      <find>System.out</find>
+      <find>prog.acc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -296,9 +300,10 @@
         <option value="$PROJECT_DIR$/src/Lexer.java" />
         <option value="$PROJECT_DIR$/src/Token.java" />
         <option value="$PROJECT_DIR$/src/Parser.java" />
-        <option value="$PROJECT_DIR$/src/Interp.java" />
-        <option value="$PROJECT_DIR$/src/Assign5Test.java" />
         <option value="$PROJECT_DIR$/src/TypeCheck.java" />
+        <option value="$PROJECT_DIR$/src/Assign5Test.java" />
+        <option value="$PROJECT_DIR$/src/Interp.java" />
+        <option value="$PROJECT_DIR$/src/NewAssign2Test.java" />
       </list>
     </option>
   </component>
@@ -368,7 +373,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586229937246" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586230597352" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -386,21 +391,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign5Test">
+  <component name="RunManager" selected="JUnit.Assign5Test.testAppend0">
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign5Test.testAppend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testAppend" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -415,40 +410,48 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign5Test.testAppend1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign5Test.testBlock2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testAppend1" />
+      <option name="METHOD_NAME" value="testBlock2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign5Test.testPrimFunNoArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign5Test.testEmptyBlock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testPrimFunNoArgs" />
+      <option name="METHOD_NAME" value="testEmptyBlock" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewAssign2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NewAssign2Test" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="JUnit.Assign5Test" />
-      <item itemvalue="JUnit.Assign5Test.testAppend" />
+      <item itemvalue="JUnit.Assign5Test.testEmptyBlock" />
+      <item itemvalue="JUnit.Assign5Test.testBlock2" />
+      <item itemvalue="JUnit.NewAssign2Test" />
       <item itemvalue="JUnit.Assign5Test.testAppend0" />
-      <item itemvalue="JUnit.Assign5Test.testAppend1" />
-      <item itemvalue="JUnit.Assign5Test.testPrimFunNoArgs" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign5Test" />
-        <item itemvalue="JUnit.Assign5Test.testPrimFunNoArgs" />
         <item itemvalue="JUnit.Assign5Test.testAppend0" />
-        <item itemvalue="JUnit.Assign5Test.testAppend1" />
-        <item itemvalue="JUnit.Assign5Test.testAppend" />
+        <item itemvalue="JUnit.Assign5Test" />
+        <item itemvalue="JUnit.NewAssign2Test" />
+        <item itemvalue="JUnit.Assign5Test.testBlock2" />
+        <item itemvalue="JUnit.Assign5Test.testEmptyBlock" />
       </list>
     </recent_temporary>
   </component>
@@ -561,22 +564,17 @@
       <option name="project" value="LOCAL" />
       <updated>1586229333056</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="All tests pass at this point. Adding more tests next.">
+      <created>1586229968938</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1586229968938</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign5Test_testAppend0 - 2020.04.06 at 22h 05m 53s.xml">
-      <configuration name="Assign5Test.testAppend0" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign5Test_testAppend0 - 2020.04.06 at 22h 07m 24s.xml">
-      <configuration name="Assign5Test.testAppend0" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign5Test_testAppend0 - 2020.04.06 at 22h 10m 35s.xml">
-      <configuration name="Assign5Test.testAppend0" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign5Test_testAppend0 - 2020.04.06 at 22h 11m 13s.xml">
-      <configuration name="Assign5Test.testAppend0" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign5Test_testAppend0 - 2020.04.06 at 22h 12m 18s.xml">
       <configuration name="Assign5Test.testAppend0" configurationId="JUnit" />
     </history-entry>
@@ -595,6 +593,18 @@
     <history-entry file="Assign5Test_testPrimFunNoArgs - 2020.04.06 at 22h 22m 19s.xml">
       <configuration name="Assign5Test.testPrimFunNoArgs" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Assign5Test - 2020.04.06 at 22h 25m 39s.xml">
+      <configuration name="Assign5Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign5Test_testEmptyBlock - 2020.04.06 at 22h 27m 39s.xml">
+      <configuration name="Assign5Test.testEmptyBlock" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign5Test_testBlock2 - 2020.04.06 at 22h 28m 37s.xml">
+      <configuration name="Assign5Test.testBlock2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign5Test_testBlock2 - 2020.04.06 at 22h 29m 45s.xml">
+      <configuration name="Assign5Test.testBlock2" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
@@ -609,7 +619,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32896176" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -618,7 +628,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3286334" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32896176" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32896176" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.32896176" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="right" id="Palette" order="2" />
@@ -646,7 +656,8 @@
     <MESSAGE value="Made some changes in parser. Need to mainly work on list stuff." />
     <MESSAGE value="Need to fix TypeList stuff (see assignment spec)" />
     <MESSAGE value="Need to work on test append." />
-    <option name="LAST_COMMIT_MESSAGE" value="Need to work on test append." />
+    <MESSAGE value="All tests pass at this point. Adding more tests next." />
+    <option name="LAST_COMMIT_MESSAGE" value="All tests pass at this point. Adding more tests next." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -660,13 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/NewAssign2Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign3Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="707">
@@ -676,16 +680,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign4Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2860">
-          <caret line="130" column="17" selection-start-line="130" selection-start-column="17" selection-end-line="130" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$USER_HOME$/java8/jdk1.8.0_181/src.zip!/java/io/StreamTokenizer.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -774,16 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="307" column="58" selection-start-line="307" selection-start-column="58" selection-end-line="307" selection-end-column="58" />
-          <folding>
-            <element signature="e#7261#7276#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/JamVal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -803,23 +787,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="206" column="68" lean-forward="true" selection-start-line="206" selection-start-column="68" selection-end-line="206" selection-end-column="68" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-            <element signature="e#12017#12018#0" expanded="true" />
-            <element signature="e#12079#12080#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TypeCheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        <state>
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#368#383#0" expanded="true" />
@@ -837,10 +808,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+          <folding>
+            <element signature="e#7261#7276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="159" column="3" selection-start-line="159" selection-start-column="3" selection-end-line="159" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12017#12018#0" expanded="true" />
+            <element signature="e#12079#12080#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NewAssign2Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="16" column="59" lean-forward="true" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign5Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="85" column="27" lean-forward="true" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
+        <state relative-caret-position="5874">
+          <caret line="271" column="3" lean-forward="true" selection-start-line="271" selection-start-column="3" selection-end-line="271" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign4Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

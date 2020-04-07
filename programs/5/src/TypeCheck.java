@@ -36,7 +36,6 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         return env.accept(new LookupVisitor<>(v)).type();
     }
 
-    //TODO: Come back to this, still returning null
     public Type forPrimFun(PrimFun f) {
         throw new TypeException("Primitive function is not followed by an application argument list");
     }
@@ -197,7 +196,6 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         });
     }
 
-    //TODO: Come back to this, still returning null
     public Type forApp(App a) {
         AST[] args = a.args();
         int n = args.length;
