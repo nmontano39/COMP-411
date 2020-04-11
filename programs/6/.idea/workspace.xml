@@ -129,8 +129,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="2066" column="86" selection-start-line="2066" selection-start-column="86" selection-end-line="2066" selection-end-column="86" />
+            <state relative-caret-position="-4700">
+              <caret line="1582" column="16" selection-start-line="1582" selection-start-column="16" selection-end-line="1582" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -138,8 +138,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="395" column="6" selection-start-line="395" selection-start-column="6" selection-end-line="395" selection-end-column="6" />
+            <state relative-caret-position="8470">
+              <caret line="389" column="19" lean-forward="true" selection-start-line="389" selection-start-column="19" selection-end-line="389" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -147,8 +147,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="487" column="60" lean-forward="true" selection-start-line="487" selection-start-column="60" selection-end-line="487" selection-end-column="81" />
+            <state relative-caret-position="206">
+              <caret line="87" column="26" lean-forward="true" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -174,6 +174,7 @@
       <find>parse</find>
       <find>interp</find>
       <find>stub</find>
+      <find>testCfact</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -199,6 +200,7 @@
         <option value="$PROJECT_DIR$/src/Assign4Test.java" />
         <option value="$PROJECT_DIR$/src/Interp.java" />
         <option value="$PROJECT_DIR$/src/Parser.java" />
+        <option value="$PROJECT_DIR$/src/Assign6Test.java" />
       </list>
     </option>
   </component>
@@ -244,7 +246,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586643873267" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586643927138" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -368,13 +370,17 @@
       <option name="project" value="LOCAL" />
       <updated>1586643428773</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Start of A6.">
+      <created>1586643916708</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1586643916708</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 50m 16s.xml">
-      <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign3Test_testBlock2 - 2020.03.07 at 07h 50m 23s.xml">
       <configuration name="Assign3Test.testBlock2" configurationId="JUnit" />
     </history-entry>
@@ -400,6 +406,9 @@
       <configuration name="Assign4Test" configurationId="JUnit" />
     </history-entry>
     <history-entry file="Assign6Test - 2020.04.11 at 17h 20m 39s.xml">
+      <configuration name="Assign6Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test - 2020.04.11 at 17h 24m 09s.xml">
       <configuration name="Assign6Test" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -541,13 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Syntax.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="2066" column="86" selection-start-line="2066" selection-start-column="86" selection-end-line="2066" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../5/README">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -562,15 +564,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Semantics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="487" column="60" lean-forward="true" selection-start-line="487" selection-start-column="60" selection-end-line="487" selection-end-column="81" />
+        <state relative-caret-position="206">
+          <caret line="87" column="26" lean-forward="true" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Syntax.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4700">
+          <caret line="1582" column="16" selection-start-line="1582" selection-start-column="16" selection-end-line="1582" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="395" column="6" selection-start-line="395" selection-start-column="6" selection-end-line="395" selection-end-column="6" />
+        <state relative-caret-position="8470">
+          <caret line="389" column="19" lean-forward="true" selection-start-line="389" selection-start-column="19" selection-end-line="389" selection-end-column="19" />
         </state>
       </provider>
     </entry>
