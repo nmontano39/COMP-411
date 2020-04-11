@@ -4,9 +4,11 @@ sec14
 # Program Organization
 
 For this assignment, we first modified our parser to return a ParseException everywhere a null or identifier
-is not followed by : Type. Next, our type-checking recursively traverses the AST by implementing ASTVisitor in
-TypeCheck.java and throws TypeExceptions where necessary. By type-checking, we ensure that all variables are typed
-including those used as arguments for functions and as components of lists.
+is not followed by : Type. Once the program has successfully been parse without throwing a ParseException, we must
+type check the program before interpreting the AST. We do this by recursively traversing the AST through the
+implementation of ASTVisitor in TypeCheck.java which throws TypeExceptions where necessary. The goal of type-checking
+is to ensure that all variables are correctly typed including those used as arguments for functions and as components
+of lists. We also ensure that no primitve functions are called without being given arguments.
 
 
 # Testing Processes

@@ -7,11 +7,9 @@ import java.util.List;
  */
 class TypeCheckVisitor implements ASTVisitor<Type> {
     /** Empty symbol table. */
-//    private static final Empty<Variable> EMPTY_VARS = new Empty<Variable>();
     private static final Empty<TypedVariable> EMPTY_VARS = new Empty<TypedVariable>();
 
-    /** Symbol table to detect free variables. */
-//    PureList<Variable> env;
+    /** Symbol table to detect free typedvariables. */
     PureList<TypedVariable> env;
 
     /** Root form of CheckVisitor. */
@@ -32,14 +30,13 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
     public BoolType forBoolConstant(BoolConstant b) { return BoolType.ONLY; }
     public Type forNullConstant(NullConstant n) { return ((TypedNullConstant) n).type(); }
 
-    public Type forVariable(Variable v) {
-        return env.accept(new LookupVisitor<>(v)).type();
-    }
+    // look up variable in environment and returns its type
+    public Type forVariable(Variable v) { return env.accept(new LookupVisitor<>(v)).type(); }
 
-    public Type forPrimFun(PrimFun f) {
-        throw new TypeException("Primitive function is not followed by an application argument list");
-    }
+    // if a primitive function is not given arguments then throw a TypeException
+    public Type forPrimFun(PrimFun f) { throw new TypeException("Primitive function is not followed by an application argument list"); }
 
+    /*  Supports the addition of unary operators in Jam */
     public Type forUnOpApp(UnOpApp u) {
         Type argType = u.arg().accept(this);  // may throw a TypeException
         return u.rator().accept(new UnOpVisitor<Type>() {
@@ -82,6 +79,7 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         });
     }
 
+    /*  Supports the addition of binary operators in Jam */
     public Type forBinOpApp(BinOpApp b) {
         Type t1 = b.arg1().accept(this); // may throw a TypeException
         Type t2 = b.arg2().accept(this); // may throw a TypeException
@@ -196,6 +194,7 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         });
     }
 
+    /*  Supports the addition of apps in Jam */
     public Type forApp(App a) {
         AST[] args = a.args();
         int n = args.length;
@@ -203,7 +202,6 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         if (a.rator() instanceof PrimFun) {
             PrimFun rator = (PrimFun) a.rator();
             Type firstType = args[0].accept(this);
-//            Type restType = args[1].accept(this);
             ASTVisitor<Type> myVisitor = this;
             return rator.accept(new PrimFunVisitor<Type>() {
                 @Override
@@ -255,11 +253,9 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
             });
         }
 
-
         Type ratorType = a.rator().accept(this);
         FunType ratorFunType = (FunType) ratorType;
 
-//        Type firstType = first.accept(this).
         for(int i = 0; i < n; i++) {
             Type funArgType = ratorFunType.paramType()[i];
             Type argType = args[i].accept(this);
@@ -270,11 +266,13 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         return ratorFunType.outType();
     }
 
+    /*  Supports the addition of map in Jam */
     public Type forMap(Map m) {
         ArrayList<Type> listTypes = new ArrayList<>();
         Variable[] vars = m.vars();
         PureList<TypedVariable> newEnv = env;
-        // Add to env
+
+        // Add each variable to the env
         for (int i = 0; i < vars.length; i++) {
             TypedVariable typedVar = (TypedVariable) vars[i];
             listTypes.add(typedVar.type());
@@ -285,12 +283,14 @@ class TypeCheckVisitor implements ASTVisitor<Type> {
         return new FunType(listTypes.toArray(new Type[0]), t);
     }
 
+    /*  Supports the addition of if in Jam */
     public Type forIf(If i) {
         i.test().accept(this);
         i.conseq().accept(this);
         return i.alt().accept(this);
     }
 
+    /*  Supports the addition of let in Jam */
     public Type forLet(Let l) {
         Variable[] vars = l.vars();
         AST[] exps = l.exps();
