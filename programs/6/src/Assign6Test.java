@@ -94,6 +94,18 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
   
+  public void testSimpleCmap() {
+    try {
+      String output = "(map x to x)(let x:1 := 1; in x:1)";
+      String input = "(map x to x)(1)";
+      cpsCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+
+  }
 
   public void testUuop() {
     try {
@@ -107,10 +119,9 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  // /* TODO: failing because varcount is off by 1 */
   public void testUnOpSimple() {
     try {
-      String output = "(map :1 to (map x to x)(let :0 := :1; in - :0))(let x:1 := 1; in x:1)";
+      String output = "(map :0 to (map x to x)(- :0))(let x:1 := 1; in x:1)";
       String input = "-((map x to x)(1))";
       toDeleteCheck("Uuop", output, input );
 

@@ -2031,6 +2031,7 @@ class Parser {
   /* Convert exp,cont to correponding CPS'ed program */ 
   public SymAST convertToCPS(SymAST exp, SymAST cont) {
     if (exp.accept(isSimple) == TRUE) {
+      System.out.println("Exp is simple, exp: " + exp + " cont " + cont);
       return new App(cont, new SymAST[] {exp.accept(reshape)});
     }
     return exp.accept(new ConvertToCPS(cont));
@@ -2074,6 +2075,7 @@ class Parser {
         System.out.println("Goes into UnOpApp CASE 4 - NOT IMPLEMENTED");
         return null;
       }
+      System.out.println("UnOpApp goes to case 5");
       // Case 5
       UnOp s = u.rator();
       SymAST e1 = (SymAST) u.arg();
@@ -2095,6 +2097,7 @@ class Parser {
         System.out.println("Goes into BinOpApp CASE 4 - NOT IMPLEMENTED");
         return null;
       }
+
       // Case 5
       Def def1 = new Def(new Variable(":" + varcount), (SymAST) b.arg1());
       varcount++;
@@ -2106,31 +2109,49 @@ class Parser {
     }
 
     public SymAST forApp(App a) {
+      System.out.println("Gets to App a: " + a);
+      System.out.println("a's rator is simple - " + ((SymAST) a.rator()).accept(isSimple));
+      System.out.println("a's args are simple - " + allArgsSimple(a));
+
+
+
       // Case 1
       if (a.accept(isSimple) == TRUE) {
+        System.out.println("Gets to case 1");
+        System.out.println("App is simple, a: " + a);
         return new App(cont, new SymAST[] {a.accept(reshape)});
       }
-      // Case 2 or 3
-      if (a.rator() instanceof Map) {
-        // Case 3
-        if (a.args().length == 0) {
-          return case3(a);
-        // Case 2
-        } else {
-          return case2(a);
-        }
+
+      // Case 2
+      if ((a.rator() instanceof Map) && (a.args().length > 0)) {
+        System.out.println("Gets to case 2");
+        return case2(a);
       }
-      // Case 4 or 5
-      if (((SymAST) a.rator()).accept(isSimple)) {
-        if (allArgsSimple(a)) {
-          // Case 4
-          return case4(a);
-        } else {
-          // Case 5
-          return case5(a);
-        }
+
+      // Case 3
+      if ((a.rator() instanceof Map) && (a.args().length == 0)) {
+        System.out.println("Gets to case 3");
+        return case3(a);
       }
+
+      // Case 4
+      if (((SymAST) a.rator()).accept(isSimple) && allArgsSimple(a)) {
+        System.out.println("Gets to case 4");
+        System.out.println("Cont: " + cont);
+        return case4(a);
+      }
+
+
+      // Case 5
+      if (((SymAST) a.rator()).accept(isSimple) && a.args().length > 0) {
+        System.out.println("Gets to case 5");
+        return case5(a);
+      }
+
+
+
       // If it gets this far, it must be case 6.
+      System.out.println("Gets to case 6");
       return case6(a);
     }
 
@@ -2151,8 +2172,7 @@ class Parser {
       if (firstDef.rhs().accept(isSimple)) {
         if (l.defs().length > 1) {
           System.out.println("Gets to case 11");
-          // TODO: implement case 11
-          return null;
+          return case11(l);
         } else {
           System.out.println("Gets to case 10");
           return case10(l);
@@ -2161,7 +2181,7 @@ class Parser {
         if (l.defs().length > 1) {
           System.out.println("Gets to case 13");
           // TODO: implement case 13
-          return null;
+          return case13(l);
         } else {
           System.out.println("Gets to case 12");
           return case12(l);
@@ -2233,6 +2253,10 @@ class Parser {
       SymAST[] newArgs = new SymAST[a.args().length + 1];
       // Reshape the rator.
       SymAST newRator = ((SymAST) a.rator()).accept(reshape);
+      System.out.println("Rator: " + a.rator());
+      System.out.println("new rator: " + newRator);
+//      "(map x to x)(map x:1,:0 to :0(x:1))";
+
       // Reshape the args.
       for (int i = 0; i < a.args().length; i++) {
         newArgs[i] = ((SymAST) a.args()[i]).accept(reshape);
@@ -2240,6 +2264,7 @@ class Parser {
       // Add k as the last arg in newArgs
       newArgs[a.args().length] = cont;
       // Return as App.
+      System.out.println("Result from Case 4: " + new App(newRator, newArgs));
       return new App(newRator, newArgs);
     }
 
@@ -2323,12 +2348,18 @@ class Parser {
     }
 
     /* handler for case 11
-    * Cps[k, let x1 := S1; x2 := E2; ... xn := En; in B] => let x1 := Rsh[S1]; in Cps[k, let x2 := E2; ...; xn := En; in B]
+    * Cps[k, let x1 := S1; x2 := E2; ... xn := En; in B] =>
+    * let x1 := Rsh[S1]; in Cps[k, let x2 := E2; ...; xn := En; in B]
     * */
     private SymAST case11(Let l) {
-      // TODO: implement this case
-
-      return null;
+      Def firstDef = l.defs()[0];
+      SymAST firstResh = firstDef.rhs().accept(reshape);
+      Def[] remDefs = new Def[l.defs().length - 1];
+      for (int i = 1; i < l.defs().length; i++) {
+        remDefs[i - 1] = l.defs()[i];
+      }
+      Let remLet = new Let(remDefs, l.body());
+      return new Let(new Def[] {new Def(firstDef.lhs(), firstResh)}, ((SymAST) remLet).accept(this));
     }
 
     /* handler for case 12
@@ -2338,16 +2369,23 @@ class Parser {
       Def firstDef = l.defs()[0];
       Variable[] mapVars = new Variable[] {firstDef.lhs()};
       Map map = new Map(mapVars, l.body().accept(this));
+      System.out.println(map);
       return firstDef.rhs().accept(new ConvertToCPS(map));
     }
 
     /* handler for case 13
-    * Cps[k, let x1 := E1; ... xn := En; in B] => Cps[map x1 to Cps[k, let x2 = E2; ... xn := En; in B], E1]
+    * Cps[k, let x1 := E1; ... xn := En; in B] =>
+    * Cps[map x1 to Cps[k, let x2 = E2; ... xn := En; in B], E1]
     * */
     private SymAST case13(Let l) {
       // TODO: implement this case
-
-      return null;
+      Def[] remDefs = new Def[l.defs().length - 1];
+      for (int i = 1; i < l.defs().length; i++) {
+        remDefs[i - 1] = l.defs()[i];
+      }
+      Let remLet = new Let(remDefs, l.body());
+      Map map = new Map(new Variable[] {l.defs()[0].lhs()}, ((SymAST) remLet).accept(this));
+      return l.defs()[0].rhs().accept(new ConvertToCPS(map));
     }
 
     /* handler for case 14
