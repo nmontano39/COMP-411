@@ -114,11 +114,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign6Test.testIfComplex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign6Test.testCfact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testIfComplex" />
+      <option name="METHOD_NAME" value="testCfact" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -137,17 +137,17 @@
     <list>
       <item itemvalue="JUnit.Assign6Test" />
       <item itemvalue="JUnit.Assign6Test.testIfSimple" />
-      <item itemvalue="JUnit.Assign6Test.testIfComplex" />
       <item itemvalue="JUnit.Assign6Test.testBlockSimple" />
       <item itemvalue="JUnit.Assign6Test.testBlockComplex" />
+      <item itemvalue="JUnit.Assign6Test.testCfact" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign6Test" />
+        <item itemvalue="JUnit.Assign6Test.testIfSimple" />
+        <item itemvalue="JUnit.Assign6Test.testCfact" />
         <item itemvalue="JUnit.Assign6Test.testBlockComplex" />
         <item itemvalue="JUnit.Assign6Test.testBlockSimple" />
-        <item itemvalue="JUnit.Assign6Test.testIfComplex" />
-        <item itemvalue="JUnit.Assign6Test.testIfSimple" />
       </list>
     </recent_temporary>
   </component>

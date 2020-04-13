@@ -2113,8 +2113,6 @@ class Parser {
       System.out.println("a's rator is simple - " + ((SymAST) a.rator()).accept(isSimple));
       System.out.println("a's args are simple - " + allArgsSimple(a));
 
-
-
       // Case 1
       if (a.accept(isSimple) == TRUE) {
         System.out.println("Gets to case 1");
@@ -2148,17 +2146,19 @@ class Parser {
         return case5(a);
       }
 
-
-
       // If it gets this far, it must be case 6.
       System.out.println("Gets to case 6");
       return case6(a);
     }
 
     public SymAST forIf(If i) {
-      /* TODO: This is a STUB. */
-
-      return null;
+      if (((SymAST)i.test()).accept(isSimple)) {
+        System.out.println("Gets to case 7");
+        return case7(i);
+      } else {
+        System.out.println("Gets to case 8");
+        return case8(i);
+      }
     }
 
     public SymAST forLet(Let l) {
@@ -2180,7 +2180,6 @@ class Parser {
       } else {
         if (l.defs().length > 1) {
           System.out.println("Gets to case 13");
-          // TODO: implement case 13
           return case13(l);
         } else {
           System.out.println("Gets to case 12");
@@ -2312,19 +2311,20 @@ class Parser {
     /* handler for case 7
     * Cps[k, if S then A else C] => if Rsh[S] then Cps[k, A] else Cps[k, C]
     * */
-    private SymAST case7() {
-      // TODO: implement this case
-
-      return null;
+    private SymAST case7(If i) {
+      System.out.println("hello");
+      return new If(((SymAST)i.test()).accept(reshape), ((SymAST)i.conseq()).accept(this), ((SymAST)(i.alt())).accept(this));
     }
 
     /* handler for case 8
     * Cps[k, if T then A else C] => Cps[k, let v := T in if v then A else C]
     * */
-    private SymAST case8() {
-      // TODO: implement this case
-
-      return null;
+    private SymAST case8(If i) {
+      Variable var = new Variable(":" + varcount);
+      Def def = new Def(var, (SymAST)(i.test()));
+      Def[] arr = new Def[] {def};
+      If newIf = new If(var, ((SymAST)i.conseq()).accept(this), ((SymAST)(i.alt())).accept(this));
+      return new Let(arr, newIf);
     }
 
     /* handler for case 9
@@ -2378,7 +2378,6 @@ class Parser {
     * Cps[map x1 to Cps[k, let x2 = E2; ... xn := En; in B], E1]
     * */
     private SymAST case13(Let l) {
-      // TODO: implement this case
       Def[] remDefs = new Def[l.defs().length - 1];
       for (int i = 1; i < l.defs().length; i++) {
         remDefs[i - 1] = l.defs()[i];

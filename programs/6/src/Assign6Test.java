@@ -171,6 +171,19 @@ public class Assign6Test extends TestCase {
 
   public void testIfSimple() {
     try {
+      String output = "if ~ false then (map x to x)(let x:1 := 7; in x:1) else (map x to x)(50)";
+      String input = "if ~false then (map x to x)(7) else 50";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  // /* TODO: failing because if not implemented correctly*/
+  public void testIfComplex1() {
+    try {
       String output = "(map :0 to (map x to x)(if :0 then 15 else 50))(let x:1 := false; in ~ x:1)";
       String input = "if (map x to ~x)(false) then 15 else 50";
       toDeleteCheck("Uuop", output, input );
@@ -181,7 +194,8 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  public void testIfComplex() {
+  // /* TODO: failing because if not implemented correctly */
+  public void testIfComplex2() {
     try {
       String output = "let square:1 := map x:1,y:1,:2 to :2(if x:1 then asBool(y:1) else false); in square:1(true, false, map :1 to (map :0 to (map x to x)(if :0 then 23 else 13))(~ :1))";
       String input = "if ~(let square := map x, y to x & y; in square(true, false)) then 23 else 13";
@@ -193,6 +207,7 @@ public class Assign6Test extends TestCase {
     }
   }
 
+  // /* TODO: failing because block not implemented */
   public void testBlockSimple() {
     try {
       String output = "(map x to x)({map x:1,:0 to :0(x:1); map y:1,:1 to :1((y:1 * y:1)); let simple:1 := 5; in simple:1})";
@@ -205,6 +220,7 @@ public class Assign6Test extends TestCase {
     }
   }
 
+  // /* TODO: failing because block not implemented */
   public void testBlockComplex() {
     try {
       String output = "let a:1 := ref 5; in let func:1 := map x:1,y:1,:1 to :1((x:1 * y:1)); in if (! a:1 < 10) then func:1(! a:1, ! a:1, map :0 to (map x to x)(:0)) else func:1(0, 0, map :0 to (map x to x)(:0))";
@@ -491,7 +507,7 @@ public class Assign6Test extends TestCase {
 //  } //end of func
 //
 
-  // /* TODO: test case 11 */
+  // /* TODO: failing because valcount off by 1 */
   public void testCfact() {
     try {
       String output = "let Y:1 := map f:1,:0 to " +
