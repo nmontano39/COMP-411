@@ -328,7 +328,43 @@ public class Assign6Test extends TestCase {
       fail("Smap threw " + e);
     }
   } //end of func
-  
+
+  public void testSmap2() {
+    try {
+      String output = "map [*2*] to ([0,0] + [0,1])";
+      String input = "map x,y to x + y";
+      SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
+  public void testSmap3() {
+    try {
+      String output = "map [*1*] to map [*2*] to (([1,0] + [0,0]) + [0,1])";
+      String input = "map x to map y, z to x + y + z";
+      SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
+  public void testSIf1() {
+    try {
+      String output = "let [*1*] 1; in if ([0,0] > 0) then 5 else 10";
+      String input = "let x := 1; in if x > 0 then 5 else 10";
+      SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
 
   public void testCmap() {
     try {

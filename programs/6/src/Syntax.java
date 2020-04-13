@@ -2673,7 +2673,7 @@ class SConverter {
 
     // TODO: get static distance here
     public SDAST forSymVariable(Variable v) {
-      return v;
+      return lookup(v);
     }
 
     public SDAST forPrimFun(PrimFun f) { return f; }
@@ -2703,8 +2703,11 @@ class SConverter {
 
     // TODO: implement map
     public SDAST forMap(Map m) {
-      return null;
-      //return m;
+      for (int i = 0; i < m.vars().length; i++) {
+        symbolTable.put(m.vars()[i], new Pair(depth, i));
+      }
+      return new SMap(m.vars().length, convert(m.body()));
+//      return null;
     }
 
     // TODO: fix this
@@ -2713,36 +2716,35 @@ class SConverter {
       SDAST c = convert((SymAST) i.conseq());
       SDAST a = convert((SymAST) i.alt());
 
-//      if (t.accept(this)) {
-//        return c;
-//      } else {
-//        return a;
-//      }
-      return c;
+      return new If(t, c, a);
     }
 
     // TODO: look this over
     public SDAST forLet(Let l) {
       Def[] defs = l.defs();
+      SDAST[] sdArr = new SDAST[defs.length];
       int n = defs.length;
 
       for (int i = 0; i < n; i++) {
-        SDAST rhs = convert((SymAST) defs[i].rhs());
+        symbolTable.put(defs[i].lhs(), new Pair(depth, i));
+        sdArr[i] = convert(defs[i].rhs());
       }
-      return convert((SymAST)l.body());
-      //return new Let(defs, convert((SymAST) l.body()));
+//      return convert((SymAST)l.body());
+      return new SLet(sdArr, convert(l.body()));
     }
 
-    // TODO: fix this
+    // TODO: SAME AS LET. CHANGE THIS!!
     public SDAST forLetRec(LetRec l) {
       Def[] defs = l.defs();
+      SDAST[] sdArr = new SDAST[defs.length];
       int n = defs.length;
 
       for (int i = 0; i < n; i++) {
-        SDAST rhs = convert((SymAST) defs[i].rhs());
+        symbolTable.put(defs[i].lhs(), new Pair(depth, i));
+        sdArr[i] = convert(defs[i].rhs());
       }
-      return null;
-      //return convert((SymAST)l.body());
+//      return convert((SymAST)l.body());
+      return new SLet(sdArr, convert(l.body()));
     }
 
     /* TODO: This is a STUB. */
@@ -2752,11 +2754,11 @@ class SConverter {
 
     // TODO: look this over
     public SDAST forBlock(Block b) {
-      SDAST out = convert((SymAST)b.exps()[0]);
-      for (int i = 1; i < b.exps().length; i++) {
-        out = convert((SymAST)b.exps()[i]);
+      SDAST[] sdArr = new SDAST[b.exps().length];
+      for (int i = 0; i < b.exps().length; i++) {
+        sdArr[i] = convert((SymAST) b.exps()[i]);
       }
-      return out;
+      return new Block(sdArr);
     }
   }
   
