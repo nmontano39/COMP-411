@@ -107,7 +107,21 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  public void testOur1() {
+  // /* TODO: failing because varcount is off by 1 */
+  public void testUnOpSimple() {
+    try {
+      String output = "(map :1 to (map x to x)(let :0 := :1; in - :0))(let x:1 := 1; in x:1)";
+      String input = "-((map x to x)(1))";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  // /* TODO: failing because varcount is off by 1 */
+  public void testUnOpComplex() {
     try {
       String output = "let square:1 := map x:1,:1 to :1((x:1 * x:1)); in square:1(2, map :0 to (map x to x)(- :0))";
       String input = "-(let square := map x to x*x; in square(2))";
@@ -119,10 +133,10 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  public void testisMapSimple() {
+  public void testBinOpSimple() {
     try {
-      String output = "let square:1 := map x:1,:1 to :1((x:1 * x:1)); in square:1(2, map :0 to (map x to x)(- :0))";
-      String input = "let square:= map x to x*x; in square(2)";
+      String output = "(map :2 to let :0 := :2; in (map :3 to (map x to x)(let :1 := :3; in (:0 * :1)))(let x:1 := 10; in x:1))(let z:1 := 5; in z:1)";
+      String input = "((map z to z)(5))*((map x to x)(10))";
       toDeleteCheck("Uuop", output, input );
 
     } catch (Exception e) {
@@ -130,7 +144,69 @@ public class Assign6Test extends TestCase {
       fail("Uuop threw " + e);
     }
   }
-  
+
+  public void testBinOpComplex() {
+    try {
+      String output = "let square:1 := map x:1,:6 to :6((x:1 * x:1)); in square:1(2, map :5 to (map :2 to let :0 := :2; in let p:1 := ref 73; in (map :3 to (map x to x)(let :1 := :3; in (:0 * :1)))(let w:2 := ! p:1; in w:2))(let :4 := :5; in - :4))";
+      String input = "-(let square := map x to x*x; in square(2)) * (let p := ref 73; in (map w to w)(!p))";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  public void testIfSimple() {
+    try {
+      String output = "(map :1 to (map x to x)(let :0 := :1; in if :0 then 15 else 50))(let x:1 := false; in ~ x:1)";
+      String input = "if (map x to ~x)(false) then 15 else 50";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  public void testIfComplex() {
+    try {
+      String output = "let square:1 := map x:1,y:1,:4 to :4(if x:1 then asBool(y:1) else false); in square:1(true, false, map :3 to (map :1 to (map x to x)(let :0 := :1; in if :0 then 23 else 13))(let :2 := :3; in ~ :2))";
+      String input = "if ~(let square := map x, y to x & y; in square(true, false)) then 23 else 13";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  public void testBlockSimple() {
+    try {
+      String output = "(map x to x)({map x:1,:0 to :0(x:1); map y:1,:1 to :1((y:1 * y:1)); let simple:1 := 5; in simple:1})";
+      String input = "{map x to x; map y to y*y; let simple := 5; in simple}";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  public void testBlockComplex() {
+    try {
+      String output = "let a:1 := ref 5; in let func:1 := map x:1,y:1,:2 to :2((x:1 * y:1)); in if (! a:1 < 10) then func:1(! a:1, ! a:1, map :1 to (map x to x)(let :0 := :1; in :0)) else func:1(0, 0, 0, map :1 to (map x to x)(let :0 := :1; in :0))";
+      String input = "{let a := ref 5; func := map x, y to x * y; in if !a < 10 then func(!a, !a) else func(0,0,0)}";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+
+
 // /* TODO: uncomment to test SD */
 //  public void testSuop() {
 //    try {
@@ -402,6 +478,8 @@ public class Assign6Test extends TestCase {
 //    }
 //  } //end of func
 //
+
+  // /* TODO: test case 11 */
   public void testCfact() {
     try {
       String output = "let Y:1 := map f:1,:0 to " +
