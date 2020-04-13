@@ -2667,13 +2667,13 @@ class SConverter {
     }
   
     private SDAST forDefault(AST host) { throw new SyntaxException(host + " is not a legal input to SConvert"); }
-    public SDAST forIntConstant(IntConstant i) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forNullConstant(NullConstant n) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forBoolConstant(BoolConstant b) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forSymVariable(Variable v) { /* . . . */ return null; /* This is a STUB. */ }
+    public SDAST forIntConstant(IntConstant i) { return i; }
+    public SDAST forNullConstant(NullConstant n) { return n; }
+    public SDAST forBoolConstant(BoolConstant b) { return b; }
+    public SDAST forSymVariable(Variable v) { return v; }
     public SDAST forPrimFun(PrimFun f) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forUnOpApp(UnOpApp u) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forBinOpApp(BinOpApp b) { /* . . . */ return null; /* This is a STUB. */ }
+    public SDAST forUnOpApp(UnOpApp u) { return u; }
+    public SDAST forBinOpApp(BinOpApp b) { return b; }
     public SDAST forApp(App a) { /* . . . */ return null; /* This is a STUB. */ }
     public SDAST forMap(Map m) { /* . . . */ return null; /* This is a STUB. */ }
     public SDAST forIf(If i) { /* . . . */ return null; /* This is a STUB. */ }

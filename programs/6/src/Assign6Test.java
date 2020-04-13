@@ -131,7 +131,6 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because varcount is off by 1 */
   public void testUnOpComplex() {
     try {
       String output = "let square:1 := map x:1,:1 to :1((x:1 * x:1)); in square:1(2, map :0 to (map x to x)(- :0))";
@@ -156,7 +155,6 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because varcount is off by 1 */
   public void testBinOpComplex() {
     try {
       String output = "let square:1 := map x:1,:3 to :3((x:1 * x:1)); in square:1(2, map :2 to (map :0 to let p:1 := ref 73; in (map :1 to (map x to x)((:0 * :1)))(let w:2 := ! p:1; in w:2))(- :2))";
@@ -193,7 +191,6 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because varcount is off by 1 */
   public void testIfComplex2() {
     try {
       String output = "let square:1 := map x:1,y:1,:2 to :2(if x:1 then asBool(y:1) else false); in square:1(true, false, map :1 to (map :0 to (map x to x)(if :0 then 23 else 13))(~ :1))";
@@ -206,7 +203,6 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because block not implemented */
   public void testBlockSimple() {
     try {
       String output = "(map x to x)({map x:1,:0 to :0(x:1); map y:1,:1 to :1((y:1 * y:1)); let simple:1 := 5; in simple:1})";
@@ -219,7 +215,6 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because varcount is off by 1 */
   public void testBlockComplex() {
     try {
       String output = "let a:1 := ref 5; in let func:1 := map x:1,y:1,:1 to :1((x:1 * y:1)); in if (! a:1 < 10) then func:1(! a:1, ! a:1, map :0 to (map x to x)(:0)) else func:1(0, 0, map :0 to (map x to x)(:0))";
@@ -235,17 +230,17 @@ public class Assign6Test extends TestCase {
 
 
 // /* TODO: uncomment to test SD */
-//  public void testSuop() {
-//    try {
-//      String output = "(3 + 3)";
-//      String input = "3 + 3";
-//      SDCheck("Suop", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Suop threw " + e);
-//    }
-//  } //end of func
+  public void testSuop() {
+    try {
+      String output = "(3 + 3)";
+      String input = "3 + 3";
+      SDCheck("Suop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Suop threw " + e);
+    }
+  } //end of func
   
 
   public void testCuop() {
@@ -324,17 +319,17 @@ public class Assign6Test extends TestCase {
   } //end of func
 
 // /* TODO: uncomment to test SD */
-//  public void testSmap() {
-//    try {
-//      String output = "map [*1*] to [0,0]";
-//      String input = "map z to z";
-//      SDCheck("Smap", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Smap threw " + e);
-//    }
-//  } //end of func
+  public void testSmap() {
+    try {
+      String output = "map [*1*] to [0,0]";
+      String input = "map z to z";
+      SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  } //end of func
   
 
   public void testCmap() {
@@ -518,7 +513,6 @@ public class Assign6Test extends TestCase {
 //  } //end of func
 
 
-  // /* TODO: failing because valcount off by 1 */
   public void testCfact() {
     try {
       String output = "let Y:1 := map f:1,:0 to " +
