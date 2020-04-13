@@ -2068,28 +2068,44 @@ class Parser {
     }
     
     public SymAST forUnOpApp(UnOpApp u) {
-      // We think that if it gets to here, then we already know that it isn't simple.
-      // We know this is for SymAST so I cast to SymAST.
       System.out.println("Gets to UnOpApp: " + u);
-      // Check that this is what you want to do.
+
+      // Case 1
       if (u.accept(isSimple) == TRUE) {
         return new App(cont, new SymAST[] {u.accept(reshape)});
       }
+
+      // Case 4
+      if (((SymAST) u.arg()).accept(isSimple)) {
+        System.out.println("Goes into UnOpApp CASE 4 - NOT IMPLEMENTED");
+        return null;
+      }
+
+      // Case 5
       UnOp s = u.rator();
       SymAST e1 = (SymAST) u.arg();
       Variable v1 = new Variable(":" + varcount);
-      Def def = new Def(v1, e1);
       varcount++;
+      Def def = new Def(v1, e1);
       Def[] arr = new Def[] {def};
       Let let = new Let(arr, new UnOpApp(s, v1));
       // And I pass this on to let as per case 5.
       return let.accept(this);
     }
+
     public SymAST forBinOpApp(BinOpApp b) {
-      // Check that this is what you want to do.
+      // Case 1
       if (b.accept(isSimple) == TRUE) {
         return new App(cont, new SymAST[] {b.accept(reshape)});
       }
+
+      // Case 4
+      if (((SymAST) b.arg1()).accept(isSimple) && ((SymAST) b.arg2()).accept(isSimple)) {
+        System.out.println("Goes into BinOpApp CASE 4 - NOT IMPLEMENTED");
+        return null;
+      }
+
+      // Case 5
       Def def1 = new Def(new Variable(":" + varcount), (SymAST) b.arg1());
       varcount++;
       Def def2 = new Def(new Variable(":" + varcount), (SymAST) b.arg2());
@@ -2097,6 +2113,72 @@ class Parser {
       Def[] arr = new Def[] {def1, def2};
       Let let = new Let(arr, new BinOpApp(b.rator(), def1.lhs(), def2.lhs()));
       return let.accept(this);
+    }
+
+    private SymAST case2(App a) {
+      Def[] defs = new Def[a.args().length];
+      Map m = (Map) a.rator();
+      for (int i = 0; i < a.args().length; i++) {
+        defs[i] = new Def(m.vars()[i], (SymAST) a.args()[i]);
+      }
+      Let l = new Let(defs, m.body());
+      return l.accept(this);
+    }
+
+    private SymAST case3(App a) {
+      // SHOULD HAVE 0 ARGS
+      Map m = (Map) a.rator();
+      return m.body().accept(this);
+    }
+
+    private SymAST case4(App a) {
+      // All of a's arg + 1 for k
+      SymAST[] newArgs = new SymAST[a.args().length + 1];
+      // Reshape the rator.
+      SymAST newRator = ((SymAST) a.rator()).accept(reshape);
+      // Reshape the args.
+      for (int i = 0; i < a.args().length; i++) {
+        newArgs[i] = ((SymAST) a.args()[i]).accept(reshape);
+      }
+      // Add k as the last arg in newArgs
+      newArgs[a.args().length] = cont;
+      // Return as App.
+      return new App(newRator, newArgs);
+    }
+
+    private SymAST case5(App a) {
+      // Arrays to store the defs and the arrs
+      Def[] defArr = new Def[a.args().length];
+      Variable[] varArr = new Variable[a.args().length];
+      // Add the values into the arrays.
+      for (int i = 0; i < a.args().length; i++) {
+        varArr[i] = new Variable(":" + varcount);
+        varcount++;
+        defArr[i] = new Def(varArr[i], (SymAST) a.args()[i]);
+      }
+      // Make the let with the rator applied to varArr
+      Let let = new Let(defArr, new App(a.rator(), varArr));
+      // Cps[k, the let]
+      return let.accept(this);
+    }
+
+    private SymAST case6(App a) {
+      // "+1" because we also have v := B
+      Def[] defArr = new Def[a.args().length + 1];
+      Variable[] varArr = new Variable[a.args().length];
+      defArr[0] = new Def(new Variable(":" + varcount), (SymAST) a.rator());
+      varcount++;
+      // Add the values into the arrays.
+      for (int i = 1; i < defArr.length; i++) {
+        varArr[i - 1] = new Variable(":" + varcount);
+        varcount++;
+        defArr[i] = new Def(varArr[i - 1], (SymAST) a.args()[i - 1]);
+      }
+      // Make the let with the rator applied to varArr
+      Let let = new Let(defArr, new App(defArr[0].lhs(), varArr));
+      // Cps[k, the let]
+      return let.accept(this);
+
     }
 
     private boolean allArgsSimple(App a) {
@@ -2108,42 +2190,72 @@ class Parser {
       return true;
     }
 
-    private SymAST case4(App a) {
-      // All of a's arg + 1 for k
-      SymAST[] newArgs = new SymAST[a.args().length + 1];
-      //
-      SymAST newRator = ((SymAST) a.rator()).accept(reshape);
-      for (int i = 0; i < a.args().length; i++) {
-        newArgs[i] = ((SymAST) a.args()[i]).accept(reshape);
-      }
-      newArgs[a.args().length] = cont;
-      return new App(newRator, newArgs);
-    }
-
     public SymAST forApp(App a) {
-      // Check that this is what you want to do.
+      // Case 1.
       if (a.accept(isSimple) == TRUE) {
         return new App(cont, new SymAST[] {a.accept(reshape)});
       }
 
-
-
-      Def[] arr = new Def[a.args().length];
-      Variable[] varArr = new Variable[a.args().length];
-      for (int i = 0; i < a.args().length; i++) {
-        varArr[i] = new Variable(":" + varcount);
-        arr[i] = new Def(varArr[i], (SymAST) a.args()[i]);
-        varcount++;
+      // Case 2 and 3
+      if (a.rator() instanceof Map) {
+        // Case 3
+        if (a.args().length == 0) {
+          return case3(a);
+        // Case 2
+        } else {
+          return case2(a);
+        }
       }
-      Let let = new Let(arr, new App(a.rator(), varArr));
-      return let.accept(this);
+
+      // Case 4 and 5
+      if (((SymAST) a.rator()).accept(isSimple)) {
+        if (allArgsSimple(a)) {
+          // Case 4
+          return case4(a);
+        } else {
+          // Case 5
+          return case5(a);
+        }
+
+      }
+
+      // If it gets this far, it must be case 6.
+      return case6(a);
     }
     public SymAST forIf(If i) { /* . . . */ return null; /* This is a STUB. */ }
+
+
+    private SymAST case10(Let l) {
+      Def firstDef = l.defs()[0];
+      Def def = new Def(firstDef.lhs(), firstDef.rhs().accept(reshape));
+      System.out.println("The def in case 10 is: " + def);
+      Def[] arr = new Def[] {def};
+      return new Let(arr, l.body().accept(this));
+    }
+
+    private SymAST case11(Let l) {
+      return null;
+    }
+
+    private SymAST case12(Let l) {
+      Def firstDef = l.defs()[0];
+      Variable[] mapVars = new Variable[] {firstDef.lhs()};
+      Map map = new Map(mapVars, l.body().accept(this));
+      return firstDef.rhs().accept(new ConvertToCPS(map));
+    }
+
+    private SymAST case13(Let l) {
+      return null;
+    }
+
+
     public SymAST forLet(Let l) {
       System.out.println("Gets to Let");
       if (l.accept(isSimple) == TRUE) {
+        System.out.println("Let is simple");
         return new App(cont, new SymAST[] {l.accept(reshape)});
       }
+      System.out.println("Let is not simple: " + l);
       Def firstDef = l.defs()[0];
       if (firstDef.rhs().accept(isSimple)) {
         // Case 11
@@ -2153,12 +2265,7 @@ class Parser {
         // Case 10
         } else {
           System.out.println("Gets to case 10");
-          System.out.println("Let l: " + l);
-          Def def = new Def(firstDef.lhs(), firstDef.rhs().accept(reshape));
-          System.out.println("Def in let is: "+ def);
-          System.out.println("Body in let is: "+ l.body());
-          Def[] arr = new Def[] {def};
-          return new Let(arr, l.body().accept(this));
+          return case10(l);
         }
       } else {
         // Case 13
@@ -2168,19 +2275,9 @@ class Parser {
         // Case 12
         } else {
           System.out.println("Gets to case 12");
-          System.out.println("Body in case 12: " + l.body());
-
-          Map map = new Map(new Variable[] {firstDef.lhs()}, l.body().accept(this));
-          System.out.println("Gets past creating the map: " + map);
-          System.out.println("firstDef rhs: " + firstDef.rhs());
-          return firstDef.rhs().accept(new ConvertToCPS(map));
-//          return null;
+          return case12(l);
         }
       }
-
-//      System.out.println("Gets to here");
-
-//      return null; /* This is a STUB. */
     }
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
     public SymAST forLetRec(LetRec l) { /* . . . */ return null; /* This is a STUB. */ } 
