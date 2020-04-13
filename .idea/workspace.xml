@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/COMP-411.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP-411.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/5/src/TypeCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/6/src/Syntax.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/6/src/Syntax.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,22 +84,12 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign5Test">
+  <component name="RunManager" selected="JUnit.Assign6Test">
     <configuration name="Assign5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign5Test" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign5Test.testAssign" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign5Test" />
-      <option name="METHOD_NAME" value="testAssign" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -134,20 +124,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign6Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign5Test" />
       <item itemvalue="JUnit.Assign5Test.testList2" />
-      <item itemvalue="JUnit.Assign5Test.testAssign" />
       <item itemvalue="JUnit.Assign5Test.testMathOp" />
       <item itemvalue="JUnit.Assign5Test.testNull" />
+      <item itemvalue="JUnit.Assign6Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign6Test" />
         <item itemvalue="JUnit.Assign5Test" />
         <item itemvalue="JUnit.Assign5Test.testNull" />
         <item itemvalue="JUnit.Assign5Test.testList2" />
         <item itemvalue="JUnit.Assign5Test.testMathOp" />
-        <item itemvalue="JUnit.Assign5Test.testAssign" />
       </list>
     </recent_temporary>
   </component>
