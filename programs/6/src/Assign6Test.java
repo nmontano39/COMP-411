@@ -171,7 +171,7 @@ public class Assign6Test extends TestCase {
 
   public void testIfSimple() {
     try {
-      String output = "(map :1 to (map x to x)(let :0 := :1; in if :0 then 15 else 50))(let x:1 := false; in ~ x:1)";
+      String output = "(map :0 to (map x to x)(if :0 then 15 else 50))(let x:1 := false; in ~ x:1)";
       String input = "if (map x to ~x)(false) then 15 else 50";
       toDeleteCheck("Uuop", output, input );
 
@@ -183,7 +183,7 @@ public class Assign6Test extends TestCase {
 
   public void testIfComplex() {
     try {
-      String output = "let square:1 := map x:1,y:1,:4 to :4(if x:1 then asBool(y:1) else false); in square:1(true, false, map :3 to (map :1 to (map x to x)(let :0 := :1; in if :0 then 23 else 13))(let :2 := :3; in ~ :2))";
+      String output = "let square:1 := map x:1,y:1,:2 to :2(if x:1 then asBool(y:1) else false); in square:1(true, false, map :1 to (map :0 to (map x to x)(if :0 then 23 else 13))(~ :1))";
       String input = "if ~(let square := map x, y to x & y; in square(true, false)) then 23 else 13";
       toDeleteCheck("Uuop", output, input );
 
@@ -207,8 +207,8 @@ public class Assign6Test extends TestCase {
 
   public void testBlockComplex() {
     try {
-      String output = "let a:1 := ref 5; in let func:1 := map x:1,y:1,:2 to :2((x:1 * y:1)); in if (! a:1 < 10) then func:1(! a:1, ! a:1, map :1 to (map x to x)(let :0 := :1; in :0)) else func:1(0, 0, 0, map :1 to (map x to x)(let :0 := :1; in :0))";
-      String input = "{let a := ref 5; func := map x, y to x * y; in if !a < 10 then func(!a, !a) else func(0,0,0)}";
+      String output = "let a:1 := ref 5; in let func:1 := map x:1,y:1,:1 to :1((x:1 * y:1)); in if (! a:1 < 10) then func:1(! a:1, ! a:1, map :0 to (map x to x)(:0)) else func:1(0, 0, map :0 to (map x to x)(:0))";
+      String input = "{let a := ref 5; func := map x, y to x * y; in if !a < 10 then func(!a, !a) else func(0,0)}";
       toDeleteCheck("Uuop", output, input );
 
     } catch (Exception e) {
