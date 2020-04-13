@@ -2030,8 +2030,9 @@ class Parser {
   
   /* Convert exp,cont to correponding CPS'ed program */ 
   public SymAST convertToCPS(SymAST exp, SymAST cont) {
-    if (exp.accept(isSimple) == TRUE) 
-      return new App(cont, new SymAST[] { exp.accept(reshape) });  
+    if (exp.accept(isSimple) == TRUE) {
+      return new App(cont, new SymAST[] {exp.accept(reshape)});
+    }
     return exp.accept(new ConvertToCPS(cont));
   }
       
@@ -2039,7 +2040,10 @@ class Parser {
   class ConvertToCPS implements SymASTVisitor<SymAST> {
     
     SymAST cont;
-    
+
+    // Counter to assign variable names as ":i".
+    int varcount = 0;
+
     ConvertToCPS(SymAST c) { cont = c; }
     
     /* No longer used. */
@@ -2063,11 +2067,84 @@ class Parser {
       return new App(cont, new SymAST[] {m.accept(reshape)});
     }
     
-    public SymAST forUnOpApp(UnOpApp u) { /* . . . */ return null; /* This is a STUB. */ }
-    public SymAST forBinOpApp(BinOpApp b) { /* . . . */ return null; /* This is a STUB. */ }
-    public SymAST forApp(App a) { /* . . . */ return null; /* This is a STUB. */ } 
+    public SymAST forUnOpApp(UnOpApp u) {
+      // We think that if it gets to here, then we already know that it isn't simple.
+      // We know this is for SymAST so I cast to SymAST.
+      System.out.println("Gets to UnOpApp");
+      if (u.accept(isSimple) == TRUE) {
+        return new App(cont, new SymAST[] {u.accept(reshape)});
+      }
+      UnOp s = u.rator();
+      SymAST e1 = (SymAST) u.arg();
+      Variable v1 = new Variable(":" + varcount);
+      Def def = new Def(v1, e1);
+      varcount++;
+      Def[] arr = new Def[] {def};
+      Let let = new Let(arr, new UnOpApp(s, v1));
+      // And I pass this on to let as per case 5.
+      return let.accept(this);
+    }
+    public SymAST forBinOpApp(BinOpApp b) {
+      Def def1 = new Def(new Variable(":" + varcount), (SymAST) b.arg1());
+      varcount++;
+      Def def2 = new Def(new Variable(":" + varcount), (SymAST) b.arg2());
+      varcount++;
+      Def[] arr = new Def[] {def1, def2};
+      Let let = new Let(arr, b);
+      return let.accept(this);
+    }
+    public SymAST forApp(App a) {
+      Def[] arr = new Def[a.args().length];
+      for (int i = 0; i < a.args().length; i++) {
+        arr[i] = new Def(new Variable(":" + varcount), (SymAST) a.args()[i]);
+        varcount++;
+      }
+      Let let = new Let(arr, a);
+      return let.accept(this);
+    }
     public SymAST forIf(If i) { /* . . . */ return null; /* This is a STUB. */ }
-    public SymAST forLet(Let l) { /* . . . */ return null; /* This is a STUB. */ }
+    public SymAST forLet(Let l) {
+      System.out.println("Gets to SymLet");
+      Def firstDef = l.defs()[0];
+      if (firstDef.rhs().accept(isSimple)) {
+        // Case 11
+        if (l.defs().length > 1) {
+          System.out.println("Gets to case 11");
+          return null;
+        // Case 10
+        } else {
+          System.out.println("Gets to case 10");
+          System.out.println("Let l: " + l);
+          Def def = new Def(firstDef.lhs(), firstDef.rhs().accept(reshape));
+          Def[] arr = new Def[] {def};
+          return new Let(arr, l.body().accept(this));
+        }
+      } else {
+        // Case 13
+        if (l.defs().length > 1) {
+          System.out.println("Gets to case 13");
+          return null;
+        // Case 12
+        } else {
+          System.out.println("Gets to case 12");
+          System.out.println(l.body());
+
+//          Map map = new Map()
+//          return null;
+          SymAST x = l.body().accept(this);
+
+          System.out.println(x);
+//          Map map = new Map(new Variable[] {firstDef.lhs()}, l.body().accept(this));
+//          System.out.println("Gets past creating the map");
+//          return firstDef.rhs().accept(this);
+          return null;
+        }
+      }
+
+//      System.out.println("Gets to here");
+
+//      return null; /* This is a STUB. */
+    }
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
     public SymAST forLetRec(LetRec l) { /* . . . */ return null; /* This is a STUB. */ } 
     public SymAST forLetcc(Letcc l) { /* . . . */ return null; /* This is a STUB. */ }

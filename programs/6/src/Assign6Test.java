@@ -25,6 +25,12 @@ public class Assign6Test extends TestCase {
       assertEquals("by-value-value " + name, answer, interp.SDCpsEval().toString());
   }
 
+  private void toDeleteCheck(String name, String answer, String program) {
+    Interpreter interp = new Interpreter(new StringReader(program));
+    assertEquals("by-value-value " + name, answer, interp.convertToCPS().toString());
+
+  }
+
   private void allEvalCheck(String name, String answer, String program) {
     evalCheck(name, answer, program);
     cpsEvalCheck(name, answer, program);
@@ -100,19 +106,43 @@ public class Assign6Test extends TestCase {
       fail("Uuop threw " + e);
     }
   } //end of func
+
+  public void testOur1() {
+    try {
+      String output = "let square:1 := map x:1,:1 to :1((x:1 * x:1)); in square:1(2, map :0 to (map x to x)(- :0))";
+      String input = "-(let square := map x to x*x; in square(2))";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
+
+  public void testisMapSimple() {
+    try {
+      String output = "let square:1 := map x:1,:1 to :1((x:1 * x:1)); in square:1(2, map :0 to (map x to x)(- :0))";
+      String input = "let square:= map x to x*x; in square(2)";
+      toDeleteCheck("Uuop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uuop threw " + e);
+    }
+  }
   
 
-//  public void testSuop() {
-//    try {
-//      String output = "(3 + 3)";
-//      String input = "3 + 3";
-//      SDCheck("Suop", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Suop threw " + e);
-//    }
-//  } //end of func
+  public void testSuop() {
+    try {
+      String output = "(3 + 3)";
+      String input = "3 + 3";
+      SDCheck("Suop", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Suop threw " + e);
+    }
+  } //end of func
   
 
   public void testCuop() {
