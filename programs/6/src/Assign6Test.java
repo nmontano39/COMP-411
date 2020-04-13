@@ -146,7 +146,7 @@ public class Assign6Test extends TestCase {
 
   public void testBinOpSimple() {
     try {
-      String output = "(map :2 to let :0 := :2; in (map :3 to (map x to x)(let :1 := :3; in (:0 * :1)))(let x:1 := 10; in x:1))(let z:1 := 5; in z:1)";
+      String output = "(map :0 to (map :1 to (map x to x)((:0 * :1)))(let x:1 := 10; in x:1))(let z:1 := 5; in z:1)";
       String input = "((map z to z)(5))*((map x to x)(10))";
       toDeleteCheck("Uuop", output, input );
 
@@ -156,9 +156,10 @@ public class Assign6Test extends TestCase {
     }
   }
 
+  // /* TODO: failing because varcount is off by 1 */
   public void testBinOpComplex() {
     try {
-      String output = "let square:1 := map x:1,:6 to :6((x:1 * x:1)); in square:1(2, map :5 to (map :2 to let :0 := :2; in let p:1 := ref 73; in (map :3 to (map x to x)(let :1 := :3; in (:0 * :1)))(let w:2 := ! p:1; in w:2))(let :4 := :5; in - :4))";
+      String output = "let square:1 := map x:1,:3 to :3((x:1 * x:1)); in square:1(2, map :2 to (map :0 to let p:1 := ref 73; in (map :1 to (map x to x)((:0 * :1)))(let w:2 := ! p:1; in w:2))(- :2))";
       String input = "-(let square := map x to x*x; in square(2)) * (let p := ref 73; in (map w to w)(!p))";
       toDeleteCheck("Uuop", output, input );
 
