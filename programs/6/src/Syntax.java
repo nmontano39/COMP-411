@@ -2032,8 +2032,11 @@ class Parser {
   public SymAST convertToCPS(SymAST exp, SymAST cont) {
     if (exp.accept(isSimple) == TRUE) {
       System.out.println("Exp is simple, exp: " + exp + " cont " + cont);
-      return new App(cont, new SymAST[] {exp.accept(reshape)});
+      App a = new App(cont, new SymAST[] {exp.accept(reshape)});
+      System.out.println("EXPAAAAAA: " + a.rator());
+      return a;
     }
+
     return exp.accept(new ConvertToCPS(cont));
   }
       
@@ -2041,9 +2044,6 @@ class Parser {
   class ConvertToCPS implements SymASTVisitor<SymAST> {
     
     SymAST cont;
-
-    // Counter to assign variable names as ":i".
-    int varcount = 0;
 
     ConvertToCPS(SymAST c) { cont = c; }
     
@@ -2079,8 +2079,7 @@ class Parser {
       // Case 5
       UnOp s = u.rator();
       SymAST e1 = (SymAST) u.arg();
-      Variable v1 = new Variable(":" + varcount);
-      varcount++;
+      Variable v1 = genVariable();
       Def def = new Def(v1, e1);
       Def[] arr = new Def[] {def};
       Let let = new Let(arr, new UnOpApp(s, v1));
@@ -2097,12 +2096,10 @@ class Parser {
         System.out.println("Goes into BinOpApp CASE 4 - NOT IMPLEMENTED");
         return null;
       }
-
+      System.out.println("Goes into BinOpApp CASE 5");
       // Case 5
-      Def def1 = new Def(new Variable(":" + varcount), (SymAST) b.arg1());
-      varcount++;
-      Def def2 = new Def(new Variable(":" + varcount), (SymAST) b.arg2());
-      varcount++;
+      Def def1 = new Def(genVariable(), (SymAST) b.arg1());
+      Def def2 = new Def(genVariable(), (SymAST) b.arg2());
       Def[] arr = new Def[] {def1, def2};
       Let let = new Let(arr, new BinOpApp(b.rator(), def1.lhs(), def2.lhs()));
       return let.accept(this);
@@ -2152,6 +2149,9 @@ class Parser {
     }
 
     public SymAST forIf(If i) {
+      if (i.accept(isSimple) == TRUE) {
+        return new App(cont, new SymAST[] {i.accept(reshape)});
+      }
       if (((SymAST)i.test()).accept(isSimple)) {
         System.out.println("Gets to case 7");
         return case7(i);
@@ -2190,9 +2190,7 @@ class Parser {
 
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
     public SymAST forLetRec(LetRec l) {
-      /* TODO: This is a STUB. */
-
-      return null;
+      return case14(l);
     }
 
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
@@ -2204,9 +2202,7 @@ class Parser {
 
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
     public SymAST forBlock(Block b) {
-      /* TODO: This is a STUB. */
-
-      return null;
+      return case9(b);
     }
 
 
@@ -2276,8 +2272,7 @@ class Parser {
       Variable[] varArr = new Variable[a.args().length];
       // Add the values into the arrays.
       for (int i = 0; i < a.args().length; i++) {
-        varArr[i] = new Variable(":" + varcount);
-        varcount++;
+        varArr[i] = genVariable();
         defArr[i] = new Def(varArr[i], (SymAST) a.args()[i]);
       }
       // Make the let with the rator applied to varArr
@@ -2293,12 +2288,10 @@ class Parser {
       // "+1" because we also have v := B
       Def[] defArr = new Def[a.args().length + 1];
       Variable[] varArr = new Variable[a.args().length];
-      defArr[0] = new Def(new Variable(":" + varcount), (SymAST) a.rator());
-      varcount++;
+      defArr[0] = new Def(genVariable(), (SymAST) a.rator());
       // Add the values into the arrays.
       for (int i = 1; i < defArr.length; i++) {
-        varArr[i - 1] = new Variable(":" + varcount);
-        varcount++;
+        varArr[i - 1] = genVariable();
         defArr[i] = new Def(varArr[i - 1], (SymAST) a.args()[i - 1]);
       }
       // Make the let with the rator applied to varArr
@@ -2312,7 +2305,6 @@ class Parser {
     * Cps[k, if S then A else C] => if Rsh[S] then Cps[k, A] else Cps[k, C]
     * */
     private SymAST case7(If i) {
-      System.out.println("hello");
       return new If(((SymAST)i.test()).accept(reshape), ((SymAST)i.conseq()).accept(this), ((SymAST)(i.alt())).accept(this));
     }
 
@@ -2320,20 +2312,23 @@ class Parser {
     * Cps[k, if T then A else C] => Cps[k, let v := T in if v then A else C]
     * */
     private SymAST case8(If i) {
-      Variable var = new Variable(":" + varcount);
+      Variable var = genVariable();
       Def def = new Def(var, (SymAST)(i.test()));
       Def[] arr = new Def[] {def};
-      If newIf = new If(var, ((SymAST)i.conseq()).accept(this), ((SymAST)(i.alt())).accept(this));
-      return new Let(arr, newIf);
+      If newIf = new If(var, i.conseq(), (i.alt()));
+      return (new Let(arr, newIf)).accept(this);
     }
 
     /* handler for case 9
     * Cps[k, {E1; E2; ...; En}] => Cps[k, (let v1 := E1; ...; vn := En; in vn]
     * */
-    private SymAST case9() {
-      // TODO: implement this case
-
-      return null;
+    private SymAST case9(Block b) {
+      Def[] defArr = new Def[b.exps().length];
+      for (int i = 0; i < b.exps().length; i++) {
+        defArr[i] = new Def(genVariable(), (SymAST) b.exps()[i]);
+      }
+      Let l = new Let(defArr, defArr[b.exps().length - 1].lhs());
+      return l.accept(this);
     }
 
     /* handler for case 10
@@ -2370,6 +2365,7 @@ class Parser {
       Variable[] mapVars = new Variable[] {firstDef.lhs()};
       Map map = new Map(mapVars, l.body().accept(this));
       System.out.println(map);
+      System.out.println(firstDef);
       return firstDef.rhs().accept(new ConvertToCPS(map));
     }
 
@@ -2388,12 +2384,16 @@ class Parser {
     }
 
     /* handler for case 14
-    * Cps[k, letrec p1 := map ... to E1; ...; pn := map ... to En; in B] => letrec p1 := Rsh[map ... to E1]; ...; pn := Rsh[map ... to En]; in Cps[k,B]
+    * Cps[k, letrec p1 := map ... to E1; ...; pn := map ... to En; in B] =>
+    * letrec p1 := Rsh[map ... to E1]; ...; pn := Rsh[map ... to En]; in Cps[k,B]
     * */
-    private SymAST case14() {
-      // TODO: implement this case
+    private SymAST case14(LetRec lr) {
+      Def[] defArr = new Def[lr.defs().length];
+      for (int i = 0; i < lr.defs().length; i++) {
+        defArr[i] = new Def(lr.defs()[i].lhs(), lr.defs()[i].rhs().accept(reshape));
+      }
 
-      return null;
+      return new LetRec(defArr, lr.body().accept(this));
     }
 
     //////////////////////////////////////// CASE HANDLERS END ////////////////////////////////////////

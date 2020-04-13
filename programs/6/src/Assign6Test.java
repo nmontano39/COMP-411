@@ -181,7 +181,6 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because if not implemented correctly*/
   public void testIfComplex1() {
     try {
       String output = "(map :0 to (map x to x)(if :0 then 15 else 50))(let x:1 := false; in ~ x:1)";
@@ -194,7 +193,7 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because if not implemented correctly */
+  // /* TODO: failing because varcount is off by 1 */
   public void testIfComplex2() {
     try {
       String output = "let square:1 := map x:1,y:1,:2 to :2(if x:1 then asBool(y:1) else false); in square:1(true, false, map :1 to (map :0 to (map x to x)(if :0 then 23 else 13))(~ :1))";
@@ -220,7 +219,7 @@ public class Assign6Test extends TestCase {
     }
   }
 
-  // /* TODO: failing because block not implemented */
+  // /* TODO: failing because varcount is off by 1 */
   public void testBlockComplex() {
     try {
       String output = "let a:1 := ref 5; in let func:1 := map x:1,y:1,:1 to :1((x:1 * y:1)); in if (! a:1 < 10) then func:1(! a:1, ! a:1, map :0 to (map x to x)(:0)) else func:1(0, 0, map :0 to (map x to x)(:0))";
@@ -460,7 +459,19 @@ public class Assign6Test extends TestCase {
       fail("append threw " + e);
     }
   } //end of func
-  
+
+  public void testLetRecCPS() {
+    try {
+      String output = "letrec append:1 := map x:2,y:2,:0 to if (x:2 = null) then :0(y:2) else let :1 := first(x:2); in append:1(rest(x:2), y:2, map :2 to :0(cons(:1, :2))); in let s:2 := cons(1, cons(2, cons(3, null))); in append:1(s:2, s:2, map x to x)";
+      String input = "letrec append := map x,y to\n          if x = null then y else cons(first(x), append(rest\n(x), y));\n            in let s := cons(1,cons(2,cons(3,null)));\n          in append(s,s)";
+      cpsCheck("append", output, input );  // should be allEvalCheck for Assignment 6
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("append threw " + e);
+    }
+  }
+
 
   public void testUappend1() {
     try {
@@ -474,19 +485,19 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  // /* TODO: uncomment to test letrec */
-//  public void testCappend1() {
-//    try {
-//      String output = "letrec appendz1:1 := map xz2:2,yz2:2,z0:2,:0 to if (xz2:2 = null) then z0:2(yz2:2, :0) else let z1:3 := first(xz2:2); in appendz1:1(rest(xz2:2), yz2:2, map z3:4,:1 to z0:2(let z2:5 := z3:4; in cons(z1:3, z2:5), :1), :0); in let sz2:2 := cons(1, cons(2, cons(3, null))); in appendz1:1(sz2:2, sz2:2, map x:3,:2 to :2(x:3), map x to x)";
-//      String input = "letrec appendz1 := map xz2,yz2,z0 to if (xz2 =null) then z0(yz2) else let z1 := first(xz2); in appendz1(rest(xz2), yz2, map z3 to z0(let z2 := z3; in cons(z1, z2))); in let sz2 := cons(1, cons(2, cons(3, null))); in appendz1(sz2, sz2, map x to x)";
-//      cpsCheck("Cappend1", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Cappend1 threw " + e);
-//    }
-//  } //end of func
-//  
+  public void testCappend1() {
+    try {
+      String output = "letrec appendz1:1 := map xz2:2,yz2:2,z0:2,:0 to if (xz2:2 = null) then z0:2(yz2:2, :0) else let z1:3 := first(xz2:2); in appendz1:1(rest(xz2:2), yz2:2, map z3:4,:1 to z0:2(let z2:5 := z3:4; in cons(z1:3, z2:5), :1), :0); in let sz2:2 := cons(1, cons(2, cons(3, null))); in appendz1:1(sz2:2, sz2:2, map x:3,:2 to :2(x:3), map x to x)";
+      String input = "letrec appendz1 := map xz2,yz2,z0 to if (xz2 =null) then z0(yz2) else let z1 := first(xz2); in appendz1(rest(xz2), yz2, map z3 to z0(let z2 := z3; in cons(z1, z2))); in let sz2 := cons(1, cons(2, cons(3, null))); in appendz1(sz2, sz2, map x to x)";
+      cpsCheck("Cappend1", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Cappend1 threw " + e);
+    }
+  } //end of func
+
+  /* TODO: uncomment to SD test letrec  */
 //  public void testSfact() {
 //    try {
 //      String output = "let [*1*] 6; " +
@@ -494,7 +505,7 @@ public class Assign6Test extends TestCase {
 //                                                    "in [0,0]([0,0]); " +
 //                         "in let [*1*] map [*1*] to map [*1*] to if ([0,0] = 0) then 1 else ([0,0] * [1,0](([0,0] - 1))); " +
 //                            "in ([1,0]([0,0]))([2,0])";
-//      String input = "let n:= 6; " + 
+//      String input = "let n:= 6; " +
 //                     "in letrec Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g); " +
 //                        "in let FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
 //                           "in (Y(FACT))(n)";
@@ -505,7 +516,7 @@ public class Assign6Test extends TestCase {
 //      fail("Sfact threw " + e);
 //    }
 //  } //end of func
-//
+
 
   // /* TODO: failing because valcount off by 1 */
   public void testCfact() {
