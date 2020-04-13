@@ -2070,7 +2070,8 @@ class Parser {
     public SymAST forUnOpApp(UnOpApp u) {
       // We think that if it gets to here, then we already know that it isn't simple.
       // We know this is for SymAST so I cast to SymAST.
-      System.out.println("Gets to UnOpApp");
+      System.out.println("Gets to UnOpApp: " + u);
+      // Check that this is what you want to do.
       if (u.accept(isSimple) == TRUE) {
         return new App(cont, new SymAST[] {u.accept(reshape)});
       }
@@ -2085,26 +2086,64 @@ class Parser {
       return let.accept(this);
     }
     public SymAST forBinOpApp(BinOpApp b) {
+      // Check that this is what you want to do.
+      if (b.accept(isSimple) == TRUE) {
+        return new App(cont, new SymAST[] {b.accept(reshape)});
+      }
       Def def1 = new Def(new Variable(":" + varcount), (SymAST) b.arg1());
       varcount++;
       Def def2 = new Def(new Variable(":" + varcount), (SymAST) b.arg2());
       varcount++;
       Def[] arr = new Def[] {def1, def2};
-      Let let = new Let(arr, b);
+      Let let = new Let(arr, new BinOpApp(b.rator(), def1.lhs(), def2.lhs()));
       return let.accept(this);
     }
-    public SymAST forApp(App a) {
-      Def[] arr = new Def[a.args().length];
+
+    private boolean allArgsSimple(App a) {
       for (int i = 0; i < a.args().length; i++) {
-        arr[i] = new Def(new Variable(":" + varcount), (SymAST) a.args()[i]);
+        if (!(((SymAST) a.args()[i]).accept(isSimple))) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    private SymAST case4(App a) {
+      // All of a's arg + 1 for k
+      SymAST[] newArgs = new SymAST[a.args().length + 1];
+      //
+      SymAST newRator = ((SymAST) a.rator()).accept(reshape);
+      for (int i = 0; i < a.args().length; i++) {
+        newArgs[i] = ((SymAST) a.args()[i]).accept(reshape);
+      }
+      newArgs[a.args().length] = cont;
+      return new App(newRator, newArgs);
+    }
+
+    public SymAST forApp(App a) {
+      // Check that this is what you want to do.
+      if (a.accept(isSimple) == TRUE) {
+        return new App(cont, new SymAST[] {a.accept(reshape)});
+      }
+
+
+
+      Def[] arr = new Def[a.args().length];
+      Variable[] varArr = new Variable[a.args().length];
+      for (int i = 0; i < a.args().length; i++) {
+        varArr[i] = new Variable(":" + varcount);
+        arr[i] = new Def(varArr[i], (SymAST) a.args()[i]);
         varcount++;
       }
-      Let let = new Let(arr, a);
+      Let let = new Let(arr, new App(a.rator(), varArr));
       return let.accept(this);
     }
     public SymAST forIf(If i) { /* . . . */ return null; /* This is a STUB. */ }
     public SymAST forLet(Let l) {
-      System.out.println("Gets to SymLet");
+      System.out.println("Gets to Let");
+      if (l.accept(isSimple) == TRUE) {
+        return new App(cont, new SymAST[] {l.accept(reshape)});
+      }
       Def firstDef = l.defs()[0];
       if (firstDef.rhs().accept(isSimple)) {
         // Case 11
@@ -2116,6 +2155,8 @@ class Parser {
           System.out.println("Gets to case 10");
           System.out.println("Let l: " + l);
           Def def = new Def(firstDef.lhs(), firstDef.rhs().accept(reshape));
+          System.out.println("Def in let is: "+ def);
+          System.out.println("Body in let is: "+ l.body());
           Def[] arr = new Def[] {def};
           return new Let(arr, l.body().accept(this));
         }
@@ -2127,17 +2168,13 @@ class Parser {
         // Case 12
         } else {
           System.out.println("Gets to case 12");
-          System.out.println(l.body());
+          System.out.println("Body in case 12: " + l.body());
 
-//          Map map = new Map()
+          Map map = new Map(new Variable[] {firstDef.lhs()}, l.body().accept(this));
+          System.out.println("Gets past creating the map: " + map);
+          System.out.println("firstDef rhs: " + firstDef.rhs());
+          return firstDef.rhs().accept(new ConvertToCPS(map));
 //          return null;
-          SymAST x = l.body().accept(this);
-
-          System.out.println(x);
-//          Map map = new Map(new Variable[] {firstDef.lhs()}, l.body().accept(this));
-//          System.out.println("Gets past creating the map");
-//          return firstDef.rhs().accept(this);
-          return null;
         }
       }
 
