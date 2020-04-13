@@ -2670,17 +2670,94 @@ class SConverter {
     public SDAST forIntConstant(IntConstant i) { return i; }
     public SDAST forNullConstant(NullConstant n) { return n; }
     public SDAST forBoolConstant(BoolConstant b) { return b; }
-    public SDAST forSymVariable(Variable v) { return v; }
-    public SDAST forPrimFun(PrimFun f) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forUnOpApp(UnOpApp u) { return u; }
-    public SDAST forBinOpApp(BinOpApp b) { return b; }
-    public SDAST forApp(App a) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forMap(Map m) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forIf(If i) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forLet(Let l) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forLetRec(LetRec l) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forLetcc(Letcc host) { /* . . . */ return null; /* This is a STUB. */ }
-    public SDAST forBlock(Block b) { /* . . . */ return null; /* This is a STUB. */ }
+
+    // TODO: get static distance here
+    public SDAST forSymVariable(Variable v) {
+      return v;
+    }
+
+    public SDAST forPrimFun(PrimFun f) { return f; }
+
+    // TODO: look this over
+    public SDAST forUnOpApp(UnOpApp u) {
+      SDAST a = convert((SymAST) u.arg());
+      return new UnOpApp(u.rator(), a);
+    }
+
+    // TODO: look this over
+    public SDAST forBinOpApp(BinOpApp b) {
+      SDAST a1 = convert((SymAST) b.arg1());
+      SDAST a2 = convert((SymAST) b.arg2());
+      return new BinOpApp(b.rator(), a1, a2);
+    }
+
+    // TODO: look this over
+    public SDAST forApp(App a) {
+      SDAST[] args = new SDAST[a.args().length];
+      for (int i = 0; i < args.length; i++) {
+        args[i] = convert(((SymAST)a.args()[i]));
+      }
+      return new App(a.rator(), args);
+    }
+
+
+    // TODO: implement map
+    public SDAST forMap(Map m) {
+      return null;
+      //return m;
+    }
+
+    // TODO: fix this
+    public SDAST forIf(If i) {
+      SDAST t = convert((SymAST) i.test());
+      SDAST c = convert((SymAST) i.conseq());
+      SDAST a = convert((SymAST) i.alt());
+
+//      if (t.accept(this)) {
+//        return c;
+//      } else {
+//        return a;
+//      }
+      return c;
+    }
+
+    // TODO: look this over
+    public SDAST forLet(Let l) {
+      Def[] defs = l.defs();
+      int n = defs.length;
+
+      for (int i = 0; i < n; i++) {
+        SDAST rhs = convert((SymAST) defs[i].rhs());
+      }
+      return convert((SymAST)l.body());
+      //return new Let(defs, convert((SymAST) l.body()));
+    }
+
+    // TODO: fix this
+    public SDAST forLetRec(LetRec l) {
+      Def[] defs = l.defs();
+      int n = defs.length;
+
+      for (int i = 0; i < n; i++) {
+        SDAST rhs = convert((SymAST) defs[i].rhs());
+      }
+      return null;
+      //return convert((SymAST)l.body());
+    }
+
+    /* TODO: This is a STUB. */
+    public SDAST forLetcc(Letcc host) {
+      return null;
+    }
+
+    // TODO: look this over
+    public SDAST forBlock(Block b) {
+      SDAST out = convert((SymAST)b.exps()[0]);
+      for (int i = 1; i < b.exps().length; i++) {
+        out = convert((SymAST)b.exps()[i]);
+      }
+      return out;
+    }
   }
   
   public static void main(String[] args) throws IOException  {

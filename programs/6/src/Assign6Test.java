@@ -228,8 +228,6 @@ public class Assign6Test extends TestCase {
   }
 
 
-
-// /* TODO: uncomment to test SD */
   public void testSuop() {
     try {
       String output = "(3 + 3)";
@@ -280,20 +278,20 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  // /* TODO: uncomment to test SD */
-//  public void testSdeep() {
-//    try {
-//      String output = "let [*2*] map [*1*] to letrec [*1*] map [*1*] to [0,0]; in [0,0]([0,0]); " +
-//                                "let [*1*] 5; in [0,0]; in [0,0]([0,1])";
-//      String input = "let x:= map x to letrec x := map x to x; in x(x); " + 
-//                         "y:= let x:=5; in x; " + 
-//                     "in x(y)";
-//      SDCheck("Sdeep", output, input );
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Sdeep threw " + e);
-//    }
-//  } //end of func
+  // /* TODO: testing SD */
+  public void testSdeep() {
+    try {
+      String output = "let [*2*] map [*1*] to letrec [*1*] map [*1*] to [0,0]; in [0,0]([0,0]); " +
+                                "let [*1*] 5; in [0,0]; in [0,0]([0,1])";
+      String input = "let x:= map x to letrec x := map x to x; in x(x); " +
+                         "y:= let x:=5; in x; " +
+                     "in x(y)";
+      SDCheck("Sdeep", output, input );
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Sdeep threw " + e);
+    }
+  } //end of func
   
   public void testUlet() {
     try {
@@ -318,7 +316,7 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-// /* TODO: uncomment to test SD */
+// /* TODO: testing SD */
   public void testSmap() {
     try {
       String output = "map [*1*] to [0,0]";
@@ -409,38 +407,38 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-// /* TODO: uncomment to test SD and letrec*/
-//  public void testSappend() {
-//    try {
-//      String output = "letrec [*1*] " +
-//                        "map [*2*] to if ([0,0] = null) then [0,1] else cons(first([0,0]), [1,0](rest([0,0]), [0,1])); " +
-//                      "in let [*1*] cons(1, cons(2, cons(3, null))); " + 
-//                         "in [1,0]([0,0], [0,0])";
-//      String input = "letrec append := map x,y to if x = null then y else cons(first(x), append(rest\n(x), y)); " +
-//                     "in let s := cons(1,cons(2,cons(3,null))); " +
-//                        "in append(s,s)";
-//      SDCheck("Sappend", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Sappend threw " + e);
-//    }
-//  } //end of func 
-//
-//  public void testCappend() {
-//    try {
-//      String output = "letrec append:1 := map x:2,y:2,:0 to if (x:2 = null) then :0(y:2) " + 
-//                                                           "else let :1 := first(x:2); " +
-//                                                                "in append:1(rest(x:2), y:2, map :2 to :0(cons(:1, :2))); " +
-//                      "in let s:2 := cons(1, cons(2, cons(3, null))); in append:1(s:2, s:2, map x to x)";
-//      String input = "letrec append := map x,y to\n          if x = null then y else cons(first(x), append(rest\n(x), y));\n            in let s := cons(1,cons(2,cons(3,null)));\n          in append(s,s)";
-//      cpsCheck("Cappend", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Cappend threw " + e);
-//    }
-//  } //end of func
+// /* TODO: testing SD and letrec*/
+  public void testSappend() {
+    try {
+      String output = "letrec [*1*] " +
+                        "map [*2*] to if ([0,0] = null) then [0,1] else cons(first([0,0]), [1,0](rest([0,0]), [0,1])); " +
+                      "in let [*1*] cons(1, cons(2, cons(3, null))); " +
+                         "in [1,0]([0,0], [0,0])";
+      String input = "letrec append := map x,y to if x = null then y else cons(first(x), append(rest\n(x), y)); " +
+                     "in let s := cons(1,cons(2,cons(3,null))); " +
+                        "in append(s,s)";
+      SDCheck("Sappend", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Sappend threw " + e);
+    }
+  } //end of func
+
+  public void testCappend() {
+    try {
+      String output = "letrec append:1 := map x:2,y:2,:0 to if (x:2 = null) then :0(y:2) " +
+                                                           "else let :1 := first(x:2); " +
+                                                                "in append:1(rest(x:2), y:2, map :2 to :0(cons(:1, :2))); " +
+                      "in let s:2 := cons(1, cons(2, cons(3, null))); in append:1(s:2, s:2, map x to x)";
+      String input = "letrec append := map x,y to\n          if x = null then y else cons(first(x), append(rest\n(x), y));\n            in let s := cons(1,cons(2,cons(3,null)));\n          in append(s,s)";
+      cpsCheck("Cappend", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Cappend threw " + e);
+    }
+  } //end of func
   
 
   public void testAppend() {
@@ -492,25 +490,25 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  /* TODO: uncomment to SD test letrec  */
-//  public void testSfact() {
-//    try {
-//      String output = "let [*1*] 6; " +
-//                      "in letrec [*1*] map [*1*] to let [*1*] map [*1*] to [1,0](map [*1*] to ([1,0]([1,0]))([0,0])); " +
-//                                                    "in [0,0]([0,0]); " +
-//                         "in let [*1*] map [*1*] to map [*1*] to if ([0,0] = 0) then 1 else ([0,0] * [1,0](([0,0] - 1))); " +
-//                            "in ([1,0]([0,0]))([2,0])";
-//      String input = "let n:= 6; " +
-//                     "in letrec Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g); " +
-//                        "in let FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
-//                           "in (Y(FACT))(n)";
-//      SDCheck("Sfact", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Sfact threw " + e);
-//    }
-//  } //end of func
+  /* TODO: testing SD and letrec  */
+  public void testSfact() {
+    try {
+      String output = "let [*1*] 6; " +
+                      "in letrec [*1*] map [*1*] to let [*1*] map [*1*] to [1,0](map [*1*] to ([1,0]([1,0]))([0,0])); " +
+                                                    "in [0,0]([0,0]); " +
+                         "in let [*1*] map [*1*] to map [*1*] to if ([0,0] = 0) then 1 else ([0,0] * [1,0](([0,0] - 1))); " +
+                            "in ([1,0]([0,0]))([2,0])";
+      String input = "let n:= 6; " +
+                     "in letrec Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g); " +
+                        "in let FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
+                           "in (Y(FACT))(n)";
+      SDCheck("Sfact", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Sfact threw " + e);
+    }
+  } //end of func
 
 
   public void testCfact() {
@@ -569,7 +567,7 @@ public class Assign6Test extends TestCase {
 //      fail("Cletcc threw " + e);
 //    }
 //  } //end of func
-//  
+//
 //    public void testLetcc1() {
 //    cpsEvalCheck("<letcc1>", "1", "letcc x in 1");
 //  }
@@ -578,7 +576,7 @@ public class Assign6Test extends TestCase {
 //    cpsEvalCheck("<letcc2>", "1", "letcc x in x(1)");
 //  }
 //  public void testLetcc3() {
-//    cpsEvalCheck("<letcc3>", "10", 
+//    cpsEvalCheck("<letcc3>", "10",
 //             "let prod := map s1 to " +
 //             "              letcc escape " +
 //             "              in letrec prodHelp := " +

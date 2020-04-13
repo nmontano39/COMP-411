@@ -94,31 +94,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign6Test.testBlockComplex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign6Test.testCappend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testBlockComplex" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign6Test.testBlockSimple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testBlockSimple" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign6Test.testCfact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testCfact" />
+      <option name="METHOD_NAME" value="testCappend" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,20 +114,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign6Test.testSfact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testSfact" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign6Test.testSuop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testSuop" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign6Test" />
       <item itemvalue="JUnit.Assign6Test.testIfSimple" />
-      <item itemvalue="JUnit.Assign6Test.testBlockSimple" />
-      <item itemvalue="JUnit.Assign6Test.testBlockComplex" />
-      <item itemvalue="JUnit.Assign6Test.testCfact" />
+      <item itemvalue="JUnit.Assign6Test.testSuop" />
+      <item itemvalue="JUnit.Assign6Test.testCappend" />
+      <item itemvalue="JUnit.Assign6Test.testSfact" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.Assign6Test" />
+        <item itemvalue="JUnit.Assign6Test.testSfact" />
+        <item itemvalue="JUnit.Assign6Test.testCappend" />
+        <item itemvalue="JUnit.Assign6Test.testSuop" />
         <item itemvalue="JUnit.Assign6Test.testIfSimple" />
-        <item itemvalue="JUnit.Assign6Test.testCfact" />
-        <item itemvalue="JUnit.Assign6Test.testBlockComplex" />
-        <item itemvalue="JUnit.Assign6Test.testBlockSimple" />
       </list>
     </recent_temporary>
   </component>
@@ -169,13 +169,6 @@
       <workItem from="1583292471314" duration="317000" />
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
-    </task>
-    <task id="LOCAL-00022" summary="OH sunday - testing if">
-      <created>1581322351110</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1581322351110</updated>
     </task>
     <task id="LOCAL-00023" summary="OH sunday - testing if">
       <created>1581393076673</created>
@@ -513,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586752946476</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="working on forIf and forBlock">
+      <created>1586767851574</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1586767851575</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="solution 2 - adding basic methods" />
     <MESSAGE value="pushing 3" />
     <MESSAGE value="added TODOs" />
     <MESSAGE value="context checking" />
@@ -561,7 +560,8 @@
     <MESSAGE value="about to submit, passing 17/19 tests." />
     <MESSAGE value="need to implement remaining cases." />
     <MESSAGE value="added TODOS -&gt; working on implementation of remaining cases." />
-    <option name="LAST_COMMIT_MESSAGE" value="added TODOS -&gt; working on implementation of remaining cases." />
+    <MESSAGE value="working on forIf and forBlock" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on forIf and forBlock" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
