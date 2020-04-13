@@ -131,18 +131,18 @@ public class Assign6Test extends TestCase {
     }
   }
   
-
-  public void testSuop() {
-    try {
-      String output = "(3 + 3)";
-      String input = "3 + 3";
-      SDCheck("Suop", output, input );
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      fail("Suop threw " + e);
-    }
-  } //end of func
+// /* TODO: uncomment to test SD */
+//  public void testSuop() {
+//    try {
+//      String output = "(3 + 3)";
+//      String input = "3 + 3";
+//      SDCheck("Suop", output, input );
+//
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//      fail("Suop threw " + e);
+//    }
+//  } //end of func
   
 
   public void testCuop() {
@@ -181,7 +181,8 @@ public class Assign6Test extends TestCase {
       fail("Udeep threw " + e);
     }
   } //end of func
-  
+
+  // /* TODO: uncomment to test SD */
 //  public void testSdeep() {
 //    try {
 //      String output = "let [*2*] map [*1*] to letrec [*1*] map [*1*] to [0,0]; in [0,0]([0,0]); " +
@@ -218,8 +219,8 @@ public class Assign6Test extends TestCase {
       fail("Umap threw " + e);
     }
   } //end of func
-  
 
+// /* TODO: uncomment to test SD */
 //  public void testSmap() {
 //    try {
 //      String output = "map [*1*] to [0,0]";
@@ -285,17 +286,17 @@ public class Assign6Test extends TestCase {
   } //end of func
   
 
-//  public void testClist() {
-//    try {
-//      String output = "(map x to x)(first(rest(rest(cons(1, cons(2, cons(3, null)))))))";
-//      String input = "first(rest(rest(cons(1, cons(2, cons(3, null))))))";
-//      cpsCheck("Clist", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Clist threw " + e);
-//    }
-//  } //end of func
+  public void testClist() {
+    try {
+      String output = "(map x to x)(first(rest(rest(cons(1, cons(2, cons(3, null)))))))";
+      String input = "first(rest(rest(cons(1, cons(2, cons(3, null))))))";
+      cpsCheck("Clist", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Clist threw " + e);
+    }
+  } //end of func
   
 
   public void testUappend() {
@@ -309,8 +310,8 @@ public class Assign6Test extends TestCase {
       fail("Uappend threw " + e);
     }
   } //end of func
-  
 
+// /* TODO: uncomment to test SD and letrec*/
 //  public void testSappend() {
 //    try {
 //      String output = "letrec [*1*] " +
@@ -368,8 +369,8 @@ public class Assign6Test extends TestCase {
       fail("Uappend1 threw " + e);
     }
   } //end of func
-  
-//
+
+  // /* TODO: uncomment to test letrec */
 //  public void testCappend1() {
 //    try {
 //      String output = "letrec appendz1:1 := map xz2:2,yz2:2,z0:2,:0 to if (xz2:2 = null) then z0:2(yz2:2, :0) else let z1:3 := first(xz2:2); in appendz1:1(rest(xz2:2), yz2:2, map z3:4,:1 to z0:2(let z2:5 := z3:4; in cons(z1:3, z2:5), :1), :0); in let sz2:2 := cons(1, cons(2, cons(3, null))); in appendz1:1(sz2:2, sz2:2, map x:3,:2 to :2(x:3), map x to x)";
@@ -401,23 +402,23 @@ public class Assign6Test extends TestCase {
 //    }
 //  } //end of func
 //
-//  public void testCfact() {
-//    try {
-//      String output = "let Y:1 := map f:1,:0 to " +
-//                                   "let g:2 := map x:2,:1 to f:1(map z:3,:2 to x:2(x:2, map :3 to let :4 := z:3; in :3(:4, :2)), :1); " +
-//                                   "in g:2(g:2, :0); " +
-//                      "in let FACT:1 := map f:1,:5 to :5(map n:2,:6 to if (n:2 = 0) then :6(1) else let :7 := n:2; in f:1((n:2 - 1), map :8 to :6((:7 * :8)))); " +
-//                         "in Y:1(FACT:1, map :9 to let :10 := 6; in :9(:10, map x to x))";
-//      String input = "let Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g);" +
-//                         "FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
-//                     "in (Y(FACT))(6)";
-//      cpsCheck("Cfact", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Cfact threw " + e);
-//    }
-//  } //end of func
+  public void testCfact() {
+    try {
+      String output = "let Y:1 := map f:1,:0 to " +
+                                   "let g:2 := map x:2,:1 to f:1(map z:3,:2 to x:2(x:2, map :3 to let :4 := z:3; in :3(:4, :2)), :1); " +
+                                   "in g:2(g:2, :0); " +
+                      "in let FACT:1 := map f:1,:5 to :5(map n:2,:6 to if (n:2 = 0) then :6(1) else let :7 := n:2; in f:1((n:2 - 1), map :8 to :6((:7 * :8)))); " +
+                         "in Y:1(FACT:1, map :9 to let :10 := 6; in :9(:10, map x to x))";
+      String input = "let Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g);" +
+                         "FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
+                     "in (Y(FACT))(6)";
+      cpsCheck("Cfact", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Cfact threw " + e);
+    }
+  } //end of func
   
 
   public void testFact() {
@@ -433,18 +434,19 @@ public class Assign6Test extends TestCase {
   } //end of func
   
 
-//  public void testUletcc() {
-//    try {
-//      String output = "letcc x:1 in if true then x:1(5) else 3";
-//      String input = "letcc x in  if true then  x(5)  else 3";
-//      unshadowCheck("Uletcc", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Uletcc threw " + e);
-//    }
-//  } //end of func  
+  public void testUletcc() {
+    try {
+      String output = "letcc x:1 in if true then x:1(5) else 3";
+      String input = "letcc x in  if true then  x(5)  else 3";
+      unshadowCheck("Uletcc", output, input );
 
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Uletcc threw " + e);
+    }
+  } //end of func
+
+  // /* TODO: uncomment to test letcc */
 //  public void testCletcc() {
 //    try {
 //      String output = "let x:1 := map :0,:1 to (map x to x)(:0); in if true then x:1(5, map x to x) else (map x to x)(3)";

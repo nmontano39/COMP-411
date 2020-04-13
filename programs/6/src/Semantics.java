@@ -484,11 +484,11 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
   SDEvaluator(SDEnv env) { super(env); }
   
   /*  EvalVisitor methods for evaluating SDASTs. */
-  public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { /* . . . */ return null; /* This is a STUB. */ }
-  public JamVal forPair(Pair p)  { /* . . . */ return null; /* This is a STUB. */ }
-  public JamVal forSMap(SMap sm) { /* . . . */ return null; /* This is a STUB. */ }
-  public JamVal forSLet(SLet sl) { /* . . . */ return null; /* This is a STUB. */ }
-  public JamVal forSLetRec(SLetRec slr) { /* . . . */ return null; /* This is a STUB. */ }
+  public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { /* . . . */ return null; /* TODO: This is a STUB. */ }
+  public JamVal forPair(Pair p)  { /* . . . */ return null; /* TODO: This is a STUB. */ }
+  public JamVal forSMap(SMap sm) { /* . . . */ return null; /* TODO: This is a STUB. */ }
+  public JamVal forSLet(SLet sl) { /* . . . */ return null; /* TODO: This is a STUB. */ }
+  public JamVal forSLetRec(SLetRec slr) { /* . . . */ return null; /* TODO: This is a STUB. */ }
   
   /* Methods that are never invoked in the evaluation of well-formed SymASTs */
   public JamVal forSymVariable(Variable host) { return forDefault(host); }

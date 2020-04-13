@@ -2086,6 +2086,7 @@ class Parser {
     }
 
     public SymAST forBinOpApp(BinOpApp b) {
+      System.out.println("1 hello");
       // Case 1
       if (b.accept(isSimple) == TRUE) {
         return new App(cont, new SymAST[] {b.accept(reshape)});
