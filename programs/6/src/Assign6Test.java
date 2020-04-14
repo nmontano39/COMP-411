@@ -353,6 +353,18 @@ public class Assign6Test extends TestCase {
     }
   }
 
+  public void testSmap4() {
+    try {
+      String output = "map [*1*] to map [*1*] to map [*1*] to (([2,0] + [1,0]) + [0,0])";
+      String input = "map x to map y to map z to x + y + z";
+      SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
   public void testSIf1() {
     try {
       String output = "let [*1*] 1; in if ([0,0] > 0) then 5 else 10";

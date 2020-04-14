@@ -2,27 +2,27 @@ import java.io.*;
 import java.util.*;
 
 /** AST class definitions.  These definitions anticipate the definition and implementation of an interpreter based
-  * on static distance coordinates (with diferennt variable, map, let nodes) which will be done in Assignment 7.  In 
-  * Assignment 6, we will not use any SDxxx interfaces or SDAST classes. The ASTxxx interfaces from earlier 
-  * assignments are now named SymASTxxx and the AST type includes both SymAST (identified with the AST type from 
-  * Assignmens 1-4). Some of the executable code in this interpreter mentions the types AST and 
-  * SDAST and related types to support anticipated code sharing in Assignment 7. The three types ASTVisitor, 
-  * SymASTVisitor, and SDASTVisitor are ugly.  We could eliminate SymASTVisitor and SDASTVisitor at the cost of less 
-  * precise static type checking (which has already been severely compromised by Java's weak support for generics).  
-  * This approach is a defensible (and perhaps simpler) design if you are using your own solutions to earlier 
+  * on static distance coordinates (with diferennt variable, map, let nodes) which will be done in Assignment 7.  In
+  * Assignment 6, we will not use any SDxxx interfaces or SDAST classes. The ASTxxx interfaces from earlier
+  * assignments are now named SymASTxxx and the AST type includes both SymAST (identified with the AST type from
+  * Assignmens 1-4). Some of the executable code in this interpreter mentions the types AST and
+  * SDAST and related types to support anticipated code sharing in Assignment 7. The three types ASTVisitor,
+  * SymASTVisitor, and SDASTVisitor are ugly.  We could eliminate SymASTVisitor and SDASTVisitor at the cost of less
+  * precise static type checking (which has already been severely compromised by Java's weak support for generics).
+  * This approach is a defensible (and perhaps simpler) design if you are using your own solutions to earlier
   * assignments as the starting point for Assignment 6 instead of this code base. */
 
 /** AST ::= SymAST | SDAST */
 interface AST {
   /** This interface includes both SymASTs and SDASTs, which is unattractive from the perspective of type checking but
-    * it fosters code sharing.  Unfortunately, Java generics are restrictive so we cannot both (i) specify the data 
-    * domains that we really would like and (ii) aggressively share code.  To reduce the amount of code required for 
+    * it fosters code sharing.  Unfortunately, Java generics are restrictive so we cannot both (i) specify the data
+    * domains that we really would like and (ii) aggressively share code.  To reduce the amount of code required for
     * Assignments 6 and 7 we decided (ii) was a higher priority and compromised the quality of type checking. If Java
-    * had a richer type system, we could pass the intended AST subtype (either SymAST or SDAST) as a type parameter and 
-    * use to tailor shared code the appropriate behavior while accurately checking types but Java restricts the use of 
-    * type parameters, e.g., no arrays of type T[] or casts of the form (T) where T is a type parameter.  So we live 
-    * with the weaker type AST (instead of SymAST or SDAST) to share code and accept the weak static type checking 
-    * inherent in this design.  For typing purposes, an ASTVisitor supports both SymASTs and SDASTs. In practice, only 
+    * had a richer type system, we could pass the intended AST subtype (either SymAST or SDAST) as a type parameter and
+    * use to tailor shared code the appropriate behavior while accurately checking types but Java restricts the use of
+    * type parameters, e.g., no arrays of type T[] or casts of the form (T) where T is a type parameter.  So we live
+    * with the weaker type AST (instead of SymAST or SDAST) to share code and accept the weak static type checking
+    * inherent in this design.  For typing purposes, an ASTVisitor supports both SymASTs and SDASTs. In practice, only
     * SymAST or SDAST methods are well-defined in a concrete ASTVisitor class; the others throw exceptions. We do not
     * support ASTs that intermix SymAST and SDAST nodes. */
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v);
@@ -52,7 +52,7 @@ interface ComASTVisitor<RtnType> {
   RtnType forUnOpApp(UnOpApp u);
   RtnType forBinOpApp(BinOpApp b);
   RtnType forApp(App a);
-  RtnType forIf(If i); 
+  RtnType forIf(If i);
   RtnType forBlock(Block i);
 }
 
@@ -65,19 +65,19 @@ interface SymASTVisitor<RtnType> extends ComASTVisitor<RtnType> {
 }
 
 interface SDASTVisitor<RtnType> extends ComASTVisitor<RtnType> {
-  RtnType forPair(Pair p); 
+  RtnType forPair(Pair p);
   RtnType forSMap(SMap sm);
   RtnType forSLet(SLet sl);
   RtnType forSLetRec(SLetRec slr);
 }
 
 /** An important SubType of the AST Type but it does not have its own visitor interface.  Visited as part of AST type.
-  * Term ::= Constant | PrimFun | Variable 
+  * Term ::= Constant | PrimFun | Variable
   */
 interface Term extends SymAST, SDAST {}
 
 /** The subtype of Term consisting of atomic constants.
-  * Constant ::= IntConstant | BoolConstant | NullConstant 
+  * Constant ::= IntConstant | BoolConstant | NullConstant
   */
 interface Constant extends Term {}
 
@@ -94,11 +94,11 @@ class Variable implements Token, Term, SymAST, WithVariable {
   private String name;
   Variable(String n) { name = n; }
   Variable(Variable v) { name = v.name(); }
-  
+
   public Variable var() { return this; }
   public String name() { return name; }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forSymVariable(this); }
-  public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { 
+  public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) {
     throw new SyntaxException("Variable " + this + "is being traversed by SDASTVisitor " + v);
   }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forSymVariable(this); }
@@ -170,7 +170,7 @@ class OpBang extends UnOp {
   public static final OpBang ONLY = new OpBang();
   private OpBang() { super("!"); }
   public <RtnType> RtnType accept(UnOpVisitor<RtnType> v) {
-    return v.forOpBang(this); 
+    return v.forOpBang(this);
   }
 }
 
@@ -178,7 +178,7 @@ class OpRef extends UnOp {
   public static final OpRef ONLY = new OpRef();
   private OpRef() { super("ref"); }
   public <RtnType> RtnType accept(UnOpVisitor<RtnType> v) {
-    return v.forOpRef(this); 
+    return v.forOpRef(this);
   }
 }
 
@@ -186,7 +186,7 @@ class BinOpPlus extends BinOp {
   public static final BinOpPlus ONLY = new BinOpPlus();
   private BinOpPlus() { super("+"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forBinOpPlus(this); 
+    return v.forBinOpPlus(this);
   }
 }
 
@@ -194,14 +194,14 @@ class BinOpMinus extends BinOp {
   public static final BinOpMinus ONLY = new BinOpMinus();
   private BinOpMinus() { super("-"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forBinOpMinus(this); 
+    return v.forBinOpMinus(this);
   }
 }
 class OpTimes extends BinOp {
   public static final OpTimes ONLY = new OpTimes();
   private OpTimes() { super("*"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpTimes(this); 
+    return v.forOpTimes(this);
   }
 }
 
@@ -209,7 +209,7 @@ class OpDivide extends BinOp {
   public static final OpDivide ONLY = new OpDivide();
   private OpDivide() { super("/"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpDivide(this); 
+    return v.forOpDivide(this);
   }
 }
 
@@ -217,7 +217,7 @@ class OpEquals extends BinOp {
   public static final OpEquals ONLY = new OpEquals();
   private OpEquals() { super("="); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpEquals(this); 
+    return v.forOpEquals(this);
   }
 }
 
@@ -225,7 +225,7 @@ class OpNotEquals extends BinOp {
   public static final OpNotEquals ONLY = new OpNotEquals();
   private OpNotEquals() { super("!="); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpNotEquals(this); 
+    return v.forOpNotEquals(this);
   }
 }
 
@@ -233,7 +233,7 @@ class OpLessThan extends BinOp {
   public static final OpLessThan ONLY = new OpLessThan();
   private OpLessThan() { super("<"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpLessThan(this); 
+    return v.forOpLessThan(this);
   }
 }
 
@@ -241,7 +241,7 @@ class OpGreaterThan extends BinOp {
   public static final OpGreaterThan ONLY = new OpGreaterThan();
   private OpGreaterThan() { super(">"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpGreaterThan(this); 
+    return v.forOpGreaterThan(this);
   }
 }
 
@@ -249,7 +249,7 @@ class OpLessThanEquals extends BinOp {
   public static final OpLessThanEquals ONLY = new OpLessThanEquals();
   private OpLessThanEquals() { super("<="); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpLessThanEquals(this); 
+    return v.forOpLessThanEquals(this);
   }
 }
 
@@ -257,7 +257,7 @@ class OpGreaterThanEquals extends BinOp {
   public static final OpGreaterThanEquals ONLY = new OpGreaterThanEquals();
   private OpGreaterThanEquals() { super(">="); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpGreaterThanEquals(this); 
+    return v.forOpGreaterThanEquals(this);
   }
 }
 
@@ -265,7 +265,7 @@ class OpAnd extends BinOp {
   public static final OpAnd ONLY = new OpAnd();
   private OpAnd() { super("&"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpAnd(this); 
+    return v.forOpAnd(this);
   }
 }
 
@@ -273,7 +273,7 @@ class OpOr extends BinOp {
   public static final OpOr ONLY = new OpOr();
   private OpOr() { super("|"); }
   public <RtnType> RtnType accept(BinOpVisitor<RtnType> v) {
-    return v.forOpOr(this); 
+    return v.forOpOr(this);
   }
 }
 
@@ -287,12 +287,12 @@ class OpGets extends BinOp {
 class UnOpApp implements Term {
   private UnOp rator;
   private AST arg;
-  
+
   UnOpApp(UnOp r, AST a) { rator = r; arg = a; }
-  
+
   public UnOp rator() { return rator; }
   public AST arg() { return arg; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forUnOpApp(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forUnOpApp(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forUnOpApp(this); }
@@ -302,18 +302,18 @@ class UnOpApp implements Term {
 class BinOpApp implements Term {
   private BinOp rator;
   private AST arg1, arg2;
-  
+
   BinOpApp(BinOp r, AST a1, AST a2) { rator = r; arg1 = a1; arg2 = a2; }
-  
+
   public BinOp rator() { return rator; }
   public AST arg1() { return arg1; }
   public AST arg2() { return arg2; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forBinOpApp(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forBinOpApp(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forBinOpApp(this); }
   public String toString() {
-    return "(" + toString(arg1) + " " + rator + " " + toString(arg2) + ")"; 
+    return "(" + toString(arg1) + " " + rator + " " + toString(arg2) + ")";
   }
   private String toString(AST arg) {
     String argString = arg.toString();
@@ -325,55 +325,55 @@ class BinOpApp implements Term {
 class Map implements SymAST {
   private Variable[] vars;
   private SymAST body;
-  
+
   Map(Variable[] v, SymAST b) { vars = v; body = b; }
   public Variable[] vars() { return vars; }
   public SymAST body() { return body; }
-  
+
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forMap(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forMap(this); }
-  
-  public String toString() { 
+
+  public String toString() {
     return "map " + ToString.toString(vars,",") + " to " + body ;
   }
-}  
+}
 
 class App implements Term {
   private AST rator;
   private AST[] args;
-  
+
   App(AST r, AST[] a) { rator = r; args = a; }
-  
+
   public AST rator() { return rator; }
   public AST[] args() { return args; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forApp(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forApp(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forApp(this); }
-  
-  public String toString() { 
+
+  public String toString() {
     if ((rator instanceof PrimFun) || (rator instanceof Variable) || (rator instanceof Pair))
-      return rator + "(" + ToString.toString(args,", ") + ")"; 
+      return rator + "(" + ToString.toString(args,", ") + ")";
     else
-      return "(" +  rator + ")(" + ToString.toString(args,", ") + ")"; 
+      return "(" +  rator + ")(" + ToString.toString(args,", ") + ")";
   }
-}  
+}
 
 class If implements SymAST, SDAST {
   private AST test, conseq, alt;
   If(AST t, AST c, AST a) { test = t; conseq = c; alt = a; }
-  
+
   public AST test() { return test; }
   public AST conseq() { return conseq; }
   public AST alt() { return alt; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forIf(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forIf(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forIf(this); }
-  public String toString() { 
-    return "if " + test + " then " + conseq + " else " + alt ; 
+  public String toString() {
+    return "if " + test + " then " + conseq + " else " + alt ;
   }
-}  
+}
 
 class Let implements SymAST {
   private Def[] defs;
@@ -383,74 +383,74 @@ class Let implements SymAST {
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forLet(this); }
   public Def[] defs() { return defs; }
   public SymAST body() { return body; }
-  
+
   /** Gets the defined vars */
-  public Variable[] vars() { 
+  public Variable[] vars() {
     int n = defs.length;
     Variable[] vars = new Variable[n];
     for (int i = 0; i < n; i++) vars[i] = defs[i].lhs();
     return vars;
   }
-  
+
   /** Gets the exps (rhs's) of the defs */
-  public SymAST[] exps() {     
+  public SymAST[] exps() {
     int n = defs.length;
     SymAST[] exps =  new SymAST[n];
     for (int i = 0; i < n; i++) exps[i] = defs[i].rhs();
     return exps;
   }
-  
-  public String toString() { 
-    return "let " + ToString.toString(defs," ") + " in " + body; 
+
+  public String toString() {
+    return "let " + ToString.toString(defs," ") + " in " + body;
   }
-}  
+}
 
 class LetRec implements SymAST {
   private Def[] defs;
   private SymAST body;
   LetRec(Def[] d, SymAST b) { defs = d; body = b; }
- 
+
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forLetRec(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forLetRec(this); }
-  
+
   public Def[] defs() { return defs; }
   public SymAST body() { return body; }
-  
+
   /** Gets the defined vars */
-  public Variable[] vars() { 
+  public Variable[] vars() {
     int n = defs.length;
     Variable[] vars = new Variable[n];
     for (int i = 0; i < n; i++) vars[i] = defs[i].lhs();
     return vars;
   }
-  
+
   /** Gets the exps (rhs's) of the defs */
-  public SymAST[] exps() {     
+  public SymAST[] exps() {
     int n = defs.length;
     SymAST[] exps =  new SymAST[n];
     for (int i = 0; i < n; i++) exps[i] = defs[i].rhs();
     return exps;
   }
-  
-  public String toString() { 
-    return "letrec " + ToString.toString(defs," ") + " in " + body; 
+
+  public String toString() {
+    return "letrec " + ToString.toString(defs," ") + " in " + body;
   }
 }
 
 class Block implements  SymAST, SDAST {
   /** Invariant: exps.length > 0 */
-  private AST[] exps;  
-  
+  private AST[] exps;
+
   /** Initialize definitions and body fields */
   Block(AST[] es) { exps = es; }
-  
+
   /** Applies the visitor v to this. */
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forBlock(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forBlock(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forBlock(this); }
   /** Gets the definitions field */
   public AST[] exps() { return exps; }
-  
+
   public String toString() {
     return "{" + ToString.toString(exps,"; ") + "}";
   }
@@ -460,40 +460,40 @@ class Letcc implements SymAST {
   private Variable var;
   private SymAST body;
   Letcc(Variable v, SymAST b) { var = v; body = b; }
- 
+
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forLetcc(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forLetcc(this); }
-  
- 
+
+
   /** Getters */
   public Variable var() { return var; }
   public SymAST body() { return body; }
-  
-  public String toString() { 
-    return "letcc " + var + " in " + body; 
+
+  public String toString() {
+    return "letcc " + var + " in " + body;
   }
 }
 
 class Def {
   private Variable lhs;
-  private SymAST rhs;  
-  
+  private SymAST rhs;
+
   Def(Variable l, SymAST r) { lhs = l; rhs = r; }
   public Variable lhs() { return lhs; }
   public SymAST rhs() { return rhs; }
   public void setRhs(SymAST r) { rhs = r; }
-  
+
   public String toString() { return lhs + " := " + rhs + ";"; }
-  
+
   public static Def[] makeDefs(Variable[] vars, SymAST[] exps) {
     int n = vars.length;
-    if (exps.length != n) throw 
+    if (exps.length != n) throw
       new SyntaxException("Attempt to build Defs[] with mismatched Variable[] " + vars + " and SymAST[] " + exps);
     Def[] newDefs = new Def[n];
     for (int i = 0; i < n; i++) newDefs[i] = new Def(vars[i], exps[i]);
     return newDefs;
   }
-  
+
   static Def[] tail(Def[] in) {
     int n = in.length;
     Def[] out = new Def[n-1];
@@ -506,15 +506,15 @@ class Def {
 class Pair implements Term, SDAST {
   private int dist;
   private int offset;
-  
+
   Pair(int d, int o) { dist = d; offset = o; }
   public int dist() { return dist; }
   public int offset() { return offset; }
-  public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { 
+  public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) {
     throw new SyntaxException("Pair " + this + " is being traversed by SymASTVisitor " + v);
-  } 
+  }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return  v.forPair(this); }
-  public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return  v.forPair(this); } 
+  public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return  v.forPair(this); }
   public String toString() { return "[" + dist + "," + offset + "]"; }
 }
 
@@ -527,10 +527,10 @@ class SMap implements SDAST {
   public SDAST body() { return body; }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forSMap(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forSMap(this); }
-  public String toString() { 
+  public String toString() {
     return "map [*" + arity + "*] to " + body ;
   }
-}  
+}
 
 /** SDAST for a Jam (raw) let */
 class SLet implements SDAST {
@@ -541,10 +541,10 @@ class SLet implements SDAST {
   public SDAST body() { return body; }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forSLet(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forSLet(this); }
-  public String toString() { 
-    return "let [*" + rhss.length + "*] " + ToString.toString(rhss,"; ") + "; in " + body; 
+  public String toString() {
+    return "let [*" + rhss.length + "*] " + ToString.toString(rhss,"; ") + "; in " + body;
   }
-}  
+}
 
 
 /** SDAST for a Jam recursive let */
@@ -556,13 +556,13 @@ class SLetRec implements SDAST {
   public SDAST body() { return body; }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forSLetRec(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forSLetRec(this); }
-  public String toString() { 
-    return "letrec [*" +rhss.length +"*] " + ToString.toString(rhss,"; ") + "; in " + body; 
+  public String toString() {
+    return "letrec [*" +rhss.length +"*] " + ToString.toString(rhss,"; ") + "; in " + body;
   }
 }
 
 class ToString {
-  
+
   public static String toString(Object[] a, String s) {
     StringBuffer result = new StringBuffer();
     for (int i = 0; i < a.length; i++) {
@@ -614,31 +614,31 @@ interface Token {}
 class NullConstant implements Token, Constant {
   public static final NullConstant ONLY = new NullConstant();
   private NullConstant() {}
-  
-  public <T> T accept(ASTVisitor<T> v) { return v.forNullConstant(this); } 
+
+  public <T> T accept(ASTVisitor<T> v) { return v.forNullConstant(this); }
   public <T> T accept(SymASTVisitor<T> v) { return v.forNullConstant(this); }
   public <T> T accept(SDASTVisitor<T> v) { return v.forNullConstant(this); }
- 
+
   public String toString() { return "null"; }
 }
 
 /** a Jam integer constant, also used to represent an integer token for parsing  */
 class IntConstant implements Token, Constant, JamVal {
   private int value;
-  
+
   IntConstant(int i) { value = i; } // duplicates can occur!
-  
+
   public int value() { return value; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forIntConstant(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forIntConstant(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forIntConstant(this); }
-  
+
   public <RtnType> RtnType accept(JamValVisitor<RtnType> v) { return v.forIntConstant(this); }
-  
+
   /** redefines equals so that equal integers are recognized as equal */
   public boolean equals(Object other) {
-    return (other != null && this.getClass() == other.getClass()) && 
+    return (other != null && this.getClass() == other.getClass()) &&
       (value == ((IntConstant)other).value());
   }
   /** computes the obvious hashcode for this consistent with equals */
@@ -650,24 +650,24 @@ class IntConstant implements Token, Constant, JamVal {
 class BoolConstant implements Token, Constant, JamVal {
   private boolean value;
   private BoolConstant(boolean b) { value = b; }
-  
+
   /** singleton pattern definitions */
   public static final BoolConstant FALSE = new BoolConstant(false);
   public static final BoolConstant TRUE = new BoolConstant(true);
-  
+
   /** factory method that returns BoolConstant corresponding to b */
-  public static BoolConstant toBoolConstant(boolean b) { 
-    if (b) return TRUE; 
+  public static BoolConstant toBoolConstant(boolean b) {
+    if (b) return TRUE;
     else return FALSE;
   }
-  
+
   public boolean value() { return value; }
   public BoolConstant not() { if (this == FALSE) return TRUE; else return FALSE; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forBoolConstant(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forBoolConstant(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forBoolConstant(this); }
-  
+
   public <RtnType> RtnType accept(JamValVisitor<RtnType> v) { return v.forBoolConstant(this); }
   public String toString() { return String.valueOf(value); }
 }
@@ -706,12 +706,12 @@ class Empty<ElemType> extends PureListClass<ElemType> {
   public <RtnType> RtnType accept(PureListVisitor<ElemType,RtnType> v) { return v.forEmpty(this); }
   public PureList<ElemType> append(PureList<ElemType> addedElts) { return addedElts; }
   public boolean hasMember(ElemType e) { return false; }
-  
+
   /** overrides inherited equals because Empty is not a singleton! */
-  public boolean equals(Object other) { 
+  public boolean equals(Object other) {
     return (other != null && other.getClass() == this.getClass());
   }
-  
+
   public String toString() { return "()"; }
   public String toStringHelp() { return ""; }
 }
@@ -721,24 +721,24 @@ class Cons<ElemType> extends PureListClass<ElemType> {
   protected ElemType first;
   protected PureList<ElemType> rest;
   Cons(ElemType f, PureList<ElemType> r) { first = f; rest = r; }
-  
+
   public <RtnType> RtnType accept(PureListVisitor<ElemType,RtnType> v) { return v.forCons(this); }
-  public PureList<ElemType> append(PureList<ElemType> addedElts) { 
-    return new Cons<ElemType>(first, rest.append(addedElts)); 
+  public PureList<ElemType> append(PureList<ElemType> addedElts) {
+    return new Cons<ElemType>(first, rest.append(addedElts));
   }
-  
+
   public ElemType first() {  return first; }
   public PureList<ElemType> rest() { return rest; }
-  public boolean hasMember(ElemType e) { 
+  public boolean hasMember(ElemType e) {
     if (first().equals(e)) return true;
     return rest().hasMember(e);
   }
-  public boolean equals(Object other) { 
+  public boolean equals(Object other) {
     if (other == null || this.getClass() != other.getClass()) return false;
     Cons otherCons = (Cons) other;
     return first().equals(otherCons.first()) && rest().equals(otherCons.rest());
   }
-  
+
   public String toString() { return "(" + first + rest.toStringHelp() + ")"; }
   public String toStringHelp() { return " " + first + rest.toStringHelp(); }
 }
@@ -756,7 +756,7 @@ class EmptyVarEnv extends Empty<Binding> implements VarEnv {
   public ConsVarEnv cons(Binding b) { return new ConsVarEnv(b,this); }
   public JamVal lookup(Object key) {
     throw new SyntaxException("Variable " + key + " not bound");
-  } 
+  }
 }
 
 class ConsVarEnv extends Cons<Binding> implements VarEnv {
@@ -765,7 +765,7 @@ class ConsVarEnv extends Cons<Binding> implements VarEnv {
   public ConsVarEnv cons(Binding b) { return new ConsVarEnv(b,this); }
   public JamVal lookup(Object key) {
     Binding match = accept(new LookupVisitor<Binding>((Variable) key));
-    if (match == null) throw new SyntaxException("Variable " + key + " not bound"); 
+    if (match == null) throw new SyntaxException("Variable " + key + " not bound");
     return match.value();
   }
 }
@@ -783,7 +783,7 @@ class EmptySDEnv extends Empty<JamVal[]> implements SDEnv {
   public ConsSDEnv cons(JamVal[] vals) { return new ConsSDEnv(vals,this); }
   public JamVal lookup(Object key) {
     throw new SyntaxException("Variable " + key + " not bound");
-  } 
+  }
 }
 
 class ConsSDEnv extends Cons<JamVal[]> implements SDEnv {
@@ -820,14 +820,14 @@ class JamCons extends Cons<JamVal> implements JamList {
   public JamCons(JamVal f, JamList r) { super(f, r); }
   public JamEmpty empty() { return JamEmpty.ONLY; }
   public JamCons cons(JamVal v) { return new JamCons(v, this); }
-  
+
   public <RtnType> RtnType accept(JamValVisitor<RtnType> v) { return v.forJamList(this); }
-  
+
 //  public JamVal first() { return first; }  // work-around for bridge method bug in compiler (since fixed)
   public JamList rest() { return (JamList) rest; }
-  
+
   public String toString() { return "(" + first() + rest().toStringHelp(MAX_DEPTH) + ")"; }
-  public String toStringHelp(int maxDepth) { 
+  public String toStringHelp(int maxDepth) {
     if (maxDepth == 0) return " ...";
     return " " + first() + rest().toStringHelp(maxDepth - 1); }
 }
@@ -836,11 +836,11 @@ class JamCons extends Cons<JamVal> implements JamList {
 class Binding implements WithVariable {
   private Variable var;
   protected JamVal value;
-  Binding(Variable v, JamVal jv) { 
+  Binding(Variable v, JamVal jv) {
     var = v; value = jv;
   }
   public Variable var() { return var; }
-  public JamVal value() { 
+  public JamVal value() {
     if (value != null) return value;
     else throw new EvalException("Forward reference in letrec to an unbound variable");
   }
@@ -891,17 +891,17 @@ interface Closure {
 
 /** A Jam Primitive Function.  It is a variant of the JamFun, Token, and Term types.  It is a subtype of JamVal.
   * In JamValVisitor, all PrimFuns are handled by a single visitor method.  PrimFun has its own visitor interface.
-  * Invariant: there is only one copy of each primitive. 
+  * Invariant: there is only one copy of each primitive.
   */
 abstract class PrimFun extends JamFun implements Token, Term {
   private String name;
   PrimFun(String n) { name = n; }
   public String name() { return name; }
-  
+
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forPrimFun(this); }
   public <RtnType> RtnType accept(SymASTVisitor<RtnType> v) { return v.forPrimFun(this); }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forPrimFun(this); }
-  
+
   public <RtnType> RtnType accept(FunVisitor<RtnType> v) { return v.forPrimFun(this); }
   abstract public <RtnType> RtnType accept(PrimFunVisitor<RtnType> pfv);
   public String toString() { return name; }
@@ -983,7 +983,7 @@ class AsBoolPrim extends PrimFun {
   public static final AsBoolPrim ONLY = new AsBoolPrim();
   private AsBoolPrim() { super("asBool"); }
   public <RtnType> RtnType accept(PrimFunVisitor<RtnType> pfv) { return pfv.forAsBoolPrim(); }
-} 
+}
 
 /** Token classes */
 
@@ -1000,14 +1000,14 @@ class DepthVariable extends Variable {
   private Variable var;  /* corresponding raw Variable */
   private int depth;
   private Variable newVar; /* corresponding Variable with depth suffix */
-  
-  DepthVariable(Variable v, int d) { 
-    super(v); 
-    var = v; 
-    depth = d; 
+
+  DepthVariable(Variable v, int d) {
+    super(v);
+    var = v;
+    depth = d;
     newVar = new Variable(name() + ":" + d);  /* not interned anywhere; duplicates are possible in other scopes. */
   }
-  
+
   public Variable var() { return var; }
   public Variable rename() { return newVar; }
 }
@@ -1020,46 +1020,46 @@ class OpToken implements Token {
   private UnOp unOp;
   /** the corresponding binary operator in BinOp */
   private BinOp binOp;
-  
+
   private OpToken(String s, boolean iu, boolean ib, UnOp u, BinOp b) {
-    symbol = s; isUnOp = iu; isBinOp = ib; unOp = u; binOp = b; 
+    symbol = s; isUnOp = iu; isBinOp = ib; unOp = u; binOp = b;
   }
-  
+
   /** factory method for constructing OpToken serving as both UnOp and BinOp */
   public static OpToken newBothOpToken(UnOp u, BinOp b) {
     return new OpToken(u.toString(), true, true, u, b);
   }
-  
+
   /** factory method for constructing OpToken serving as BinOp only */
   public static OpToken newBinOpToken(BinOp b) {
     return new OpToken(b.toString(), false, true, null, b);
   }
-  
+
   /** factory method for constructing OpToken serving as UnOp only */
   public static OpToken newUnOpToken(UnOp u) {
     return new OpToken(u.toString(), true, false, u, null);
   }
-  
+
   public String symbol() { return symbol; }
   public boolean isUnOp() { return isUnOp; }
   public boolean isBinOp() { return isBinOp; }
-  public UnOp toUnOp() { 
-    if (unOp == null) 
+  public UnOp toUnOp() {
+    if (unOp == null)
       throw new NoSuchElementException("OpToken " + this + " does not denote a unary operator");
     return unOp;
   }
-  
-  public BinOp toBinOp() { 
-    if (binOp == null) 
+
+  public BinOp toBinOp() {
+    if (binOp == null)
       throw new NoSuchElementException("OpToken " + this + " does not denote a binary operator");
-    return binOp; 
+    return binOp;
   }
   public String toString() { return symbol; }
 }
 
 class KeyWord implements Token {
   private String name;
-  
+
   KeyWord(String n) { name = n; }
   public String name() { return name; }
   public String toString() { return name; }
@@ -1121,31 +1121,31 @@ class Bind implements Token {
 
 /** Jam lexer class.              
   * Given a Lexer object, the next token in that input stream being processed by the Lexer is returned by static method
-  * readToken(); it throws a ParseException (an extension of IOException) if it encounters a syntax error.  Calling 
-  * readToken() advances the cursor in the input stream to the next token.  The static method peek() in the Lexer class 
+  * readToken(); it throws a ParseException (an extension of IOException) if it encounters a syntax error.  Calling
+  * readToken() advances the cursor in the input stream to the next token.  The static method peek() in the Lexer class
   * has the same behavior as readToken() except for the fact that it does not advance the cursor.
   */
 class Lexer extends StreamTokenizer {
-    
+
   /** Static Fields **/
-  
+
   /* Short names for StreamTokenizer codes */
-  
-  public static final int WORD = StreamTokenizer.TT_WORD; 
-  public static final int NUMBER = StreamTokenizer.TT_NUMBER; 
-  public static final int EOF = StreamTokenizer.TT_EOF; 
+
+  public static final int WORD = StreamTokenizer.TT_WORD;
+  public static final int NUMBER = StreamTokenizer.TT_NUMBER;
+  public static final int EOF = StreamTokenizer.TT_EOF;
   public static final int EOL = StreamTokenizer.TT_EOL;
-  
+
   /** operator Tokens:
-  
+
      <unop>  ::= <sign> | ~   | ! 
      <binop> ::= <sign> | "*" | / | = | != | < | > | <= | >= | & | "|" | <- 
      <sign>  ::= "+" | -
-  
-    Note: there is no class distinction between <unop> and <binop> at lexical level because of ambiguity; <sign> 
+
+    Note: there is no class distinction between <unop> and <binop> at lexical level because of ambiguity; <sign>
     belongs to both. */
-  
-  public static final OpToken PLUS = OpToken.newBothOpToken(UnOpPlus.ONLY, BinOpPlus.ONLY); 
+
+  public static final OpToken PLUS = OpToken.newBothOpToken(UnOpPlus.ONLY, BinOpPlus.ONLY);
   public static final OpToken MINUS = OpToken.newBothOpToken(UnOpMinus.ONLY, BinOpMinus.ONLY);
   public static final OpToken TIMES = OpToken.newBinOpToken(OpTimes.ONLY);
   public static final OpToken DIVIDE = OpToken.newBinOpToken(OpDivide.ONLY);
@@ -1158,12 +1158,12 @@ class Lexer extends StreamTokenizer {
   public static final OpToken NOT = OpToken.newUnOpToken(OpTilde.ONLY);
   public static final OpToken AND = OpToken.newBinOpToken(OpAnd.ONLY);
   public static final OpToken OR = OpToken.newBinOpToken(OpOr.ONLY);
-  
+
   /* Used to support reference cells. */
   public static final OpToken BANG = OpToken.newUnOpToken(OpBang.ONLY);
   public static final OpToken GETS = OpToken.newBinOpToken(OpGets.ONLY);
   public static final OpToken REF = OpToken.newUnOpToken(OpRef.ONLY);
-  
+
   /** Keywords **/
 
   public static final KeyWord IF     = new KeyWord("if");
@@ -1175,22 +1175,22 @@ class Lexer extends StreamTokenizer {
   public static final KeyWord MAP    = new KeyWord("map");
   public static final KeyWord TO     = new KeyWord("to");
   public static final KeyWord LETCC   = new KeyWord("letcc");
-  
-  /** Fields **/ 
-  
+
+  /** Fields **/
+
   /** The Reader from which this lexer reads. */
   public final Reader rdr;
-  
+
   /** The wordtable for classifying words (identifiers/operators) in token stream */
   public HashMap<String,Token>  wordTable = new HashMap<String,Token>();
-  
-  /* Lexer peek cannot be implemented using StreamTokenizer pushBack because some Jam Tokens are composed of two 
+
+  /* Lexer peek cannot be implemented using StreamTokenizer pushBack because some Jam Tokens are composed of two
    * StreamTokenizer tokens. */
-  
+
   Token buffer;  // saves token for peek() operation
-  
+
   /* Constructors */
-  
+
   /** Primary constructor that takes a specified input stream; all other constructors instantiate this one. */
   Lexer(Reader inputStream) {
     super(new BufferedReader(inputStream));
@@ -1201,46 +1201,46 @@ class Lexer extends StreamTokenizer {
   Lexer(String fileName) throws IOException {
     this(new FileReader(fileName));
   }
-  
+
   private void initLexer() {
-    
+
     /* Configure StreamTokenizer portion of this. */
     /* `+' `-' `*' `/' `~' `=' `<' `>' `&' `|' `:' `;' `,' '!' `(' `)' `[' `]' are ordinary characters */
-    
+
     resetSyntax();             // makes all characters "ordinary"
     parseNumbers();            // makes digits and - "numeric" (which is disjoint from "ordinary")
     ordinaryChar('-');         // eliminates '-' from number parsing and makes it "ordinary"
     slashSlashComments(true);  // enables slash-slash comments as in C++
     slashStarComments(true);   // enables slash-asterisk comments as in C
-    
+
     /* Identify chars that appear in identifiers (words) */
     wordChars('0', '9');
     wordChars('a', 'z');
     wordChars('A', 'Z');
     wordChars('_', '_');
     wordChars('?', '?');
-    
+
     /* Identify whitespace */
-    whitespaceChars(0, ' '); 
-    
+    whitespaceChars(0, ' ');
+
     /* Initialize table of words that function as specific tokens (keywords) including "<=", ">=", "!=" */
     initWordTable();
-    
+
     /* Initialize buffer supporting the peek() operation */
     buffer = null;  // buffer initially empty
   }
-  
+
   public void flush() throws IOException {
     eolIsSignificant(true);
     while (nextToken() != EOL) ; // eat tokens until EOL
     eolIsSignificant(false);
   }
-  
-  public Token peek() { 
+
+  public Token peek() {
     if (buffer == null) buffer = readToken();
     return buffer;
   }
-  
+
   /** Find variable with name sval; create one if none exists */
   public Token intern(String sval) {
     Token regToken = (Token) wordTable.get(sval);
@@ -1251,7 +1251,7 @@ class Lexer extends StreamTokenizer {
     }
     return regToken;
   }
-  
+
   /** Wrapper method for nextToken that converts IOExceptions thrown by nextToken to ParseExceptions. */
   private int getToken() {
     try {
@@ -1261,27 +1261,27 @@ class Lexer extends StreamTokenizer {
       throw new ParseException("IOException " + e + "thrown by nextToken()");
     }
   }
-  
+
    /* Uses getToken() to read next token and constructs Token object representing that token. */
   public Token readToken() {
-    
-    /* NOTE: the token representations for all Token classes except IntConstant are unique; a HashMap is used to avoid 
+
+    /* NOTE: the token representations for all Token classes except IntConstant are unique; a HashMap is used to avoid
      * duplication. Hence, == can safely be used to compare all Tokens except IntConstants for equality
      */
-    
+
     if (buffer != null) {
       Token token = buffer;
       buffer = null;          // clear buffer
       return token;
     }
-    
+
     int tokenType = getToken();
     switch (tokenType) {
       case NUMBER:
         int value = (int) nval;
         if (nval == (double) value) return new IntConstant(value);
         throw new ParseException("The number " + nval + " is not a 32 bit integer");
-        
+
       case WORD:
         Token regToken = wordTable.get(sval);
         if (regToken == null) { // sval must be new variable name
@@ -1289,9 +1289,9 @@ class Lexer extends StreamTokenizer {
           wordTable.put(sval,newVar);
           return newVar;
         }
-          
+
         return regToken;
-        
+
       case EOF: return null;
       case '(': return LeftParen.ONLY;
       case ')': return RightParen.ONLY;
@@ -1301,44 +1301,44 @@ class Lexer extends StreamTokenizer {
       case '}': return RightBrace.ONLY;
       case ',': return Comma.ONLY;
       case ';': return SemiColon.ONLY;
-      
+
       case '+': return PLUS;
       case '-': return MINUS;
-      case '*': return TIMES;  
+      case '*': return TIMES;
       case '/': return DIVIDE;
-      
-      case '~': return NOT;  
-      case '=': return EQUALS;  
-      case '<': 
+
+      case '~': return NOT;
+      case '=': return EQUALS;
+      case '<':
         tokenType = getToken();
-        if (tokenType == '=') return LESS_THAN_EQUALS;  
-        if (tokenType == '-') return GETS;  
+        if (tokenType == '=') return LESS_THAN_EQUALS;
+        if (tokenType == '-') return GETS;
         pushBack();
-        return LESS_THAN;  
-      case '>': 
+        return LESS_THAN;
+      case '>':
         tokenType = getToken();
-        if (tokenType == '=') return GREATER_THAN_EQUALS;  
+        if (tokenType == '=') return GREATER_THAN_EQUALS;
         pushBack();
-        return GREATER_THAN;  
-      case '!': 
+        return GREATER_THAN;
+      case '!':
         tokenType = getToken();
-        if (tokenType == '=') return NOT_EQUALS;  
+        if (tokenType == '=') return NOT_EQUALS;
         pushBack();
-        return BANG;  
-      case '&': return AND;  
-      case '|': return OR;  
+        return BANG;
+      case '&': return AND;
+      case '|': return OR;
       case ':': {
         tokenType = getToken();
-        if (tokenType == '=') return Bind.ONLY;  
+        if (tokenType == '=') return Bind.ONLY;
         pushBack();
         throw new ParseException("`:' is not a legal token");
       }
-      default:  
-        throw new 
+      default:
+        throw new
         ParseException("`" + ((char) tokenType) + "' is not a legal token");
     }
   }
-  
+
   private void initWordTable() {
     /* Initialize wordTable */
     
@@ -1346,15 +1346,15 @@ class Lexer extends StreamTokenizer {
        <null>  ::= null
        <bool>  ::= true | false
      */
-    
+
     wordTable.put("null",  NullConstant.ONLY);
     wordTable.put("true",  BoolConstant.TRUE);
     wordTable.put("false", BoolConstant.FALSE);
-    
-    /* Primitive functions + ref unary operator:    
-     * <prim>  ::= number? | function? | list? | null? | cons? | ref? | arity | cons | first | rest  
+
+    /* Primitive functions + ref unary operator:
+     * <prim>  ::= number? | function? | list? | null? | cons? | ref? | arity | cons | first | rest
      * Note: ref is not <prim>; it is a unary operator */
-    
+
     wordTable.put("number?",   NumberPPrim.ONLY);
     wordTable.put("function?", FunctionPPrim.ONLY);
     wordTable.put("list?",     ListPPrim.ONLY);
@@ -1365,10 +1365,10 @@ class Lexer extends StreamTokenizer {
     wordTable.put("cons",      ConsPrim.ONLY);
     wordTable.put("first",     FirstPrim.ONLY);
     wordTable.put("rest",      RestPrim.ONLY);
-    
+
     /* "ref' is the only unary operator that is an identifier */
     wordTable.put("ref",       REF);             // Supports addition of ref cells to Jam.
-    
+
     /* keywords: if then else let letrec in map to letcc*/
     wordTable.put("if",   IF);
     wordTable.put("then", THEN);
@@ -1378,9 +1378,9 @@ class Lexer extends StreamTokenizer {
     wordTable.put("in",   IN);
     wordTable.put("map",  MAP);
     wordTable.put("to",   TO);
-    wordTable.put("letcc", LETCC);               // Supports addition of letcc to Jam    
-  }        
-  
+    wordTable.put("letcc", LETCC);               // Supports addition of letcc to Jam
+  }
+
   public static void main(String[] args) throws IOException {
     /* Check for legal argument list. */
     if (args.length == 0) {
@@ -1402,26 +1402,26 @@ class Test {
 }
 
 class Parser {
-  
+
   private Lexer in;
-  
+
   /** Parsed program */
-  SymAST prog; 
-  
+  SymAST prog;
+
   /** Checked and renamed program */
-  SymAST checkProg; 
-  
+  SymAST checkProg;
+
   SDAST statCheckProg;
-  
+
    /** CPS'ed program */
-  SymAST cpsProg; 
-  
+  SymAST cpsProg;
+
    /** CPS'ed program */
-  SDAST statCpsProg; 
-  
+  SDAST statCpsProg;
+
   private HashMap<PrimFun, SymAST> primTable = new HashMap<PrimFun, SymAST> ();
   private HashMap<Op, SymAST> opTable = new HashMap<Op, SymAST> ();
-  
+
   private Token ifKey;
   private Token thenKey;
   private Token elseKey;
@@ -1432,41 +1432,41 @@ class Parser {
   private Token toKey;
   private Token assignKey;
   private Token letccKey;
-  
+
   /** Counter for generated variable names in CPS conversion */
   private int genVarCtr;
-  
+
   /** Fixed variable names used in CPS conversion */
-  private Variable x; 
+  private Variable x;
   private Variable y;
   private Variable k;
-  
+
   /** identity fn and visitors for CPS conversion */
   private SymAST identity;
   private SymASTVisitor<SymAST> convertToCPS;
   SymASTVisitor<Boolean> isSimple;
   SymASTVisitor<SymAST> reshape;
   SConverter sConverter;
-  
+
   private PrimFun arityFun;
   private BinOp minusOp;
   private IntConstant one;
-  
+
   Parser(Lexer i) {
     in = i;
     initParser();
   }
-  
+
   Parser(Reader inputStream) {
     this(new Lexer(inputStream));
   }
-  
+
   Parser(String fileName) throws IOException {
     this(new FileReader(fileName));
   }
-  
+
   Lexer lexer() { return in; }
-  
+
   private void initParser() {
     ifKey     = in.wordTable.get("if");
     thenKey   = in.wordTable.get("then");
@@ -1478,32 +1478,32 @@ class Parser {
     toKey     = in.wordTable.get("to");
     assignKey = in.wordTable.get(":=");
     letccKey  = in.wordTable.get("letcc");
-    
+
     arityFun  = ArityPrim.ONLY;
     minusOp   = BinOpMinus.ONLY;
-    
+
     one       = new IntConstant(1);
-    
-    
-    
+
+
+
     /* Counter for fresh variable generation. */
     genVarCtr = -1;  // incremented prior to use; first value will be zero
-    
+
     /* Fixed variable names used in CPS transformation and identity, */
     x = (Variable) in.intern("x");
     y = (Variable) in.intern("y");
     k = (Variable) in.intern("k");
-    
+
     /* Insert only binary primitive in primTable. */
-    insertBinPrim(ConsPrim.ONLY);                              
-                                                               
+    insertBinPrim(ConsPrim.ONLY);
+
     /* CPS translation of arity is a special case, because CPS affects arity! */
     SymAST arityExp = new BinOpApp(minusOp, new App(arityFun, new SymAST[] {x}), one);
     primTable.put(arityFun, new Map(new Variable[]{x,k}, new App(k, new SymAST[] {arityExp})));
-    
+
     /* Symbolic abstract syntax for identity function */
     identity = new Map(new Variable[]{x},x);
-    
+
     insertUnaryPrim(NumberPPrim.ONLY);
     insertUnaryPrim(FunctionPPrim.ONLY);
     insertUnaryPrim(ListPPrim.ONLY);
@@ -1512,7 +1512,7 @@ class Parser {
     insertUnaryPrim(RefPPrim.ONLY);
     insertUnaryPrim(FirstPrim.ONLY);
     insertUnaryPrim(RestPrim.ONLY);
-    
+
     insertBinOp(BinOpPlus.ONLY);
     insertBinOp(BinOpMinus.ONLY);
     insertBinOp(OpTimes.ONLY);
@@ -1524,27 +1524,27 @@ class Parser {
     insertBinOp(OpLessThanEquals.ONLY);
     insertBinOp(OpGreaterThanEquals.ONLY);
     insertBinOp(OpGets.ONLY);
-    
+
     insertUnOp(OpRef.ONLY);
     insertUnOp(OpBang.ONLY);
     insertUnOp(OpTilde.ONLY);
     insertUnOp(UnOpPlus.ONLY);
     insertUnOp(UnOpMinus.ONLY);
 //    System.err.println(opTable.get(UnOpMinus.ONLY));
-    
+
     /* Visitors that perform syntactic processing. */
     convertToCPS = new ConvertToCPS(identity);
     reshape = new Reshape();
     isSimple = new IsSimple();
     sConverter = new SConverter();
   }
-  
+
   private Variable genVariable() {
     /* Assert that generated name is fresh if all input read by parser is legal Jam source text */
     genVarCtr++;
     return (Variable) in.intern(":" + genVarCtr);
   }
-  
+
   /* Parses and checks embedded programin and returns the SymAST for the program. */
   public SymAST checkProg() {
     if (checkProg != null) return checkProg;
@@ -1552,7 +1552,7 @@ class Parser {
     checkProg = prog.accept(CheckVisitor.INITIAL);   // aborts on an error by throwing an exception
     return checkProg;
   }
-  
+
   /* Parses embedded program to a SYMAST, checks it, converts it to CPS, and returns result. */
   public SymAST cpsProg() {
     if (cpsProg != null) return cpsProg;
@@ -1560,7 +1560,7 @@ class Parser {
     cpsProg = convertToCPS(checkProg, identity);
     return cpsProg;
   }
-  
+
   /* Parses and checks the input program embedded in the Parser and returns the corresponding SD representation. */
   public SDAST statCheckProg() {
     if(statCheckProg != null) return statCheckProg;
@@ -1569,7 +1569,7 @@ class Parser {
 //    System.err.println(statCheckProg);
     return statCheckProg;
   }
- 
+
   /* Parses embedded program to a SYMAST, checks it, converts it to CPS, converts it to SD form, and returns it. */
   public SDAST statCpsProg() {
     if (statCpsProg != null) return statCpsProg;
@@ -1587,10 +1587,10 @@ class Parser {
     if (t == null) return prog;
     else throw new ParseException("Legal program \n" + prog + "\n followed by extra token " + t);
   }
-  
+
   /* Parses the next Jam expression in the input stream (assuming no tokne in that expression has yet been read) */
   private SymAST parseExp() {
-    
+
     Token token = in.readToken();
     
     /* <exp> :: = if <exp> then <exp> else <exp>
@@ -1598,21 +1598,21 @@ class Parser {
                 | map <id-list> to <exp>
                 | <term> { <biop> <term> }*  // (left associatively!)
     */
-    
+
     if (token == ifKey) return parseIf();
     if (token == letrecKey) return parseLetRec();
     if (token == letccKey) return parseLetcc();
     if (token == letKey) return parseLet();
     if (token == mapKey) return parseMap();
-    
+
     if (token == LeftBrace.ONLY) {
       SymAST[] exps = parseExps(SemiColon.ONLY,RightBrace.ONLY);   // including closing brace
       if (exps.length == 0) throw new ParseException("Illegal empty block");
       return new Block(exps);
     }
-    
+
     SymAST exp = parseTerm(token);
-    
+
     Token next = in.peek();
     while (next instanceof OpToken) {
       OpToken op = (OpToken) next;
@@ -1626,23 +1626,23 @@ class Parser {
 //    System.err.println("parseTerm returning " + exp);
     return exp;
   }
-  
+
   private SymAST parseTerm(Token token) {
     
     /* <term>     ::= { <unop> } <term> | <constant> | <factor> {( <exp-list> )} 
        <constant> ::= <null> | <int> | <bool>
      */
-    
+
     if (token instanceof OpToken) {
       OpToken op = (OpToken) token;
       if (! op.isUnOp()) error(op,"unary operator");
       return new UnOpApp(op.toUnOp(), parseTerm(in.readToken()));
     }
-    
+
     if (token instanceof Constant) return (Constant) token;
-    
+
     SymAST factor = parseFactor(token);
-    
+
     Token next = in.peek();
     if (next == LeftParen.ONLY) {
       in.readToken();  // remove next from input stream
@@ -1651,28 +1651,28 @@ class Parser {
     }
     return factor;
   }
-  
+
   private SymAST parseFactor(Token token) {
-    
+
     // <factor>   ::= <prim> | <variable> | ( <exp> )
-    
+
     if (token == LeftParen.ONLY) {
       SymAST exp = parseExp();
       token = in.readToken();
       if (token != RightParen.ONLY) error(token,"`)'");
       return exp;
     }
-    
+
     if (! (token instanceof PrimFun) && ! (token instanceof Variable))
       error(token,"constant, primitive, variable, or `('");
-    
-    // Term\Constant = Variable or PrimFun       
+
+    // Term\Constant = Variable or PrimFun
     return (SymAST) token;
-  }      
-  
+  }
+
   private SymAST parseIf() {
     /* Parses 'if <exp> then <exp> else <exp>' given that 'if' has already been read. */
-    
+
     SymAST test = parseExp();
     Token key1 = in.readToken();
     if (key1 != thenKey) error(key1,"`then'");
@@ -1682,25 +1682,25 @@ class Parser {
     SymAST alt = parseExp();
     return new If(test,conseq,alt);
   }
-  
+
   private SymAST parseLet() {
     /* Parses 'let <prop-def-list> in <exp>' given that 'let' has already been read */
-    
+
     Def[] defs = parseDefs(false);  // consumes `in'; false means rhs may be non Map
     SymAST body = parseExp();
     return new Let(defs,body);
   }
-  
+
   private SymAST parseLetRec() {
     /* Parses 'letrec <prop-def-list> in <exp>' given that `letrec' has already been read.. */
-    
+
     Def[] defs = parseDefs(true); // consumes `in'; true means each rhs must be a Map
     SymAST body = parseExp();
     return new LetRec(defs,body);
   }
-  
+
   private SymAST parseLetcc() {
-    /* Parses 'letcc <var> in <exp>' given that 'letcc' has already been read. */ 
+    /* Parses 'letcc <var> in <exp>' given that 'letcc' has already been read. */
 
     Token var = in.readToken();
     if (! (var instanceof Variable)) error(var,"variable");
@@ -1711,42 +1711,42 @@ class Parser {
   }
 
   private SymAST parseMap() {
-    /* parses 'map <id-list> to <exp>' given that `map' has already been read. */ 
-    
+    /* parses 'map <id-list> to <exp>' given that `map' has already been read. */
+
     Variable[] vars = parseVars(); // consumes the delimiter `to'
     SymAST body = parseExp();
     return new Map(vars, body);
   }
-  
+
   private SymAST[] parseExps(Token separator, Token delim) {
     /* Parses '<exp-list> <delim>' where 
          <exp-list>      ::= <empty> | <prop-exp-list>
          <empty> ::=  
          <prop-exp-list> ::= <exp> | <exp> <separator> <prop-exp-list>
      */
-    
+
     LinkedList<SymAST> exps = new LinkedList<SymAST>();
     Token next = in.peek();
-    
+
     if (next == delim) {
       in.readToken(); // consume RightParen
       return new SymAST[0];
     }
-    
+
     /* next is still at front of input stream */
-    
+
     do {
       SymAST exp = parseExp();
       exps.addLast(exp);
       next = in.readToken();
     } while (next == separator);
-    
+
     if (next != delim) error(next,"`,' or `)'");
     return exps.toArray(new SymAST[0]);
   }
-  
+
   private SymAST[] parseArgs() { return parseExps(Comma.ONLY,RightParen.ONLY); }
-  
+
   private Variable[] parseVars() {
     
     /* Parses <id-list> where
@@ -1754,99 +1754,99 @@ class Parser {
          <prop-id-list>  ::= <id> | <id> , <id-list> 
     
        NOTE: consumes `to' following <id-list> */
-    
+
     LinkedList<Variable> vars = new LinkedList<Variable>();
     Token t = in.readToken();
     if (t == toKey) return new Variable[0];
-    
+
     do {
       if (! (t instanceof Variable)) error(t,"variable");
       vars.addLast((Variable)t);
       t = in.readToken();
-      if (t == toKey) break; 
+      if (t == toKey) break;
       if (t != Comma.ONLY) error(t,"`to' or `,'");
       /* Comma found, read next variable */
       t = in.readToken();
     } while (true);
     return (Variable[]) vars.toArray(new Variable[0]);
   }
-  
+
   private Def[] parseDefs(boolean forceMap) {
     /* Parses  `<prop-def-list> in' where
         <prop-def-list> ::= <def> | <def> <def-list> 
     
        NOTE: consumes `in' following <prop-def-list>
      */
-    
+
     LinkedList<Def> defs = new LinkedList<Def>();
     Token t = in.readToken();
-    
+
     do {
-      Def d = parseDef(t);        
+      Def d = parseDef(t);
       if (forceMap && (! (d.rhs() instanceof Map)))
         throw new ParseException("right hand side of definition `" + d
                                    + "' is not a map expression");
       defs.addLast(d);
       t = in.readToken();
     } while (t != inKey);
-    
+
     return (Def[]) defs.toArray(new Def[0]);
   }
-  
+
   private Def parseDef(Token var) {
     /* Parses <id> := <exp> ;
        which is <def> given that first token var has been read.
      */
-    
+
     if (! (var instanceof Variable)) error(var,"variable");
-    
+
     Token bind = in.readToken();
     if (bind != Bind.ONLY) error (bind,"`:='");
-    
+
     SymAST exp = parseExp();
-    
+
     Token semi = in.readToken();
     if (semi != SemiColon.ONLY) error(semi,"`;'");
     return new Def((Variable) var, exp);
   }
-  
+
   private SymAST error(Token found, String expected) {
     for (int i = 0; i < 10; i++) {
       System.out.println(in.readToken());
     }
     throw new ParseException("Token `" + found + "' appears where " + expected + " was expected");
   }
-  
+
   /* Parser members suppporting CPS transformation;
    * x,y,k are private members bound to the Variables with names "x","y","k". */
-  
+
   private void insertUnaryPrim(PrimFun f) {
-    primTable.put(f, new Map(new Variable[]{x,k}, 
+    primTable.put(f, new Map(new Variable[]{x,k},
                              new App(k, new SymAST[] { new App(f, new SymAST[]{x}) })));
   }
   private void insertBinPrim(PrimFun f) {
-    primTable.put(f, 
-      new Map(new Variable[]{x,y,k}, 
+    primTable.put(f,
+      new Map(new Variable[]{x,y,k},
               new App(k, new SymAST[] { new App(f,new SymAST[]{x,y}) })));
   }
   private void insertUnOp(UnOp f) {
-    opTable.put(f, 
-      new Map(new Variable[]{x,k}, new App(k, 
+    opTable.put(f,
+      new Map(new Variable[]{x,k}, new App(k,
               new SymAST[] { new UnOpApp(f,x) })));
   }
 
   private void insertBinOp(BinOp f) {
-    opTable.put(f, 
-      new Map(new Variable[]{x,y,k}, new App(k, 
+    opTable.put(f,
+      new Map(new Variable[]{x,y,k}, new App(k,
               new SymAST[] { new BinOpApp(f,x,y) })));
   }
 
 
   class Reshape implements SymASTVisitor<SymAST> {
-    
+
     Reshape() {}
-    
-//    private SymAST forDefault(AST host)   { 
+
+//    private SymAST forDefault(AST host)   {
 //      throw new CPSException("host " + host + " not supported by ReShape visitor");
 //    }
     public SymAST forIntConstant(IntConstant host)   { return host; };
@@ -1854,7 +1854,7 @@ class Parser {
     public SymAST forNullConstant(NullConstant host) { return host; };
     public SymAST forSymVariable(Variable host)      { return host; }
     public SymAST forPrimFun(PrimFun host)           { return primTable.get(host); }
-    public SymAST forUnOpApp(UnOpApp u) { 
+    public SymAST forUnOpApp(UnOpApp u) {
       SymAST arg = (SymAST) u.arg();
       return new UnOpApp(u.rator(), arg.accept(this));
     }
@@ -1863,7 +1863,7 @@ class Parser {
       SymAST arg2 = (SymAST) b.arg2();
       return new BinOpApp(b.rator(), arg1.accept(this), arg2.accept(this));
     }
-    
+
     public SymAST forApp(App a) {
       if (! (a.rator() instanceof PrimFun))
         throw new ParseException("non primitive application `" + a + "' passed to Reshape");
@@ -1877,9 +1877,9 @@ class Parser {
       }
       else return app;
     }
-    
-    public SymAST forMap(Map m) { 
-      
+
+    public SymAST forMap(Map m) {
+
       int n = m.vars().length;
       Variable[] newVars = new Variable[n+1];
       Variable newVar = genVariable();
@@ -1887,38 +1887,38 @@ class Parser {
       newVars[n] = newVar;
       return new Map(newVars, convertToCPS(m.body(), newVar));
     }
-    
-    public SymAST forIf(If i) { 
+
+    public SymAST forIf(If i) {
       SymAST test = (SymAST) i.test();
       SymAST conseq = (SymAST) i.conseq();
       SymAST alt = (SymAST) i.alt();
       return new If(test.accept(this), conseq.accept(this), alt.accept(this));
     }
-    
+
     public SymAST forLet(Let l) {
       int n = l.defs().length;
       Def[] newDefs = new Def[n];
-      
+
       for (int i = 0; i < n; i++) {
         Def oldDef = l.defs()[i];
         newDefs[i] = new Def(oldDef.lhs(), oldDef.rhs().accept(this));
       }
       return new Let(newDefs, l.body().accept(this));
     }
-    
+
     /* Note the repeated code in forLet and forLetRe; should refactor. */
-    
+
     public SymAST forLetRec(LetRec l) {
       int n = l.defs().length;
       Def[] newDefs = new Def[n];
-      
+
       for (int i = 0; i < n; i++) {
         Def oldDef = l.defs()[i];
         newDefs[i] = new Def(oldDef.lhs(), oldDef.rhs().accept(this));
       }
       return new LetRec(newDefs, l.body().accept(this));
     }
-    public SymAST forLetcc(Letcc host) { 
+    public SymAST forLetcc(Letcc host) {
       throw new CPSException("Attempt to reshape the letcc expression " + host);
     }
     public SymAST forBlock(Block b) {
@@ -1926,78 +1926,66 @@ class Parser {
       SymAST[] exps = (SymAST[]) b.exps();
       SymAST[] newExps = new SymAST[n];
       for (int i = 0; i < n; i++) newExps[i] = exps[i].accept(this);
-      
+
       return new Block(newExps);
     }
   }
-  
+
   static Boolean TRUE = Boolean.TRUE;
   static Boolean FALSE = Boolean.FALSE;
-  
+
   /** Visitor class representing an operation that determines if an expression only
-   *  involves local allocation; TRUE means it requires no external allocation 
+   *  involves local allocation; TRUE means it requires no external allocation
    */
   class IsSimple implements SymASTVisitor<Boolean> {
-    
+
 //    public Boolean forDefault(AST host) { 
 //      throw new CPSException("host " + host + " not supported by IsSimple visitor"); 
 //    }
-    
+
     public Boolean forIntConstant(IntConstant i)   { return TRUE; }
     public Boolean forNullConstant(NullConstant n) { return TRUE; }
     public Boolean forBoolConstant(BoolConstant b) { return TRUE; }
     public Boolean forSymVariable(Variable v) { return TRUE; }
-    public Boolean forPrimFun(PrimFun f)  { return TRUE; }  
- 
-    public Boolean forUnOpApp(UnOpApp u) { 
+    public Boolean forPrimFun(PrimFun f)  { return TRUE; }
+
+    public Boolean forUnOpApp(UnOpApp u) {
       SymAST arg = (SymAST) u.arg();
-      return arg.accept(this); 
-    }  
+      return arg.accept(this);
+    }
 
     public Boolean forBinOpApp(BinOpApp b) {
       SymAST arg1 = (SymAST) b.arg1();
       SymAST arg2 = (SymAST) b.arg2();
       if ((arg1.accept(this) == TRUE) && (arg2.accept(this) == TRUE)) return TRUE;
       return FALSE;
-    } 
- 
-    public Boolean forApp(App a) { 
+    }
+
+    public Boolean forApp(App a) {
       if (! (a.rator() instanceof PrimFun)) return FALSE;
       SymAST[] args = (SymAST[]) a.args();
       int n = args.length;
       for (int i = 0; i < n; i++) {
         if (args[i].accept(this) == FALSE) return FALSE;
       }
-      return TRUE; 
+      return TRUE;
     }
-    
+
     public Boolean forMap(Map m) { return TRUE; }
-    
+
     public Boolean forIf(If i) {
       SymAST test = (SymAST) i.test();
       SymAST conseq = (SymAST) i.conseq();
       SymAST alt = (SymAST) i.alt();
-      if ((test.accept(this) == TRUE) && (conseq.accept(this) == TRUE) && (alt.accept(this) == TRUE)) 
+      if ((test.accept(this) == TRUE) && (conseq.accept(this) == TRUE) && (alt.accept(this) == TRUE))
         return TRUE;
       else return FALSE;
     }
-    
-    public Boolean forLet(Let l) { 
+
+    public Boolean forLet(Let l) {
       Def[] defs = l.defs();
       int n = defs.length;
-      
-      for (int i = 0; i < n; i++) {
-        SymAST rhs = (SymAST) defs[i].rhs();
-        if (rhs.accept(this) == FALSE) return FALSE;
-      }
-      if (((SymAST) l.body()).accept(this) == FALSE) return FALSE;
-      return TRUE;
-    } 
-    
-    public Boolean forLetRec(LetRec l) {
-      Def[] defs = l.defs();
-      int n = defs.length;
-      
+
       for (int i = 0; i < n; i++) {
         SymAST rhs = (SymAST) defs[i].rhs();
         if (rhs.accept(this) == FALSE) return FALSE;
@@ -2005,9 +1993,21 @@ class Parser {
       if (((SymAST) l.body()).accept(this) == FALSE) return FALSE;
       return TRUE;
     }
-    
+
+    public Boolean forLetRec(LetRec l) {
+      Def[] defs = l.defs();
+      int n = defs.length;
+
+      for (int i = 0; i < n; i++) {
+        SymAST rhs = (SymAST) defs[i].rhs();
+        if (rhs.accept(this) == FALSE) return FALSE;
+      }
+      if (((SymAST) l.body()).accept(this) == FALSE) return FALSE;
+      return TRUE;
+    }
+
     public Boolean forLetcc(Letcc l) { return FALSE; }
-    
+
     public Boolean forBlock(Block b) {
       SymAST[] exps = (SymAST[]) b.exps();
       int n = exps.length;
@@ -2017,18 +2017,18 @@ class Parser {
       return TRUE;
     }
   }
-  
+
   /** Reshapes the arguments and adds the continuation as the final argument */
   private SymAST[] reshape(SymAST[] args, SymAST cont) {
     int n = args.length;
     SymAST[] newArgs = new SymAST[n+1];
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
       newArgs[i] = args[i].accept(reshape);
     newArgs[n] = cont;
     return newArgs;
   }
-  
-  /* Convert exp,cont to correponding CPS'ed program */ 
+
+  /* Convert exp,cont to correponding CPS'ed program */
   public SymAST convertToCPS(SymAST exp, SymAST cont) {
     if (exp.accept(isSimple) == TRUE) {
       System.out.println("Exp is simple, exp: " + exp + " cont " + cont);
@@ -2039,23 +2039,23 @@ class Parser {
 
     return exp.accept(new ConvertToCPS(cont));
   }
-      
+
   /** Converts a non-simple expression to CPS form */
   class ConvertToCPS implements SymASTVisitor<SymAST> {
-    
+
     SymAST cont;
 
     ConvertToCPS(SymAST c) { cont = c; }
-    
+
     /* No longer used. */
 //    private SymAST internalError(SymAST v) {
 //      throw new CPSException("This ConvertToCPS visitor should never reach this form of SymAST: " + v);
 //    }
-    
+
 //    public SymAST forDefault(AST host)   { 
 //      throw new CPSException("host " + host + " not supported by CPS visitor");
 //    }
-    
+
     /* None of the following block of methods should ever be executed if the host is not simple. */
     public SymAST forIntConstant(IntConstant i) {  return new App(cont, new SymAST[] {i}); }
     public SymAST forNullConstant(NullConstant n) { return new App(cont, new SymAST[] {n}); }
@@ -2401,7 +2401,7 @@ class Parser {
   }
 
   public static void main(String[] args) throws IOException {
-    /* Check for a legal argument list. */ 
+    /* Check for a legal argument list. */
     if (args.length == 0) {
       System.out.println("Usage: java Parser <filename>");
       return;
@@ -2415,45 +2415,45 @@ class Parser {
 /** A visitor class  that performs syntax checking and unshadowing. It returns asyntax tree (with new variable names)
   * unless there is a syntax error. On a syntax error, throws a SyntaxException. */
 class CheckVisitor implements SymASTVisitor<SymAST> {
-  
+
   private static final Empty<DepthVariable> emptyVars = new Empty<DepthVariable>();
-  
+
   /** Symbol table used to detect free variables */
   private PureList<DepthVariable> env;
-  
+
   /** Lexical depth in symbol table */
   private int depth;
-  
+
   public static final CheckVisitor INITIAL = new CheckVisitor(emptyVars,0);
-  
+
   /** Initializes the env and depth fields of a new Check Visitor object */
   private CheckVisitor(PureList<DepthVariable> e, int d) { env = e; depth = d; }
-  
+
   /** Constructs a new Check Visitor object with specified environment and incremented depth */
   CheckVisitor newVisitor(PureList<DepthVariable> env) { return new CheckVisitor(env, depth+1);  }
-  
-//  public SymAST forDefault(AST host)   { 
+
+//  public SymAST forDefault(AST host)   {
 //    throw new CPSException("host " + host + " not supported by Check visitor");
 //  }
   public SymAST forIntConstant(IntConstant host) { return host; }
   public SymAST forBoolConstant(BoolConstant host) { return host; }
   public SymAST forNullConstant(NullConstant host) { return host; }
-  
-  public SymAST forSymVariable(Variable host) { 
+
+  public SymAST forSymVariable(Variable host) {
     DepthVariable match = env.accept(new LookupVisitor<DepthVariable>(host));
-    if (match == null) throw new 
+    if (match == null) throw new
       SyntaxException("variable " + host + " is unbound");
     return match.rename();
   }
-  
+
   public SymAST forPrimFun(PrimFun host) { return host; }
-  
+
   public SymAST forUnOpApp(UnOpApp host) {
     SymAST arg = (SymAST) host.arg();
     SymAST newArg = arg.accept(this);  // throws an exception on error
     return new UnOpApp(host.rator(), newArg);
   }
-  
+
   public SymAST forBinOpApp(BinOpApp host) {
     SymAST arg1 = (SymAST) host.arg1();
     SymAST arg2 = (SymAST) host.arg2();
@@ -2470,27 +2470,27 @@ class CheckVisitor implements SymASTVisitor<SymAST> {
     }
     return new BinOpApp(rator, newArg1, newArg2);
   }
-  
+
   public SymAST forApp(App a) {
     SymAST rator = (SymAST) a.rator();
     SymAST newRator = rator.accept(this); // throws an exception on error
     SymAST[] args = (SymAST[]) a.args();
     int n = args.length;
     SymAST[] newArgs = new SymAST[n];
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
       newArgs[i] = args[i].accept(this); // throws an exception on error
     return new App(newRator, newArgs);
   }
-  
+
   /* Checka for duplicates in Map vars, increment depth, construct new visitor for Map body, and translate body. */
   public SymAST forMap(Map m) {
     Variable[] vars = m.vars();
     PureList<Variable> varList = PureListClass.arrayToList(vars);
 //    System.err.println("variable list is: " + varList);
     varList.accept(AnyDuplicatesVisitor.ONLY);  // throws exception on an error
-    
+
     int n = vars.length;
-    
+
     PureList<DepthVariable> newEnv = env;
     Variable[] newVars = new Variable[n];
 //    System.out.println("map:" + m + " depth:" + depth);
@@ -2498,97 +2498,97 @@ class CheckVisitor implements SymASTVisitor<SymAST> {
       DepthVariable newDepthVar = new DepthVariable(vars[i], depth+1);
       newEnv = newEnv.cons(newDepthVar);
       newVars[i] = newDepthVar.rename();
-    }    
-    
+    }
+
     SymAST newBody = m.body().accept(newVisitor(newEnv));  // increments depth
     return new Map(newVars,newBody);
   }
-  
+
   public SymAST forIf(If i) {
     SymAST test = (SymAST) i.test();
     SymAST conseq = (SymAST) i.conseq();
     SymAST alt = (SymAST) i.alt();
-      
+
     SymAST newTest = test.accept(this);
     SymAST newConseq = conseq.accept(this);
     SymAST newAlt = alt.accept(this);
     return new If(newTest, newConseq, newAlt);
   }
-  
+
   public SymAST forLetRec(LetRec l) {
-    /* Check for duplicates in LetRec vars, rename vars, construct newEnv, check LetRec rhs's and body in newEnv, 
+    /* Check for duplicates in LetRec vars, rename vars, construct newEnv, check LetRec rhs's and body in newEnv,
      * translate rhs's and body */
     Variable[] vars = l.vars();
     SymAST[] exps =  l.exps();
-    
+
     PureList<Variable> varList = PureListClass.arrayToList(vars);
     varList.accept(AnyDuplicatesVisitor.ONLY);  // throws exception on an error
-    
-    int n = vars.length;    
-    
+
+    int n = vars.length;
+
     /** DUPLICATED CODE; see above */
     PureList<DepthVariable> newEnv = env;
     Variable[] newVars = new Variable[n];
-    
+
     for (int i = n-1; i >= 0; i--) {
       DepthVariable newDepthVar = new DepthVariable(vars[i], depth+1);
       newEnv = newEnv.cons(newDepthVar);
       newVars[i] = newDepthVar.rename();
     }
-    
+
     CheckVisitor newVisitor = newVisitor(newEnv);  // increments depth
     //System.out.println("forLetrec: new visitor:" + newVisitor.depth);
 
     SymAST[] newExps = new SymAST[n];
-    for (int i = 0; i < n; i++) 
-      newExps[i] = exps[i].accept(newVisitor); 
-    
+    for (int i = 0; i < n; i++)
+      newExps[i] = exps[i].accept(newVisitor);
+
     SymAST newBody = l.body().accept(newVisitor); // throws an exception on error
     return new LetRec(Def.makeDefs(newVars,newExps), newBody);
   }
-  
+
   public SymAST forLet(Let l) {
     /* Check for duplicates in Let vars; rename vars to eliminate shadowing; check and translate RHSs of defs;
      * construct new symbol table (newEnv) extending the old one (env); check and transform body. */
     Variable[] vars = l.vars();
     PureList<Variable> varList = PureListClass.arrayToList(vars);
     varList.accept(AnyDuplicatesVisitor.ONLY);  // throws exception on an error
-    
+
     SymAST[] exps = l.exps();
-    int n = vars.length;    
+    int n = vars.length;
     SymAST[] newExps = new SymAST[n];
 
-    for (int i = 0; i < n; i++)  
-      newExps[i] = exps[i].accept(this);  
-        
+    for (int i = 0; i < n; i++)
+      newExps[i] = exps[i].accept(this);
+
     /** More DUPLICATED Code */
     PureList<DepthVariable> newEnv = env;
     Variable[] newVars = new Variable[n];
-    
+
     for (int i = n-1; i >= 0; i--) {
       DepthVariable newDepthVar = new DepthVariable(vars[i], depth+1);
       newEnv = newEnv.cons(newDepthVar);
       newVars[i] = newDepthVar.rename();
     }
-    
-    CheckVisitor newVisitor = newVisitor(newEnv);  // embeds new symbol table in newVisitor 
+
+    CheckVisitor newVisitor = newVisitor(newEnv);  // embeds new symbol table in newVisitor
     //System.out.println("forLet: new visitor:" + newVisitor.depth);
     SymAST newBody = l.body().accept(newVisitor); // throws an exception on error
     return new Let(Def.makeDefs(newVars, newExps), newBody);
   }
-  
+
   public SymAST forLetcc(Letcc host) {
     DepthVariable newDepthVar = new DepthVariable(host.var(), depth+1);
     PureList<DepthVariable> newEnv = env.cons(newDepthVar);
     return new Letcc(newDepthVar.rename(), host.body().accept(newVisitor(newEnv)));
   }
-  
+
   public SymAST forBlock(Block b) {
-    // Check each exp 
+    // Check each exp
     SymAST[] exps =  (SymAST[]) b.exps();
-    int n = exps.length;    
+    int n = exps.length;
     SymAST[] newExps = new SymAST[n];
-    for (int i = 0; i < n; i++) newExps[i] = exps[i].accept(this); 
+    for (int i = 0; i < n; i++) newExps[i] = exps[i].accept(this);
     return new Block(newExps);
   }
 }
@@ -2600,26 +2600,26 @@ class AnyDuplicatesVisitor implements PureListVisitor<Variable,Void> {
   /* Create singleton instance. */
   public static AnyDuplicatesVisitor ONLY = new AnyDuplicatesVisitor();
   private AnyDuplicatesVisitor() {}
-  
+
   public Void forEmpty(Empty<Variable> host) { return null; }
-  public Void forCons(Cons<Variable> host) { 
+  public Void forCons(Cons<Variable> host) {
     if (host.rest().hasMember(host.first())) throw new
       SyntaxException(host.first() + " is declared twice in the same scope");
     host.rest().accept(this);
     return null;
   }
 }
-  
+
 /** A lookup visitor class that returns element matching the embedded var. If no match found, returns null. */
-class LookupVisitor<ElemType extends WithVariable> implements 
+class LookupVisitor<ElemType extends WithVariable> implements
   PureListVisitor<ElemType,ElemType> {
-  
+
   Variable var;  // the lexer guarantees that there is only one Variable object for a given name
-  
+
   LookupVisitor(Variable v) { var = v; }
-  
+
   public ElemType forEmpty(Empty<ElemType> e) { return null; }
-  
+
   public ElemType forCons(Cons<ElemType> c) {
 //    System.err.println("forCons in LookUpVisitor invoked; c = " + c);
     ElemType e = c.first();
@@ -2638,34 +2638,39 @@ class SConvertException extends RuntimeException {
 
 /* Class for converting a SymAST (symbol variables in AST) to an SDAST (static distance coordinates in AST) */
 class SConverter {
-    
+
   SymbolTable symbolTable;
   SymASTVisitor<SDAST> convert;   // visitor that performs the conversion
-  
+
   SConverter() {
     symbolTable = new SymbolTable();
     convert = new SConvert(0);
   }
-  
-  SDAST convert(SymAST prog) { return prog.accept(convert); }
-  
-  /** Visitor class for performing the static distance conversion; it modifies symbolTable during traversal, 
+
+  SDAST convert(SymAST prog) {
+    System.out.println("depth = " + ((SConvert) convert).depth);
+    return prog.accept(convert);
+  }
+
+  /** Visitor class for performing the static distance conversion; it modifies symbolTable during traversal,
     * but restores it on exit */
   class SConvert implements SymASTVisitor<SDAST> {
-    
-    int depth; // lexical depth of expression being visited
-    
+
+    public int depth; // lexical depth of expression being visited
+
     SConvert(int d) { depth = d; }
-    
+
+    public int getDepth() {return depth;}
+
     /** Returns Pair containing (depth - [dist for v in symbolTable], offset for v in symbolTable).
-      * Note: programs are assumed to be well-formed. */ 
+      * Note: programs are assumed to be well-formed. */
     Pair lookup(Variable v) {
       Pair match = (Pair) symbolTable.get(v);
-      if (match == null) 
+      if (match == null)
         throw new SConvertException("Variable " + v + " not found in Symbol Table");
       return new Pair(depth - match.dist(), match.offset());
     }
-  
+
     private SDAST forDefault(AST host) { throw new SyntaxException(host + " is not a legal input to SConvert"); }
     public SDAST forIntConstant(IntConstant i) { return i; }
     public SDAST forNullConstant(NullConstant n) { return n; }
@@ -2673,6 +2678,8 @@ class SConverter {
 
     // TODO: get static distance here
     public SDAST forSymVariable(Variable v) {
+//      Pair match = lookup(v);
+//      return new Pair(match.dist() - 1, match.offset());
       return lookup(v);
     }
 
@@ -2688,6 +2695,8 @@ class SConverter {
     public SDAST forBinOpApp(BinOpApp b) {
       SDAST a1 = convert((SymAST) b.arg1());
       SDAST a2 = convert((SymAST) b.arg2());
+      System.out.println("b.arg() is: " + b.arg1() + " after conversion: " + a1);
+      System.out.println("b.arg2() is: " + b.arg2() + " after conversion: " + a2);
       return new BinOpApp(b.rator(), a1, a2);
     }
 
@@ -2697,17 +2706,37 @@ class SConverter {
       for (int i = 0; i < args.length; i++) {
         args[i] = convert(((SymAST)a.args()[i]));
       }
-      return new App(a.rator(), args);
+
+      return new App(convert((SymAST) a.rator()), args);
     }
 
 
     // TODO: implement map
+//    public SDAST forMap(Map m) {
+//
+//      if (m.body() instanceof Map || m.body() instanceof Let) {
+//          System.out.println("Found recursive map or let");
+//          for (int i = 0; i < m.vars().length; i++) {
+//          symbolTable.put(m.vars()[i], new Pair(depth - 1, i));
+//        }
+//      } else {
+//        for (int i = 0; i < m.vars().length; i++) {
+//          symbolTable.put(m.vars()[i], new Pair(depth, i));
+//        }
+//      }
+////      depth--;
+//      return new SMap(m.vars().length, convert(m.body()));
+////      return null;
+//    }
+
     public SDAST forMap(Map m) {
       for (int i = 0; i < m.vars().length; i++) {
-        symbolTable.put(m.vars()[i], new Pair(depth, i));
+        symbolTable.put(m.vars()[i], new Pair(depth + 1, i));
       }
-      return new SMap(m.vars().length, convert(m.body()));
-//      return null;
+      depth++;
+      SDAST body = convert(m.body());
+      depth--;
+      return new SMap(m.vars().length, body);
     }
 
     // TODO: fix this
@@ -2726,9 +2755,10 @@ class SConverter {
       int n = defs.length;
 
       for (int i = 0; i < n; i++) {
-        symbolTable.put(defs[i].lhs(), new Pair(depth, i));
+        symbolTable.put(defs[i].lhs(), new Pair(depth + 1, i));
         sdArr[i] = convert(defs[i].rhs());
       }
+      depth++;
 //      return convert((SymAST)l.body());
       return new SLet(sdArr, convert(l.body()));
     }
@@ -2740,11 +2770,15 @@ class SConverter {
       int n = defs.length;
 
       for (int i = 0; i < n; i++) {
-        symbolTable.put(defs[i].lhs(), new Pair(depth, i));
+        symbolTable.put(defs[i].lhs(), new Pair(depth + 1, i));
+        depth++;
         sdArr[i] = convert(defs[i].rhs());
+//        sdArr[i] = new Def((Variable) lhsConv, rhsConv);
+        System.out.println(sdArr[i]);
+        System.out.println("def[i].lhs(): " + defs[i].lhs());
       }
 //      return convert((SymAST)l.body());
-      return new SLet(sdArr, convert(l.body()));
+      return new SLetRec(sdArr, convert(l.body()));
     }
 
     /* TODO: This is a STUB. */
@@ -2761,9 +2795,9 @@ class SConverter {
       return new Block(sdArr);
     }
   }
-  
+
   public static void main(String[] args) throws IOException  {
-    /* Check for legal argument list. */ 
+    /* Check for legal argument list. */
     if (args.length == 0) {
       System.out.println("Usage: java SConverter <filename>");
       return;
@@ -2772,23 +2806,23 @@ class SConverter {
     SConverter s = new SConverter();
     SymAST prog = p.checkProg();
     System.out.println("Parsed program is:\n" + prog);
-    try { System.out.println("\nConverted form is:\n" + s.convert(prog)); }  
+    try { System.out.println("\nConverted form is:\n" + s.convert(prog)); }
     catch (Exception e) { e.printStackTrace(); }
-    
+
     SymAST cpsProg = p.cpsProg();
     System.out.println("CPSed program is:\n" + cpsProg);
     System.out.println("\nConverted form is:\n" + s.convert(cpsProg));
   }
-  static class SymbolTable {    
+  static class SymbolTable {
     /* Table mapping variables to LinkedLists of Pair (depth,offset) */
-    HashMap<Variable,LinkedList<Pair>> table = new HashMap<Variable,LinkedList<Pair>>();  
-    
+    HashMap<Variable,LinkedList<Pair>> table = new HashMap<Variable,LinkedList<Pair>>();
+
     Pair get(Variable v) {
       LinkedList<Pair> vStack = table.get(v);
       if (v == null) return null;
       return (Pair) vStack.getLast();
     }
-    
+
     void put(Variable v, Pair p) {
       LinkedList<Pair> vStack = table.get(v);
       if (vStack == null) {
@@ -2797,7 +2831,7 @@ class SConverter {
       }
       vStack.addLast(p);
     }
-    
+
     void remove(Variable v) {
       LinkedList<Pair> vStack = table.get(v);
       if (vStack == null) throw new SConvertException("Variable " + v + " not available in symbol table to delete");
