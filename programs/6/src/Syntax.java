@@ -2757,10 +2757,15 @@ class SConverter {
       for (int i = 0; i < n; i++) {
         symbolTable.put(defs[i].lhs(), new Pair(depth + 1, i));
         sdArr[i] = convert(defs[i].rhs());
+//        sdArr[i] = new Def((Variable) lhsConv, rhsConv);
+        System.out.println(sdArr[i]);
+        System.out.println("def[i].lhs(): " + defs[i].lhs());
       }
       depth++;
+      SDAST body = convert(l.body());
+      depth--;
 //      return convert((SymAST)l.body());
-      return new SLet(sdArr, convert(l.body()));
+      return new SLetRec(sdArr, body);
     }
 
     // TODO: SAME AS LET. CHANGE THIS!!
@@ -2771,14 +2776,16 @@ class SConverter {
 
       for (int i = 0; i < n; i++) {
         symbolTable.put(defs[i].lhs(), new Pair(depth + 1, i));
-        depth++;
         sdArr[i] = convert(defs[i].rhs());
 //        sdArr[i] = new Def((Variable) lhsConv, rhsConv);
         System.out.println(sdArr[i]);
         System.out.println("def[i].lhs(): " + defs[i].lhs());
       }
+      depth++;
+      SDAST body = convert(l.body());
+      depth--;
 //      return convert((SymAST)l.body());
-      return new SLetRec(sdArr, convert(l.body()));
+      return new SLetRec(sdArr, body);
     }
 
     /* TODO: This is a STUB. */
