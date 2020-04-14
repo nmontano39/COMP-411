@@ -2765,7 +2765,7 @@ class SConverter {
       SDAST body = convert(l.body());
       depth--;
 //      return convert((SymAST)l.body());
-      return new SLetRec(sdArr, body);
+      return new SLet(sdArr, body);
     }
 
     // TODO: SAME AS LET. CHANGE THIS!!
