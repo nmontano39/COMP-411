@@ -2031,9 +2031,7 @@ class Parser {
   /* Convert exp,cont to correponding CPS'ed program */
   public SymAST convertToCPS(SymAST exp, SymAST cont) {
     if (exp.accept(isSimple) == TRUE) {
-      System.out.println("Exp is simple, exp: " + exp + " cont " + cont);
       App a = new App(cont, new SymAST[] {exp.accept(reshape)});
-      System.out.println("EXPAAAAAA: " + a.rator());
       return a;
     }
 
@@ -2329,8 +2327,6 @@ class Parser {
       Def firstDef = l.defs()[0];
       Variable[] mapVars = new Variable[] {firstDef.lhs()};
       Map map = new Map(mapVars, l.body().accept(this));
-      System.out.println(map);
-      System.out.println(firstDef);
       return firstDef.rhs().accept(new ConvertToCPS(map));
     }
 
