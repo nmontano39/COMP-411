@@ -258,7 +258,7 @@ public class Assign6Test extends TestCase {
     try {
       String output = "6";
       String input = "3 + 3";
-      evalCheck("uop", output, input );  // for Assignment 6, should be allEvalCheck
+      allEvalCheck("uop", output, input );  // for Assignment 6, should be allEvalCheck
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -278,7 +278,6 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  // /* TODO: testing SD */
   public void testSdeep() {
     try {
       String output = "let [*2*] map [*1*] to letrec [*1*] map [*1*] to [0,0]; in [0,0]([0,0]); " +
@@ -319,9 +318,9 @@ public class Assign6Test extends TestCase {
 // /* TODO: testing SD */
   public void testSmap() {
     try {
-      String output = "map [*1*] to [0,0]";
+      String output = "(closure: map [*2*] to [0,1]([0,0]))";
       String input = "map z to z";
-      SDCheck("Smap", output, input );
+      CpsSDEvalCheck("Smap", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -417,7 +416,7 @@ public class Assign6Test extends TestCase {
     try {
       String output = "2";
       String input = "let x := 1; y:= 2; in if x > 0 then y else y+2";
-      SDEvalCheck("Smap", output, input );
+      allEvalCheck("Smap", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -443,7 +442,7 @@ public class Assign6Test extends TestCase {
     try {
       String output = "5";
       String input = "let x := 1; in if x > 0 then 5 else 10";
-      SDEvalCheck("Smap", output, input );
+      allEvalCheck("Smap", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -553,7 +552,7 @@ public class Assign6Test extends TestCase {
       String input = "letrec append := map x,y to \n" +
                          "if (x = null) then y else cons(first(x), append(rest(x), y)); \n" +
                          "in let s := cons(1, cons(2, cons(3, null))); in append(s, s)";
-      SDEvalCheck("Sappend", output, input );
+      allEvalCheck("Sappend", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -581,7 +580,7 @@ public class Assign6Test extends TestCase {
     try {
       String output = "(1 2 3 1 2 3)";
       String input = "letrec append := map x,y to\n          if x = null then y else cons(first(x), append(rest\n(x), y));\n            in let s := cons(1,cons(2,cons(3,null)));\n          in append(s,s)";
-      evalCheck("append", output, input );  // should be allEvalCheck for Assignment 6
+      allEvalCheck("append", output, input );  // should be allEvalCheck for Assignment 6
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -626,7 +625,6 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  /* TODO: testing SD and letrec  */
   public void testSfact() {
     try {
       String output = "let [*1*] 6; " +
@@ -653,7 +651,7 @@ public class Assign6Test extends TestCase {
                          "in letrec Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g); " +
                          "in let FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
                          "in (Y(FACT))(n)";
-      SDEvalCheck("Sfact", output, input );
+      allEvalCheck("Sfact", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -685,7 +683,7 @@ public class Assign6Test extends TestCase {
     try {
       String output = "720";
       String input = "let n:= 6; in\n   letrec Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g);\n   in \n    let \n       FACT := map f to map n to if n = 0 then 1 else n * f(n - 1);\n      in (Y(FACT))(n)";
-      evalCheck("fact", output, input );  // for Assignment 6, allEvalCheck should be used.
+      allEvalCheck("fact", output, input );  // for Assignment 6, allEvalCheck should be used.
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -706,37 +704,36 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-  // /* TODO: uncomment to test letcc */
-//  public void testCletcc() {
-//    try {
-//      String output = "let x:1 := map :0,:1 to (map x to x)(:0); in if true then x:1(5, map x to x) else (map x to x)(3)";
-//      String input = "letcc x in  if true then  x(5)  else 3";
-//      cpsCheck("Cletcc", output, input );
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      fail("Cletcc threw " + e);
-//    }
-//  } //end of func
-//
-//    public void testLetcc1() {
-//    cpsEvalCheck("<letcc1>", "1", "letcc x in 1");
-//  }
-//
-//  public void testLetcc2() {
-//    cpsEvalCheck("<letcc2>", "1", "letcc x in x(1)");
-//  }
-//  public void testLetcc3() {
-//    cpsEvalCheck("<letcc3>", "10",
-//             "let prod := map s1 to " +
-//             "              letcc escape " +
-//             "              in letrec prodHelp := " +
-//             "                 map s to if null?(s) then 1 " +
-//             "                          else if ~number?(first(s)) then escape(0) " +
-//             "                          else first(s) * prodHelp(rest(s)); " +
-//             "               in prodHelp(s1); " +
-//             "in prod(cons(2,cons(5,null)))");
-//  }
+  public void testCletcc() {
+    try {
+      String output = "let x:1 := map :0,:1 to (map x to x)(:0); in if true then x:1(5, map x to x) else (map x to x)(3)";
+      String input = "letcc x in  if true then  x(5)  else 3";
+      cpsCheck("Cletcc", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Cletcc threw " + e);
+    }
+  } //end of func
+
+    public void testLetcc1() {
+    cpsEvalCheck("<letcc1>", "1", "letcc x in 1");
+  }
+
+  public void testLetcc2() {
+    cpsEvalCheck("<letcc2>", "1", "letcc x in x(1)");
+  }
+  public void testLetcc3() {
+    cpsEvalCheck("<letcc3>", "10",
+             "let prod := map s1 to " +
+             "              letcc escape " +
+             "              in letrec prodHelp := " +
+             "                 map s to if null?(s) then 1 " +
+             "                          else if ~number?(first(s)) then escape(0) " +
+             "                          else first(s) * prodHelp(rest(s)); " +
+             "               in prodHelp(s1); " +
+             "in prod(cons(2,cons(5,null)))");
+  }
 }
 
 

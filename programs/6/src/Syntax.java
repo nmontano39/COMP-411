@@ -2065,17 +2065,11 @@ class Parser {
     public SymAST forMap(Map m) { return new App(cont, new SymAST[] {m.accept(reshape)}); }
 
     public SymAST forUnOpApp(UnOpApp u) {
-      System.out.println("Gets to UnOpApp: " + u);
       // Case 1
       if (u.accept(isSimple) == TRUE) {
         return new App(cont, new SymAST[] {u.accept(reshape)});
       }
-      // Case 4
-      if (((SymAST) u.arg()).accept(isSimple)) {
-        System.out.println("Goes into UnOpApp CASE 4 - NOT IMPLEMENTED");
-        return null;
-      }
-      System.out.println("UnOpApp goes to case 5");
+
       // Case 5
       UnOp s = u.rator();
       SymAST e1 = (SymAST) u.arg();
@@ -2093,10 +2087,9 @@ class Parser {
       }
       // Case 4
       if (((SymAST) b.arg1()).accept(isSimple) && ((SymAST) b.arg2()).accept(isSimple)) {
-        System.out.println("Goes into BinOpApp CASE 4 - NOT IMPLEMENTED");
         return null;
       }
-      System.out.println("Goes into BinOpApp CASE 5");
+
       // Case 5
       Def def1 = new Def(genVariable(), (SymAST) b.arg1());
       Def def2 = new Def(genVariable(), (SymAST) b.arg2());
@@ -2106,45 +2099,33 @@ class Parser {
     }
 
     public SymAST forApp(App a) {
-      System.out.println("Gets to App a: " + a);
-      System.out.println("a's rator is simple - " + ((SymAST) a.rator()).accept(isSimple));
-      System.out.println("a's args are simple - " + allArgsSimple(a));
-
       // Case 1
       if (a.accept(isSimple) == TRUE) {
-        System.out.println("Gets to case 1");
-        System.out.println("App is simple, a: " + a);
         return new App(cont, new SymAST[] {a.accept(reshape)});
       }
 
       // Case 2
       if ((a.rator() instanceof Map) && (a.args().length > 0)) {
-        System.out.println("Gets to case 2");
         return case2(a);
       }
 
       // Case 3
       if ((a.rator() instanceof Map) && (a.args().length == 0)) {
-        System.out.println("Gets to case 3");
         return case3(a);
       }
 
       // Case 4
       if (((SymAST) a.rator()).accept(isSimple) && allArgsSimple(a)) {
-        System.out.println("Gets to case 4");
-        System.out.println("Cont: " + cont);
         return case4(a);
       }
 
 
       // Case 5
       if (((SymAST) a.rator()).accept(isSimple) && a.args().length > 0) {
-        System.out.println("Gets to case 5");
         return case5(a);
       }
 
       // If it gets this far, it must be case 6.
-      System.out.println("Gets to case 6");
       return case6(a);
     }
 
@@ -2153,36 +2134,27 @@ class Parser {
         return new App(cont, new SymAST[] {i.accept(reshape)});
       }
       if (((SymAST)i.test()).accept(isSimple)) {
-        System.out.println("Gets to case 7");
         return case7(i);
       } else {
-        System.out.println("Gets to case 8");
         return case8(i);
       }
     }
 
     public SymAST forLet(Let l) {
-      System.out.println("Gets to Let");
       if (l.accept(isSimple) == TRUE) {
-        System.out.println("Let is simple");
         return new App(cont, new SymAST[] {l.accept(reshape)});
       }
-      System.out.println("Let is not simple: " + l);
       Def firstDef = l.defs()[0];
       if (firstDef.rhs().accept(isSimple)) {
         if (l.defs().length > 1) {
-          System.out.println("Gets to case 11");
           return case11(l);
         } else {
-          System.out.println("Gets to case 10");
           return case10(l);
         }
       } else {
         if (l.defs().length > 1) {
-          System.out.println("Gets to case 13");
           return case13(l);
         } else {
-          System.out.println("Gets to case 12");
           return case12(l);
         }
       }
@@ -2195,9 +2167,7 @@ class Parser {
 
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
     public SymAST forLetcc(Letcc l) {
-      /* TODO: This is a STUB. */
-
-      return null;
+      return caseLetcc(l);
     }
 
     /* Assumes body is non-simple. Otherwise 'this' would be simple since RHSs are all maps. */
@@ -2248,8 +2218,6 @@ class Parser {
       SymAST[] newArgs = new SymAST[a.args().length + 1];
       // Reshape the rator.
       SymAST newRator = ((SymAST) a.rator()).accept(reshape);
-      System.out.println("Rator: " + a.rator());
-      System.out.println("new rator: " + newRator);
 
       // Reshape the args.
       for (int i = 0; i < a.args().length; i++) {
@@ -2258,7 +2226,6 @@ class Parser {
       // Add k as the last arg in newArgs
       newArgs[a.args().length] = cont;
       // Return as App.
-      System.out.println("Result from Case 4: " + new App(newRator, newArgs));
       return new App(newRator, newArgs);
     }
 
@@ -2336,7 +2303,6 @@ class Parser {
     private SymAST case10(Let l) {
       Def firstDef = l.defs()[0];
       Def def = new Def(firstDef.lhs(), firstDef.rhs().accept(reshape));
-      System.out.println("The def in case 10 is: " + def);
       Def[] arr = new Def[] {def};
       return new Let(arr, l.body().accept(this));
     }
@@ -2393,6 +2359,14 @@ class Parser {
       }
 
       return new LetRec(defArr, lr.body().accept(this));
+    }
+
+    private SymAST caseLetcc(Letcc lc) {
+      Variable v = genVariable();
+      Variable v1 = genVariable();
+      Map m = new Map(new Variable[] {v, v1}, new App(cont, new Variable[] {v}));
+      Def d = new Def(lc.var(), m);
+      return new Let(new Def[] {d}, lc.body().accept(this));
     }
 
     //////////////////////////////////////// CASE HANDLERS END ////////////////////////////////////////
@@ -2492,7 +2466,6 @@ class CheckVisitor implements SymASTVisitor<SymAST> {
 
     PureList<DepthVariable> newEnv = env;
     Variable[] newVars = new Variable[n];
-//    System.out.println("map:" + m + " depth:" + depth);
     for (int i = n-1; i >= 0; i--) {
       DepthVariable newDepthVar = new DepthVariable(vars[i], depth+1);
       newEnv = newEnv.cons(newDepthVar);
@@ -2750,9 +2723,8 @@ class SConverter {
     }
 
 
-    /* TODO: This is a STUB. */
     public SDAST forLetcc(Letcc host) {
-      return null;
+      throw new EvalException("letcc not supported in non-cps code");
     }
 
     public SDAST forBlock(Block b) {
