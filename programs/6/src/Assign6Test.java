@@ -475,9 +475,9 @@ public class Assign6Test extends TestCase {
                         "map [*2*] to if ([0,0] = null) then [0,1] else cons(first([0,0]), [1,0](rest([0,0]), [0,1])); " +
                       "in let [*1*] cons(1, cons(2, cons(3, null))); " +
                          "in [1,0]([0,0], [0,0])";
-      String input = "letrec append := map x,y to if x = null then y else cons(first(x), append(rest\n(x), y)); " +
-                     "in let s := cons(1,cons(2,cons(3,null))); " +
-                        "in append(s,s)";
+      String input = "letrec append := map x,y to \n" +
+                         "if (x = null) then y else cons(first(x), append(rest(x), y)); \n" +
+                         "in let s := cons(1, cons(2, cons(3, null))); in append(s, s)";
       SDCheck("Sappend", output, input );
 
     } catch (Exception e) {
