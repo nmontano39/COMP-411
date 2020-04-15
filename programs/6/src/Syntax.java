@@ -488,7 +488,7 @@ class Def {
   public static Def[] makeDefs(Variable[] vars, SymAST[] exps) {
     int n = vars.length;
     if (exps.length != n) throw
-      new SyntaxException("Attempt to build Defs[] with mismatched Variable[] " + vars + " and SymAST[] " + exps);
+      new SyntaxException("Attempt to build Defs[] with mismatched Variable[] " + Arrays.toString(vars) + " and SymAST[] " + Arrays.toString(exps));
     Def[] newDefs = new Def[n];
     for (int i = 0; i < n; i++) newDefs[i] = new Def(vars[i], exps[i]);
     return newDefs;
@@ -497,7 +497,7 @@ class Def {
   static Def[] tail(Def[] in) {
     int n = in.length;
     Def[] out = new Def[n-1];
-    for (int i = 0; i < n-1; i++) out[i] = in[i+1];
+    System.arraycopy(in, 1, out, 0, n - 1);
     return out;
   }
 }
@@ -751,7 +751,7 @@ interface VarEnv extends Environment, PureList<Binding> {
 
 class EmptyVarEnv extends Empty<Binding> implements VarEnv {
   public static final EmptyVarEnv ONLY = new EmptyVarEnv();
-  private EmptyVarEnv() {};
+  private EmptyVarEnv() {}
   public EmptyVarEnv empty() { return ONLY; }
   public ConsVarEnv cons(Binding b) { return new ConsVarEnv(b,this); }
   public JamVal lookup(Object key) {
@@ -778,7 +778,7 @@ interface SDEnv extends Environment, PureList<JamVal[]> {
 
 class EmptySDEnv extends Empty<JamVal[]> implements SDEnv {
   public static final EmptySDEnv ONLY = new EmptySDEnv();
-  private EmptySDEnv() {};
+  private EmptySDEnv() {}
   public EmptySDEnv empty() { return ONLY; }
   public ConsSDEnv cons(JamVal[] vals) { return new ConsSDEnv(vals,this); }
   public JamVal lookup(Object key) {
@@ -1243,7 +1243,7 @@ class Lexer extends StreamTokenizer {
 
   /** Find variable with name sval; create one if none exists */
   public Token intern(String sval) {
-    Token regToken = (Token) wordTable.get(sval);
+    Token regToken = wordTable.get(sval);
     if (regToken == null) { // sval must be new variable name
       Variable newVar = new Variable(sval);
       wordTable.put(sval,newVar);
@@ -1255,8 +1255,7 @@ class Lexer extends StreamTokenizer {
   /** Wrapper method for nextToken that converts IOExceptions thrown by nextToken to ParseExceptions. */
   private int getToken() {
     try {
-      int tokenType = nextToken();
-      return tokenType;
+      return nextToken();
     } catch(IOException e) {
       throw new ParseException("IOException " + e + "thrown by nextToken()");
     }
@@ -1707,6 +1706,7 @@ class Parser {
     Token t = in.readToken();
     if (t != inKey) error(t,"`in'");
     SymAST body = parseExp();
+    assert var instanceof Variable;
     return new Letcc((Variable) var, body);
   }
 
@@ -1761,6 +1761,7 @@ class Parser {
 
     do {
       if (! (t instanceof Variable)) error(t,"variable");
+      assert t instanceof Variable;
       vars.addLast((Variable)t);
       t = in.readToken();
       if (t == toKey) break;
@@ -1768,7 +1769,7 @@ class Parser {
       /* Comma found, read next variable */
       t = in.readToken();
     } while (true);
-    return (Variable[]) vars.toArray(new Variable[0]);
+    return vars.toArray(new Variable[0]);
   }
 
   private Def[] parseDefs(boolean forceMap) {
@@ -1790,7 +1791,7 @@ class Parser {
       t = in.readToken();
     } while (t != inKey);
 
-    return (Def[]) defs.toArray(new Def[0]);
+    return defs.toArray(new Def[0]);
   }
 
   private Def parseDef(Token var) {
@@ -1807,6 +1808,7 @@ class Parser {
 
     Token semi = in.readToken();
     if (semi != SemiColon.ONLY) error(semi,"`;'");
+    assert var instanceof Variable;
     return new Def((Variable) var, exp);
   }
 
@@ -1849,9 +1851,9 @@ class Parser {
 //    private SymAST forDefault(AST host)   {
 //      throw new CPSException("host " + host + " not supported by ReShape visitor");
 //    }
-    public SymAST forIntConstant(IntConstant host)   { return host; };
-    public SymAST forBoolConstant(BoolConstant host) { return host; };
-    public SymAST forNullConstant(NullConstant host) { return host; };
+    public SymAST forIntConstant(IntConstant host)   { return host; }
+    public SymAST forBoolConstant(BoolConstant host) { return host; }
+    public SymAST forNullConstant(NullConstant host) { return host; }
     public SymAST forSymVariable(Variable host)      { return host; }
     public SymAST forPrimFun(PrimFun host)           { return primTable.get(host); }
     public SymAST forUnOpApp(UnOpApp u) {
@@ -1965,8 +1967,8 @@ class Parser {
       if (! (a.rator() instanceof PrimFun)) return FALSE;
       SymAST[] args = (SymAST[]) a.args();
       int n = args.length;
-      for (int i = 0; i < n; i++) {
-        if (args[i].accept(this) == FALSE) return FALSE;
+      for (SymAST arg : args) {
+        if (arg.accept(this) == FALSE) return FALSE;
       }
       return TRUE;
     }
@@ -1986,11 +1988,11 @@ class Parser {
       Def[] defs = l.defs();
       int n = defs.length;
 
-      for (int i = 0; i < n; i++) {
-        SymAST rhs = (SymAST) defs[i].rhs();
+      for (Def def : defs) {
+        SymAST rhs = def.rhs();
         if (rhs.accept(this) == FALSE) return FALSE;
       }
-      if (((SymAST) l.body()).accept(this) == FALSE) return FALSE;
+      if (l.body().accept(this) == FALSE) return FALSE;
       return TRUE;
     }
 
@@ -1998,11 +2000,11 @@ class Parser {
       Def[] defs = l.defs();
       int n = defs.length;
 
-      for (int i = 0; i < n; i++) {
-        SymAST rhs = (SymAST) defs[i].rhs();
+      for (Def def : defs) {
+        SymAST rhs = def.rhs();
         if (rhs.accept(this) == FALSE) return FALSE;
       }
-      if (((SymAST) l.body()).accept(this) == FALSE) return FALSE;
+      if (l.body().accept(this) == FALSE) return FALSE;
       return TRUE;
     }
 
@@ -2011,8 +2013,8 @@ class Parser {
     public Boolean forBlock(Block b) {
       SymAST[] exps = (SymAST[]) b.exps();
       int n = exps.length;
-      for (int i = 0; i < n; i++) {
-        if (exps[i].accept(this) == FALSE) return FALSE;
+      for (SymAST exp : exps) {
+        if (exp.accept(this) == FALSE) return FALSE;
       }
       return TRUE;
     }
@@ -2031,12 +2033,15 @@ class Parser {
   /* Convert exp,cont to correponding CPS'ed program */
   public SymAST convertToCPS(SymAST exp, SymAST cont) {
     if (exp.accept(isSimple) == TRUE) {
-      App a = new App(cont, new SymAST[] {exp.accept(reshape)});
-      return a;
+      return new App(cont, new SymAST[] {exp.accept(reshape)});
     }
 
     return exp.accept(new ConvertToCPS(cont));
   }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////       PHASE 1 START       //////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   /** Converts a non-simple expression to CPS form */
   class ConvertToCPS implements SymASTVisitor<SymAST> {
@@ -2184,7 +2189,7 @@ class Parser {
       return true;
     }
 
-    //////////////////////////////////////// CASE HANDLERS START ////////////////////////////////////////
+    //////////////////////////////////////// CASE HANDLERS ////////////////////////////////////////
 
     /* handler for case 2
     * Cps[k, (map x1, ..., xn to B)(E1, ...,En)] => Cps[k, let x1 := E1; ...; xn := En; in B]
@@ -2357,6 +2362,7 @@ class Parser {
       return new LetRec(defArr, lr.body().accept(this));
     }
 
+    ////////////////    case for PHASE 4    ////////////////
     private SymAST caseLetcc(Letcc lc) {
       Variable v = genVariable();
       Variable v1 = genVariable();
@@ -2365,9 +2371,10 @@ class Parser {
       return new Let(new Def[] {d}, lc.body().accept(this));
     }
 
-    //////////////////////////////////////// CASE HANDLERS END ////////////////////////////////////////
-
   }
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////        PHASE 1 END        //////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public static void main(String[] args) throws IOException {
     /* Check for a legal argument list. */
@@ -2604,6 +2611,10 @@ class SConvertException extends RuntimeException {
   SConvertException(String s) { super(s); }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////       PHASE 2 START       //////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /* Class for converting a SymAST (symbol variables in AST) to an SDAST (static distance coordinates in AST) */
 class SConverter {
 
@@ -2630,7 +2641,7 @@ class SConverter {
     /** Returns Pair containing (depth - [dist for v in symbolTable], offset for v in symbolTable).
       * Note: programs are assumed to be well-formed. */
     Pair lookup(Variable v) {
-      Pair match = (Pair) symbolTable.get(v);
+      Pair match = symbolTable.get(v);
       if (match == null)
         throw new SConvertException("Variable " + v + " not found in Symbol Table");
       return new Pair(depth - match.dist(), match.offset());
@@ -2663,7 +2674,6 @@ class SConverter {
       for (int i = 0; i < args.length; i++) {
         args[i] = convert(((SymAST)a.args()[i]));
       }
-
       return new App(convert((SymAST) a.rator()), args);
     }
 
@@ -2718,7 +2728,6 @@ class SConverter {
       return new SLetRec(sdArr, body);
     }
 
-
     public SDAST forLetcc(Letcc host) {
       throw new EvalException("letcc not supported in non-cps code");
     }
@@ -2731,6 +2740,11 @@ class SConverter {
       return new Block(sdArr);
     }
   }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////       PHASE 2 END       ////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
   public static void main(String[] args) throws IOException  {
     /* Check for legal argument list. */
@@ -2756,15 +2770,11 @@ class SConverter {
     Pair get(Variable v) {
       LinkedList<Pair> vStack = table.get(v);
       if (v == null) return null;
-      return (Pair) vStack.getLast();
+      return vStack.getLast();
     }
 
     void put(Variable v, Pair p) {
-      LinkedList<Pair> vStack = table.get(v);
-      if (vStack == null) {
-        vStack = new LinkedList<Pair>();
-        table.put(v,vStack);
-      }
+      LinkedList<Pair> vStack = table.computeIfAbsent(v, k -> new LinkedList<Pair>());
       vStack.addLast(p);
     }
 

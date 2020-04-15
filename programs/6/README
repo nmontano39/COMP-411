@@ -3,22 +3,30 @@ sec14
 
 # Program Organization
 
-<- PROJECT 5 ->
+Phase 1:
+In order to complete this phase, we filled in the stubs for the class ConvertToCPS in the Syntax java file. The
+class ConvertToCPS implements SymASTVisitor in order to recursively convert an expression to CPS form. Each forXXX
+method handles cases 1-14 for defining the cps transformation. The forXXX method first checks the conditional if
+for each case before calling methods caseXXX corresponding to cases 1-14.
 
-Adding ref cells and assignment:
-In order to include the use of ref calls, we created two classes implementing JamVal in JamVal.java named
-JamBox and Unit. When our interpreter encounters a ref call, it creates a JamBox and gets/sets the internal
-value for ! and <- and returns the special unit value when appropriate.
+Phase 2:
+To complete phase 2 we filled in the stubs for the class SConverter in the Syntax java file. This class uses a
+SymASTVisitor to perform the conversion to sd form. Each of the visitors' forXXX methods recursively
+goes through the expression while putting each variable into a symbolTable. This symbolTable stores the information for
+each variables' depth and static distance.
 
-Adding blocks:
-To handle blocks, we created a class implementing AST in AST.java named Block. A Block is constructed similar
-to a Box except it contains a list of expressions instead of a value. When our interpreter encounters a left
-brace it parses and creates a Block object and evaluates each internal expression from left to right then
-returns the rightmost evaluation.
+Phase 3:
+We completed phase 3 by filling in the stubs for the class SymEvaluator in the Semantics java file. Each forXXX method
+in SymEvaluator uses a SymASTVisitor to evaluate the SymAST programs, returning a JamVal.
+
+Phase 4:
+For phase 4, we added caseLetcc to the caseXXX handlers we created in phase 1.
+
 
 
 # Testing Processes
 
-We decided to use the provided 10 test cases along with 10 additional tests of our own. Some edge cases we
-tested for include references inside references, maps inside references, and references inside blocks. Our
-code passes all of these 20 tests with 77% line coverage.
+We tested our program using the provided test cases along with many of our own. We created testXXX cases to handle cases
+such as Let, Letcc, UnOpSimple/Complex, BinOpSimple/Complex, IfSimple/Complex, BlockSimple/Complex, and many
+more while using cpsCheck, sdCheck, and allEvalCheck as we progressed through each phase. Our code passes all 53 tests
+with 86% line coverage in SymEvaluator.

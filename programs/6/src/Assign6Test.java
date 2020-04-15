@@ -315,7 +315,6 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-// /* TODO: testing SD */
   public void testSmap() {
     try {
       String output = "(closure: map [*2*] to [0,1]([0,0]))";
@@ -528,7 +527,6 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
-// /* TODO: testing SD and letrec*/
   public void testSappend() {
     try {
       String output = "letrec [*1*] " +
