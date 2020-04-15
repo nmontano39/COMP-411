@@ -329,11 +329,35 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
+  public void testSmapEval() {
+    try {
+      String output = "(closure: map [*1*] to [0,0])";
+      String input = "map z to z";
+      SDEvalCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  } //end of func
+
   public void testSmap2() {
     try {
       String output = "map [*2*] to ([0,0] + [0,1])";
       String input = "map x,y to x + y";
       SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
+  public void testSmap2Eval() {
+    try {
+      String output = "(closure: map [*2*] to ([0,0] + [0,1]))";
+      String input = "map x,y to x + y";
+      SDEvalCheck("Smap", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -365,6 +389,18 @@ public class Assign6Test extends TestCase {
     }
   }
 
+  public void testSmap4Eval() {
+    try {
+      String output = "(closure: map [*1*] to map [*1*] to map [*1*] to (([2,0] + [1,0]) + [0,0]))";
+      String input = "map x to map y to map z to x + y + z";
+      SDEvalCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
   public void testSmapLet() {
     try {
       String output = "let [*1*] map [*1*] to map [*1*] to ([1,0] + [0,0]); in ([0,0](2))(3)";
@@ -377,12 +413,37 @@ public class Assign6Test extends TestCase {
     }
   }
 
+  public void testSLetEval() {
+    try {
+      String output = "2";
+      String input = "let x := 1; y:= 2; in if x > 0 then y else y+2";
+      SDEvalCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
+
 
   public void testSIf1() {
     try {
       String output = "let [*1*] 1; in if ([0,0] > 0) then 5 else 10";
       String input = "let x := 1; in if x > 0 then 5 else 10";
       SDCheck("Smap", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Smap threw " + e);
+    }
+  }
+
+  public void testSIfEval1() {
+    try {
+      String output = "5";
+      String input = "let x := 1; in if x > 0 then 5 else 10";
+      SDEvalCheck("Smap", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -486,6 +547,20 @@ public class Assign6Test extends TestCase {
     }
   } //end of func
 
+  public void testSappendEval() {
+    try {
+      String output = "(1 2 3 1 2 3)";
+      String input = "letrec append := map x,y to \n" +
+                         "if (x = null) then y else cons(first(x), append(rest(x), y)); \n" +
+                         "in let s := cons(1, cons(2, cons(3, null))); in append(s, s)";
+      SDEvalCheck("Sappend", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Sappend threw " + e);
+    }
+  }
+
   public void testCappend() {
     try {
       String output = "letrec append:1 := map x:2,y:2,:0 to if (x:2 = null) then :0(y:2) " +
@@ -564,6 +639,21 @@ public class Assign6Test extends TestCase {
                         "in let FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
                            "in (Y(FACT))(n)";
       SDCheck("Sfact", output, input );
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Sfact threw " + e);
+    }
+  } //end of func
+
+  public void testSfactEval() {
+    try {
+      String output = "720";
+      String input = "let n:= 6; " +
+                         "in letrec Y := map f to let g := map x to f(map z to (x(x))(z)); in g(g); " +
+                         "in let FACT := map f to map n to if n = 0 then 1 else n * f(n - 1); " +
+                         "in (Y(FACT))(n)";
+      SDEvalCheck("Sfact", output, input );
 
     } catch (Exception e) {
       e.printStackTrace();

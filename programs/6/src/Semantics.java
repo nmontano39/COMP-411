@@ -484,11 +484,49 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
   SDEvaluator(SDEnv env) { super(env); }
   
   /*  EvalVisitor methods for evaluating SDASTs. */
-  public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { /* . . . */ return null; /* TODO: This is a STUB. */ }
-  public JamVal forPair(Pair p)  { /* . . . */ return null; /* TODO: This is a STUB. */ }
-  public JamVal forSMap(SMap sm) { /* . . . */ return null; /* TODO: This is a STUB. */ }
-  public JamVal forSLet(SLet sl) { /* . . . */ return null; /* TODO: This is a STUB. */ }
-  public JamVal forSLetRec(SLetRec slr) { /* . . . */ return null; /* TODO: This is a STUB. */ }
+  public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { return new SDEvaluator(env); }
+  public JamVal forPair(Pair p)  { return env.lookup(p); }
+  public JamVal forSMap(SMap sm) {
+    return new SDClosure(sm, this);
+  }
+  public JamVal forSLet(SLet sl) {
+    /* Extract binding vars and exps (rhs's) from l */
+
+    SDAST[] rhss = sl.rhss();
+    JamVal[] jArr = new JamVal[rhss.length];
+    int n = rhss.length;
+    /* Construct newEnv for Let body and exps; vars are bound to values of corresponding exps using newEvalVisitor */
+    SDEnv newEnv = env();
+    for (int i = n-1; i >= 0; i--) {
+      jArr[i] = rhss[i].accept(this);
+    }
+    newEnv = newEnv.cons(jArr);
+    SDASTVisitor<JamVal> newEvalVisitor = newEvalVisitor(newEnv);
+    return sl.body().accept(newEvalVisitor);
+  }
+  public JamVal forSLetRec(SLetRec slr) {
+    SDAST[] rhss = slr.rhss();
+//    SymAST[] exps = l.exps();
+    int n = rhss.length;
+    /* Construct newEnv for Let body and exps; vars are bound to values of corresponding exps using newEvalVisitor */
+    SDEnv newEnv = env();
+
+    JamVal[] jArr = new JamVal[n];
+    for (int i = n-1; i >= 0; i--) {
+//      bindings[i] = new Binding(vars[i], null);  // bind var[i], setting value to null, which is not a JamVal
+      jArr[i] = null;
+    }
+
+    newEnv = newEnv.cons(jArr);
+
+    SDASTVisitor<JamVal> newEvalVisitor = newEvalVisitor(newEnv);
+
+    // fix up the dummy values
+    for (int i = 0; i < n; i++)
+      jArr[i] = (rhss[i].accept(newEvalVisitor));  // modifies newEnv and newEvalVisitor
+
+    return slr.body().accept(newEvalVisitor);
+  }
   
   /* Methods that are never invoked in the evaluation of well-formed SymASTs */
   public JamVal forSymVariable(Variable host) { return forDefault(host); }

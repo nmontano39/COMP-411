@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/AnyDuplicatesVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/AnyDuplicatesVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/CheckVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/CheckVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/LookupVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/LookupVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/SyntaxException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/SyntaxException.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Assign6Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign6Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Syntax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Syntax.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -105,14 +111,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="8642" />
-          <entry key="txt" value="433" />
+          <entry key="java" value="9003" />
+          <entry key="txt" value="464" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8642" />
-          <entry key="PLAIN_TEXT" value="433" />
+          <entry key="JAVA" value="9003" />
+          <entry key="PLAIN_TEXT" value="464" />
         </counts>
       </usages-collector>
     </session>
@@ -131,16 +137,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="2770" column="11" selection-start-line="2770" selection-start-column="11" selection-end-line="2770" selection-end-column="11" />
+            <state relative-caret-position="647">
+              <caret line="773" column="10" selection-start-line="773" selection-start-column="10" selection-end-line="773" selection-end-column="10" />
               <folding>
                 <element signature="e#20095#20096#0" expanded="true" />
                 <element signature="e#20193#20194#0" expanded="true" />
                 <element signature="e#67352#67353#0" expanded="true" />
                 <element signature="e#67440#67441#0" expanded="true" />
+                <element signature="e#92190#92191#0" expanded="true" />
+                <element signature="e#92227#92228#0" expanded="true" />
+                <element signature="e#93397#93398#0" expanded="true" />
+                <element signature="e#93427#93428#0" expanded="true" />
                 <element signature="e#96555#96556#0" expanded="true" />
                 <element signature="e#96580#96581#0" expanded="true" />
               </folding>
@@ -148,11 +158,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="567" column="27" lean-forward="true" selection-start-line="567" selection-start-column="27" selection-end-line="567" selection-end-column="27" />
+            <state relative-caret-position="314">
+              <caret line="645" column="43" lean-forward="true" selection-start-line="645" selection-start-column="43" selection-end-line="645" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -160,8 +170,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10780">
-              <caret line="497" column="1" selection-start-line="497" selection-start-column="1" selection-end-line="497" selection-end-column="1" />
+            <state relative-caret-position="402">
+              <caret line="525" column="16" selection-start-line="525" selection-start-column="16" selection-end-line="525" selection-end-column="16" />
+              <folding>
+                <element signature="e#20169#20170#0" expanded="true" />
+                <element signature="e#20214#20215#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -170,12 +184,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>forApp</find>
-      <find>App is simple</find>
-      <find>identity</find>
-      <find>ident</find>
-      <find>Variable var = new Variable(&quot;:&quot; + varcount);</find>
-      <find>new Variable(&quot;:&quot; + varcount);</find>
       <find>case7(</find>
       <find>forIf</find>
       <find>Syntax</find>
@@ -191,15 +199,21 @@
       <find>[*</find>
       <find>todo</find>
       <find>implements SDAST</find>
-      <find>stub</find>
       <find>letRec</find>
       <find>SDAST</find>
       <find>Smap</find>
       <find>s</find>
-      <find>smap</find>
-      <find>SDCheck</find>
       <find>SDCHEck</find>
+      <find>System</find>
+      <find>System.</find>
+      <find>SDCheck</find>
+      <find>cpsEval</find>
+      <find>stub</find>
+      <find>smap</find>
+      <find>testS</find>
+      <find>Sma</find>
       <find>TODO</find>
+      <find>sfact</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -225,8 +239,9 @@
         <option value="$PROJECT_DIR$/src/Assign4Test.java" />
         <option value="$PROJECT_DIR$/src/Interp.java" />
         <option value="$PROJECT_DIR$/src/Parser.java" />
-        <option value="$PROJECT_DIR$/src/Assign6Test.java" />
         <option value="$PROJECT_DIR$/src/Syntax.java" />
+        <option value="$PROJECT_DIR$/src/Semantics.java" />
+        <option value="$PROJECT_DIR$/src/Assign6Test.java" />
       </list>
     </option>
   </component>
@@ -272,7 +287,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586910172214" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586913112030" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -291,69 +306,71 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign6Test">
-    <configuration name="Assign6Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Assign6Test.testSappendEval">
+    <configuration name="Assign6Test.testSIfEval1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign6Test.testSappend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testSappend" />
+      <option name="METHOD_NAME" value="testSIfEval1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign6Test.testSmap3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign6Test.testSLetEval" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testSmap3" />
+      <option name="METHOD_NAME" value="testSLetEval" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign6Test.testSmap4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign6Test.testSappendEval" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testSmap4" />
+      <option name="METHOD_NAME" value="testSappendEval" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign6Test.testSmapLet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign6Test.testSfactEval" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testSmapLet" />
+      <option name="METHOD_NAME" value="testSfactEval" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign6Test.testSmap4Eval" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testSmap4Eval" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.Assign6Test.testSmap3" />
-      <item itemvalue="JUnit.Assign6Test" />
-      <item itemvalue="JUnit.Assign6Test.testSmap4" />
-      <item itemvalue="JUnit.Assign6Test.testSmapLet" />
-      <item itemvalue="JUnit.Assign6Test.testSappend" />
+      <item itemvalue="JUnit.Assign6Test.testSmap4Eval" />
+      <item itemvalue="JUnit.Assign6Test.testSIfEval1" />
+      <item itemvalue="JUnit.Assign6Test.testSLetEval" />
+      <item itemvalue="JUnit.Assign6Test.testSfactEval" />
+      <item itemvalue="JUnit.Assign6Test.testSappendEval" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign6Test" />
-        <item itemvalue="JUnit.Assign6Test.testSappend" />
-        <item itemvalue="JUnit.Assign6Test.testSmapLet" />
-        <item itemvalue="JUnit.Assign6Test.testSmap4" />
-        <item itemvalue="JUnit.Assign6Test.testSmap3" />
+        <item itemvalue="JUnit.Assign6Test.testSappendEval" />
+        <item itemvalue="JUnit.Assign6Test.testSfactEval" />
+        <item itemvalue="JUnit.Assign6Test.testSLetEval" />
+        <item itemvalue="JUnit.Assign6Test.testSIfEval1" />
+        <item itemvalue="JUnit.Assign6Test.testSmap4Eval" />
       </list>
     </recent_temporary>
   </component>
@@ -487,39 +504,46 @@
       <option name="project" value="LOCAL" />
       <updated>1586904635331</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="All tests pass upto Phase 2.">
+      <created>1586910193216</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1586910193216</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign6Test - 2020.04.14 at 17h 38m 02s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSmapEval - 2020.04.14 at 19h 42m 33s.xml">
+      <configuration name="Assign6Test.testSmapEval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.14 at 17h 38m 42s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSmap2Eval - 2020.04.14 at 19h 43m 08s.xml">
+      <configuration name="Assign6Test.testSmap2Eval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.14 at 17h 41m 43s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSmap2Eval - 2020.04.14 at 19h 43m 16s.xml">
+      <configuration name="Assign6Test.testSmap2Eval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmapLet - 2020.04.14 at 17h 47m 22s.xml">
-      <configuration name="Assign6Test.testSmapLet" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSmap2Eval - 2020.04.14 at 19h 43m 34s.xml">
+      <configuration name="Assign6Test.testSmap2Eval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmapLet - 2020.04.14 at 17h 47m 41s.xml">
-      <configuration name="Assign6Test.testSmapLet" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSmap4Eval - 2020.04.14 at 19h 44m 36s.xml">
+      <configuration name="Assign6Test.testSmap4Eval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.14 at 17h 47m 53s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSIfEval1 - 2020.04.14 at 19h 55m 46s.xml">
+      <configuration name="Assign6Test.testSIfEval1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.14 at 19h 06m 15s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSIfEval1 - 2020.04.14 at 19h 56m 04s.xml">
+      <configuration name="Assign6Test.testSIfEval1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.14 at 19h 07m 53s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSLetEval - 2020.04.14 at 20h 06m 12s.xml">
+      <configuration name="Assign6Test.testSLetEval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.14 at 19h 11m 53s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSLetEval - 2020.04.14 at 20h 06m 33s.xml">
+      <configuration name="Assign6Test.testSLetEval" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSappend - 2020.04.14 at 19h 12m 02s.xml">
-      <configuration name="Assign6Test.testSappend" configurationId="JUnit" />
+    <history-entry file="Assign6Test_testSLetEval - 2020.04.14 at 20h 08m 02s.xml">
+      <configuration name="Assign6Test.testSLetEval" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -575,7 +599,8 @@
     <MESSAGE value="SConvert seems to work for map. Need to fix for let." />
     <MESSAGE value="Need to fix for let and letrec." />
     <MESSAGE value="All but testSAppend work (for tests upto Phase 2)." />
-    <option name="LAST_COMMIT_MESSAGE" value="All but testSAppend work (for tests upto Phase 2)." />
+    <MESSAGE value="All tests pass upto Phase 2." />
+    <option name="LAST_COMMIT_MESSAGE" value="All tests pass upto Phase 2." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -621,32 +646,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10780">
-          <caret line="497" column="1" selection-start-line="497" selection-start-column="1" selection-end-line="497" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="567" column="27" lean-forward="true" selection-start-line="567" selection-start-column="27" selection-end-line="567" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Syntax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="2770" column="11" selection-start-line="2770" selection-start-column="11" selection-end-line="2770" selection-end-column="11" />
+        <state relative-caret-position="647">
+          <caret line="773" column="10" selection-start-line="773" selection-start-column="10" selection-end-line="773" selection-end-column="10" />
           <folding>
             <element signature="e#20095#20096#0" expanded="true" />
             <element signature="e#20193#20194#0" expanded="true" />
             <element signature="e#67352#67353#0" expanded="true" />
             <element signature="e#67440#67441#0" expanded="true" />
+            <element signature="e#92190#92191#0" expanded="true" />
+            <element signature="e#92227#92228#0" expanded="true" />
+            <element signature="e#93397#93398#0" expanded="true" />
+            <element signature="e#93427#93428#0" expanded="true" />
             <element signature="e#96555#96556#0" expanded="true" />
             <element signature="e#96580#96581#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="525" column="16" selection-start-line="525" selection-start-column="16" selection-end-line="525" selection-end-column="16" />
+          <folding>
+            <element signature="e#20169#20170#0" expanded="true" />
+            <element signature="e#20214#20215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="645" column="43" lean-forward="true" selection-start-line="645" selection-start-column="43" selection-end-line="645" selection-end-column="43" />
         </state>
       </provider>
     </entry>

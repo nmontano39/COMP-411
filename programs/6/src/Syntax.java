@@ -2250,7 +2250,6 @@ class Parser {
       SymAST newRator = ((SymAST) a.rator()).accept(reshape);
       System.out.println("Rator: " + a.rator());
       System.out.println("new rator: " + newRator);
-//      "(map x to x)(map x:1,:0 to :0(x:1))";
 
       // Reshape the args.
       for (int i = 0; i < a.args().length; i++) {
@@ -2648,7 +2647,6 @@ class SConverter {
   }
 
   SDAST convert(SymAST prog) {
-    System.out.println("depth = " + ((SConvert) convert).depth);
     return prog.accept(convert);
   }
 
@@ -2656,11 +2654,9 @@ class SConverter {
     * but restores it on exit */
   class SConvert implements SymASTVisitor<SDAST> {
 
-    public int depth; // lexical depth of expression being visited
+    int depth; // lexical depth of expression being visited
 
     SConvert(int d) { depth = d; }
-
-    public int getDepth() {return depth;}
 
     /** Returns Pair containing (depth - [dist for v in symbolTable], offset for v in symbolTable).
       * Note: programs are assumed to be well-formed. */
@@ -2676,31 +2672,23 @@ class SConverter {
     public SDAST forNullConstant(NullConstant n) { return n; }
     public SDAST forBoolConstant(BoolConstant b) { return b; }
 
-    // TODO: get static distance here
     public SDAST forSymVariable(Variable v) {
-//      Pair match = lookup(v);
-//      return new Pair(match.dist() - 1, match.offset());
       return lookup(v);
     }
 
     public SDAST forPrimFun(PrimFun f) { return f; }
 
-    // TODO: look this over
     public SDAST forUnOpApp(UnOpApp u) {
       SDAST a = convert((SymAST) u.arg());
       return new UnOpApp(u.rator(), a);
     }
 
-    // TODO: look this over
     public SDAST forBinOpApp(BinOpApp b) {
       SDAST a1 = convert((SymAST) b.arg1());
       SDAST a2 = convert((SymAST) b.arg2());
-      System.out.println("b.arg() is: " + b.arg1() + " after conversion: " + a1);
-      System.out.println("b.arg2() is: " + b.arg2() + " after conversion: " + a2);
       return new BinOpApp(b.rator(), a1, a2);
     }
 
-    // TODO: look this over
     public SDAST forApp(App a) {
       SDAST[] args = new SDAST[a.args().length];
       for (int i = 0; i < args.length; i++) {
@@ -2709,25 +2697,6 @@ class SConverter {
 
       return new App(convert((SymAST) a.rator()), args);
     }
-
-
-    // TODO: implement map
-//    public SDAST forMap(Map m) {
-//
-//      if (m.body() instanceof Map || m.body() instanceof Let) {
-//          System.out.println("Found recursive map or let");
-//          for (int i = 0; i < m.vars().length; i++) {
-//          symbolTable.put(m.vars()[i], new Pair(depth - 1, i));
-//        }
-//      } else {
-//        for (int i = 0; i < m.vars().length; i++) {
-//          symbolTable.put(m.vars()[i], new Pair(depth, i));
-//        }
-//      }
-////      depth--;
-//      return new SMap(m.vars().length, convert(m.body()));
-////      return null;
-//    }
 
     public SDAST forMap(Map m) {
       for (int i = 0; i < m.vars().length; i++) {
@@ -2739,7 +2708,6 @@ class SConverter {
       return new SMap(m.vars().length, body);
     }
 
-    // TODO: fix this
     public SDAST forIf(If i) {
       SDAST t = convert((SymAST) i.test());
       SDAST c = convert((SymAST) i.conseq());
@@ -2748,7 +2716,6 @@ class SConverter {
       return new If(t, c, a);
     }
 
-    // TODO: look this over
     public SDAST forLet(Let l) {
       Def[] defs = l.defs();
       SDAST[] sdArr = new SDAST[defs.length];
@@ -2757,36 +2724,12 @@ class SConverter {
       for (int i = 0; i < n; i++) {
         symbolTable.put(defs[i].lhs(), new Pair(depth + 1, i));
         sdArr[i] = convert(defs[i].rhs());
-//        sdArr[i] = new Def((Variable) lhsConv, rhsConv);
-        System.out.println(sdArr[i]);
-        System.out.println("def[i].lhs(): " + defs[i].lhs());
       }
       depth++;
       SDAST body = convert(l.body());
       depth--;
-//      return convert((SymAST)l.body());
       return new SLet(sdArr, body);
     }
-
-    // TODO: SAME AS LET. CHANGE THIS!!
-//    public SDAST forLetRec(LetRec l) {
-//      Def[] defs = l.defs();
-//      SDAST[] sdArr = new SDAST[defs.length];
-//      int n = defs.length;
-//
-//      for (int i = 0; i < n; i++) {
-//        symbolTable.put(defs[i].lhs(), new Pair(depth + 1, i));
-//        sdArr[i] = convert(defs[i].rhs());
-////        sdArr[i] = new Def((Variable) lhsConv, rhsConv);
-//        System.out.println(sdArr[i]);
-//        System.out.println("def[i].lhs(): " + defs[i].lhs());
-//      }
-//      depth++;
-//      SDAST body = convert(l.body());
-//      depth--;
-////      return convert((SymAST)l.body());
-//      return new SLetRec(sdArr, body);
-//    }
 
     public SDAST forLetRec(LetRec l) {
       Def[] defs = l.defs();
@@ -2798,15 +2741,11 @@ class SConverter {
         depth++;
         sdArr[i] = convert(defs[i].rhs());
         depth--;
-//        sdArr[i] = new Def((Variable) lhsConv, rhsConv);
-        System.out.println(sdArr[i]);
-        System.out.println("def[i].lhs(): " + defs[i].lhs());
       }
 
       depth++;
       SDAST body = convert(l.body());
       depth--;
-//      return convert((SymAST)l.body());
       return new SLetRec(sdArr, body);
     }
 
@@ -2816,7 +2755,6 @@ class SConverter {
       return null;
     }
 
-    // TODO: look this over
     public SDAST forBlock(Block b) {
       SDAST[] sdArr = new SDAST[b.exps().length];
       for (int i = 0; i < b.exps().length; i++) {
