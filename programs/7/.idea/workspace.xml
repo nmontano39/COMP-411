@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/AnyDuplicatesVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/AnyDuplicatesVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/CheckVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/CheckVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/LookupVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/LookupVisitor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/SyntaxException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/SyntaxException.class" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CheckStyle-IDEA-workspace">
+    <option name="configuration">
+      <map>
+        <entry key="last-active-plugin-version" value="5.22.0" />
+      </map>
+    </option>
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/6$Assign6Test.ic" NAME="Assign6Test Coverage Results" MODIFIED="1586914654337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="237" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="376870782">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="973" />
+          <entry key="txt" value="200" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="973" />
+          <entry key="PLAIN_TEXT" value="200" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="180357278">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="README" value="1" />
+          <entry key="java" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="3" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="30" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="30" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-16156226">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.66" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="README" value="1" />
+          <entry key="java" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="6" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="9377" />
+          <entry key="txt" value="549" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="9377" />
+          <entry key="PLAIN_TEXT" value="549" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Assign4Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Syntax.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="1386" column="24" selection-start-line="1386" selection-start-column="24" selection-end-line="1386" selection-end-column="24" />
+              <folding>
+                <element signature="e#20095#20096#0" expanded="true" />
+                <element signature="e#20193#20194#0" expanded="true" />
+                <element signature="e#67352#67353#0" expanded="true" />
+                <element signature="e#67440#67441#0" expanded="true" />
+                <element signature="e#75696#75697#0" expanded="true" />
+                <element signature="e#75729#75730#0" expanded="true" />
+                <element signature="e#92190#92191#0" expanded="true" />
+                <element signature="e#92227#92228#0" expanded="true" />
+                <element signature="e#93397#93398#0" expanded="true" />
+                <element signature="e#93427#93428#0" expanded="true" />
+                <element signature="e#95510#95511#0" expanded="true" />
+                <element signature="e#95586#95587#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="10" column="24" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="24" />
+              <folding>
+                <element signature="e#23959#23960#0" expanded="true" />
+                <element signature="e#24014#24015#0" expanded="true" />
+                <element signature="e#24044#24045#0" expanded="true" />
+                <element signature="e#24102#24103#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Semantics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7552">
+              <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
+              <folding>
+                <element signature="e#20169#20170#0" expanded="true" />
+                <element signature="e#20214#20215#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>varcount</find>
+      <find>test</find>
+      <find>[*</find>
+      <find>todo</find>
+      <find>implements SDAST</find>
+      <find>letRec</find>
+      <find>SDAST</find>
+      <find>Smap</find>
+      <find>s</find>
+      <find>SDCHEck</find>
+      <find>System</find>
+      <find>System.</find>
+      <find>SDCheck</find>
+      <find>cpsEval</find>
+      <find>stub</find>
+      <find>smap</find>
+      <find>testS</find>
+      <find>Sma</find>
+      <find>sfact</find>
+      <find>Sappend</find>
+      <find>Binding</find>
+      <find>forLetcc</find>
+      <find>letcc</find>
+      <find>TODO</find>
+      <find>evalCheck</find>
+      <find>map z t o</find>
+      <find>map</find>
+      <find>evalcheck</find>
+      <find>case11</find>
+      <find>System.out.println</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../../../../../Fall2018Acads/COMP 215/comp215-week01-intro-eshvarc" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../../Fall2018Acads/COMP 215/comp215-week02-collections-eshvarc" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../../Fall2018Acads/COMP 215/comp215-week03-lists-eshvarc" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Assign1Test.java" />
+        <option value="$PROJECT_DIR$/src/AST.java" />
+        <option value="$PROJECT_DIR$/src/Lexer.java" />
+        <option value="$PROJECT_DIR$/src/Assign3Test.java" />
+        <option value="$PROJECT_DIR$/src/JamVal.java" />
+        <option value="$PROJECT_DIR$/src/Assign4Test.java" />
+        <option value="$PROJECT_DIR$/src/Interp.java" />
+        <option value="$PROJECT_DIR$/src/Parser.java" />
+        <option value="$PROJECT_DIR$/src/Semantics.java" />
+        <option value="$PROJECT_DIR$/src/Assign6Test.java" />
+        <option value="$PROJECT_DIR$/src/Syntax.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1" />
+    <option name="width" value="1922" />
+    <option name="height" value="1081" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1586915270877" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.Assign6Test">
+    <configuration name="Assign6Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign6Test.testAppend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testAppend" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign6Test.testFact" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testFact" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign6Test.testSappendEval" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testSappendEval" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign6Test.testSfactEval" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
+      <option name="METHOD_NAME" value="testSfactEval" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.Assign6Test.testSappendEval" />
+      <item itemvalue="JUnit.Assign6Test.testAppend" />
+      <item itemvalue="JUnit.Assign6Test.testSfactEval" />
+      <item itemvalue="JUnit.Assign6Test.testFact" />
+      <item itemvalue="JUnit.Assign6Test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Assign6Test" />
+        <item itemvalue="JUnit.Assign6Test.testFact" />
+        <item itemvalue="JUnit.Assign6Test.testSfactEval" />
+        <item itemvalue="JUnit.Assign6Test.testAppend" />
+        <item itemvalue="JUnit.Assign6Test.testSappendEval" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="" />
+      <created>1583108776564</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583108776564</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add a JamBox class to the JamVals files.">
+      <created>1583202331552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583202331552</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Basic functionality of Ref works.">
+      <created>1583203760525</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583203760525</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updated a test to reflect its original.">
+      <created>1583203826440</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1583203826440</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Got gets (&lt;-) to work for the most part. Need to implement unit.">
+      <created>1583205272921</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583205272921</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Start of A6.">
+      <created>1586643428773</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586643428773</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Start of A6.">
+      <created>1586643916708</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1586643916708</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Start of A6.">
+      <created>1586643965411</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586643965411</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Need to add simple check for each of the visitor's methods.">
+      <created>1586737174600</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586737174600</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Working on helper functions on a case-by-case basis.">
+      <created>1586743074089</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586743074089</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Our test case almost passes but :i values don't match up.">
+      <created>1586747785518</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1586747785518</updated>
+    </task>
+    <task id="LOCAL-00011" summary="BinOpSimple">
+      <created>1586764232199</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1586764232199</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Done with Phase 1.">
+      <created>1586773212176</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1586773212176</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Starting on Phase 2.">
+      <created>1586773722022</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1586773722022</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Need to figure out the depth stuff for Phase 2.">
+      <created>1586779478031</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1586779478031</updated>
+    </task>
+    <task id="LOCAL-00015" summary="SConvert seems to work for map. Need to fix for let.">
+      <created>1586904014277</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1586904014277</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Need to fix for let and letrec.">
+      <created>1586904154151</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1586904154151</updated>
+    </task>
+    <task id="LOCAL-00017" summary="All but testSAppend work (for tests upto Phase 2).">
+      <created>1586904635331</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1586904635331</updated>
+    </task>
+    <task id="LOCAL-00018" summary="All tests pass upto Phase 2.">
+      <created>1586910193216</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1586910193216</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Tests seem to pass upto Phase 3.">
+      <created>1586913213874</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1586913213874</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Done with assignment except README.">
+      <created>1586914943982</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1586914943982</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Assign6Test_testSmap - 2020.04.14 at 20h 33m 07s.xml">
+      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test_testSLetEval - 2020.04.14 at 20h 34m 03s.xml">
+      <configuration name="Assign6Test.testSLetEval" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test_testSIfEval1 - 2020.04.14 at 20h 34m 15s.xml">
+      <configuration name="Assign6Test.testSIfEval1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test_testSappendEval - 2020.04.14 at 20h 34m 27s.xml">
+      <configuration name="Assign6Test.testSappendEval" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test_testAppend - 2020.04.14 at 20h 34m 48s.xml">
+      <configuration name="Assign6Test.testAppend" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test_testSfactEval - 2020.04.14 at 20h 35m 08s.xml">
+      <configuration name="Assign6Test.testSfactEval" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test_testFact - 2020.04.14 at 20h 35m 20s.xml">
+      <configuration name="Assign6Test.testFact" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test - 2020.04.14 at 20h 35m 39s.xml">
+      <configuration name="Assign6Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test - 2020.04.14 at 20h 37m 30s.xml">
+      <configuration name="Assign6Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign6Test - 2020.04.14 at 20h 37m 35s.xml">
+      <configuration name="Assign6Test" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27009645" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32459018" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="CheckStyle" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3286334" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.33333334" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32896176" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.329582" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" x="0" y="0" width="430" height="856" id="Documentation" order="7" side_tool="true" weight="0.329582" />
+      <window_info anchor="right" id="Ant Build" order="8" side_tool="true" weight="0.24973205" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add a JamBox class to the JamVals files." />
+    <MESSAGE value="Basic functionality of Ref works." />
+    <MESSAGE value="Updated a test to reflect its original." />
+    <MESSAGE value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
+    <MESSAGE value="Start of A6." />
+    <MESSAGE value="Need to add simple check for each of the visitor's methods." />
+    <MESSAGE value="Working on helper functions on a case-by-case basis." />
+    <MESSAGE value="Our test case almost passes but :i values don't match up." />
+    <MESSAGE value="BinOpSimple" />
+    <MESSAGE value="Done with Phase 1." />
+    <MESSAGE value="Starting on Phase 2." />
+    <MESSAGE value="Need to figure out the depth stuff for Phase 2." />
+    <MESSAGE value="SConvert seems to work for map. Need to fix for let." />
+    <MESSAGE value="Need to fix for let and letrec." />
+    <MESSAGE value="All but testSAppend work (for tests upto Phase 2)." />
+    <MESSAGE value="All tests pass upto Phase 2." />
+    <MESSAGE value="Tests seem to pass upto Phase 3." />
+    <MESSAGE value="Done with assignment except README." />
+    <option name="LAST_COMMIT_MESSAGE" value="Done with assignment except README." />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Assign1Test.java" />
+    <entry file="file://$PROJECT_DIR$/src/Lexer.java" />
+    <entry file="file://$PROJECT_DIR$/src/NewAssign2Test.java" />
+    <entry file="file://$PROJECT_DIR$/src/AST.java" />
+    <entry file="file://$PROJECT_DIR$/src/JamVal.java" />
+    <entry file="file://$PROJECT_DIR$/src/Assign3Test.java" />
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign5Test.java" />
+    <entry file="file://$PROJECT_DIR$/src/Parser.java" />
+    <entry file="file://$PROJECT_DIR$/src/Interp.java" />
+    <entry file="file://$PROJECT_DIR$/../5/README">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../5/src/TypeCheck.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/java8/jdk1.8.0_181/src.zip!/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="302" column="16" selection-start-line="302" selection-start-column="16" selection-end-line="302" selection-end-column="16" />
+          <folding>
+            <element signature="e#8248#8249#0" expanded="true" />
+            <element signature="e#8275#8276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign4Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7552">
+          <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
+          <folding>
+            <element signature="e#20169#20170#0" expanded="true" />
+            <element signature="e#20214#20215#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="e#23959#23960#0" expanded="true" />
+            <element signature="e#24014#24015#0" expanded="true" />
+            <element signature="e#24044#24045#0" expanded="true" />
+            <element signature="e#24102#24103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Syntax.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="1386" column="24" selection-start-line="1386" selection-start-column="24" selection-end-line="1386" selection-end-column="24" />
+          <folding>
+            <element signature="e#20095#20096#0" expanded="true" />
+            <element signature="e#20193#20194#0" expanded="true" />
+            <element signature="e#67352#67353#0" expanded="true" />
+            <element signature="e#67440#67441#0" expanded="true" />
+            <element signature="e#75696#75697#0" expanded="true" />
+            <element signature="e#75729#75730#0" expanded="true" />
+            <element signature="e#92190#92191#0" expanded="true" />
+            <element signature="e#92227#92228#0" expanded="true" />
+            <element signature="e#93397#93398#0" expanded="true" />
+            <element signature="e#93427#93428#0" expanded="true" />
+            <element signature="e#95510#95511#0" expanded="true" />
+            <element signature="e#95586#95587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>5</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

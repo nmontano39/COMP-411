@@ -1,12 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="finished readME, about to submit">
+    <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/5.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/AST.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ASTVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/AnyDuplicatesVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/App.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ArityPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Assign4Test.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/BinOp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/BinOpApp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/BinOpMinus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/BinOpPlus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/BinOpVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Binding.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Block.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/BoolConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/CheckVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Comma.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Cons.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ConsPPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ConsPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Constant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Def.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Empty.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/EvalException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/EvalVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Evaluator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/FirstPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/FunctionPPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/If.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/IntConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Interpreter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/JamCons.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/JamEmpty.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/JamFun.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/JamList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/JamVal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/JamValVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/KeyWord.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/LeftBrace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/LeftBrack.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/LeftParen.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Let.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Lexer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ListPPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/LookupVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Map.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/NullConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/NullPPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/NumberPPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpAnd.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpBang.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpDivide.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpEquals.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpGets.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpGreaterThan.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpGreaterThanEquals.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpLessThan.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpLessThanEquals.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpNotEquals.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpOr.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpRef.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpTilde.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpTimes.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/OpToken.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ParseException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Parser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/PrimFun.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/PrimFunVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/PureList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/PureListClass.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/PureListVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/RefPPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/RestPrim.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/RightBrace.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/RightBrack.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/RightParen.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/SemiColon.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/SyntaxException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Term.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/ToString.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Token.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/UnOp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/UnOpApp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/UnOpMinus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/UnOpPlus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/UnOpVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/Variable.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/out/production/5/WithVariable.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/src/Assign6Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/src/Semantics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/programs/7/src/Syntax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/COMP-411.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP-411.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/6/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/6/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/6/src/Assign6Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/6/src/Assign6Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/6/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/6/src/Semantics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/6/src/Syntax.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/6/src/Syntax.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,29 +146,30 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1580509274655" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/programs/5/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/programs/7/src" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src\Interp\java" />
-      <recent name="$PROJECT_DIR$/programs/2/src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Interp.java" />
+      <recent name="Interp" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src" />
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\7\src" />
       <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs" />
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src" />
       <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\3" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Interp.java" />
-      <recent name="Interp" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicho\Desktop\S20\411\COMP-411\programs\5\src\Interp\java" />
+      <recent name="$PROJECT_DIR$/programs/2/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -86,7 +184,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign6Test">
+  <component name="RunManager" selected="JUnit.Assign7Test">
     <configuration name="Assign6Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -101,16 +199,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
       <option name="METHOD_NAME" value="testCappend" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign6Test.testIfSimple" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testIfSimple" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,20 +224,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign6Test" />
-      <item itemvalue="JUnit.Assign6Test.testIfSimple" />
       <item itemvalue="JUnit.Assign6Test.testSuop" />
       <item itemvalue="JUnit.Assign6Test.testCappend" />
       <item itemvalue="JUnit.Assign6Test.testSfact" />
+      <item itemvalue="JUnit.Assign7Test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign7Test" />
         <item itemvalue="JUnit.Assign6Test" />
         <item itemvalue="JUnit.Assign6Test.testSfact" />
         <item itemvalue="JUnit.Assign6Test.testCappend" />
         <item itemvalue="JUnit.Assign6Test.testSuop" />
-        <item itemvalue="JUnit.Assign6Test.testIfSimple" />
       </list>
     </recent_temporary>
   </component>
@@ -171,13 +268,7 @@
       <workItem from="1583292471314" duration="317000" />
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
-    </task>
-    <task id="LOCAL-00023" summary="OH sunday - testing if">
-      <created>1581393076673</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1581393076673</updated>
+      <workItem from="1587378675772" duration="1297000" />
     </task>
     <task id="LOCAL-00024" summary="all tests pass">
       <created>1581409069197</created>
@@ -515,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586767851575</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="finished readME, about to submit">
+      <created>1586920888758</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1586920888759</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

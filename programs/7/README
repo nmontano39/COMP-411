@@ -1,0 +1,15 @@
+nbm1
+sec14
+
+# Program Organization
+
+
+
+
+
+# Testing Processes
+
+We tested our program using the provided test cases along with many of our own. We created testXXX cases to handle cases
+such as Let, Letcc, UnOpSimple/Complex, BinOpSimple/Complex, IfSimple/Complex, BlockSimple/Complex, and many
+more while using cpsCheck, sdCheck, and allEvalCheck as we progressed through each phase. Our code passes all 53 tests
+with 86% line coverage in SymEvaluator.
