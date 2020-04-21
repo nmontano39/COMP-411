@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 /** The exception class for Jam run-time errors */
 class EvalException extends RuntimeException {
@@ -487,18 +488,25 @@ class SymEvaluator extends Evaluator<VarEnv> {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
+	
+	ArrayList<SDAST> codeTbl;
   
-  SDEvaluator(SDEnv env) { super(env); }
+    SDEvaluator(SDEnv env) { super(env); codeTbl = new ArrayList<>(); }
   
-  /*  EvalVisitor methods for evaluating SDASTs. */
-  public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { return new SDEvaluator(env); }
-  public JamVal forPair(Pair p)  { return env.lookup(p); }
-  public JamVal forSMap(SMap sm) {
-	return new SDClosure(sm, this);
-  }
-  public JamVal forSLet(SLet sl) {
+	/*  EvalVisitor methods for evaluating SDASTs. */
+	public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { return new SDEvaluator(env); }
+	public JamVal forPair(Pair p)  { return env.lookup(p); }
+	
+	public JamVal forSMap(SMap sm) {
+		// TODO: p7
+		
+		
+		return new SDClosure(sm, this);
+	}
+	
+	public JamVal forSLet(SLet sl) {
 	/* Extract binding vars and exps (rhs's) from l */
-
+	
 	SDAST[] rhss = sl.rhss();
 	JamVal[] jArr = new JamVal[rhss.length];
 	int n = rhss.length;
@@ -510,36 +518,36 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	newEnv = newEnv.cons(jArr);
 	SDASTVisitor<JamVal> newEvalVisitor = newEvalVisitor(newEnv);
 	return sl.body().accept(newEvalVisitor);
-  }
-  public JamVal forSLetRec(SLetRec slr) {
+	}
+	public JamVal forSLetRec(SLetRec slr) {
 	SDAST[] rhss = slr.rhss();
-//    SymAST[] exps = l.exps();
+	//    SymAST[] exps = l.exps();
 	int n = rhss.length;
 	/* Construct newEnv for Let body and exps; vars are bound to values of corresponding exps using newEvalVisitor */
 	SDEnv newEnv = env();
-
+	
 	JamVal[] jArr = new JamVal[n];
 	for (int i = n-1; i >= 0; i--) {
-//      bindings[i] = new Binding(vars[i], null);  // bind var[i], setting value to null, which is not a JamVal
+	//      bindings[i] = new Binding(vars[i], null);  // bind var[i], setting value to null, which is not a JamVal
 	  jArr[i] = null;
 	}
-
+	
 	newEnv = newEnv.cons(jArr);
-
+	
 	SDASTVisitor<JamVal> newEvalVisitor = newEvalVisitor(newEnv);
-
+	
 	// fix up the dummy values
 	for (int i = 0; i < n; i++)
 	  jArr[i] = (rhss[i].accept(newEvalVisitor));  // modifies newEnv and newEvalVisitor
-
+	
 	return slr.body().accept(newEvalVisitor);
-  }
-  
-  /* Methods that are never invoked in the evaluation of well-formed SymASTs */
-  public JamVal forSymVariable(Variable host) { return forDefault(host); }
-  public JamVal forMap(Map host) { return forDefault(host); }
-  public JamVal forLet(Let host) { return forDefault(host); }
-  public JamVal forLetRec(LetRec host) { return forDefault(host); }
+	}
+	
+	/* Methods that are never invoked in the evaluation of well-formed SymASTs */
+	public JamVal forSymVariable(Variable host) { return forDefault(host); }
+	public JamVal forMap(Map host) { return forDefault(host); }
+	public JamVal forLet(Let host) { return forDefault(host); }
+	public JamVal forLetRec(LetRec host) { return forDefault(host); }
 }
 
 

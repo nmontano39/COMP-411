@@ -520,15 +520,19 @@ class Pair implements Term, SDAST {
 
 /** SDAST representation for a map */
 class SMap implements SDAST {
+  // TODO: added for p7
+  private int codeIdx;
+  public int codeIdx() {return codeIdx; };
+  
   private int arity;
   private SDAST body;
-  SMap(int a, SDAST b) { arity = a; body = b; }
+  SMap(int i, int a, SDAST b) { codeIdx = i; arity = a; body = b; }
   public int arity() { return arity; }
   public SDAST body() { return body; }
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forSMap(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forSMap(this); }
   public String toString() {
-    return "map [*" + arity + "*] to " + body ;
+    return "map [* code: " + codeIdx + ", arity: " + arity + " *] to " + body ;
   }
 }
 
@@ -2633,10 +2637,14 @@ class SConverter {
   /** Visitor class for performing the static distance conversion; it modifies symbolTable during traversal,
     * but restores it on exit */
   class SConvert implements SymASTVisitor<SDAST> {
-
+    
+    int codeIdx;
     int depth; // lexical depth of expression being visited
 
-    SConvert(int d) { depth = d; }
+    SConvert(int d) {
+      depth = d;
+      codeIdx = 0;
+    }
 
     /** Returns Pair containing (depth - [dist for v in symbolTable], offset for v in symbolTable).
       * Note: programs are assumed to be well-formed. */
@@ -2684,7 +2692,7 @@ class SConverter {
       depth++;
       SDAST body = convert(m.body());
       depth--;
-      return new SMap(m.vars().length, body);
+      return new SMap(codeIdx++, m.vars().length, body);
     }
 
     public SDAST forIf(If i) {
