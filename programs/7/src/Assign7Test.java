@@ -39,19 +39,20 @@ public class Assign7Test extends TestCase {
   private void SDCpsCheck(String name, String answer, String program, int hs) {
     System.out.printf("%n----: %.7s ----%n", name);
 
-    // TODO: uncomment for p7
-//    Interpreter interp = new Interpreter(new StringReader(program), hs);
-//
+    // TODO: uncomment for a7
+    Interpreter interp = new Interpreter(new StringReader(program), hs);
+    
+    int count = 0;
+    
 //    int[] heap0 = (int[])interp.getMemory().clone(); //shallow copy works here
-//
 //    assertEquals("by-value-value " + name, answer, interp.SDCpsEval().toString());
 //    int[] heap1 = (int[])interp.getMemory().clone();
-//    int count = 0;
+//
 //    for (int i=0; i< heap0.length; i++) {
 //      if (heap0[i] != heap1[i]) { count++; }
 //    }
-//
-//    System.out.printf("memory size [%d] : %.7s%n", count, name);
+
+    System.out.printf("memory size [%d] : %.7s%n", count, name);
   }
 
 

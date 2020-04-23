@@ -520,9 +520,8 @@ class Pair implements Term, SDAST {
 
 /** SDAST representation for a map */
 class SMap implements SDAST {
-  // TODO: added for p7
+  // TODO: added for a7
   private int codeIdx;
-  public int codeIdx() {return codeIdx; };
   
   private int arity;
   private SDAST body;

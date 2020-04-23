@@ -1,3 +1,5 @@
+import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -37,7 +39,7 @@ class VarClosure extends JamFun implements Closure {
 	for (int i = n-1 ; i >= 0; i--)
 	  newEnv = newEnv.cons(new Binding(vars[i],args[i]));
 	return map.body().accept(eval.newEvalVisitor(newEnv));
-  }                                                 
+  }
   public <RtnType> RtnType accept(FunVisitor<RtnType> jfv) { return jfv.forClosure(this); }
   public String toString() { return "(closure: " + map + ")"; }
 }
@@ -55,7 +57,7 @@ class SDClosure extends JamFun implements Closure {
 	   args.length + " arguments instead of " + n + " arguments");
 	  newEnv = newEnv.cons(args);
 	return smap.body().accept(eval.newEvalVisitor(newEnv));
-  }                                                 
+  }
   public <RtnType> RtnType accept(FunVisitor<RtnType> jfv) { return jfv.forClosure(this); }
   public String toString() { return "(closure: " + smap + ")"; }
 }
@@ -66,14 +68,13 @@ class Interpreter {
   
   Interpreter(String fileName) throws IOException { parser = new Parser(fileName); }
   
-  Interpreter(Parser p) { parser = p; }  
+  Interpreter(Parser p) { parser = p; }
   
   Interpreter(Reader reader) {  parser = new Parser(reader); }
 
   Interpreter(StringReader stringReader, int hs) {
-  	// TODO: p7
-	
-	  
+  	// TODO: a7
+	  parser = new Parser(stringReader);
   }
   
   /** Parses, checks, and interprets the input embeded in parser */
@@ -116,6 +117,8 @@ class Interpreter {
   
   /** Visitor that evaluates programs represented in SymAST form. */
   private SDASTVisitor<JamVal> SDEvalVisitor = new SDEvaluator(EmptySDEnv.ONLY);
+  
+  
 }
 
 /* General visitor class for performing interpretation; defines ComASTVistor methods which are common to SymAST and SDAST representations. */
@@ -145,8 +148,8 @@ abstract class Evaluator<Env extends Environment> implements EvalVisitor {
   public Env env() { return env; }
   
   /* ASTVisitor methods.  EvalVisitor extends ASTVisitor<JamVal>. */
-  public UnOpVisitor<JamVal> newUnOpVisitor(JamVal arg) { return new UnOpEvaluator(arg); } 
-  public BinOpVisitor<JamVal> newBinOpVisitor(AST arg1, AST arg2) { return new BinOpEvaluator(arg1, arg2); }  
+  public UnOpVisitor<JamVal> newUnOpVisitor(JamVal arg) { return new UnOpEvaluator(arg); }
+  public BinOpVisitor<JamVal> newBinOpVisitor(AST arg1, AST arg2) { return new BinOpEvaluator(arg1, arg2); }
   public FunVisitor<JamVal> newFunVisitor(AST[] args) {  return new FunEvaluator(evalArgs(args)); }
   
   /* ComASTVisitor<JamVal> methods.  ASTVisitor<JamVal> extends ComASTVisitor<JamVal>. */
@@ -157,7 +160,7 @@ abstract class Evaluator<Env extends Environment> implements EvalVisitor {
   public JamVal forIntConstant(IntConstant i) { return i; }
   public JamVal forNullConstant(NullConstant n) { return JamEmpty.ONLY; }
   public JamVal forPrimFun(PrimFun f) { return f; }
-  public JamVal forUnOpApp(UnOpApp u) { 
+  public JamVal forUnOpApp(UnOpApp u) {
 	return u.rator().accept(newUnOpVisitor(u.arg().accept(this)));
   }
   public JamVal forBinOpApp(BinOpApp b) {
@@ -196,7 +199,7 @@ abstract class Evaluator<Env extends Environment> implements EvalVisitor {
 	* it our definitions in order to share code. */
   public JamVal forLetcc(Letcc host) { return forDefault(host); }
   
-  /** Remaining visitor methods are abstract; they are defined differently in SymAST and SDAST evaluation.  For each 
+  /** Remaining visitor methods are abstract; they are defined differently in SymAST and SDAST evaluation.  For each
 	* form of evaluation, some methods below generate run-time errors because the corresponding nodes do not appear
 	* in well-formed instances of those AST types. */
   abstract public JamVal forSymVariable(Variable host);
@@ -348,7 +351,7 @@ abstract class Evaluator<Env extends Environment> implements EvalVisitor {
 	public JamVal forOpRef(OpRef op) { return new JamRef(val); }
   }
   
-  class BinOpEvaluator implements BinOpVisitor<JamVal> { 
+  class BinOpEvaluator implements BinOpVisitor<JamVal> {
 	private AST arg1, arg2;
 
 	BinOpEvaluator(AST a1, AST a2) { arg1 = a1; arg2 = a2; }
@@ -436,8 +439,8 @@ class SymEvaluator extends Evaluator<VarEnv> {
   
   /* EvalVisitor methods for SymASTs */
   public SymASTVisitor<JamVal> newEvalVisitor(VarEnv env) { return new SymEvaluator(env); }
-  public JamVal forSymVariable(Variable v) { return env.lookup(v); } 
-  public JamVal forMap(Map m) { return new VarClosure(m, this); }   
+  public JamVal forSymVariable(Variable v) { return env.lookup(v); }
+  public JamVal forMap(Map m) { return new VarClosure(m, this); }
   public JamVal forLet(Let l) {
 	/* Extract binding vars and exps (rhs's) from l */
 	Variable[] vars = l.vars();
@@ -454,7 +457,7 @@ class SymEvaluator extends Evaluator<VarEnv> {
 	return l.body().accept(newEvalVisitor);
   }
   
-  public JamVal forLetRec(LetRec l) { 
+  public JamVal forLetRec(LetRec l) {
 	/* Extract binding vars and exps (rhs's) from l */
 	Variable[] vars = l.vars();
 	SymAST[] exps = l.exps();
@@ -481,7 +484,7 @@ class SymEvaluator extends Evaluator<VarEnv> {
   public JamVal forPair(Pair host) { return forDefault(host); }
   public JamVal forSMap(SMap host) { return forDefault(host); }
   public JamVal forSLet(SLet host) { return forDefault(host); }
-  public JamVal forSLetRec(SLetRec host) { return forDefault(host); } 
+  public JamVal forSLetRec(SLetRec host) { return forDefault(host); }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////        PHASE 3 END        //////////////////////////////////////////
@@ -498,7 +501,7 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	public JamVal forPair(Pair p)  { return env.lookup(p); }
 	
 	public JamVal forSMap(SMap sm) {
-		// TODO: p7
+		// TODO: a7
 		
 		
 		return new SDClosure(sm, this);
