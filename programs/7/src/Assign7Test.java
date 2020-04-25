@@ -38,8 +38,7 @@ public class Assign7Test extends TestCase {
 
   private void SDCpsCheck(String name, String answer, String program, int hs) {
     System.out.printf("%n----: %.7s ----%n", name);
-
-    // TODO: uncomment for a7
+    
     Interpreter interp = new Interpreter(new StringReader(program), hs);
     
     int count = 0;

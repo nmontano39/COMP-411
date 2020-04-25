@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -167,14 +168,7 @@
       <workItem from="1583292471314" duration="317000" />
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
-      <workItem from="1587378675772" duration="13315000" />
-    </task>
-    <task id="LOCAL-00031" summary="added TODOs">
-      <created>1582329859567</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1582329859567</updated>
+      <workItem from="1587378675772" duration="14085000" />
     </task>
     <task id="LOCAL-00032" summary="added TODOs">
       <created>1582332117670</created>
@@ -512,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587855921935</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="starting a7 - phase 2">
+      <created>1587856556529</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1587856556529</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +536,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working on Lazy Cons" />
     <MESSAGE value="working on Lazy Cons, added comments" />
     <MESSAGE value="call by name cons works" />
     <MESSAGE value="TODO: letRec, callByNeed" />
@@ -560,7 +560,8 @@
     <MESSAGE value="starting p7" />
     <MESSAGE value="starting p7 - phase 1" />
     <MESSAGE value="starting a7 - phase 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting a7 - phase 1" />
+    <MESSAGE value="starting a7 - phase 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting a7 - phase 2" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
