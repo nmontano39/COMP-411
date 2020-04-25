@@ -74,6 +74,7 @@ class Interpreter {
 
   Interpreter(StringReader stringReader, int hs) {
   	// TODO: a7
+	  
 	  parser = new Parser(stringReader);
   }
   
@@ -485,15 +486,18 @@ class SymEvaluator extends Evaluator<VarEnv> {
 }
 
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
+	
+	ArrayList<SDAST> codeTbl = new ArrayList<>();
   
-    SDEvaluator(SDEnv env) { super(env); }
+    SDEvaluator(SDEnv env) { super(env);}
   
 	/*  EvalVisitor methods for evaluating SDASTs. */
 	public SDASTVisitor<JamVal> newEvalVisitor(SDEnv env) { return new SDEvaluator(env); }
 	public JamVal forPair(Pair p)  { return env.lookup(p); }
 	
 	public JamVal forSMap(SMap sm) {
-		// TODO: a7
+		
+		codeTbl.add(sm);
 		
 		
 		return new SDClosure(sm, this);

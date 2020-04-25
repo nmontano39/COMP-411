@@ -522,6 +522,7 @@ class Pair implements Term, SDAST {
 class SMap implements SDAST {
   // TODO: added for a7
   private int codeIdx;
+  public int getCodeIdx() { return codeIdx; }
   
   private int arity;
   private SDAST body;
@@ -2681,6 +2682,8 @@ class SConverter {
       depth++;
       SDAST body = convert(m.body());
       depth--;
+      
+      // TODO: a7
       return new SMap(codeIdx++, m.vars().length, body);
     }
 
