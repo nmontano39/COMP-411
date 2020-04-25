@@ -48,7 +48,13 @@ class VarClosure extends JamFun implements Closure {
 class SDClosure extends JamFun implements Closure {
   private SMap smap;
   private SDEvaluator eval;
+  private int codeIdx;
+  
   SDClosure(SMap sm, SDEvaluator e) { smap = sm; eval = e; }
+  
+  // TODO: added this for a7
+  SDClosure(int code, SDEvaluator e) { codeIdx = code; eval = e; }
+  
   public int arity() { return smap.arity(); }
   public JamVal apply(JamVal[] args) {
 	SDEnv newEnv = eval.env();
@@ -496,11 +502,9 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	public JamVal forPair(Pair p)  { return env.lookup(p); }
 	
 	public JamVal forSMap(SMap sm) {
-		
+		// TODO: a7
 		codeTbl.add(sm);
-		
-		
-		return new SDClosure(sm, this);
+		return new SDClosure(sm.getCodeIdx(), this);
 	}
 	
 	public JamVal forSLet(SLet sl) {
