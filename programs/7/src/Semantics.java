@@ -237,7 +237,12 @@ abstract class Evaluator<Env extends Environment> implements EvalVisitor {
 
 	public JamVal forPrimFun(PrimFun primFun) { return primFun.accept(primEvaluator); }
 
-	public JamVal forClosure(Closure c) { return c.apply(vals); }
+	public JamVal forClosure(Closure c) {
+		
+		// TODO: change for a7
+		
+		return c.apply(vals);
+	}
 
 	/* Field bound to anonymous inner classes */
 	PrimFunVisitor<JamVal> primEvaluator =
