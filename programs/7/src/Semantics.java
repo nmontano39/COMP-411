@@ -71,6 +71,7 @@ class SDClosure extends JamFun implements Closure {
 class Interpreter {
   
   private Parser parser;
+  public static final int HEAPSIZE = 1;
   
   Interpreter(String fileName) throws IOException { parser = new Parser(fileName); }
   
@@ -79,13 +80,38 @@ class Interpreter {
   Interpreter(Reader reader) {  parser = new Parser(reader); }
 
   Interpreter(StringReader stringReader, int hs) {
-  	// TODO: a7
-	  
 	  parser = new Parser(stringReader);
   }
-  
-  /** Parses, checks, and interprets the input embeded in parser */
-  public JamVal eval() {
+	
+	/**
+	 * Retursn the heap.
+	 */
+	public int[] getMemory() {
+		// TODO
+		return new int[0];
+	}
+	
+	/**
+	 * Returns the JamVal result (decoding the heap-index or pseudo-index) of evaluating the embedded SDAST program using the low-level interpreter
+	 */
+	public JamVal ramSDEval() {
+		// TODO
+		return null;
+	}
+	
+	/**
+	 * Returns the JamVal result (decoding the heap index or pseudo-index) of evaluating the SDAST representation of the embedded program converted to CPS
+	 * using the low-level interpreter.
+	 */
+	public JamVal ramSDCpsEval() {
+		// TODO
+		return null;
+	}
+	
+	
+	
+	/** Parses, checks, and interprets the input embeded in parser */
+    public JamVal eval() {
 	SymAST prog = parser.checkProg();
 	return prog.accept(valueValueVisitor);
   }

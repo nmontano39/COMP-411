@@ -44,13 +44,13 @@ public class Assign7Test extends TestCase {
     
     int count = 0;
     
-//    int[] heap0 = (int[])interp.getMemory().clone(); //shallow copy works here
-//    assertEquals("by-value-value " + name, answer, interp.SDCpsEval().toString());
-//    int[] heap1 = (int[])interp.getMemory().clone();
-//
-//    for (int i=0; i< heap0.length; i++) {
-//      if (heap0[i] != heap1[i]) { count++; }
-//    }
+    int[] heap0 = (int[])interp.getMemory().clone(); //shallow copy works here
+    assertEquals("by-value-value " + name, answer, interp.SDCpsEval().toString());
+    int[] heap1 = (int[])interp.getMemory().clone();
+
+    for (int i=0; i< heap0.length; i++) {
+      if (heap0[i] != heap1[i]) { count++; }
+    }
 
     System.out.printf("memory size [%d] : %.7s%n", count, name);
   }
