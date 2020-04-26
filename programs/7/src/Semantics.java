@@ -50,37 +50,52 @@ class SDClosure extends JamFun implements Closure {
   private SDEvaluator eval;
   private int codeIdx;
   
-  SDClosure(SMap sm, SDEvaluator e) { smap = sm; eval = e; }
+  SDClosure(SMap sm, SDEvaluator e) {
+  	smap = sm; eval = e;
+  }
   
   // TODO: added this for a7
-  SDClosure(int code, SDEvaluator e) { codeIdx = code; eval = e; }
+  SDClosure(int code, SDEvaluator e) {
+  	codeIdx = code; eval = e;
+  }
   
-  public int arity() { return smap.arity(); }
+  public int arity() {
+  	// TODO: We think this cast is good. Double-check.
+  	SMap map = (SMap) eval.getCodeTbl().get(codeIdx);
+  	return map.arity();
+  }
   public JamVal apply(JamVal[] args) {
 	SDEnv newEnv = eval.env();
-	int n = smap.arity();
+	SMap map = (SMap) eval.getCodeTbl().get(codeIdx);
+	System.out.println("The map we get is: " + map);
+	int n = map.arity();
 	if (n != args.length) throw new EvalException("closure " + this + " applied to " +
 	   args.length + " arguments instead of " + n + " arguments");
 	  newEnv = newEnv.cons(args);
-	return smap.body().accept(eval.newEvalVisitor(newEnv));
+	return map.body().accept(eval.newEvalVisitor(newEnv));
   }
   public <RtnType> RtnType accept(FunVisitor<RtnType> jfv) { return jfv.forClosure(this); }
-  public String toString() { return "(closure: " + smap + ")"; }
+  public String toString() { return "(closure: " + eval.getCodeTbl().get(codeIdx) + ")"; }
 }
 
 class Interpreter {
   
   private Parser parser;
-  public static final int HEAPSIZE = 1;
+  public static final int HEAPSIZE = 1 << 18;
+  private int[] heap;
   
   Interpreter(String fileName) throws IOException { parser = new Parser(fileName); }
   
   Interpreter(Parser p) { parser = p; }
   
-  Interpreter(Reader reader) {  parser = new Parser(reader); }
+  Interpreter(Reader reader) {
+  	parser = new Parser(reader);
+  	heap = new int[HEAPSIZE];
+  }
 
   Interpreter(StringReader stringReader, int hs) {
 	  parser = new Parser(stringReader);
+	  heap = new int[HEAPSIZE];
   }
 	
 	/**
@@ -88,7 +103,7 @@ class Interpreter {
 	 */
 	public int[] getMemory() {
 		// TODO
-		return new int[0];
+		return heap;
 	}
 	
 	/**
@@ -525,6 +540,10 @@ class SymEvaluator extends Evaluator<VarEnv> {
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	
 	ArrayList<SDAST> codeTbl = new ArrayList<>();
+
+	public ArrayList<SDAST> getCodeTbl() {
+		return codeTbl;
+	}
   
     SDEvaluator(SDEnv env) { super(env);}
   
@@ -534,8 +553,11 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	
 	public JamVal forSMap(SMap sm) {
 		// TODO: a7
+		int idx = codeTbl.size();
+		sm.setCodeIdx(idx);
 		codeTbl.add(sm);
-		return new SDClosure(sm.getCodeIdx(), this);
+		System.out.printf("codeIdx = %d, size = %d\n", sm.getCodeIdx(), codeTbl.size());
+		return new SDClosure(idx, this);
 	}
 	
 	public JamVal forSLet(SLet sl) {

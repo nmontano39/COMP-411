@@ -523,6 +523,7 @@ class SMap implements SDAST {
   // TODO: added for a7
   private int codeIdx;
   public int getCodeIdx() { return codeIdx; }
+  public void setCodeIdx(int idx) {codeIdx = idx;}
   
   private int arity;
   private SDAST body;
@@ -532,7 +533,7 @@ class SMap implements SDAST {
   public <RtnType> RtnType accept(SDASTVisitor<RtnType> v) { return v.forSMap(this); }
   public <RtnType> RtnType accept(ASTVisitor<RtnType> v) { return v.forSMap(this); }
   public String toString() {
-    return "map [* code: " + codeIdx + ", arity: " + arity + " *] to " + body ;
+    return "map [*" +  arity + "*] to " + body ;
   }
 }
 
@@ -2628,12 +2629,12 @@ class SConverter {
     * but restores it on exit */
   class SConvert implements SymASTVisitor<SDAST> {
     
-    int codeIdx;
+//    int codeIdx;
     int depth; // lexical depth of expression being visited
 
     SConvert(int d) {
       depth = d;
-      codeIdx = 0;
+//      codeIdx = 0;
     }
 
     /** Returns Pair containing (depth - [dist for v in symbolTable], offset for v in symbolTable).
@@ -2684,7 +2685,7 @@ class SConverter {
       depth--;
       
       // TODO: a7
-      return new SMap(codeIdx++, m.vars().length, body);
+      return new SMap(-1, m.vars().length, body);
     }
 
     public SDAST forIf(If i) {
