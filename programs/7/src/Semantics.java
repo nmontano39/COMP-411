@@ -524,6 +524,35 @@ class SymEvaluator extends Evaluator<VarEnv> {
   public JamVal forSLetRec(SLetRec host) { return forDefault(host); }
 }
 
+class ramEvaluator implements SDASTVisitor<Integer> {
+
+	public Integer forPair(Pair p) {return 0;}
+
+	public Integer forSMap(SMap sm) {return 0;}
+
+	public Integer forSLet(SLet sl) {return 0;}
+
+	public Integer forSLetRec(SLetRec slr) {return 0;}
+
+	public Integer forBoolConstant(BoolConstant b) {return 0;}
+
+	public Integer forIntConstant(IntConstant i) {return 0;}
+
+	public Integer forNullConstant(NullConstant n) {return 0;}
+
+	public Integer forPrimFun(PrimFun pf) {return 0;}
+
+	public Integer forUnOpApp(UnOpApp u) {return 0;}
+
+	public Integer forBinOpApp(BinOpApp b) {return 0;}
+
+	public Integer forApp(App a) {return 0;}
+
+	public Integer forIf(If i) {return 0;}
+
+	public Integer forBlock(Block b) {return 0;}
+}
+
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	
 	ArrayList<SDAST> codeTbl = new ArrayList<>();
@@ -581,7 +610,7 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	return slr.body().accept(newEvalVisitor);
 	}
 	
-	/* Methods that are never invoked in the evaluation of well-formed SymASTs */
+//	/* Methods that are never invoked in the evaluation of well-formed SymASTs */
 	public JamVal forSymVariable(Variable host) { return forDefault(host); }
 	public JamVal forMap(Map host) { return forDefault(host); }
 	public JamVal forLet(Let host) { return forDefault(host); }
