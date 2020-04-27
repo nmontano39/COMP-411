@@ -226,6 +226,17 @@ public class Assign7Test extends TestCase {
     }
   }
 
+  public void testPrimFunNoArgs() {
+    try {
+      String output = "cons?";
+      String input = "cons?";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
   public void testInt() {
     try {
       String output = "1";

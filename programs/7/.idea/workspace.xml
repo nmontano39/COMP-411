@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/5/Evaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Evaluator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/5/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Interpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -146,14 +145,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3893" />
-          <entry key="txt" value="224" />
+          <entry key="java" value="3994" />
+          <entry key="txt" value="295" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3893" />
-          <entry key="PLAIN_TEXT" value="224" />
+          <entry key="JAVA" value="3994" />
+          <entry key="PLAIN_TEXT" value="295" />
         </counts>
       </usages-collector>
     </session>
@@ -185,8 +184,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5838">
-              <caret line="412" column="21" lean-forward="true" selection-start-line="412" selection-start-column="21" selection-end-line="412" selection-end-column="21" />
+            <state relative-caret-position="1087">
+              <caret line="181" column="21" lean-forward="true" selection-start-line="181" selection-start-column="21" selection-end-line="181" selection-end-column="21" />
               <folding>
                 <element signature="e#3333#3334#0" expanded="true" />
                 <element signature="e#3351#3352#0" expanded="true" />
@@ -306,7 +305,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588013016251" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588013377518" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -325,21 +324,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign7Test.testBool2">
+  <component name="RunManager" selected="JUnit.Assign7Test.testPrimFunNoArgs">
     <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign7Test.testBasicRamUnOp1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testBasicRamUnOp1" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -374,20 +363,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign7Test.testPrimFunNoArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
+      <option name="METHOD_NAME" value="testPrimFunNoArgs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.Assign7Test.testBasicRamUnOp1" />
       <item itemvalue="JUnit.Assign7Test.testBasicRamUnOp2" />
       <item itemvalue="JUnit.Assign7Test" />
       <item itemvalue="JUnit.Assign7Test.testBool2" />
       <item itemvalue="JUnit.Assign7Test.testBool3" />
+      <item itemvalue="JUnit.Assign7Test.testPrimFunNoArgs" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign7Test.testPrimFunNoArgs" />
         <item itemvalue="JUnit.Assign7Test.testBool2" />
         <item itemvalue="JUnit.Assign7Test" />
         <item itemvalue="JUnit.Assign7Test.testBool3" />
         <item itemvalue="JUnit.Assign7Test.testBasicRamUnOp2" />
-        <item itemvalue="JUnit.Assign7Test.testBasicRamUnOp1" />
       </list>
     </recent_temporary>
   </component>
@@ -598,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587964025030</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="If seems ok? Added case statements for all the primitive functions.">
+      <created>1588013131551</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1588013131551</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -672,7 +678,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Basic functionality of Ref works." />
     <MESSAGE value="Updated a test to reflect its original." />
     <MESSAGE value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
     <MESSAGE value="Start of A6." />
@@ -697,7 +702,8 @@
     <MESSAGE value="Got IntConstant and BinOpApp (only +) working." />
     <MESSAGE value="Issue with BinOpApp" />
     <MESSAGE value="Added &amp; | ~" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added &amp; | ~" />
+    <MESSAGE value="If seems ok? Added case statements for all the primitive functions." />
+    <option name="LAST_COMMIT_MESSAGE" value="If seems ok? Added case statements for all the primitive functions." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -768,8 +774,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Semantics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5838">
-          <caret line="412" column="21" lean-forward="true" selection-start-line="412" selection-start-column="21" selection-end-line="412" selection-end-column="21" />
+        <state relative-caret-position="1087">
+          <caret line="181" column="21" lean-forward="true" selection-start-line="181" selection-start-column="21" selection-end-line="181" selection-end-column="21" />
           <folding>
             <element signature="e#3333#3334#0" expanded="true" />
             <element signature="e#3351#3352#0" expanded="true" />

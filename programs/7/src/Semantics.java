@@ -141,7 +141,7 @@ class Interpreter {
 				return new IntConstant(heap[idx + 1]);
 			case -1:
 				System.out.println("Gets into case -1");
-				// TODO: implement unit
+				return JamUnit.ONLY;
 			case -2:
 				System.out.println("Gets into case -2");
 				// TODO: is this what we want to do?
@@ -661,8 +661,66 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forPrimFun(PrimFun pf) {
 		// TODO
-		System.out.println("Reaches primfun: " + pf);
-		return 0;
+		Integer tag = pf.accept(new PrimFunVisitor<Integer>() {
+			@Override
+			public Integer forFunctionPPrim() {
+				return -6;
+			}
+
+			@Override
+			public Integer forNumberPPrim() {
+				return -5;
+			}
+
+			@Override
+			public Integer forListPPrim() {
+				return -7;
+			}
+
+			@Override
+			public Integer forConsPPrim() {
+				return -9;
+			}
+
+			@Override
+			public Integer forNullPPrim() {
+				return -8;
+			}
+
+			@Override
+			public Integer forArityPrim() {
+				return -11;
+			}
+
+			@Override
+			public Integer forConsPrim() {
+				return -12;
+			}
+
+			@Override
+			public Integer forRefPPrim() {
+				return -10;
+			}
+
+			@Override
+			public Integer forFirstPrim() {
+				return -13;
+			}
+
+			@Override
+			public Integer forRestPrim() {
+				return -14;
+			}
+
+			@Override
+			public Integer forAsBoolPrim() {
+				return -15;
+			}
+		});
+		int temp = lastIdx;
+		heap[lastIdx] = tag;
+		lastIdx++;
+		return temp;
 	}
 
 	public Integer forUnOpApp(UnOpApp u) {
