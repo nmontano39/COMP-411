@@ -621,6 +621,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forPrimFun(PrimFun pf) {
+		System.out.println("Gets here!!!!!");
 		return 0;
 	}
 
@@ -629,7 +630,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 		return u.rator().accept(new UnOpVisitor<Integer>() {
 			@Override
 			public Integer forUnOpPlus(UnOpPlus op) {
-				// TODO: make sure this is correct
 				if (heap[argTagIdx] == 1) {
 					int temp = lastIdx;
 					heap[lastIdx] = 1;
@@ -644,7 +644,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			
 			@Override
 			public Integer forUnOpMinus(UnOpMinus op) {
-				// TODO: make sure this is correct
 				if (heap[argTagIdx] == 1) {
 					int temp = lastIdx;
 					heap[lastIdx] = 1;
@@ -659,7 +658,19 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			
 			@Override
 			public Integer forOpTilde(OpTilde op) {
-				return null;
+				if (heap[argTagIdx] == -3) {
+					int temp = lastIdx;
+					heap[lastIdx] = -4;
+					lastIdx++;
+					return temp;
+				} else if (heap[argTagIdx] == -4) {
+					int temp = lastIdx;
+					heap[lastIdx] = -3;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("Arg: " + u.arg() + " is not a boolean");
+				}
 			}
 			
 			@Override
@@ -809,6 +820,8 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpAnd(OpAnd op) {
+				// TODO: Come back to this later. The parser changes x & y to if x then y else false
+				// so not sure if we ever actually get here.
 				System.out.println("Arg1: " + b.arg1() + " Arg: " + b.arg2());
 				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
 					int temp = lastIdx;
@@ -823,6 +836,8 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpOr(OpOr op) {
+				// TODO: Come back to this later. The parser changes x & y to if x then y else false
+				// so not sure if we ever actually get here.
 				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
 					int temp = lastIdx;
 					int boolVal = heap[argTagIdx1 + 1] == -3 || heap[argTagIdx2 + 1] == -3 ? -3 : -4;

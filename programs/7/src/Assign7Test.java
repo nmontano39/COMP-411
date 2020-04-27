@@ -198,6 +198,38 @@ public class Assign7Test extends TestCase {
     }
   }
 
+  public void testBasicRamBool1() {
+    try {
+      String output = "true";
+      String input = "true & true";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testBasicRamUnOp1() {
+    try {
+      String output = "1";
+      String input = "1";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testBasicRamUnOp2() {
+    try {
+      String output = "-2";
+      String input = "+1 * (-2)";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
   public void testAppend() {
     try {
       String output = "(1 2 3 1 2 3)";
