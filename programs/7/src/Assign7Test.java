@@ -154,12 +154,23 @@ public class Assign7Test extends TestCase {
     }
   } //end of func
 
-  public void testBasicRamSD() {
+  public void testBasicRamSD1() {
     try {
-      String output = "472";
-      String input = "100 + 300 + 3 + 69";
+      String output = "1396";
+      String input = "100 + 300 + 3 + 69 - 8 * 3 + (9 / 2)";
       ramSDCheck("append", output, input, defaultSize);
 
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+  
+  public void testBasicRamSD2() {
+    try {
+      String output = "true";
+      String input = "true";
+      ramSDCheck("append", output, input, defaultSize);
+      
     } catch (Exception e) {
       fail("append threw " + e);
     }

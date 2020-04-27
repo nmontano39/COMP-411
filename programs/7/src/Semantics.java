@@ -561,15 +561,30 @@ class ramEvaluator implements ASTVisitor<Integer> {
 		this.heap = heap;
 	}
 
-	public Integer forPair(Pair p) {return 0;}
+	public Integer forPair(Pair p) {
+		return 0;
+	}
 
-	public Integer forSMap(SMap sm) {return 0;}
+	public Integer forSMap(SMap sm) {
+		return 0;
+	}
 
-	public Integer forSLet(SLet sl) {return 0;}
+	public Integer forSLet(SLet sl) {
+		return 0;
+	}
 
-	public Integer forSLetRec(SLetRec slr) {return 0;}
+	public Integer forSLetRec(SLetRec slr) {
+		return 0;
+	}
 
-	public Integer forBoolConstant(BoolConstant b) {return 0;}
+	public Integer forBoolConstant(BoolConstant b) {
+		// TODO: make sure this is correct
+		int temp = lastIdx;
+		int boolVal = b.value() ? -3 : -4;
+		heap[lastIdx] = boolVal;
+		lastIdx++;
+		return temp;
+	}
 
 	public Integer forIntConstant(IntConstant i) {
 		int temp = lastIdx;
@@ -582,11 +597,63 @@ class ramEvaluator implements ASTVisitor<Integer> {
 		return temp;
 	}
 
-	public Integer forNullConstant(NullConstant n) {return 0;}
+	public Integer forNullConstant(NullConstant n) {
+		return 0;
+	}
 
-	public Integer forPrimFun(PrimFun pf) {return 0;}
+	public Integer forPrimFun(PrimFun pf) {
+		return 0;
+	}
 
-	public Integer forUnOpApp(UnOpApp u) {return 0;}
+	public Integer forUnOpApp(UnOpApp u) {
+		Integer argTagIdx = u.arg().accept(this);
+		return u.rator().accept(new UnOpVisitor<Integer>() {
+			@Override
+			public Integer forUnOpPlus(UnOpPlus op) {
+				// TODO: make sure this is correct
+				if (heap[argTagIdx] == 1) {
+					int temp = lastIdx;
+					heap[lastIdx] = 1;
+					lastIdx++;
+					heap[lastIdx] = +heap[argTagIdx + 1];
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("arg: " + u.arg() + " is not an integer");
+				}
+			}
+			
+			@Override
+			public Integer forUnOpMinus(UnOpMinus op) {
+				// TODO: make sure this is correct
+				if (heap[argTagIdx] == 1) {
+					int temp = lastIdx;
+					heap[lastIdx] = 1;
+					lastIdx++;
+					heap[lastIdx] = -heap[argTagIdx + 1];
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("arg: " + u.arg() + " is not an integer");
+				}
+			}
+			
+			@Override
+			public Integer forOpTilde(OpTilde op) {
+				return null;
+			}
+			
+			@Override
+			public Integer forOpBang(OpBang op) {
+				return null;
+			}
+			
+			@Override
+			public Integer forOpRef(OpRef op) {
+				return null;
+			}
+		});
+	}
 
 	public Integer forBinOpApp(BinOpApp b) {
 		Integer argTagIdx1 = b.arg1().accept(this);
@@ -608,17 +675,44 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forBinOpMinus(BinOpMinus op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					int temp = lastIdx;
+					heap[lastIdx] = 1;
+					lastIdx++;
+					heap[lastIdx] = heap[argTagIdx1 + 1] - heap[argTagIdx2 + 1];
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
 			public Integer forOpTimes(OpTimes op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					int temp = lastIdx;
+					heap[lastIdx] = 1;
+					lastIdx++;
+					heap[lastIdx] = heap[argTagIdx1 + 1] * heap[argTagIdx2 + 1];
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
 			public Integer forOpDivide(OpDivide op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					int temp = lastIdx;
+					heap[lastIdx] = 1;
+					lastIdx++;
+					heap[lastIdx] = heap[argTagIdx1 + 1] / heap[argTagIdx2 + 1];
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
@@ -633,22 +727,58 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpLessThan(OpLessThan op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					// TODO: make sure this is correct
+					int temp = lastIdx;
+					int boolVal = heap[argTagIdx1 + 1] < heap[argTagIdx2 + 1] ? -3 : -4;
+					heap[lastIdx] = boolVal;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
 			public Integer forOpGreaterThan(OpGreaterThan op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					// TODO: make sure this is correct
+					int temp = lastIdx;
+					int boolVal = heap[argTagIdx1 + 1] > heap[argTagIdx2 + 1] ? -3 : -4;
+					heap[lastIdx] = boolVal;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
 			public Integer forOpLessThanEquals(OpLessThanEquals op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					// TODO: make sure this is correct
+					int temp = lastIdx;
+					int boolVal = heap[argTagIdx1 + 1] <= heap[argTagIdx2 + 1] ? -3 : -4;
+					heap[lastIdx] = boolVal;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
 			public Integer forOpGreaterThanEquals(OpGreaterThanEquals op) {
-				return null;
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					// TODO: make sure this is correct
+					int temp = lastIdx;
+					int boolVal = heap[argTagIdx1 + 1] >= heap[argTagIdx2 + 1] ? -3 : -4;
+					heap[lastIdx] = boolVal;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
 			}
 
 			@Override
@@ -668,20 +798,25 @@ class ramEvaluator implements ASTVisitor<Integer> {
 		});
 	}
 
-	public Integer forApp(App a) {return 0;}
+	public Integer forApp(App a) {
+		return 0;
+	}
 
-	public Integer forIf(If i) {return 0;}
+	public Integer forIf(If i) {
+		return 0;
+	}
 
-	public Integer forBlock(Block b) {return 0;}
-
+	public Integer forBlock(Block b) {
+		return 0;
+	}
 
 	Integer forDefault(AST a) { throw new EvalException(a + " is not in the domain of the visitor " + getClass()); }
-
 	public Integer forSymVariable(Variable host) { return forDefault(host); }
 	public Integer forMap(Map host) { return forDefault(host); }
 	public Integer forLet(Let host) { return forDefault(host); }
 	public Integer forLetRec(LetRec host) { return forDefault(host); }
 	public Integer forLetcc(Letcc host) { return forDefault(host);}
+	
 }
 
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
