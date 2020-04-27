@@ -347,6 +347,50 @@ public class Assign7Test extends TestCase {
     }
   }
 
+  public void testBlock() {
+    try {
+      String output = "500";
+      String input = "{1 + 2; true; 25*20}";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testLet1() {
+    try {
+      String output = "0";
+      String input = "let x:= 0; in x";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testLet2() {
+    try {
+      String output = "32";
+      String input = "let x:= 2; y := (4 + 2)*5; in x + y";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testLet3() {
+    try {
+      String output = "43";
+      String input = "let a:= 1; x:= ref 2; in let y := (4 + 2)*5; in let z := 11; in ! x + y + z";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
   public void testInt() {
     try {
       String output = "1";

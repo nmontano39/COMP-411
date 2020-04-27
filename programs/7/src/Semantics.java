@@ -612,6 +612,16 @@ class SymEvaluator extends Evaluator<VarEnv> {
   public JamVal forSLetRec(SLetRec host) { return forDefault(host); }
 }
 
+
+class varAddress {
+	int startIdx;
+	int endIdx;
+
+	public varAddress(int s, int e) {
+		startIdx = s;
+		endIdx = e;
+	}
+}
 /*
  * New visitor that does stuff with the heap and then returns the address of the final result.
  * Then, in the ramXYZ methods, we use this address and the heap to make the desired JamVal and return that as the
@@ -621,6 +631,8 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	private int[] heap;
 
+	private ArrayList<varAddress[]> envLink = new ArrayList<>();
+
 	private int lastIdx = 0;
 
 	ramEvaluator(int[] heap) {
@@ -629,7 +641,8 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forPair(Pair p) {
 		// TODO
-		return 0;
+		varAddress v = envLink.get(envLink.size() - 1 - p.dist())[p.offset()];
+		return v.startIdx;
 	}
 
 	public Integer forSMap(SMap sm) {
@@ -639,7 +652,23 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forSLet(SLet sl) {
 		// TODO
-		return 0;
+		heap[lastIdx] = 5;
+		lastIdx++;
+		// TODO - just set first env's parent to -100 to avoid any conflicts with the existing tags. May need to change
+		// this later.
+		heap[lastIdx] = envLink.size() == 0 ? -100 : envLink.size() - 1;
+		lastIdx++;
+		heap[lastIdx] = sl.rhss().length;
+		lastIdx++;
+		varAddress[] thisEnv = new varAddress[sl.rhss().length];
+		for (int i = 0; i < sl.rhss().length; i++) {
+			Integer startIdx = sl.rhss()[i].accept(this);
+			int endIdx = lastIdx - 1;
+			thisEnv[i] = new varAddress(startIdx, endIdx);
+		}
+		envLink.add(thisEnv);
+
+		return sl.body().accept(this);
 	}
 
 	public Integer forSLetRec(SLetRec slr) {
@@ -909,7 +938,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpNotEquals(OpNotEquals op) {
-				// TODO
 				int temp = lastIdx;
 				// If tags are different, then output must be true.
 				if (heap[argTagIdx1] != heap[argTagIdx2]) {
@@ -1066,8 +1094,11 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forBlock(Block b) {
-		// TODO
-		return 0;
+		for (int i = 0; i < b.exps().length -1; i++) {
+			b.exps()[i].accept(this);
+		}
+
+		return b.exps()[b.exps().length - 1].accept(this);
 	}
 
 	Integer forDefault(AST a) { throw new EvalException(a + " is not in the domain of the visitor " + getClass()); }
