@@ -137,65 +137,62 @@ class Interpreter {
 				System.out.println("Gets into case 0: Exception case");
 				throw new EvalException("ramEval should never encounter case 0");
 			case 1:
-				System.out.println("Gets into case 1: Int");
+				System.out.println("Gets into case 1: int");
 				return new IntConstant(heap[idx + 1]);
 			case 2:
 				// TODO: Implement this case.
-				System.out.println("Gets into case 2: Cons");
+				System.out.println("Gets into case 2: cons");
 			case 3:
-				System.out.println("Gets into case 3: Ref");
+				System.out.println("Gets into case 3: ref");
 				JamVal arg = ramCaseEval(idx + 1);
 				return new JamRef(arg);
-
 			case 4:
 				// TODO: Implement this case.
-				System.out.println("Gets into case 4: Closure");
+				System.out.println("Gets into case 4: closure");
 			case 5:
 				// TODO: Implement this case.
-				System.out.println("Gets into case 5: Activation record");
+				System.out.println("Gets into case 5: activation record");
 			case -1:
-				System.out.println("Gets into case -1");
+				System.out.println("Gets into case -1: null");
 				return JamEmpty.ONLY;
-
 			case -2:
-				System.out.println("Gets into case -2");
-				// TODO: is this what we want to do?
+				System.out.println("Gets into case -2: unit");
 				return JamUnit.ONLY;
 			case -3:
-				System.out.println("Gets into case -3");
+				System.out.println("Gets into case -3: true");
 				return BoolConstant.TRUE;
 			case -4:
-				System.out.println("Gets into case -4");
+				System.out.println("Gets into case -4: false");
 				return BoolConstant.FALSE;
 			case -5:
-				System.out.println("Gets into case -5");
+				System.out.println("Gets into case -5: number?");
 				return NumberPPrim.ONLY;
 			case -6:
-				System.out.println("Gets into case -6");
+				System.out.println("Gets into case -6: function?");
 				return FunctionPPrim.ONLY;
 			case -7:
-				System.out.println("Gets into case -7");
+				System.out.println("Gets into case -7: list?");
 				return ListPPrim.ONLY;
 			case -8:
-				System.out.println("Gets into case -8");
+				System.out.println("Gets into case -8: null?");
 				return NullPPrim.ONLY;
 			case -9:
-				System.out.println("Gets into case -9");
+				System.out.println("Gets into case -9: cons?");
 				return ConsPPrim.ONLY;
 			case -10:
-				System.out.println("Gets into case -10");
+				System.out.println("Gets into case -10: ref");
 				return RefPPrim.ONLY;
 			case -11:
-				System.out.println("Gets into case -11");
+				System.out.println("Gets into case -11: arity");
 				return ArityPrim.ONLY;
 			case -12:
-				System.out.println("Gets into case -12");
+				System.out.println("Gets into case -12: cons");
 				return ConsPrim.ONLY;
 			case -13:
-				System.out.println("Gets into case -13");
+				System.out.println("Gets into case -13: first");
 				return FirstPrim.ONLY;
 			case -14:
-				System.out.println("Gets into case -14");
+				System.out.println("Gets into case -14: rest");
 				return RestPrim.ONLY;
 			default:
 				System.out.println("Gets into default case");
