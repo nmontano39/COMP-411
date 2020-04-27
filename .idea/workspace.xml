@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/7/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/src/Semantics.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -85,22 +83,12 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign7Test">
+  <component name="RunManager" selected="JUnit.Assign7Test.testBasicRamSD3">
     <configuration name="Assign6Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign6Test" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign6Test.testCappend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testCappend" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,16 +103,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign6Test.testSuop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="COMP-411" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign6Test" />
-      <option name="METHOD_NAME" value="testSuop" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -134,20 +112,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Assign7Test.testBasicRamSD2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
+      <option name="METHOD_NAME" value="testBasicRamSD2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign7Test.testBasicRamSD3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="COMP-411" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
+      <option name="METHOD_NAME" value="testBasicRamSD3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.Assign6Test" />
-      <item itemvalue="JUnit.Assign6Test.testSuop" />
-      <item itemvalue="JUnit.Assign6Test.testCappend" />
       <item itemvalue="JUnit.Assign6Test.testSfact" />
       <item itemvalue="JUnit.Assign7Test" />
+      <item itemvalue="JUnit.Assign7Test.testBasicRamSD2" />
+      <item itemvalue="JUnit.Assign7Test.testBasicRamSD3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Assign7Test.testBasicRamSD3" />
+        <item itemvalue="JUnit.Assign7Test.testBasicRamSD2" />
         <item itemvalue="JUnit.Assign7Test" />
         <item itemvalue="JUnit.Assign6Test" />
         <item itemvalue="JUnit.Assign6Test.testSfact" />
-        <item itemvalue="JUnit.Assign6Test.testCappend" />
-        <item itemvalue="JUnit.Assign6Test.testSuop" />
       </list>
     </recent_temporary>
   </component>
@@ -170,13 +168,6 @@
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
       <workItem from="1587378675772" duration="14252000" />
-    </task>
-    <task id="LOCAL-00033" summary="context checking">
-      <created>1582333800575</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1582333800575</updated>
     </task>
     <task id="LOCAL-00034" summary="context checking - var declaration done">
       <created>1582334610102</created>
@@ -514,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587857093934</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="working on ramEvaluator">
+      <created>1587960265468</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1587960265468</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +535,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working on Lazy Cons, added comments" />
     <MESSAGE value="call by name cons works" />
     <MESSAGE value="TODO: letRec, callByNeed" />
     <MESSAGE value="TODO: letRec callByname" />
@@ -562,7 +559,8 @@
     <MESSAGE value="starting p7 - phase 1" />
     <MESSAGE value="starting a7 - phase 1" />
     <MESSAGE value="starting a7 - phase 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting a7 - phase 2" />
+    <MESSAGE value="working on ramEvaluator" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on ramEvaluator" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

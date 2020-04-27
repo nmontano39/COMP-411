@@ -128,7 +128,13 @@ class Interpreter {
 		} else if (tag == 1) {
 			System.out.println("Gets into case 1");
 			return new IntConstant(heap[idx + 1]);
-		} else {
+		} else if (tag == -3) {
+			System.out.println("Gets into case -3");
+			return BoolConstant.TRUE;
+		} else if (tag == -4) {
+			System.out.println("Gets into case -4");
+			return BoolConstant.FALSE;
+		}else {
 			System.out.println("Gets into case not 0 or 1");
 			return null;
 		}
