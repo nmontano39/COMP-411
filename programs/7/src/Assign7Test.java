@@ -237,6 +237,72 @@ public class Assign7Test extends TestCase {
     }
   }
 
+  public void testRef1() {
+    try {
+      String output = "(ref 100)";
+      String input = "ref 100";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testRef2() {
+    try {
+      String output = "128";
+      String input = "2 + 100 + ! ref 10 + 16";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testEquals1() {
+    try {
+      String output = "true";
+      String input = "cons? = cons?";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testEquals2() {
+    try {
+      String output = "false";
+      String input = "1 = 2";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testEquals3() {
+    try {
+      String output = "false";
+      String input = "ref 10 = ref 10";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testEquals4() {
+    try {
+      String output = "true";
+      String input = "! ref 10 = ! ref 10";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
   public void testInt() {
     try {
       String output = "1";
@@ -269,7 +335,17 @@ public class Assign7Test extends TestCase {
       fail("append threw " + e);
     }
   }
-  
+
+  public void testUnOp2() {
+    try {
+      String output = "-2";
+      String input = "-2";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
 
 
   public void testBigfib() {

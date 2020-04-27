@@ -134,18 +134,33 @@ class Interpreter {
 		printHeap();
 		switch (tag) {
 			case 0:
-				System.out.println("Gets into case 0");
+				System.out.println("Gets into case 0: Exception case");
 				throw new EvalException("ramEval should never encounter case 0");
 			case 1:
-				System.out.println("Gets into case 1");
+				System.out.println("Gets into case 1: Int");
 				return new IntConstant(heap[idx + 1]);
+			case 2:
+				// TODO: Implement this case.
+				System.out.println("Gets into case 2: Cons");
+			case 3:
+				System.out.println("Gets into case 3: Ref");
+				JamVal arg = ramCaseEval(idx + 1);
+				return new JamRef(arg);
+
+			case 4:
+				// TODO: Implement this case.
+				System.out.println("Gets into case 4: Closure");
+			case 5:
+				// TODO: Implement this case.
+				System.out.println("Gets into case 5: Activation record");
 			case -1:
 				System.out.println("Gets into case -1");
-				return JamUnit.ONLY;
+				return JamEmpty.ONLY;
+
 			case -2:
 				System.out.println("Gets into case -2");
 				// TODO: is this what we want to do?
-				return JamEmpty.ONLY;
+				return JamUnit.ONLY;
 			case -3:
 				System.out.println("Gets into case -3");
 				return BoolConstant.TRUE;
@@ -660,7 +675,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forPrimFun(PrimFun pf) {
-		// TODO
 		Integer tag = pf.accept(new PrimFunVisitor<Integer>() {
 			@Override
 			public Integer forFunctionPPrim() {
@@ -773,14 +787,23 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			
 			@Override
 			public Integer forOpBang(OpBang op) {
-				// TODO
-				return null;
+				if (heap[argTagIdx] != 3) {
+					throw new EvalException("Operator ! applied to " + u.arg() + " which is not a ref");
+				}
+				return argTagIdx + 1;
 			}
 			
 			@Override
 			public Integer forOpRef(OpRef op) {
-				// TODO
-				return null;
+				// TODO - the way we do things here, we're pushing the arguement information on the heap twice, because
+				// we evaluate the argument before this visitor. It seems correct but redundant.
+				for (int i = lastIdx; i > argTagIdx; i--) {
+					heap[i] = heap[i - 1];
+				}
+				heap[argTagIdx] = 3;
+				lastIdx++;
+
+				return argTagIdx;
 			}
 		});
 	}
@@ -788,6 +811,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	public Integer forBinOpApp(BinOpApp b) {
 		Integer argTagIdx1 = b.arg1().accept(this);
 		Integer argTagIdx2 = b.arg2().accept(this);
+		System.out.printf("BinOpApp arg1: %s, idx1: %d arg2: %s, idx2: %d\n", b.arg1(), argTagIdx1, b.arg2(), argTagIdx2);
 		return b.rator().accept(new BinOpVisitor<Integer>() {
 			@Override
 			public Integer forBinOpPlus(BinOpPlus op) {
@@ -848,7 +872,43 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			@Override
 			public Integer forOpEquals(OpEquals op) {
 				// TODO
-				return null;
+				int temp = lastIdx;
+				// If tags are different, then output must be false.
+				if (heap[argTagIdx1] != heap[argTagIdx2]) {
+					heap[lastIdx] = -4; // false
+					lastIdx++;
+					return temp;
+				// If tags are same but tag is ref, output is false. (Try ref 10 = ref 10 in reference interpreter).
+				} else if (heap[argTagIdx1] == 3) {
+					heap[lastIdx] = -4; // false
+					lastIdx++;
+					return temp;
+				// If tags are negative, then this is primitive so return true (since both tags are the same).
+				} else if (heap[argTagIdx1] < 0) {
+					heap[lastIdx] = -3; // true
+					lastIdx++;
+					return temp;
+				// Remaining cases:
+				} else {
+					// We don't have a reliable way of finding arg1Len because there could be stuff between arg1
+					// and arg2. So we just find arg2 (we can do this reliably) and compare element by element.
+					int arg2Len = (lastIdx - 1) - argTagIdx2;
+					int arg1start = argTagIdx1 + 1;
+					int arg2start = argTagIdx2 + 1;
+					for (int i = 0; i < arg2Len; i++) {
+						// If any are unequal
+						if (heap[arg1start + i] != heap[arg2start + i]) {
+							// Return false case
+							heap[lastIdx] = -4; // false
+							lastIdx++;
+							return temp;
+						}
+					}
+					// Everything equal so return true case.
+					heap[lastIdx] = -3; // true
+					lastIdx++;
+					return temp;
+				}
 			}
 
 			@Override

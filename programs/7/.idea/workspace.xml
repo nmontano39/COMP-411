@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Evaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Evaluator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/5/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Interpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign7Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,14 +146,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3994" />
-          <entry key="txt" value="295" />
+          <entry key="java" value="6481" />
+          <entry key="txt" value="326" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3994" />
-          <entry key="PLAIN_TEXT" value="295" />
+          <entry key="JAVA" value="6481" />
+          <entry key="PLAIN_TEXT" value="326" />
         </counts>
       </usages-collector>
     </session>
@@ -162,8 +163,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="212" column="27" lean-forward="true" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
+            <state relative-caret-position="185">
+              <caret line="298" selection-start-line="298" selection-end-line="298" />
             </state>
           </provider>
         </entry>
@@ -171,8 +172,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="933" column="23" selection-start-line="933" selection-start-column="10" selection-end-line="933" selection-end-column="23" />
+            <state relative-caret-position="185">
+              <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
               <folding>
                 <element signature="e#19084#19085#0" expanded="true" />
                 <element signature="e#19137#19138#0" expanded="true" />
@@ -184,8 +185,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1087">
-              <caret line="181" column="21" lean-forward="true" selection-start-line="181" selection-start-column="21" selection-end-line="181" selection-end-column="21" />
+            <state relative-caret-position="151">
+              <caret line="897" column="55" lean-forward="true" selection-start-line="897" selection-start-column="55" selection-end-line="897" selection-end-column="55" />
               <folding>
                 <element signature="e#3333#3334#0" expanded="true" />
                 <element signature="e#3351#3352#0" expanded="true" />
@@ -203,6 +204,28 @@
                 <element signature="e#16060#16061#0" expanded="true" />
                 <element signature="e#21849#21850#0" expanded="true" />
                 <element signature="e#21872#21873#0" expanded="true" />
+                <element signature="e#22720#22721#0" expanded="true" />
+                <element signature="e#22742#22743#0" expanded="true" />
+                <element signature="e#22793#22794#0" expanded="true" />
+                <element signature="e#22815#22816#0" expanded="true" />
+                <element signature="e#22864#22865#0" expanded="true" />
+                <element signature="e#22886#22887#0" expanded="true" />
+                <element signature="e#22935#22936#0" expanded="true" />
+                <element signature="e#22957#22958#0" expanded="true" />
+                <element signature="e#23006#23007#0" expanded="true" />
+                <element signature="e#23028#23029#0" expanded="true" />
+                <element signature="e#23077#23078#0" expanded="true" />
+                <element signature="e#23099#23100#0" expanded="true" />
+                <element signature="e#23147#23148#0" expanded="true" />
+                <element signature="e#23169#23170#0" expanded="true" />
+                <element signature="e#23217#23218#0" expanded="true" />
+                <element signature="e#23239#23240#0" expanded="true" />
+                <element signature="e#23288#23289#0" expanded="true" />
+                <element signature="e#23310#23311#0" expanded="true" />
+                <element signature="e#23358#23359#0" expanded="true" />
+                <element signature="e#23380#23381#0" expanded="true" />
+                <element signature="e#23430#23431#0" expanded="true" />
+                <element signature="e#23452#23453#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -221,10 +244,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getM</find>
-      <find>Interpreter</find>
-      <find>SDCLo</find>
-      <find>forSmap</find>
       <find>codeIdx</find>
       <find>forBinOpApp</find>
       <find>SDEval</find>
@@ -251,6 +270,10 @@
       <find>forApp</find>
       <find>primfunvisitor</find>
       <find>asBool</find>
+      <find>UnOpApp</find>
+      <find>testUn</find>
+      <find>case</find>
+      <find>forOpEquals</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -305,7 +328,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588013377518" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588019458257" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -324,7 +347,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign7Test.testPrimFunNoArgs">
+  <component name="RunManager" selected="JUnit.Assign7Test">
     <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
@@ -333,60 +356,60 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testBasicRamUnOp2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testEquals3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testBasicRamUnOp2" />
+      <option name="METHOD_NAME" value="testEquals3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testBool2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testEquals4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testBool2" />
+      <option name="METHOD_NAME" value="testEquals4" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testBool3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testRef1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testBool3" />
+      <option name="METHOD_NAME" value="testRef1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testPrimFunNoArgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testRef2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testPrimFunNoArgs" />
+      <option name="METHOD_NAME" value="testRef2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.Assign7Test.testBasicRamUnOp2" />
+      <item itemvalue="JUnit.Assign7Test.testEquals3" />
+      <item itemvalue="JUnit.Assign7Test.testEquals4" />
+      <item itemvalue="JUnit.Assign7Test.testRef1" />
+      <item itemvalue="JUnit.Assign7Test.testRef2" />
       <item itemvalue="JUnit.Assign7Test" />
-      <item itemvalue="JUnit.Assign7Test.testBool2" />
-      <item itemvalue="JUnit.Assign7Test.testBool3" />
-      <item itemvalue="JUnit.Assign7Test.testPrimFunNoArgs" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign7Test.testPrimFunNoArgs" />
-        <item itemvalue="JUnit.Assign7Test.testBool2" />
         <item itemvalue="JUnit.Assign7Test" />
-        <item itemvalue="JUnit.Assign7Test.testBool3" />
-        <item itemvalue="JUnit.Assign7Test.testBasicRamUnOp2" />
+        <item itemvalue="JUnit.Assign7Test.testEquals4" />
+        <item itemvalue="JUnit.Assign7Test.testRef2" />
+        <item itemvalue="JUnit.Assign7Test.testRef1" />
+        <item itemvalue="JUnit.Assign7Test.testEquals3" />
       </list>
     </recent_temporary>
   </component>
@@ -604,39 +627,46 @@
       <option name="project" value="LOCAL" />
       <updated>1588013131551</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Prim fun with no args done.">
+      <created>1588013405816</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1588013405816</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 13h 18m 59s.xml">
-      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testEquals3 - 2020.04.27 at 14h 58m 52s.xml">
+      <configuration name="Assign7Test.testEquals3" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool3 - 2020.04.27 at 13h 19m 48s.xml">
-      <configuration name="Assign7Test.testBool3" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 14h 59m 44s.xml">
+      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool3 - 2020.04.27 at 13h 23m 06s.xml">
-      <configuration name="Assign7Test.testBool3" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testRef1 - 2020.04.27 at 15h 05m 50s.xml">
+      <configuration name="Assign7Test.testRef1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool3 - 2020.04.27 at 13h 23m 28s.xml">
-      <configuration name="Assign7Test.testBool3" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testRef1 - 2020.04.27 at 15h 15m 36s.xml">
+      <configuration name="Assign7Test.testRef1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool3 - 2020.04.27 at 13h 23m 57s.xml">
-      <configuration name="Assign7Test.testBool3" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testRef2 - 2020.04.27 at 15h 16m 43s.xml">
+      <configuration name="Assign7Test.testRef2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test - 2020.04.27 at 13h 24m 23s.xml">
+    <history-entry file="Assign7Test - 2020.04.27 at 15h 17m 07s.xml">
       <configuration name="Assign7Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 13h 24m 56s.xml">
-      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    <history-entry file="Assign7Test - 2020.04.27 at 15h 19m 07s.xml">
+      <configuration name="Assign7Test" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 13h 25m 18s.xml">
-      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 20m 33s.xml">
+      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 13h 25m 57s.xml">
-      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 21m 17s.xml">
+      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 13h 26m 46s.xml">
-      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 22m 12s.xml">
+      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -678,7 +708,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated a test to reflect its original." />
     <MESSAGE value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
     <MESSAGE value="Start of A6." />
     <MESSAGE value="Need to add simple check for each of the visitor's methods." />
@@ -703,7 +732,8 @@
     <MESSAGE value="Issue with BinOpApp" />
     <MESSAGE value="Added &amp; | ~" />
     <MESSAGE value="If seems ok? Added case statements for all the primitive functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="If seems ok? Added case statements for all the primitive functions." />
+    <MESSAGE value="Prim fun with no args done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Prim fun with no args done." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -754,17 +784,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="212" column="27" lean-forward="true" selection-start-line="212" selection-start-column="27" selection-end-line="212" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Syntax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="933" column="23" selection-start-line="933" selection-start-column="10" selection-end-line="933" selection-end-column="23" />
+        <state relative-caret-position="185">
+          <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
           <folding>
             <element signature="e#19084#19085#0" expanded="true" />
             <element signature="e#19137#19138#0" expanded="true" />
@@ -772,10 +795,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="298" selection-start-line="298" selection-end-line="298" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Semantics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1087">
-          <caret line="181" column="21" lean-forward="true" selection-start-line="181" selection-start-column="21" selection-end-line="181" selection-end-column="21" />
+        <state relative-caret-position="151">
+          <caret line="897" column="55" lean-forward="true" selection-start-line="897" selection-start-column="55" selection-end-line="897" selection-end-column="55" />
           <folding>
             <element signature="e#3333#3334#0" expanded="true" />
             <element signature="e#3351#3352#0" expanded="true" />
@@ -793,6 +823,28 @@
             <element signature="e#16060#16061#0" expanded="true" />
             <element signature="e#21849#21850#0" expanded="true" />
             <element signature="e#21872#21873#0" expanded="true" />
+            <element signature="e#22720#22721#0" expanded="true" />
+            <element signature="e#22742#22743#0" expanded="true" />
+            <element signature="e#22793#22794#0" expanded="true" />
+            <element signature="e#22815#22816#0" expanded="true" />
+            <element signature="e#22864#22865#0" expanded="true" />
+            <element signature="e#22886#22887#0" expanded="true" />
+            <element signature="e#22935#22936#0" expanded="true" />
+            <element signature="e#22957#22958#0" expanded="true" />
+            <element signature="e#23006#23007#0" expanded="true" />
+            <element signature="e#23028#23029#0" expanded="true" />
+            <element signature="e#23077#23078#0" expanded="true" />
+            <element signature="e#23099#23100#0" expanded="true" />
+            <element signature="e#23147#23148#0" expanded="true" />
+            <element signature="e#23169#23170#0" expanded="true" />
+            <element signature="e#23217#23218#0" expanded="true" />
+            <element signature="e#23239#23240#0" expanded="true" />
+            <element signature="e#23288#23289#0" expanded="true" />
+            <element signature="e#23310#23311#0" expanded="true" />
+            <element signature="e#23358#23359#0" expanded="true" />
+            <element signature="e#23380#23381#0" expanded="true" />
+            <element signature="e#23430#23431#0" expanded="true" />
+            <element signature="e#23452#23453#0" expanded="true" />
           </folding>
         </state>
       </provider>
