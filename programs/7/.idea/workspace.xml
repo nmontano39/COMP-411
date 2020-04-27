@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/Evaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Evaluator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/5/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Interpreter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign7Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
     </list>
@@ -143,14 +145,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1586" />
-          <entry key="txt" value="105" />
+          <entry key="java" value="2696" />
+          <entry key="txt" value="141" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1586" />
-          <entry key="PLAIN_TEXT" value="105" />
+          <entry key="JAVA" value="2696" />
+          <entry key="PLAIN_TEXT" value="141" />
         </counts>
       </usages-collector>
     </session>
@@ -160,8 +162,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="160" column="20" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="20" />
+            <state relative-caret-position="116">
+              <caret line="158" column="24" selection-start-line="158" selection-start-column="24" selection-end-line="158" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -169,8 +171,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+            <state relative-caret-position="206">
+              <caret line="20" column="109" selection-start-line="20" selection-start-column="108" selection-end-line="20" selection-end-column="109" />
               <folding>
                 <element signature="e#19084#19085#0" expanded="true" />
                 <element signature="e#19138#19139#0" expanded="true" />
@@ -214,15 +216,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="116" column="4" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
+            <state relative-caret-position="383">
+              <caret line="600" column="8" lean-forward="true" selection-start-line="600" selection-start-column="8" selection-end-line="600" selection-end-column="8" />
               <folding>
                 <element signature="e#1989#1990#0" expanded="true" />
                 <element signature="e#2016#2017#0" expanded="true" />
-                <element signature="e#4475#4476#0" expanded="true" />
-                <element signature="e#4507#4508#0" expanded="true" />
-                <element signature="e#4711#4712#0" expanded="true" />
-                <element signature="e#4747#4748#0" expanded="true" />
+                <element signature="e#4739#4740#0" expanded="true" />
+                <element signature="e#4771#4772#0" expanded="true" />
+                <element signature="e#4975#4976#0" expanded="true" />
+                <element signature="e#5011#5012#0" expanded="true" />
                 <element signature="e#6810#6811#0" expanded="true" />
                 <element signature="e#6878#6879#0" expanded="true" />
                 <element signature="e#6920#6921#0" expanded="true" />
@@ -231,12 +233,34 @@
                 <element signature="e#9386#9387#0" expanded="true" />
                 <element signature="e#13820#13821#0" expanded="true" />
                 <element signature="e#13878#13879#0" expanded="true" />
-                <element signature="e#19481#19482#0" expanded="true" />
-                <element signature="e#19496#19497#0" expanded="true" />
-                <element signature="e#19728#19729#0" expanded="true" />
-                <element signature="e#19743#19744#0" expanded="true" />
-                <element signature="e#19459#19460#0" expanded="true" />
-                <element signature="e#19480#19481#0" expanded="true" />
+                <element signature="e#20380#20381#0" expanded="true" />
+                <element signature="e#20403#20404#0" expanded="true" />
+                <element signature="e#21388#21389#0" expanded="true" />
+                <element signature="e#21410#21411#0" expanded="true" />
+                <element signature="e#21467#21468#0" expanded="true" />
+                <element signature="e#21489#21490#0" expanded="true" />
+                <element signature="e#21548#21549#0" expanded="true" />
+                <element signature="e#21570#21571#0" expanded="true" />
+                <element signature="e#21629#21630#0" expanded="true" />
+                <element signature="e#21651#21652#0" expanded="true" />
+                <element signature="e#21716#21717#0" expanded="true" />
+                <element signature="e#21738#21739#0" expanded="true" />
+                <element signature="e#21801#21802#0" expanded="true" />
+                <element signature="e#21823#21824#0" expanded="true" />
+                <element signature="e#21892#21893#0" expanded="true" />
+                <element signature="e#21914#21915#0" expanded="true" />
+                <element signature="e#21989#21990#0" expanded="true" />
+                <element signature="e#22011#22012#0" expanded="true" />
+                <element signature="e#22092#22093#0" expanded="true" />
+                <element signature="e#22114#22115#0" expanded="true" />
+                <element signature="e#22167#22168#0" expanded="true" />
+                <element signature="e#22189#22190#0" expanded="true" />
+                <element signature="e#22240#22241#0" expanded="true" />
+                <element signature="e#22262#22263#0" expanded="true" />
+                <element signature="e#22317#22318#0" expanded="true" />
+                <element signature="e#22339#22340#0" expanded="true" />
+                <element signature="e#20428#20429#0" expanded="true" />
+                <element signature="e#20449#20450#0" expanded="true" />
                 <element signature="e#19792#19793#0" expanded="true" />
                 <element signature="e#19830#19831#0" expanded="true" />
               </folding>
@@ -257,11 +281,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>map z t o</find>
-      <find>map</find>
-      <find>evalcheck</find>
-      <find>case11</find>
-      <find>System.out.println</find>
       <find>forClosure</find>
       <find>interpreter</find>
       <find>forSMap</find>
@@ -285,8 +304,13 @@
       <find>SDEvaluator</find>
       <find>ramSDEvaluator</find>
       <find>SDEvaluat</find>
+      <find>forIntConstant</find>
+      <find>ramEval</find>
+      <find>ramE</find>
+      <find>r</find>
       <find>ramEv</find>
       <find>ramEvaluator</find>
+      <find>ramEva</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -367,7 +391,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587955946231" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587958115958" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -629,39 +653,46 @@
       <option name="project" value="LOCAL" />
       <updated>1587954925016</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Set up a basic test case">
+      <created>1587956006654</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1587956006654</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign6Test_testSmap - 2020.04.26 at 17h 48m 30s.xml">
-      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 03m 52s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmap - 2020.04.26 at 17h 53m 39s.xml">
-      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 04m 22s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmap - 2020.04.26 at 17h 57m 37s.xml">
-      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 04m 54s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.26 at 17h 57m 59s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 05m 44s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.26 at 17h 58m 59s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 06m 39s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmap - 2020.04.26 at 18h 01m 06s.xml">
-      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 07m 19s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmap - 2020.04.26 at 18h 01m 14s.xml">
-      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 08m 14s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test_testSmap - 2020.04.26 at 18h 03m 04s.xml">
-      <configuration name="Assign6Test.testSmap" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 09m 22s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign6Test - 2020.04.26 at 18h 03m 12s.xml">
-      <configuration name="Assign6Test" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 11m 55s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test - 2020.04.26 at 18h 15m 26s.xml">
-      <configuration name="Assign7Test" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testBasicRamSD - 2020.04.26 at 22h 22m 00s.xml">
+      <configuration name="Assign7Test.testBasicRamSD" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -677,7 +708,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32459018" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32459018" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -725,7 +756,8 @@
     <MESSAGE value="Post OH commit (might be the same)." />
     <MESSAGE value="New Starting point post OH." />
     <MESSAGE value="Added skeleton for our new visitor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added skeleton for our new visitor." />
+    <MESSAGE value="Set up a basic test case" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set up a basic test case" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -778,8 +810,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Syntax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+        <state relative-caret-position="206">
+          <caret line="20" column="109" selection-start-line="20" selection-start-column="108" selection-end-line="20" selection-end-column="109" />
           <folding>
             <element signature="e#19084#19085#0" expanded="true" />
             <element signature="e#19138#19139#0" expanded="true" />
@@ -821,15 +853,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Semantics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="116" column="4" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
+        <state relative-caret-position="383">
+          <caret line="600" column="8" lean-forward="true" selection-start-line="600" selection-start-column="8" selection-end-line="600" selection-end-column="8" />
           <folding>
             <element signature="e#1989#1990#0" expanded="true" />
             <element signature="e#2016#2017#0" expanded="true" />
-            <element signature="e#4475#4476#0" expanded="true" />
-            <element signature="e#4507#4508#0" expanded="true" />
-            <element signature="e#4711#4712#0" expanded="true" />
-            <element signature="e#4747#4748#0" expanded="true" />
+            <element signature="e#4739#4740#0" expanded="true" />
+            <element signature="e#4771#4772#0" expanded="true" />
+            <element signature="e#4975#4976#0" expanded="true" />
+            <element signature="e#5011#5012#0" expanded="true" />
             <element signature="e#6810#6811#0" expanded="true" />
             <element signature="e#6878#6879#0" expanded="true" />
             <element signature="e#6920#6921#0" expanded="true" />
@@ -838,12 +870,34 @@
             <element signature="e#9386#9387#0" expanded="true" />
             <element signature="e#13820#13821#0" expanded="true" />
             <element signature="e#13878#13879#0" expanded="true" />
-            <element signature="e#19481#19482#0" expanded="true" />
-            <element signature="e#19496#19497#0" expanded="true" />
-            <element signature="e#19728#19729#0" expanded="true" />
-            <element signature="e#19743#19744#0" expanded="true" />
-            <element signature="e#19459#19460#0" expanded="true" />
-            <element signature="e#19480#19481#0" expanded="true" />
+            <element signature="e#20380#20381#0" expanded="true" />
+            <element signature="e#20403#20404#0" expanded="true" />
+            <element signature="e#21388#21389#0" expanded="true" />
+            <element signature="e#21410#21411#0" expanded="true" />
+            <element signature="e#21467#21468#0" expanded="true" />
+            <element signature="e#21489#21490#0" expanded="true" />
+            <element signature="e#21548#21549#0" expanded="true" />
+            <element signature="e#21570#21571#0" expanded="true" />
+            <element signature="e#21629#21630#0" expanded="true" />
+            <element signature="e#21651#21652#0" expanded="true" />
+            <element signature="e#21716#21717#0" expanded="true" />
+            <element signature="e#21738#21739#0" expanded="true" />
+            <element signature="e#21801#21802#0" expanded="true" />
+            <element signature="e#21823#21824#0" expanded="true" />
+            <element signature="e#21892#21893#0" expanded="true" />
+            <element signature="e#21914#21915#0" expanded="true" />
+            <element signature="e#21989#21990#0" expanded="true" />
+            <element signature="e#22011#22012#0" expanded="true" />
+            <element signature="e#22092#22093#0" expanded="true" />
+            <element signature="e#22114#22115#0" expanded="true" />
+            <element signature="e#22167#22168#0" expanded="true" />
+            <element signature="e#22189#22190#0" expanded="true" />
+            <element signature="e#22240#22241#0" expanded="true" />
+            <element signature="e#22262#22263#0" expanded="true" />
+            <element signature="e#22317#22318#0" expanded="true" />
+            <element signature="e#22339#22340#0" expanded="true" />
+            <element signature="e#20428#20429#0" expanded="true" />
+            <element signature="e#20449#20450#0" expanded="true" />
             <element signature="e#19792#19793#0" expanded="true" />
             <element signature="e#19830#19831#0" expanded="true" />
           </folding>
@@ -852,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="160" column="20" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="20" />
+        <state relative-caret-position="116">
+          <caret line="158" column="24" selection-start-line="158" selection-start-column="24" selection-end-line="158" selection-end-column="24" />
         </state>
       </provider>
     </entry>

@@ -156,8 +156,8 @@ public class Assign7Test extends TestCase {
 
   public void testBasicRamSD() {
     try {
-      String output = "300";
-      String input = "100 + 200";
+      String output = "472";
+      String input = "100 + 300 + 3 + 69";
       ramSDCheck("append", output, input, defaultSize);
 
     } catch (Exception e) {

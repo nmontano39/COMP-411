@@ -86,6 +86,11 @@ class Interpreter {
   Interpreter(StringReader stringReader, int hs) {
 	  parser = new Parser(stringReader);
 	  heap = new int[HEAPSIZE];
+	  // TODO: This initialization to 0 may be unecessary.
+	  for (int i = 0; i < HEAPSIZE; i++) {
+	  	heap[i] = 0;
+	  }
+	  ramEvaluator = new ramEvaluator(heap);
   }
 	
 	/**
@@ -103,7 +108,7 @@ class Interpreter {
 		// TODO
 		SDAST prog = parser.statCheckProg();
 		Integer out = prog.accept(ramEvaluator);
-		return new IntConstant(out);
+		return ramCaseEval(out);
 	}
 	
 	/**
@@ -113,6 +118,20 @@ class Interpreter {
 	public JamVal ramSDCpsEval() {
 		// TODO
 		return null;
+	}
+
+	private JamVal ramCaseEval(Integer idx) {
+		int tag = heap[idx];
+		if (tag == 0) {
+			System.out.println("Gets into case 0");
+			throw new EvalException("ramEval should never encounter case 0");
+		} else if (tag == 1) {
+			System.out.println("Gets into case 1");
+			return new IntConstant(heap[idx + 1]);
+		} else {
+			System.out.println("Gets into case not 0 or 1");
+			return null;
+		}
 	}
 
 	
@@ -157,7 +176,7 @@ class Interpreter {
   /** Visitor that evaluates programs represented in SymAST form. */
   private SDASTVisitor<JamVal> SDEvalVisitor = new SDEvaluator(EmptySDEnv.ONLY);
 
-  private SDASTVisitor<Integer> ramEvaluator = new ramEvaluator(heap);
+  private SDASTVisitor<Integer> ramEvaluator;
   
   
 }
@@ -527,9 +546,16 @@ class SymEvaluator extends Evaluator<VarEnv> {
   public JamVal forSLetRec(SLetRec host) { return forDefault(host); }
 }
 
-class ramEvaluator implements SDASTVisitor<Integer> {
+/*
+ * New visitor that does stuff with the heap and then returns the address of the final result.
+ * Then, in the ramXYZ methods, we use this address and the heap to make the desired JamVal and return that as the
+ * output to the user/test.
+ */
+class ramEvaluator implements ASTVisitor<Integer> {
 
 	private int[] heap;
+
+	private int lastIdx = 0;
 
 	ramEvaluator(int[] heap) {
 		this.heap = heap;
@@ -546,7 +572,14 @@ class ramEvaluator implements SDASTVisitor<Integer> {
 	public Integer forBoolConstant(BoolConstant b) {return 0;}
 
 	public Integer forIntConstant(IntConstant i) {
-		return 0;
+		int temp = lastIdx;
+
+		heap[lastIdx] = 1;
+		lastIdx++;
+		heap[lastIdx] = i.value();
+		lastIdx++;
+
+		return temp;
 	}
 
 	public Integer forNullConstant(NullConstant n) {return 0;}
@@ -555,13 +588,100 @@ class ramEvaluator implements SDASTVisitor<Integer> {
 
 	public Integer forUnOpApp(UnOpApp u) {return 0;}
 
-	public Integer forBinOpApp(BinOpApp b) {return 0;}
+	public Integer forBinOpApp(BinOpApp b) {
+		Integer argTagIdx1 = b.arg1().accept(this);
+		Integer argTagIdx2 = b.arg2().accept(this);
+		return b.rator().accept(new BinOpVisitor<Integer>() {
+			@Override
+			public Integer forBinOpPlus(BinOpPlus op) {
+				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
+					int temp = lastIdx;
+					heap[lastIdx] = 1;
+					lastIdx++;
+					heap[lastIdx] = heap[argTagIdx1 + 1] + heap[argTagIdx2 + 1];
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an integer");
+				}
+			}
+
+			@Override
+			public Integer forBinOpMinus(BinOpMinus op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpTimes(OpTimes op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpDivide(OpDivide op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpEquals(OpEquals op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpNotEquals(OpNotEquals op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpLessThan(OpLessThan op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpGreaterThan(OpGreaterThan op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpLessThanEquals(OpLessThanEquals op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpGreaterThanEquals(OpGreaterThanEquals op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpAnd(OpAnd op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpOr(OpOr op) {
+				return null;
+			}
+
+			@Override
+			public Integer forOpGets(OpGets op) {
+				return null;
+			}
+		});
+	}
 
 	public Integer forApp(App a) {return 0;}
 
 	public Integer forIf(If i) {return 0;}
 
 	public Integer forBlock(Block b) {return 0;}
+
+
+	Integer forDefault(AST a) { throw new EvalException(a + " is not in the domain of the visitor " + getClass()); }
+
+	public Integer forSymVariable(Variable host) { return forDefault(host); }
+	public Integer forMap(Map host) { return forDefault(host); }
+	public Integer forLet(Let host) { return forDefault(host); }
+	public Integer forLetRec(LetRec host) { return forDefault(host); }
+	public Integer forLetcc(Letcc host) { return forDefault(host);}
 }
 
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
