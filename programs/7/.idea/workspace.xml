@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign7Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,14 +143,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="7646" />
-          <entry key="txt" value="444" />
+          <entry key="java" value="7721" />
+          <entry key="txt" value="482" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7646" />
-          <entry key="PLAIN_TEXT" value="444" />
+          <entry key="JAVA" value="7721" />
+          <entry key="PLAIN_TEXT" value="482" />
         </counts>
       </usages-collector>
     </session>
@@ -162,8 +160,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="374" column="39" selection-start-line="374" selection-start-column="39" selection-end-line="374" selection-end-column="39" />
+            <state relative-caret-position="358">
+              <caret line="385" column="88" selection-start-line="385" selection-start-column="88" selection-end-line="385" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -327,7 +325,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588027610935" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588027666089" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -647,25 +645,17 @@
       <option name="project" value="LOCAL" />
       <updated>1588019758431</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Let seems to work for simple cases.">
+      <created>1588027658135</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1588027658135</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign7Test - 2020.04.27 at 15h 19m 07s.xml">
-      <configuration name="Assign7Test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 20m 33s.xml">
-      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 21m 17s.xml">
-      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 22m 12s.xml">
-      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 29m 43s.xml">
-      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign7Test - 2020.04.27 at 15h 31m 00s.xml">
       <configuration name="Assign7Test" configurationId="JUnit" />
     </history-entry>
@@ -680,6 +670,21 @@
     </history-entry>
     <history-entry file="Assign7Test_testLet2 - 2020.04.27 at 17h 42m 27s.xml">
       <configuration name="Assign7Test.testLet2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testLet2 - 2020.04.27 at 17h 43m 29s.xml">
+      <configuration name="Assign7Test.testLet2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testLet2 - 2020.04.27 at 17h 44m 03s.xml">
+      <configuration name="Assign7Test.testLet2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testLet2 - 2020.04.27 at 17h 44m 18s.xml">
+      <configuration name="Assign7Test.testLet2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testLet3 - 2020.04.27 at 17h 46m 04s.xml">
+      <configuration name="Assign7Test.testLet3" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testLet3 - 2020.04.27 at 17h 46m 52s.xml">
+      <configuration name="Assign7Test.testLet3" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -721,7 +726,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Need to add simple check for each of the visitor's methods." />
     <MESSAGE value="Working on helper functions on a case-by-case basis." />
     <MESSAGE value="Our test case almost passes but :i values don't match up." />
     <MESSAGE value="BinOpSimple" />
@@ -746,7 +750,8 @@
     <MESSAGE value="Prim fun with no args done." />
     <MESSAGE value="We think ref and &quot;=&quot; are good no. Working on not equals" />
     <MESSAGE value="Added != by just flipping true to false in =" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added != by just flipping true to false in =" />
+    <MESSAGE value="Let seems to work for simple cases." />
+    <option name="LAST_COMMIT_MESSAGE" value="Let seems to work for simple cases." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -857,8 +862,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="374" column="39" selection-start-line="374" selection-start-column="39" selection-end-line="374" selection-end-column="39" />
+        <state relative-caret-position="358">
+          <caret line="385" column="88" selection-start-line="385" selection-start-column="88" selection-end-line="385" selection-end-column="88" />
         </state>
       </provider>
     </entry>
