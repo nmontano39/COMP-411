@@ -54,6 +54,21 @@ public class Assign7Test extends TestCase {
     System.out.printf("memory size [%d] : %.7s%n", count, name);
   }
 
+  private void ramSDCheck(String name, String answer, String program, int hs) {
+    Interpreter interp = new Interpreter(new StringReader(program), hs);
+    assertEquals("by-value-value " + name, answer, interp.ramSDEval().toString());
+  }
+
+  private void ramSDCpsCheck(String name, String answer, String program, int hs) {
+    Interpreter interp = new Interpreter(new StringReader(program), hs);
+    assertEquals("by-value-value " + name, answer, interp.ramSDCpsEval().toString());
+  }
+
+  private void ramAllCheck(String name, String answer, String program, int hs) {
+    ramSDCheck(name, answer, program, hs);
+    ramSDCpsCheck(name, answer, program, hs);
+  }
+
 
   private void allCheck(String name, String answer, String program) {
     allCheck(name,answer,program, defaultSize);
@@ -139,6 +154,16 @@ public class Assign7Test extends TestCase {
     }
   } //end of func
 
+  public void testBasicRamSD() {
+    try {
+      String output = "300";
+      String input = "100 + 200";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
 
   public void testAppend() {
     try {

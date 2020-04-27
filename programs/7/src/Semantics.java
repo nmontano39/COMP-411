@@ -101,7 +101,9 @@ class Interpreter {
 	 */
 	public JamVal ramSDEval() {
 		// TODO
-		return null;
+		SDAST prog = parser.statCheckProg();
+		Integer out = prog.accept(ramEvaluator);
+		return new IntConstant(out);
 	}
 	
 	/**
@@ -112,8 +114,7 @@ class Interpreter {
 		// TODO
 		return null;
 	}
-	
-	
+
 	
 	/** Parses, checks, and interprets the input embeded in parser */
     public JamVal eval() {
@@ -155,6 +156,8 @@ class Interpreter {
   
   /** Visitor that evaluates programs represented in SymAST form. */
   private SDASTVisitor<JamVal> SDEvalVisitor = new SDEvaluator(EmptySDEnv.ONLY);
+
+  private SDASTVisitor<Integer> ramEvaluator = new ramEvaluator(heap);
   
   
 }
@@ -526,6 +529,12 @@ class SymEvaluator extends Evaluator<VarEnv> {
 
 class ramEvaluator implements SDASTVisitor<Integer> {
 
+	private int[] heap;
+
+	ramEvaluator(int[] heap) {
+		this.heap = heap;
+	}
+
 	public Integer forPair(Pair p) {return 0;}
 
 	public Integer forSMap(SMap sm) {return 0;}
@@ -536,7 +545,9 @@ class ramEvaluator implements SDASTVisitor<Integer> {
 
 	public Integer forBoolConstant(BoolConstant b) {return 0;}
 
-	public Integer forIntConstant(IntConstant i) {return 0;}
+	public Integer forIntConstant(IntConstant i) {
+		return 0;
+	}
 
 	public Integer forNullConstant(NullConstant n) {return 0;}
 
