@@ -2628,7 +2628,7 @@ class SConverter {
   /** Visitor class for performing the static distance conversion; it modifies symbolTable during traversal,
     * but restores it on exit */
   class SConvert implements SymASTVisitor<SDAST> {
-    
+    // TODO: a7 - Delete codeIdx if you're not using it
 //    int codeIdx;
     int depth; // lexical depth of expression being visited
 
@@ -2684,7 +2684,8 @@ class SConverter {
       SDAST body = convert(m.body());
       depth--;
       
-      // TODO: a7
+      // TODO: a7 - might need to change "-1" to codeIdx++
+//      return new SMap(codeIdx++, m.vars().length, body);
       return new SMap(-1, m.vars().length, body);
     }
 

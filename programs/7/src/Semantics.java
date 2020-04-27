@@ -48,34 +48,24 @@ class VarClosure extends JamFun implements Closure {
 class SDClosure extends JamFun implements Closure {
   private SMap smap;
   private SDEvaluator eval;
-  private int codeIdx;
   
   SDClosure(SMap sm, SDEvaluator e) {
   	smap = sm; eval = e;
   }
   
-  // TODO: added this for a7
-  SDClosure(int code, SDEvaluator e) {
-  	codeIdx = code; eval = e;
-  }
-  
   public int arity() {
-  	// TODO: We think this cast is good. Double-check.
-  	SMap map = (SMap) eval.getCodeTbl().get(codeIdx);
-  	return map.arity();
+  	return smap.arity();
   }
   public JamVal apply(JamVal[] args) {
 	SDEnv newEnv = eval.env();
-	SMap map = (SMap) eval.getCodeTbl().get(codeIdx);
-	System.out.println("The map we get is: " + map);
-	int n = map.arity();
+	int n = smap.arity();
 	if (n != args.length) throw new EvalException("closure " + this + " applied to " +
 	   args.length + " arguments instead of " + n + " arguments");
 	  newEnv = newEnv.cons(args);
-	return map.body().accept(eval.newEvalVisitor(newEnv));
+	return smap.body().accept(eval.newEvalVisitor(newEnv));
   }
   public <RtnType> RtnType accept(FunVisitor<RtnType> jfv) { return jfv.forClosure(this); }
-  public String toString() { return "(closure: " + eval.getCodeTbl().get(codeIdx) + ")"; }
+  public String toString() { return "(closure: " + smap + ")"; }
 }
 
 class Interpreter {
@@ -279,9 +269,6 @@ abstract class Evaluator<Env extends Environment> implements EvalVisitor {
 	public JamVal forPrimFun(PrimFun primFun) { return primFun.accept(primEvaluator); }
 
 	public JamVal forClosure(Closure c) {
-		
-		// TODO: change for a7
-		
 		return c.apply(vals);
 	}
 
@@ -552,12 +539,7 @@ class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	public JamVal forPair(Pair p)  { return env.lookup(p); }
 	
 	public JamVal forSMap(SMap sm) {
-		// TODO: a7
-		int idx = codeTbl.size();
-		sm.setCodeIdx(idx);
-		codeTbl.add(sm);
-		System.out.printf("codeIdx = %d, size = %d\n", sm.getCodeIdx(), codeTbl.size());
-		return new SDClosure(idx, this);
+		return new SDClosure(sm, this);
 	}
 	
 	public JamVal forSLet(SLet sl) {

@@ -3,50 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/AnyDuplicatesVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/AnyDuplicatesVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/ArityPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/ArityPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Assign4Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Binding.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Binding.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/BoolConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/BoolConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/CheckVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/CheckVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Comma.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Comma.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Cons.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Cons.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/ConsPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/ConsPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/ConsPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/ConsPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Def.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Def.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Empty.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Empty.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Evaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Evaluator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/FirstPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/FirstPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/FunctionPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/FunctionPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/IntConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/IntConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Interpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/JamCons.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/JamCons.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/JamEmpty.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/JamEmpty.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/JamFun.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/JamFun.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/JamList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/JamList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/KeyWord.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/KeyWord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/LeftBrace.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/LeftBrace.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/LeftBrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/LeftBrack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/LeftParen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/LeftParen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Lexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/ListPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/ListPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/LookupVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/LookupVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/NullConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/NullConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/NullPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/NullPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/NumberPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/NumberPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/OpToken.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/OpToken.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/ParseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/ParseException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/PrimFun.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/PrimFun.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/PureListClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/PureListClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/RefPPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/RefPPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/RestPrim.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/RestPrim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/RightBrace.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/RightBrace.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/RightBrack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/RightBrack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/RightParen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/RightParen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/SemiColon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/SemiColon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/SyntaxException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/SyntaxException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/ToString.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/ToString.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Syntax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Syntax.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -185,14 +143,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="597" />
-          <entry key="txt" value="15" />
+          <entry key="java" value="711" />
+          <entry key="txt" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="597" />
-          <entry key="PLAIN_TEXT" value="15" />
+          <entry key="JAVA" value="711" />
+          <entry key="PLAIN_TEXT" value="42" />
         </counts>
       </usages-collector>
     </session>
@@ -202,17 +160,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1210">
-              <caret line="63" column="40" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="40" />
+            <state relative-caret-position="1012">
+              <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1396">
-              <caret line="2661" column="39" lean-forward="true" selection-start-line="2661" selection-start-column="39" selection-end-line="2661" selection-end-column="39" />
+            <state relative-caret-position="61">
+              <caret line="2630" column="32" selection-start-line="2630" selection-start-column="32" selection-end-line="2630" selection-end-column="32" />
               <folding>
                 <element signature="e#19084#19085#0" expanded="true" />
                 <element signature="e#19138#19139#0" expanded="true" />
@@ -253,14 +211,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="539" column="12" selection-start-line="539" selection-start-column="12" selection-end-line="539" selection-end-column="12" />
+            <state relative-caret-position="305">
+              <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="15" />
               <folding>
+                <element signature="e#1989#1990#0" expanded="true" />
+                <element signature="e#2016#2017#0" expanded="true" />
+                <element signature="e#9359#9360#0" expanded="true" />
+                <element signature="e#9386#9387#0" expanded="true" />
                 <element signature="e#19519#19520#0" expanded="true" />
                 <element signature="e#19540#19541#0" expanded="true" />
+                <element signature="e#19792#19793#0" expanded="true" />
+                <element signature="e#19830#19831#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -269,7 +233,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6974">
+            <state relative-caret-position="4796">
               <caret line="321" selection-start-line="321" selection-end-line="321" />
             </state>
           </provider>
@@ -279,15 +243,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>smap</find>
-      <find>testS</find>
       <find>Sma</find>
       <find>sfact</find>
       <find>Sappend</find>
       <find>Binding</find>
       <find>forLetcc</find>
       <find>letcc</find>
-      <find>TODO</find>
       <find>evalCheck</find>
       <find>map z t o</find>
       <find>map</find>
@@ -306,9 +267,12 @@
       <find>forSmap</find>
       <find>codeIdx</find>
       <find>primfunvisitor</find>
-      <find>ram</find>
       <find>forBinOpApp</find>
       <find>SDEval</find>
+      <find>SDClosure</find>
+      <find>ram</find>
+      <find>SDEValuator</find>
+      <find>TODO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -335,8 +299,8 @@
         <option value="$PROJECT_DIR$/src/Interp.java" />
         <option value="$PROJECT_DIR$/src/Parser.java" />
         <option value="$PROJECT_DIR$/src/Assign6Test.java" />
-        <option value="$PROJECT_DIR$/src/Syntax.java" />
         <option value="$PROJECT_DIR$/src/Semantics.java" />
+        <option value="$PROJECT_DIR$/src/Syntax.java" />
       </list>
     </option>
   </component>
@@ -388,7 +352,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587952043948" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1587953176508" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -629,7 +593,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587943323968</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Post OH commit (might be the same).">
+      <created>1587952350854</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1587952350854</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -666,8 +637,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27706325" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.27706325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -721,7 +693,8 @@
     <MESSAGE value="Tests seem to pass upto Phase 3." />
     <MESSAGE value="Done with assignment except README." />
     <MESSAGE value="Pre OH commit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Pre OH commit." />
+    <MESSAGE value="Post OH commit (might be the same)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Post OH commit (might be the same)." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -767,22 +740,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1210">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="40" />
+        <state relative-caret-position="1012">
+          <caret line="54" column="3" lean-forward="true" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign6Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6974">
+        <state relative-caret-position="4796">
           <caret line="321" selection-start-line="321" selection-end-line="321" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="94" column="15" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="15" />
+          <folding>
+            <element signature="e#1989#1990#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#9359#9360#0" expanded="true" />
+            <element signature="e#9386#9387#0" expanded="true" />
+            <element signature="e#19519#19520#0" expanded="true" />
+            <element signature="e#19540#19541#0" expanded="true" />
+            <element signature="e#19792#19793#0" expanded="true" />
+            <element signature="e#19830#19831#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Syntax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1396">
-          <caret line="2661" column="39" lean-forward="true" selection-start-line="2661" selection-start-column="39" selection-end-line="2661" selection-end-column="39" />
+        <state relative-caret-position="61">
+          <caret line="2630" column="32" selection-start-line="2630" selection-start-column="32" selection-end-line="2630" selection-end-column="32" />
           <folding>
             <element signature="e#19084#19085#0" expanded="true" />
             <element signature="e#19138#19139#0" expanded="true" />
@@ -818,17 +808,6 @@
             <element signature="e#90563#90564#0" expanded="true" />
             <element signature="e#91657#91658#0" expanded="true" />
             <element signature="e#91687#91688#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="539" column="12" selection-start-line="539" selection-start-column="12" selection-end-line="539" selection-end-column="12" />
-          <folding>
-            <element signature="e#19519#19520#0" expanded="true" />
-            <element signature="e#19540#19541#0" expanded="true" />
           </folding>
         </state>
       </provider>
