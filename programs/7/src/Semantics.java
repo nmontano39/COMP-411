@@ -154,34 +154,34 @@ class Interpreter {
 				return BoolConstant.FALSE;
 			case -5:
 				System.out.println("Gets into case -5");
-				// TODO: implement number?
+				return NumberPPrim.ONLY;
 			case -6:
 				System.out.println("Gets into case -6");
-				// TODO: implement function?
+				return FunctionPPrim.ONLY;
 			case -7:
 				System.out.println("Gets into case -7");
-				// TODO: implement list?
+				return ListPPrim.ONLY;
 			case -8:
 				System.out.println("Gets into case -8");
-				// TODO: implement null?
+				return NullPPrim.ONLY;
 			case -9:
 				System.out.println("Gets into case -9");
-				// TODO: implement cons?
+				return ConsPPrim.ONLY;
 			case -10:
 				System.out.println("Gets into case -10");
-				// TODO: implement ref?
+				return RefPPrim.ONLY;
 			case -11:
 				System.out.println("Gets into case -11");
-				// TODO: implement arity
+				return ArityPrim.ONLY;
 			case -12:
 				System.out.println("Gets into case -12");
-				// TODO: implement cons
+				return ConsPrim.ONLY;
 			case -13:
 				System.out.println("Gets into case -13");
-				// TODO: implement first
+				return FirstPrim.ONLY;
 			case -14:
 				System.out.println("Gets into case -14");
-				// TODO: implement rest
+				return RestPrim.ONLY;
 			default:
 				System.out.println("Gets into default case");
 				throw new EvalException("ramEval should never encounter case 0");
@@ -661,6 +661,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forPrimFun(PrimFun pf) {
 		// TODO
+		System.out.println("Reaches primfun: " + pf);
 		return 0;
 	}
 
@@ -898,13 +899,15 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forApp(App a) {
 		// TODO
+		System.out.println("Reaches app: " + a);
 		return 0;
 	}
 
 	public Integer forIf(If i) {
 		// TODO: double check this
 		Integer t = i.test().accept(this);
-		if (t.equals(-3)) {
+		if (heap[t] == -3) {
+			System.out.println(i.conseq());
 			return i.conseq().accept(this);
 		} else {
 			return i.alt().accept(this);
