@@ -153,19 +153,47 @@ public class Assign7Test extends TestCase {
       fail("badLet threw " + e);
     }
   } //end of func
-
-  public void testBasicRamSD1() {
+  
+  public void testAppend() {
     try {
-      String output = "1396";
-      String input = "100 + 300 + 3 + 69 - 8 * 3 + (9 / 2)";
-      ramSDCheck("append", output, input, defaultSize);
+      String output = "(1 2 3 1 2 3)";
+      String input = "letrec append := map x,y to\n          if x = null then y else cons(first(x), append(rest\n(x), y));\n            in let s := cons(1,cons(2,cons(3,null)));\n          in append(s,s)";
+      allCheck("append", output, input );
+      
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  } //end of func
+  
+  
+  
+  
+  
+  
 
+  public void testBinOp1() {
+    try {
+      String output = "403";
+      String input = "100 + 300 + 3";
+      ramSDCheck("append", output, input, defaultSize);
+      
     } catch (Exception e) {
       fail("append threw " + e);
     }
   }
   
-  public void testBasicRamSD2() {
+  public void testBinOp2() {
+    try {
+      String output = "1396";
+      String input = "100 + 300 + 3 + 69 - 8 * 3 + (9 / 2)";
+      ramSDCheck("append", output, input, defaultSize);
+      
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+  
+  public void testBool1() {
     try {
       String output = "false";
       String input = "1000 * 3 < 4";
@@ -175,19 +203,8 @@ public class Assign7Test extends TestCase {
       fail("append threw " + e);
     }
   }
-  
-  public void testBasicRamSD3() {
-    try {
-      String output = "true";
-      String input = "1000 > 999 & 20 <= 90 & 3 >= 3 & 500 < 501";
-      allCheck("append", output, input, defaultSize);
-      
-    } catch (Exception e) {
-      fail("append threw " + e);
-    }
-  }
 
-  public void testBasicRamSD4() {
+  public void testBool2() {
     try {
       String output = "true";
       String input = "(1000 > 999) & (20 <= 90) & (3 >= 3)";
@@ -198,7 +215,7 @@ public class Assign7Test extends TestCase {
     }
   }
 
-  public void testBasicRamBool1() {
+  public void testBool3() {
     try {
       String output = "true";
       String input = "true & true";
@@ -209,7 +226,7 @@ public class Assign7Test extends TestCase {
     }
   }
 
-  public void testBasicRamUnOp1() {
+  public void testInt() {
     try {
       String output = "1";
       String input = "1";
@@ -219,8 +236,19 @@ public class Assign7Test extends TestCase {
       fail("append threw " + e);
     }
   }
+  
+  public void testNull() {
+    try {
+      String output = "()";
+      String input = "null";
+      ramSDCheck("append", output, input, defaultSize);
+      
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
 
-  public void testBasicRamUnOp2() {
+  public void testUnOp() {
     try {
       String output = "-2";
       String input = "+1 * (-2)";
@@ -230,16 +258,7 @@ public class Assign7Test extends TestCase {
       fail("append threw " + e);
     }
   }
-  public void testAppend() {
-    try {
-      String output = "(1 2 3 1 2 3)";
-      String input = "letrec append := map x,y to\n          if x = null then y else cons(first(x), append(rest\n(x), y));\n            in let s := cons(1,cons(2,cons(3,null)));\n          in append(s,s)";
-      allCheck("append", output, input );
-
-    } catch (Exception e) {
-      fail("append threw " + e);
-    }
-  } //end of func
+  
 
 
   public void testBigfib() {

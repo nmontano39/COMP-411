@@ -107,7 +107,6 @@ class Interpreter {
 	 * Retursn the heap.
 	 */
 	public int[] getMemory() {
-		// TODO
 		return heap;
 	}
 	
@@ -115,7 +114,6 @@ class Interpreter {
 	 * Returns the JamVal result (decoding the heap-index or pseudo-index) of evaluating the embedded SDAST program using the low-level interpreter
 	 */
 	public JamVal ramSDEval() {
-		// TODO
 		SDAST prog = parser.statCheckProg();
 		System.out.println(prog);
 		Integer out = prog.accept(ramEvaluator);
@@ -141,12 +139,49 @@ class Interpreter {
 			case 1:
 				System.out.println("Gets into case 1");
 				return new IntConstant(heap[idx + 1]);
+			case -1:
+				System.out.println("Gets into case -1");
+				// TODO: implement unit
+			case -2:
+				System.out.println("Gets into case -2");
+				// TODO: is this what we want to do?
+				return JamEmpty.ONLY;
 			case -3:
 				System.out.println("Gets into case -3");
 				return BoolConstant.TRUE;
 			case -4:
 				System.out.println("Gets into case -4");
 				return BoolConstant.FALSE;
+			case -5:
+				System.out.println("Gets into case -5");
+				// TODO: implement number?
+			case -6:
+				System.out.println("Gets into case -6");
+				// TODO: implement function?
+			case -7:
+				System.out.println("Gets into case -7");
+				// TODO: implement list?
+			case -8:
+				System.out.println("Gets into case -8");
+				// TODO: implement null?
+			case -9:
+				System.out.println("Gets into case -9");
+				// TODO: implement cons?
+			case -10:
+				System.out.println("Gets into case -10");
+				// TODO: implement ref?
+			case -11:
+				System.out.println("Gets into case -11");
+				// TODO: implement arity
+			case -12:
+				System.out.println("Gets into case -12");
+				// TODO: implement cons
+			case -13:
+				System.out.println("Gets into case -13");
+				// TODO: implement first
+			case -14:
+				System.out.println("Gets into case -14");
+				// TODO: implement rest
 			default:
 				System.out.println("Gets into default case");
 				throw new EvalException("ramEval should never encounter case 0");
@@ -581,23 +616,26 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forPair(Pair p) {
+		// TODO
 		return 0;
 	}
 
 	public Integer forSMap(SMap sm) {
+		// TODO
 		return 0;
 	}
 
 	public Integer forSLet(SLet sl) {
+		// TODO
 		return 0;
 	}
 
 	public Integer forSLetRec(SLetRec slr) {
+		// TODO
 		return 0;
 	}
 
 	public Integer forBoolConstant(BoolConstant b) {
-		System.out.println("Gets to boolconstant");
 		int temp = lastIdx;
 		int boolVal = b.value() ? -3 : -4;
 		heap[lastIdx] = boolVal;
@@ -607,21 +645,22 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forIntConstant(IntConstant i) {
 		int temp = lastIdx;
-
 		heap[lastIdx] = 1;
 		lastIdx++;
 		heap[lastIdx] = i.value();
 		lastIdx++;
-
 		return temp;
 	}
 
 	public Integer forNullConstant(NullConstant n) {
-		return 0;
+		int temp = lastIdx;
+		heap[lastIdx] = -1;
+		lastIdx++;
+		return temp;
 	}
 
 	public Integer forPrimFun(PrimFun pf) {
-		System.out.println("Gets here!!!!!");
+		// TODO
 		return 0;
 	}
 
@@ -675,11 +714,13 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			
 			@Override
 			public Integer forOpBang(OpBang op) {
+				// TODO
 				return null;
 			}
 			
 			@Override
 			public Integer forOpRef(OpRef op) {
+				// TODO
 				return null;
 			}
 		});
@@ -747,11 +788,13 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpEquals(OpEquals op) {
+				// TODO
 				return null;
 			}
 
 			@Override
 			public Integer forOpNotEquals(OpNotEquals op) {
+				// TODO
 				return null;
 			}
 
@@ -811,11 +854,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 				if ((l != -3) && (l != -4)) {
 					return false;
 				}
-
-				if ((r != -3) && (r != -4)) {
-					return false;
-				}
-				return true;
+				return (r == -3) || (r == -4);
 			}
 
 			@Override
@@ -851,20 +890,29 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpGets(OpGets op) {
+				// TODO
 				return null;
 			}
 		});
 	}
 
 	public Integer forApp(App a) {
+		// TODO
 		return 0;
 	}
 
 	public Integer forIf(If i) {
-		return 0;
+		// TODO: double check this
+		Integer t = i.test().accept(this);
+		if (t.equals(-3)) {
+			return i.conseq().accept(this);
+		} else {
+			return i.alt().accept(this);
+		}
 	}
 
 	public Integer forBlock(Block b) {
+		// TODO
 		return 0;
 	}
 
@@ -879,8 +927,8 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
 	
+	// TODO: do we want this here?
 	ArrayList<SDAST> codeTbl = new ArrayList<>();
-
 	public ArrayList<SDAST> getCodeTbl() {
 		return codeTbl;
 	}
