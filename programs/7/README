@@ -3,13 +3,17 @@ sec14
 
 # Program Organization
 
-
-
+For this project, we constructed our low-level interpreter for the static distance abstract syntax (SDAST)
+representation of Jam programs. We did this by representing Jam code in a separate code array which we
+called codeTbl and performing explicit allocation of all Jam objects in a separate memory array which we
+called heap. This process is done by our interpreter through the use of a new ASTVisitor class we called
+ramEvaluator. This class recursively traversed through the parsed program and pushed each evaluation to the
+heap in the form of Integer tags and values. Then, we look at the top of the heap and handle each tag
+in a switch/case statement that returns the corresponding JamVal.
 
 
 # Testing Processes
 
-We tested our program using the provided test cases along with many of our own. We created testXXX cases to handle cases
-such as Let, Letcc, UnOpSimple/Complex, BinOpSimple/Complex, IfSimple/Complex, BlockSimple/Complex, and many
-more while using cpsCheck, sdCheck, and allEvalCheck as we progressed through each phase. Our code passes all 53 tests
-with 86% line coverage in SymEvaluator.
+We tested our program using the provided test cases along with many of our own. We created testX cases to handle cases
+such as Let, BinOp, UnOp, App, Ref, Block, and many more while using ramSDCheck, ramSDCpsCheck, and ramAllCheck as we
+progressed through phase 2. Our code passes all -- tests with --% line coverage in SymEvaluator.

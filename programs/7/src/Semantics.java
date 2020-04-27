@@ -86,7 +86,7 @@ class Interpreter {
   Interpreter(StringReader stringReader, int hs) {
 	  parser = new Parser(stringReader);
 	  heap = new int[HEAPSIZE];
-	  // TODO: This initialization to 0 may be unecessary.
+	  // TODO: This initialization to 0 may be unnecessary.
 	  for (int i = 0; i < HEAPSIZE; i++) {
 	  	heap[i] = 0;
 	  }
@@ -628,6 +628,12 @@ class varAddress {
  * output to the user/test.
  */
 class ramEvaluator implements ASTVisitor<Integer> {
+	
+	// TODO: do we want this here?
+	private ArrayList<SDAST> codeTbl = new ArrayList<>();
+	public ArrayList<SDAST> getCodeTbl() {
+		return codeTbl;
+	}
 
 	private int[] heap;
 
@@ -640,7 +646,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forPair(Pair p) {
-		// TODO
 		varAddress v = envLink.get(envLink.size() - 1 - p.dist())[p.offset()];
 		return v.startIdx;
 	}
@@ -651,11 +656,11 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forSLet(SLet sl) {
-		// TODO
 		heap[lastIdx] = 5;
 		lastIdx++;
-		// TODO - just set first env's parent to -100 to avoid any conflicts with the existing tags. May need to change
-		// this later.
+		
+		//TODO: just set first env's parent to -100 to avoid any conflicts with the existing tags.
+		// May need to change this later.
 		heap[lastIdx] = envLink.size() == 0 ? -100 : envLink.size() - 1;
 		lastIdx++;
 		heap[lastIdx] = sl.rhss().length;
@@ -821,7 +826,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			
 			@Override
 			public Integer forOpRef(OpRef op) {
-				// TODO - the way we do things here, we're pushing the arguement information on the heap twice, because
+				// the way we do things here, we're pushing the arguement information on the heap twice, because
 				// we evaluate the argument before this visitor. It seems correct but redundant.
 				for (int i = lastIdx; i > argTagIdx; i--) {
 					heap[i] = heap[i - 1];
@@ -1039,7 +1044,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpAnd(OpAnd op) {
-				// TODO: Come back to this later. The parser changes x & y to if x then y else false
+				//TODO: Come back to this later. The parser changes x & y to if x then y else false
 				// so not sure if we ever actually get here.
 				System.out.println("Arg1: " + b.arg1() + " Arg: " + b.arg2());
 				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
@@ -1055,7 +1060,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpOr(OpOr op) {
-				// TODO: Come back to this later. The parser changes x & y to if x then y else false
+				//TODO: Come back to this later. The parser changes x & y to if x then y else false
 				// so not sure if we ever actually get here.
 				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
 					int temp = lastIdx;
@@ -1070,8 +1075,19 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpGets(OpGets op) {
-				// TODO
-				return null;
+				// TODO: The binary operation E1 <- E2 evaluates the expression E1 to produce a value V1 that must be
+				//  a box, evaluates E2 to produce an arbitrary value V2, stores V2 in box V1, and returns the special
+				//  value unit (which is a legal Jam value, unlike the "undefined" value used in call-by-value recursive
+				//  let). If V1 is not a box, then the interpreter generates a run-time error.
+				
+				System.out.println("gets here");
+				
+				int temp = lastIdx;
+				heap[lastIdx] = -2;
+				lastIdx++;
+				
+				
+				return temp;
 			}
 		});
 	}
@@ -1083,7 +1099,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forIf(If i) {
-		// TODO: double check this
 		Integer t = i.test().accept(this);
 		if (heap[t] == -3) {
 			System.out.println(i.conseq());
@@ -1097,7 +1112,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 		for (int i = 0; i < b.exps().length -1; i++) {
 			b.exps()[i].accept(this);
 		}
-
 		return b.exps()[b.exps().length - 1].accept(this);
 	}
 
@@ -1111,12 +1125,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 }
 
 class SDEvaluator extends Evaluator<SDEnv> implements SDASTVisitor<JamVal> {
-	
-	// TODO: do we want this here?
-	ArrayList<SDAST> codeTbl = new ArrayList<>();
-	public ArrayList<SDAST> getCodeTbl() {
-		return codeTbl;
-	}
   
     SDEvaluator(SDEnv env) { super(env);}
   
