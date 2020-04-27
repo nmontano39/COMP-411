@@ -92,6 +92,16 @@ class Interpreter {
 	  }
 	  ramEvaluator = new ramEvaluator(heap);
   }
+
+	private void printHeap() {
+		String out = "";
+		int i = 0;
+		while (heap[i] != 0) {
+			out = out + heap[i] + " ";
+			i++;
+		}
+		System.out.println(out);
+	}
 	
 	/**
 	 * Retursn the heap.
@@ -107,6 +117,7 @@ class Interpreter {
 	public JamVal ramSDEval() {
 		// TODO
 		SDAST prog = parser.statCheckProg();
+		System.out.println(prog);
 		Integer out = prog.accept(ramEvaluator);
 		return ramCaseEval(out);
 	}
@@ -122,21 +133,23 @@ class Interpreter {
 
 	private JamVal ramCaseEval(Integer idx) {
 		int tag = heap[idx];
-		if (tag == 0) {
-			System.out.println("Gets into case 0");
-			throw new EvalException("ramEval should never encounter case 0");
-		} else if (tag == 1) {
-			System.out.println("Gets into case 1");
-			return new IntConstant(heap[idx + 1]);
-		} else if (tag == -3) {
-			System.out.println("Gets into case -3");
-			return BoolConstant.TRUE;
-		} else if (tag == -4) {
-			System.out.println("Gets into case -4");
-			return BoolConstant.FALSE;
-		}else {
-			System.out.println("Gets into case not 0 or 1");
-			return null;
+		printHeap();
+		switch (tag) {
+			case 0:
+				System.out.println("Gets into case 0");
+				throw new EvalException("ramEval should never encounter case 0");
+			case 1:
+				System.out.println("Gets into case 1");
+				return new IntConstant(heap[idx + 1]);
+			case -3:
+				System.out.println("Gets into case -3");
+				return BoolConstant.TRUE;
+			case -4:
+				System.out.println("Gets into case -4");
+				return BoolConstant.FALSE;
+			default:
+				System.out.println("Gets into default case");
+				throw new EvalException("ramEval should never encounter case 0");
 		}
 	}
 
@@ -584,7 +597,7 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forBoolConstant(BoolConstant b) {
-		// TODO: make sure this is correct
+		System.out.println("Gets to boolconstant");
 		int temp = lastIdx;
 		int boolVal = b.value() ? -3 : -4;
 		heap[lastIdx] = boolVal;
@@ -734,7 +747,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			@Override
 			public Integer forOpLessThan(OpLessThan op) {
 				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
-					// TODO: make sure this is correct
 					int temp = lastIdx;
 					int boolVal = heap[argTagIdx1 + 1] < heap[argTagIdx2 + 1] ? -3 : -4;
 					heap[lastIdx] = boolVal;
@@ -748,7 +760,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			@Override
 			public Integer forOpGreaterThan(OpGreaterThan op) {
 				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
-					// TODO: make sure this is correct
 					int temp = lastIdx;
 					int boolVal = heap[argTagIdx1 + 1] > heap[argTagIdx2 + 1] ? -3 : -4;
 					heap[lastIdx] = boolVal;
@@ -762,7 +773,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			@Override
 			public Integer forOpLessThanEquals(OpLessThanEquals op) {
 				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
-					// TODO: make sure this is correct
 					int temp = lastIdx;
 					int boolVal = heap[argTagIdx1 + 1] <= heap[argTagIdx2 + 1] ? -3 : -4;
 					heap[lastIdx] = boolVal;
@@ -776,7 +786,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			@Override
 			public Integer forOpGreaterThanEquals(OpGreaterThanEquals op) {
 				if (heap[argTagIdx1] == 1 && heap[argTagIdx2] == 1) {
-					// TODO: make sure this is correct
 					int temp = lastIdx;
 					int boolVal = heap[argTagIdx1 + 1] >= heap[argTagIdx2 + 1] ? -3 : -4;
 					heap[lastIdx] = boolVal;
@@ -787,14 +796,42 @@ class ramEvaluator implements ASTVisitor<Integer> {
 				}
 			}
 
+			private boolean bothBoolean(int l, int r) {
+				if ((l != -3) && (l != -4)) {
+					return false;
+				}
+
+				if ((r != -3) && (r != -4)) {
+					return false;
+				}
+				return true;
+			}
+
 			@Override
 			public Integer forOpAnd(OpAnd op) {
-				return null;
+				System.out.println("Arg1: " + b.arg1() + " Arg: " + b.arg2());
+				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
+					int temp = lastIdx;
+					int boolVal = heap[argTagIdx1 + 1] == -3 && heap[argTagIdx2 + 1] == -3 ? -3 : -4;
+					heap[lastIdx] = boolVal;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an boolean");
+				}
 			}
 
 			@Override
 			public Integer forOpOr(OpOr op) {
-				return null;
+				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
+					int temp = lastIdx;
+					int boolVal = heap[argTagIdx1 + 1] == -3 || heap[argTagIdx2 + 1] == -3 ? -3 : -4;
+					heap[lastIdx] = boolVal;
+					lastIdx++;
+					return temp;
+				} else {
+					throw new EvalException("One of arg1: "+ b.arg1() + " arg2: " + b.arg2() + " is not an boolean");
+				}
 			}
 
 			@Override

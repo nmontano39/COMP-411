@@ -180,8 +180,19 @@ public class Assign7Test extends TestCase {
     try {
       String output = "true";
       String input = "1000 > 999 & 20 <= 90 & 3 >= 3 & 500 < 501";
-      ramSDCheck("append", output, input, defaultSize);
+      allCheck("append", output, input, defaultSize);
       
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testBasicRamSD4() {
+    try {
+      String output = "true";
+      String input = "(1000 > 999) & (20 <= 90) & (3 >= 3)";
+      ramSDCheck("append", output, input, defaultSize);
+
     } catch (Exception e) {
       fail("append threw " + e);
     }
