@@ -146,25 +146,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="6481" />
-          <entry key="txt" value="326" />
+          <entry key="java" value="6760" />
+          <entry key="txt" value="390" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6481" />
-          <entry key="PLAIN_TEXT" value="326" />
+          <entry key="JAVA" value="6760" />
+          <entry key="PLAIN_TEXT" value="390" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="298" selection-start-line="298" selection-end-line="298" />
+            <state relative-caret-position="5000">
+              <caret line="341" column="32" selection-start-line="341" selection-start-column="32" selection-end-line="341" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -182,11 +182,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="897" column="55" lean-forward="true" selection-start-line="897" selection-start-column="55" selection-end-line="897" selection-end-column="55" />
+            <state relative-caret-position="446">
+              <caret line="952" column="12" lean-forward="true" selection-start-line="952" selection-start-column="12" selection-end-line="952" selection-end-column="12" />
               <folding>
                 <element signature="e#3333#3334#0" expanded="true" />
                 <element signature="e#3351#3352#0" expanded="true" />
@@ -301,8 +301,8 @@
         <option value="$PROJECT_DIR$/src/Parser.java" />
         <option value="$PROJECT_DIR$/src/Assign6Test.java" />
         <option value="$PROJECT_DIR$/src/Syntax.java" />
-        <option value="$PROJECT_DIR$/src/Assign7Test.java" />
         <option value="$PROJECT_DIR$/src/Semantics.java" />
+        <option value="$PROJECT_DIR$/src/Assign7Test.java" />
       </list>
     </option>
   </component>
@@ -328,7 +328,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588019458257" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588019714301" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -634,16 +634,17 @@
       <option name="project" value="LOCAL" />
       <updated>1588013405816</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="We think ref and &quot;=&quot; are good no. Working on not equals">
+      <created>1588019513039</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1588019513039</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign7Test_testEquals3 - 2020.04.27 at 14h 58m 52s.xml">
-      <configuration name="Assign7Test.testEquals3" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 14h 59m 44s.xml">
-      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign7Test_testRef1 - 2020.04.27 at 15h 05m 50s.xml">
       <configuration name="Assign7Test.testRef1" configurationId="JUnit" />
     </history-entry>
@@ -667,6 +668,12 @@
     </history-entry>
     <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 22m 12s.xml">
       <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testEquals4 - 2020.04.27 at 15h 29m 43s.xml">
+      <configuration name="Assign7Test.testEquals4" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test - 2020.04.27 at 15h 31m 00s.xml">
+      <configuration name="Assign7Test" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -708,7 +715,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got gets (&lt;-) to work for the most part. Need to implement unit." />
     <MESSAGE value="Start of A6." />
     <MESSAGE value="Need to add simple check for each of the visitor's methods." />
     <MESSAGE value="Working on helper functions on a case-by-case basis." />
@@ -733,7 +739,8 @@
     <MESSAGE value="Added &amp; | ~" />
     <MESSAGE value="If seems ok? Added case statements for all the primitive functions." />
     <MESSAGE value="Prim fun with no args done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Prim fun with no args done." />
+    <MESSAGE value="We think ref and &quot;=&quot; are good no. Working on not equals" />
+    <option name="LAST_COMMIT_MESSAGE" value="We think ref and &quot;=&quot; are good no. Working on not equals" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -784,28 +791,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Syntax.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
-          <folding>
-            <element signature="e#19084#19085#0" expanded="true" />
-            <element signature="e#19137#19138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="298" selection-start-line="298" selection-end-line="298" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Semantics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="897" column="55" lean-forward="true" selection-start-line="897" selection-start-column="55" selection-end-line="897" selection-end-column="55" />
+        <state relative-caret-position="446">
+          <caret line="952" column="12" lean-forward="true" selection-start-line="952" selection-start-column="12" selection-end-line="952" selection-end-column="12" />
           <folding>
             <element signature="e#3333#3334#0" expanded="true" />
             <element signature="e#3351#3352#0" expanded="true" />
@@ -846,6 +835,24 @@
             <element signature="e#23430#23431#0" expanded="true" />
             <element signature="e#23452#23453#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Syntax.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="168" column="6" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
+          <folding>
+            <element signature="e#19084#19085#0" expanded="true" />
+            <element signature="e#19137#19138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5000">
+          <caret line="341" column="32" selection-start-line="341" selection-start-column="32" selection-end-line="341" selection-end-column="32" />
         </state>
       </provider>
     </entry>

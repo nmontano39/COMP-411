@@ -303,6 +303,50 @@ public class Assign7Test extends TestCase {
     }
   }
 
+  public void testNEquals1() {
+    try {
+      String output = "false";
+      String input = "cons? != cons?";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testNEquals2() {
+    try {
+      String output = "true";
+      String input = "1 != 2";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testNEquals3() {
+    try {
+      String output = "true";
+      String input = "ref 10 != ref 10";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testNEquals4() {
+    try {
+      String output = "false";
+      String input = "! ref 10 != ! ref 10";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
   public void testInt() {
     try {
       String output = "1";

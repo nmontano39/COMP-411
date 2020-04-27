@@ -871,7 +871,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpEquals(OpEquals op) {
-				// TODO
 				int temp = lastIdx;
 				// If tags are different, then output must be false.
 				if (heap[argTagIdx1] != heap[argTagIdx2]) {
@@ -914,7 +913,44 @@ class ramEvaluator implements ASTVisitor<Integer> {
 			@Override
 			public Integer forOpNotEquals(OpNotEquals op) {
 				// TODO
-				return null;
+				int temp = lastIdx;
+				// If tags are different, then output must be true.
+				if (heap[argTagIdx1] != heap[argTagIdx2]) {
+					heap[lastIdx] = -3; // true
+					lastIdx++;
+					return temp;
+					// If tags are same but tag is ref, output is true. (Try ref 10 = ref 10 in reference interpreter).
+				} else if (heap[argTagIdx1] == 3) {
+					heap[lastIdx] = -3; // true
+					lastIdx++;
+					return temp;
+					// If tags are negative, then this is primitive so return false (since both tags are the same).
+				} else if (heap[argTagIdx1] < 0) {
+					heap[lastIdx] = -4; // false
+					lastIdx++;
+					return temp;
+					// Remaining cases:
+				} else {
+					// We don't have a reliable way of finding arg1Len because there could be stuff between arg1
+					// and arg2. So we just find arg2 (we can do this reliably) and compare element by element.
+					int arg2Len = (lastIdx - 1) - argTagIdx2;
+					int arg1start = argTagIdx1 + 1;
+					int arg2start = argTagIdx2 + 1;
+					for (int i = 0; i < arg2Len; i++) {
+						// If any are unequal
+						if (heap[arg1start + i] != heap[arg2start + i]) {
+							// Return true case
+							heap[lastIdx] = -3; // true
+							lastIdx++;
+							return temp;
+						}
+					}
+					// Everything equal so return fa;se case.
+					heap[lastIdx] = -4; // false
+					lastIdx++;
+					return temp;
+				}
+
 			}
 
 			@Override
