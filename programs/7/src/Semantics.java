@@ -2,6 +2,7 @@ import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /** The exception class for Jam run-time errors */
 class EvalException extends RuntimeException {
@@ -621,6 +622,10 @@ class varAddress {
 		startIdx = s;
 		endIdx = e;
 	}
+	
+	public String toString() {
+		return "varAddress: start=" + this.startIdx + " end=" + this.endIdx;
+	}
 }
 /*
  * New visitor that does stuff with the heap and then returns the address of the final result.
@@ -1080,13 +1085,20 @@ class ramEvaluator implements ASTVisitor<Integer> {
 				//  value unit (which is a legal Jam value, unlike the "undefined" value used in call-by-value recursive
 				//  let). If V1 is not a box, then the interpreter generates a run-time error.
 				
-				System.out.println("gets here");
+				System.out.println("\n<-------- forOpGets start");
+				varAddress[] arr = envLink.get(0);
+				System.out.println("numVarAddresses = " + arr.length);
+				for(int i = 0; i < arr.length; i++) {
+					System.out.println(i + " " + arr[i]);
+					arr[i] = new varAddress(lastIdx-3, lastIdx);
+					System.out.println(i + " " + arr[i]);
+				}
 				
 				int temp = lastIdx;
 				heap[lastIdx] = -2;
 				lastIdx++;
 				
-				
+				System.out.println("<-------- forOpGets end\n");
 				return temp;
 			}
 		});

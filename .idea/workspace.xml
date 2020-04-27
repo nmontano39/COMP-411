@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/7/README" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/src/Assign7Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/programs/7/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/src/Semantics.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +84,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign7Test">
+  <component name="RunManager" selected="JUnit.Assign7Test.testBinOpGets">
     <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -145,8 +143,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign7Test" />
         <item itemvalue="JUnit.Assign7Test.testBinOpGets" />
+        <item itemvalue="JUnit.Assign7Test" />
         <item itemvalue="JUnit.Assign7Test.testUnit" />
         <item itemvalue="JUnit.Assign7Test.testNull" />
         <item itemvalue="JUnit.Assign7Test.testBasicRamSD3" />
@@ -172,14 +170,7 @@
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
       <workItem from="1587378675772" duration="14252000" />
-      <workItem from="1588022406424" duration="3409000" />
-    </task>
-    <task id="LOCAL-00037" summary="working on Lazy Cons">
-      <created>1582338922630</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1582338922630</updated>
+      <workItem from="1588022406424" duration="4591000" />
     </task>
     <task id="LOCAL-00038" summary="working on Lazy Cons">
       <created>1582407969512</created>
@@ -517,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588022865382</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="working on readME, still have to do gets, block, map, app">
+      <created>1588029839870</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1588029839871</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="call by name cons works" />
     <MESSAGE value="TODO: letRec, callByNeed" />
     <MESSAGE value="TODO: letRec callByname" />
     <MESSAGE value="writing README, all tests pass." />
@@ -565,7 +562,8 @@
     <MESSAGE value="starting a7 - phase 1" />
     <MESSAGE value="starting a7 - phase 2" />
     <MESSAGE value="working on ramEvaluator" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on ramEvaluator" />
+    <MESSAGE value="working on readME, still have to do gets, block, map, app" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on readME, still have to do gets, block, map, app" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
