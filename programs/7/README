@@ -16,4 +16,4 @@ in a switch/case statement that returns the corresponding JamVal.
 
 We tested our program using the provided test cases along with many of our own. We created testX cases to handle cases
 such as Let, BinOp, UnOp, App, Ref, Block, and many more while using ramSDCheck, ramSDCpsCheck, and ramAllCheck as we
-progressed through phase 2. Our code passes all -- tests with --% line coverage in SymEvaluator.
+progressed through phase 2. Our code passes all 33 / 35 tests with 62% line coverage in SymEvaluator.
