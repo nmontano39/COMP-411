@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/EvalException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/EvalException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Evaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Evaluator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Interpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign7Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -148,25 +146,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="8155" />
-          <entry key="txt" value="482" />
+          <entry key="java" value="9058" />
+          <entry key="txt" value="498" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8155" />
-          <entry key="PLAIN_TEXT" value="482" />
+          <entry key="JAVA" value="9058" />
+          <entry key="PLAIN_TEXT" value="498" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="448" column="22" selection-start-line="448" selection-start-column="22" selection-end-line="448" selection-end-column="22" />
+            <state relative-caret-position="248">
+              <caret line="203" column="22" lean-forward="true" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -174,8 +172,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Syntax.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+            <state relative-caret-position="206">
+              <caret line="176" column="11" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="11" />
               <folding>
                 <element signature="e#19084#19085#0" expanded="true" />
                 <element signature="e#19137#19138#0" expanded="true" />
@@ -184,11 +182,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="1101" column="17" lean-forward="true" selection-start-line="1101" selection-start-column="17" selection-end-line="1101" selection-end-column="17" />
+            <state relative-caret-position="-60">
+              <caret line="1228" column="42" selection-start-line="1228" selection-start-column="42" selection-end-line="1228" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -206,8 +204,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SDEval</find>
-      <find>SDClosure</find>
       <find>ram</find>
       <find>SDEValuator</find>
       <find>codeTbl</find>
@@ -226,7 +222,6 @@
       <find>forBinopAn</find>
       <find>PrimFunVisitor</find>
       <find>prim</find>
-      <find>forApp</find>
       <find>primfunvisitor</find>
       <find>asBool</find>
       <find>UnOpApp</find>
@@ -236,6 +231,9 @@
       <find>TODO</find>
       <find>forOpGets</find>
       <find>testUnit</find>
+      <find>forApp</find>
+      <find>Ref</find>
+      <find>forRefPPrim</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -263,8 +261,8 @@
         <option value="$PROJECT_DIR$/src/Parser.java" />
         <option value="$PROJECT_DIR$/src/Assign6Test.java" />
         <option value="$PROJECT_DIR$/src/Syntax.java" />
-        <option value="$PROJECT_DIR$/src/Assign7Test.java" />
         <option value="$PROJECT_DIR$/src/Semantics.java" />
+        <option value="$PROJECT_DIR$/src/Assign7Test.java" />
       </list>
     </option>
   </component>
@@ -290,7 +288,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588034111153" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588037548639" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -309,71 +307,69 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign7Test.testUnit">
-    <configuration name="Assign7Test.testBinOpGets" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.Assign7Test.testApp4">
+    <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testBinOpGets" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Assign7Test.testApp1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
+      <option name="METHOD_NAME" value="testApp1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testLet1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testApp2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testLet1" />
+      <option name="METHOD_NAME" value="testApp2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testLet2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testApp3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testLet2" />
+      <option name="METHOD_NAME" value="testApp3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Assign7Test.testLet3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Assign7Test.testApp4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testLet3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Assign7Test.testUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Assign7Test" />
-      <option name="METHOD_NAME" value="testUnit" />
+      <option name="METHOD_NAME" value="testApp4" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.Assign7Test.testLet1" />
-      <item itemvalue="JUnit.Assign7Test.testLet2" />
-      <item itemvalue="JUnit.Assign7Test.testLet3" />
-      <item itemvalue="JUnit.Assign7Test.testUnit" />
-      <item itemvalue="JUnit.Assign7Test.testBinOpGets" />
+      <item itemvalue="JUnit.Assign7Test" />
+      <item itemvalue="JUnit.Assign7Test.testApp1" />
+      <item itemvalue="JUnit.Assign7Test.testApp2" />
+      <item itemvalue="JUnit.Assign7Test.testApp3" />
+      <item itemvalue="JUnit.Assign7Test.testApp4" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign7Test.testUnit" />
-        <item itemvalue="JUnit.Assign7Test.testBinOpGets" />
-        <item itemvalue="JUnit.Assign7Test.testLet3" />
-        <item itemvalue="JUnit.Assign7Test.testLet2" />
-        <item itemvalue="JUnit.Assign7Test.testLet1" />
+        <item itemvalue="JUnit.Assign7Test.testApp4" />
+        <item itemvalue="JUnit.Assign7Test.testApp3" />
+        <item itemvalue="JUnit.Assign7Test.testApp1" />
+        <item itemvalue="JUnit.Assign7Test.testApp2" />
+        <item itemvalue="JUnit.Assign7Test" />
       </list>
     </recent_temporary>
   </component>
@@ -619,39 +615,46 @@
       <option name="project" value="LOCAL" />
       <updated>1588027658135</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Working on gets.">
+      <created>1588034277404</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1588034277404</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign7Test_testLet3 - 2020.04.27 at 17h 46m 52s.xml">
-      <configuration name="Assign7Test.testLet3" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 19m 30s.xml">
+      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testUnit - 2020.04.27 at 19h 08m 40s.xml">
-      <configuration name="Assign7Test.testUnit" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 19m 41s.xml">
+      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 08m 48s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp3 - 2020.04.27 at 20h 21m 53s.xml">
+      <configuration name="Assign7Test.testApp3" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 12m 19s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp3 - 2020.04.27 at 20h 22m 59s.xml">
+      <configuration name="Assign7Test.testApp3" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 19m 41s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 28m 08s.xml">
+      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 20m 56s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 28m 35s.xml">
+      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 22m 38s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 29m 02s.xml">
+      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 25m 41s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 29m 18s.xml">
+      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testBinOpGets - 2020.04.27 at 19h 26m 09s.xml">
-      <configuration name="Assign7Test.testBinOpGets" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp1 - 2020.04.27 at 20h 30m 00s.xml">
+      <configuration name="Assign7Test.testApp1" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Assign7Test_testUnit - 2020.04.27 at 19h 26m 55s.xml">
-      <configuration name="Assign7Test.testUnit" configurationId="JUnit" />
+    <history-entry file="Assign7Test_testApp3 - 2020.04.27 at 20h 31m 45s.xml">
+      <configuration name="Assign7Test.testApp3" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -693,7 +696,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on helper functions on a case-by-case basis." />
     <MESSAGE value="Our test case almost passes but :i values don't match up." />
     <MESSAGE value="BinOpSimple" />
     <MESSAGE value="Done with Phase 1." />
@@ -718,7 +720,8 @@
     <MESSAGE value="We think ref and &quot;=&quot; are good no. Working on not equals" />
     <MESSAGE value="Added != by just flipping true to false in =" />
     <MESSAGE value="Let seems to work for simple cases." />
-    <option name="LAST_COMMIT_MESSAGE" value="Let seems to work for simple cases." />
+    <MESSAGE value="Working on gets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on gets." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -769,17 +772,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="448" column="22" selection-start-line="448" selection-start-column="22" selection-end-line="448" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Syntax.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+        <state relative-caret-position="206">
+          <caret line="176" column="11" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="11" />
           <folding>
             <element signature="e#19084#19085#0" expanded="true" />
             <element signature="e#19137#19138#0" expanded="true" />
@@ -789,8 +785,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Semantics.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="1228" column="42" selection-start-line="1228" selection-start-column="42" selection-end-line="1228" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
-          <caret line="1101" column="17" lean-forward="true" selection-start-line="1101" selection-start-column="17" selection-end-line="1101" selection-end-column="17" />
+          <caret line="203" column="22" lean-forward="true" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="33" />
         </state>
       </provider>
     </entry>

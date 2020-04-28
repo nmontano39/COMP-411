@@ -1,6 +1,7 @@
 import jdk.internal.org.objectweb.asm.tree.AbstractInsnNode;
 
 import java.io.*;
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -1106,6 +1107,152 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	public Integer forApp(App a) {
 		// TODO
 		System.out.println("Reaches app: " + a);
+		ASTVisitor<Integer> tempVis = this;
+		if (a.rator() instanceof PrimFun) {
+			int n = a.args().length;
+			return ((PrimFun) a.rator()).accept(new PrimFunVisitor<Integer>() {
+				@Override
+				public Integer forFunctionPPrim() {
+
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == 4 || heap[argTag] < -4) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else {
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					}
+				}
+
+				@Override
+				public Integer forNumberPPrim() {
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == 1) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else {
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					}
+				}
+
+				@Override
+				public Integer forListPPrim() {
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == -1 || heap[argTag] == 2) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else {
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					}
+				}
+
+				@Override
+				public Integer forConsPPrim() {
+
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == 2) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else {
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					}
+				}
+
+				@Override
+				public Integer forNullPPrim() {
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == -1) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else {
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					}
+				}
+
+				@Override
+				public Integer forArityPrim() {
+					return -11;
+				}
+
+				@Override
+				public Integer forConsPrim() {
+					return -12;
+				}
+
+				@Override
+				public Integer forRefPPrim() {
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == 3) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else {
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					}
+				}
+
+				@Override
+				public Integer forFirstPrim() {
+					return -13;
+				}
+
+				@Override
+				public Integer forRestPrim() {
+					return -14;
+				}
+
+				@Override
+				public Integer forAsBoolPrim() {
+					return -15;
+				}
+			});
+		}
 		return 0;
 	}
 

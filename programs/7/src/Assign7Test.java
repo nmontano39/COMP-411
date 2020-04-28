@@ -164,8 +164,50 @@ public class Assign7Test extends TestCase {
       fail("append threw " + e);
     }
   } //end of func
-  
-  
+
+  public void testApp1() {
+    try {
+      String output = "true";
+      String input = "number?(3)";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testApp2() {
+    try {
+      String output = "true";
+      String input = "function?(number?)";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testApp3() {
+    try {
+      String output = "true";
+      String input = "ref?(ref 10)";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
+
+  public void testApp4() {
+    try {
+      String output = "true";
+      String input = "list?(null)";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
   
   
   
