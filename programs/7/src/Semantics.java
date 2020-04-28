@@ -1080,38 +1080,24 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpGets(OpGets op) {
-				// TODO: The binary operation E1 <- E2 evaluates the expression E1 to produce a value V1 that must be
-				//  a box, evaluates E2 to produce an arbitrary value V2, stores V2 in box V1, and returns the special
-				//  value unit (which is a legal Jam value, unlike the "undefined" value used in call-by-value recursive
-				//  let). If V1 is not a box, then the interpreter generates a run-time error.
-				
-				System.out.println("\n<-------- forOpGets start");
-				for (int i = 0; i < lastIdx; i++) {
-					System.out.printf(heap[i] + " ");
-				}
-				System.out.println("\n Heap before we do the gets stuff");
 				if (heap[argTagIdx1] != 3) {
 					throw new EvalException("Op " + op +" applied on non-ref " + b.arg1());
 				}
-				System.out.println("lastIndex = " + lastIdx + " argTagIdx1 = " + argTagIdx1 + " argTagIdx2 = " + argTagIdx2);
+				heap[lastIdx] = 3;
+				lastIdx++;
 				int arg2Len = lastIdx - argTagIdx2;
-
 				for (int i = 0; i < arg2Len; i++) {
 					heap[lastIdx] = heap[argTagIdx2 + i];
 					lastIdx++;
 				}
-
 				if (b.arg1() instanceof Pair) {
 					Pair p1 = (Pair) b.arg1();
 					varAddress v = envLink.get(envLink.size() - 1 - p1.dist())[p1.offset()];
-					v.startIdx = lastIdx - arg2Len;
+					v.startIdx = lastIdx - arg2Len - 1;
 				}
-
 				int temp = lastIdx;
 				heap[lastIdx] = -2;
 				lastIdx++;
-				
-				System.out.println("<-------- forOpGets end\n");
 				return temp;
 			}
 		});

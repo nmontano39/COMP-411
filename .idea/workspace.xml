@@ -84,7 +84,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Assign7Test.testBinOpGets">
+  <component name="RunManager" selected="JUnit.Assign7Test">
     <configuration name="Assign7Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="COMP-411" />
       <option name="PACKAGE_NAME" value="" />
@@ -143,8 +143,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Assign7Test.testBinOpGets" />
         <item itemvalue="JUnit.Assign7Test" />
+        <item itemvalue="JUnit.Assign7Test.testBinOpGets" />
         <item itemvalue="JUnit.Assign7Test.testUnit" />
         <item itemvalue="JUnit.Assign7Test.testNull" />
         <item itemvalue="JUnit.Assign7Test.testBasicRamSD3" />
@@ -170,14 +170,7 @@
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
       <workItem from="1587378675772" duration="14252000" />
-      <workItem from="1588022406424" duration="4591000" />
-    </task>
-    <task id="LOCAL-00038" summary="working on Lazy Cons">
-      <created>1582407969512</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1582407969512</updated>
+      <workItem from="1588022406424" duration="6561000" />
     </task>
     <task id="LOCAL-00039" summary="working on Lazy Cons">
       <created>1582408745723</created>
@@ -515,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588029839871</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="working on gets, still have to do block, map, app">
+      <created>1588031136882</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1588031136883</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TODO: letRec, callByNeed" />
     <MESSAGE value="TODO: letRec callByname" />
     <MESSAGE value="writing README, all tests pass." />
     <MESSAGE value="added testRef" />
@@ -563,7 +562,8 @@
     <MESSAGE value="starting a7 - phase 2" />
     <MESSAGE value="working on ramEvaluator" />
     <MESSAGE value="working on readME, still have to do gets, block, map, app" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on readME, still have to do gets, block, map, app" />
+    <MESSAGE value="working on gets, still have to do block, map, app" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on gets, still have to do block, map, app" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
