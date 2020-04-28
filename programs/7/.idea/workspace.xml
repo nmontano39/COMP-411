@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cccc7880-7c00-4734-9a7b-d09a882cfc4e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/EvalException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/EvalException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Evaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Evaluator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/5/Interpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/5/Interpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Assign7Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assign7Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Semantics.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -149,21 +145,21 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="9316" />
-          <entry key="txt" value="517" />
+          <entry key="java" value="9753" />
+          <entry key="txt" value="574" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9316" />
-          <entry key="PLAIN_TEXT" value="517" />
+          <entry key="JAVA" value="9753" />
+          <entry key="PLAIN_TEXT" value="574" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
@@ -185,20 +181,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Semantics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-412">
-              <caret line="1235" column="89" selection-start-line="1235" selection-start-column="89" selection-end-line="1235" selection-end-column="89" />
+            <state relative-caret-position="215">
+              <caret line="145" column="61" selection-start-line="145" selection-start-column="61" selection-end-line="145" selection-end-column="61" />
               <folding>
-                <element signature="e#38341#38342#0" expanded="true" />
-                <element signature="e#38364#38365#0" expanded="true" />
-                <element signature="e#38830#38831#0" expanded="true" />
-                <element signature="e#38853#38854#0" expanded="true" />
-                <element signature="e#38903#38904#0" expanded="true" />
-                <element signature="e#38926#38927#0" expanded="true" />
-                <element signature="e#38978#38979#0" expanded="true" />
-                <element signature="e#39001#39002#0" expanded="true" />
+                <element signature="e#39485#39486#0" expanded="true" />
+                <element signature="e#39508#39509#0" expanded="true" />
+                <element signature="e#39558#39559#0" expanded="true" />
+                <element signature="e#39581#39582#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -274,8 +266,8 @@
         <option value="$PROJECT_DIR$/src/Parser.java" />
         <option value="$PROJECT_DIR$/src/Assign6Test.java" />
         <option value="$PROJECT_DIR$/src/Syntax.java" />
-        <option value="$PROJECT_DIR$/src/Semantics.java" />
         <option value="$PROJECT_DIR$/src/Assign7Test.java" />
+        <option value="$PROJECT_DIR$/src/Semantics.java" />
       </list>
     </option>
   </component>
@@ -301,7 +293,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588038222093" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588039333062" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -644,16 +636,17 @@
       <option name="project" value="LOCAL" />
       <updated>1588037573936</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="List stuff remaining for primitive apps. Rest done.">
+      <created>1588038255363</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1588038255363</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 29m 02s.xml">
-      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Assign7Test_testApp2 - 2020.04.27 at 20h 29m 18s.xml">
-      <configuration name="Assign7Test.testApp2" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Assign7Test_testApp1 - 2020.04.27 at 20h 30m 00s.xml">
       <configuration name="Assign7Test.testApp1" configurationId="JUnit" />
     </history-entry>
@@ -678,6 +671,12 @@
     <history-entry file="Assign7Test_testBool1 - 2020.04.27 at 20h 41m 56s.xml">
       <configuration name="Assign7Test.testBool1" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 20h 42m 04s.xml">
+      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Assign7Test_testBool2 - 2020.04.27 at 20h 43m 44s.xml">
+      <configuration name="Assign7Test.testBool2" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1922" height="1056" extended-state="6" />
@@ -692,7 +691,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32459018" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32459018" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -718,7 +717,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="BinOpSimple" />
     <MESSAGE value="Done with Phase 1." />
     <MESSAGE value="Starting on Phase 2." />
     <MESSAGE value="Need to figure out the depth stuff for Phase 2." />
@@ -743,7 +741,8 @@
     <MESSAGE value="Let seems to work for simple cases." />
     <MESSAGE value="Working on gets." />
     <MESSAGE value="PPrim Apps work." />
-    <option name="LAST_COMMIT_MESSAGE" value="PPrim Apps work." />
+    <MESSAGE value="List stuff remaining for primitive apps. Rest done." />
+    <option name="LAST_COMMIT_MESSAGE" value="List stuff remaining for primitive apps. Rest done." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -805,27 +804,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-412">
-          <caret line="1235" column="89" selection-start-line="1235" selection-start-column="89" selection-end-line="1235" selection-end-column="89" />
-          <folding>
-            <element signature="e#38341#38342#0" expanded="true" />
-            <element signature="e#38364#38365#0" expanded="true" />
-            <element signature="e#38830#38831#0" expanded="true" />
-            <element signature="e#38853#38854#0" expanded="true" />
-            <element signature="e#38903#38904#0" expanded="true" />
-            <element signature="e#38926#38927#0" expanded="true" />
-            <element signature="e#38978#38979#0" expanded="true" />
-            <element signature="e#39001#39002#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Assign7Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="248" column="9" selection-start-line="248" selection-start-column="9" selection-end-line="248" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Semantics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="145" column="61" selection-start-line="145" selection-start-column="61" selection-end-line="145" selection-end-column="61" />
+          <folding>
+            <element signature="e#39485#39486#0" expanded="true" />
+            <element signature="e#39508#39509#0" expanded="true" />
+            <element signature="e#39558#39559#0" expanded="true" />
+            <element signature="e#39581#39582#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

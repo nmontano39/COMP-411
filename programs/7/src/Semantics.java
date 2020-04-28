@@ -1239,7 +1239,21 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 				@Override
 				public Integer forConsPrim() {
-					return -12;
+					if (n != 2) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+					int temp = lastIdx;
+
+					heap[lastIdx] = 2;
+					lastIdx++;
+
+					a.args()[0].accept(tempVis);
+					Integer argTag2 = a.args()[1].accept(tempVis);
+
+					if (!(heap[argTag2] == 2 || heap[argTag2] == -1)) {
+						throw new EvalException("Incorrect second argument for " + a.rator());
+					}
+					return temp;
 				}
 
 				@Override
