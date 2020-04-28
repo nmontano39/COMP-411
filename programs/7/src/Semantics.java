@@ -127,8 +127,10 @@ class Interpreter {
 	 * using the low-level interpreter.
 	 */
 	public JamVal ramSDCpsEval() {
-		// TODO
-		return null;
+		SDAST prog = parser.statCpsProg();
+		System.out.println(prog);
+		Integer out = prog.accept(ramEvaluator);
+		return ramCaseEval(out);
 	}
 
 	private JamVal ramCaseEval(Integer idx) {
@@ -658,6 +660,9 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 	public Integer forSMap(SMap sm) {
 		// TODO
+		sm.setCodeIdx(getCodeTbl().size());
+		codeTbl.add(sm);
+		
 		return 0;
 	}
 
@@ -683,8 +688,24 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forSLetRec(SLetRec slr) {
-		// TODO
-		return 0;
+		heap[lastIdx] = 5;
+		lastIdx++;
+
+		//TODO: just set first env's parent to -100 to avoid any conflicts with the existing tags.
+		// May need to change this later.
+		heap[lastIdx] = envLink.size() == 0 ? -100 : envLink.size() - 1;
+		lastIdx++;
+		heap[lastIdx] = slr.rhss().length;
+		lastIdx++;
+		varAddress[] thisEnv = new varAddress[slr.rhss().length];
+		for (int i = 0; i < slr.rhss().length; i++) {
+			Integer startIdx = slr.rhss()[i].accept(this);
+			int endIdx = lastIdx - 1;
+			thisEnv[i] = new varAddress(startIdx, endIdx);
+		}
+		envLink.add(thisEnv);
+
+		return slr.body().accept(this);
 	}
 
 	public Integer forBoolConstant(BoolConstant b) {
