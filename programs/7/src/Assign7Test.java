@@ -1,6 +1,5 @@
-import java.util.StringTokenizer;
 import junit.framework.TestCase;
-import java.io.*;
+import java.io.StringReader;
 
 /**
  * testing framework for typed jam

@@ -1,7 +1,7 @@
-import java.io.*;
-import java.sql.Ref;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /** The exception class for Jam run-time errors */
 class EvalException extends RuntimeException {
