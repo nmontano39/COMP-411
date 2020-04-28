@@ -1086,14 +1086,27 @@ class ramEvaluator implements ASTVisitor<Integer> {
 				//  let). If V1 is not a box, then the interpreter generates a run-time error.
 				
 				System.out.println("\n<-------- forOpGets start");
-				varAddress[] arr = envLink.get(0);
-				System.out.println("numVarAddresses = " + arr.length);
-				for(int i = 0; i < arr.length; i++) {
-					System.out.println(i + " " + arr[i]);
-					arr[i] = new varAddress(lastIdx-3, lastIdx);
-					System.out.println(i + " " + arr[i]);
+				for (int i = 0; i < lastIdx; i++) {
+					System.out.printf(heap[i] + " ");
 				}
-				
+				System.out.println("\n Heap before we do the gets stuff");
+				if (heap[argTagIdx1] != 3) {
+					throw new EvalException("Op " + op +" applied on non-ref " + b.arg1());
+				}
+				System.out.println("lastIndex = " + lastIdx + " argTagIdx1 = " + argTagIdx1 + " argTagIdx2 = " + argTagIdx2);
+				int arg2Len = lastIdx - argTagIdx2;
+
+				for (int i = 0; i < arg2Len; i++) {
+					heap[lastIdx] = heap[argTagIdx2 + i];
+					lastIdx++;
+				}
+
+				if (b.arg1() instanceof Pair) {
+					Pair p1 = (Pair) b.arg1();
+					varAddress v = envLink.get(envLink.size() - 1 - p1.dist())[p1.offset()];
+					v.startIdx = lastIdx - arg2Len;
+				}
+
 				int temp = lastIdx;
 				heap[lastIdx] = -2;
 				lastIdx++;
