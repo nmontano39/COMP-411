@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f05a1aa4-eb7a-403e-87be-1045aebbbcdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/programs/7/src/Semantics.java" beforeDir="false" afterPath="$PROJECT_DIR$/programs/7/src/Semantics.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -170,14 +169,7 @@
       <workItem from="1585733750233" duration="5342000" />
       <workItem from="1585831272354" duration="12577000" />
       <workItem from="1587378675772" duration="14252000" />
-      <workItem from="1588022406424" duration="6561000" />
-    </task>
-    <task id="LOCAL-00039" summary="working on Lazy Cons">
-      <created>1582408745723</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1582408745723</updated>
+      <workItem from="1588022406424" duration="7821000" />
     </task>
     <task id="LOCAL-00040" summary="working on Lazy Cons">
       <created>1582408942124</created>
@@ -515,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588031136883</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="TODO: map, app">
+      <created>1588034809680</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1588034809680</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +537,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TODO: letRec callByname" />
     <MESSAGE value="writing README, all tests pass." />
     <MESSAGE value="added testRef" />
     <MESSAGE value="added some test cases" />
@@ -563,7 +561,8 @@
     <MESSAGE value="working on ramEvaluator" />
     <MESSAGE value="working on readME, still have to do gets, block, map, app" />
     <MESSAGE value="working on gets, still have to do block, map, app" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on gets, still have to do block, map, app" />
+    <MESSAGE value="TODO: map, app" />
+    <option name="LAST_COMMIT_MESSAGE" value="TODO: map, app" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
