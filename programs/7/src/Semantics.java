@@ -1210,7 +1210,31 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 				@Override
 				public Integer forArityPrim() {
-					return -11;
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == -12) {
+						heap[lastIdx] = 1;
+						lastIdx++;
+						heap[lastIdx] = 2;
+						lastIdx++;
+						return temp;
+					} else if (heap[argTag] < -4){
+						heap[lastIdx] = 1;
+						lastIdx++;
+						heap[lastIdx] = 1;
+						lastIdx++;
+						return temp;
+					} else if (heap[argTag] == 4) {
+						// TODO - update this case !!!
+						System.out.println("Closure case missing in APP");
+						return 0;
+					} else {
+						throw new EvalException("Incorrect argument for Prim Fun arity");
+					}
 				}
 
 				@Override
@@ -1249,7 +1273,23 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 				@Override
 				public Integer forAsBoolPrim() {
-					return -15;
+					if (n != 1) {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
+
+					Integer argTag = a.args()[0].accept(tempVis);
+					int temp = lastIdx;
+					if (heap[argTag] == -3) {
+						heap[lastIdx] = -3;
+						lastIdx++;
+						return temp;
+					} else if (heap[argTag] == -4){
+						heap[lastIdx] = -4;
+						lastIdx++;
+						return temp;
+					} else {
+						throw new EvalException("Incorrect number of arguments for " + a.rator());
+					}
 				}
 			});
 		}

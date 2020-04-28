@@ -208,6 +208,17 @@ public class Assign7Test extends TestCase {
       fail("append threw " + e);
     }
   }
+
+  public void testApp5() {
+    try {
+      String output = "1";
+      String input = "arity(cons?)";
+      ramSDCheck("append", output, input, defaultSize);
+
+    } catch (Exception e) {
+      fail("append threw " + e);
+    }
+  }
   
   
   
