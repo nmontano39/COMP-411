@@ -88,7 +88,6 @@ class Interpreter {
   Interpreter(StringReader stringReader, int hs) {
 	  parser = new Parser(stringReader);
 	  heap = new int[HEAPSIZE];
-	  // TODO: This initialization to 0 may be unnecessary.
 	  for (int i = 0; i < HEAPSIZE; i++) {
 	  	heap[i] = 0;
 	  }
@@ -144,17 +143,14 @@ class Interpreter {
 				System.out.println("Gets into case 1: int");
 				return new IntConstant(heap[idx + 1]);
 			case 2:
-				// TODO: Implement this case.
 				System.out.println("Gets into case 2: cons");
 			case 3:
 				System.out.println("Gets into case 3: ref");
 				JamVal arg = ramCaseEval(idx + 1);
 				return new JamRef(arg);
 			case 4:
-				// TODO: Implement this case.
 				System.out.println("Gets into case 4: closure");
 			case 5:
-				// TODO: Implement this case.
 				System.out.println("Gets into case 5: activation record");
 			case -1:
 				System.out.println("Gets into case -1: null");
@@ -637,7 +633,7 @@ class varAddress {
  */
 class ramEvaluator implements ASTVisitor<Integer> {
 	
-	// TODO: do we want this here?
+
 	private ArrayList<SDAST> codeTbl = new ArrayList<>();
 	public ArrayList<SDAST> getCodeTbl() {
 		return codeTbl;
@@ -659,19 +655,16 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forSMap(SMap sm) {
-		// TODO
 		sm.setCodeIdx(getCodeTbl().size());
 		codeTbl.add(sm);
-		
+
 		return 0;
 	}
 
 	public Integer forSLet(SLet sl) {
 		heap[lastIdx] = 5;
 		lastIdx++;
-		
-		//TODO: just set first env's parent to -100 to avoid any conflicts with the existing tags.
-		// May need to change this later.
+
 		heap[lastIdx] = envLink.size() == 0 ? -100 : envLink.size() - 1;
 		lastIdx++;
 		heap[lastIdx] = sl.rhss().length;
@@ -691,8 +684,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 		heap[lastIdx] = 5;
 		lastIdx++;
 
-		//TODO: just set first env's parent to -100 to avoid any conflicts with the existing tags.
-		// May need to change this later.
 		heap[lastIdx] = envLink.size() == 0 ? -100 : envLink.size() - 1;
 		lastIdx++;
 		heap[lastIdx] = slr.rhss().length;
@@ -1071,8 +1062,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpAnd(OpAnd op) {
-				//TODO: Come back to this later. The parser changes x & y to if x then y else false
-				// so not sure if we ever actually get here.
 				System.out.println("Arg1: " + b.arg1() + " Arg: " + b.arg2());
 				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
 					int temp = lastIdx;
@@ -1087,8 +1076,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 
 			@Override
 			public Integer forOpOr(OpOr op) {
-				//TODO: Come back to this later. The parser changes x & y to if x then y else false
-				// so not sure if we ever actually get here.
 				if (bothBoolean(heap[argTagIdx1], heap[argTagIdx2])) {
 					int temp = lastIdx;
 					int boolVal = heap[argTagIdx1 + 1] == -3 || heap[argTagIdx2 + 1] == -3 ? -3 : -4;
@@ -1126,7 +1113,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 	}
 
 	public Integer forApp(App a) {
-		// TODO
 		System.out.println("Reaches app: " + a);
 		ASTVisitor<Integer> tempVis = this;
 		if (a.rator() instanceof PrimFun) {
@@ -1250,7 +1236,6 @@ class ramEvaluator implements ASTVisitor<Integer> {
 						lastIdx++;
 						return temp;
 					} else if (heap[argTag] == 4) {
-						// TODO - update this case !!!
 						System.out.println("Closure case missing in APP");
 						return 0;
 					} else {

@@ -520,7 +520,6 @@ class Pair implements Term, SDAST {
 
 /** SDAST representation for a map */
 class SMap implements SDAST {
-  // TODO: added for a7
   private int codeIdx;
   public int getCodeIdx() { return codeIdx; }
   public void setCodeIdx(int idx) {codeIdx = idx;}
@@ -2628,7 +2627,6 @@ class SConverter {
   /** Visitor class for performing the static distance conversion; it modifies symbolTable during traversal,
     * but restores it on exit */
   class SConvert implements SymASTVisitor<SDAST> {
-    // TODO: a7 - Delete codeIdx if you're not using it
 //    int codeIdx;
     int depth; // lexical depth of expression being visited
 
@@ -2683,8 +2681,7 @@ class SConverter {
       depth++;
       SDAST body = convert(m.body());
       depth--;
-      
-      // TODO: a7 - might need to change "-1" to codeIdx++
+
 //      return new SMap(codeIdx++, m.vars().length, body);
       return new SMap(-1, m.vars().length, body);
     }
